@@ -1,0 +1,235 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Method</title>
+<style type="text/css">
+pre,span
+{
+	font-size:		20px;
+}
+
+table.Audio_SD_Table video
+{
+	width:			400px;
+	height:			30px;
+}
+
+table.Audio_Official_Table video
+{
+	width:			350px;
+	height:			30px;
+}
+
+table.Audio_Official_Table input
+{
+	height:			30px;
+}
+
+table.Audio_Official_Table
+{
+	font-size:		20px;
+}
+
+</style>
+</head>
+
+
+<body bgcolor=#CCE8CF>
+<script type="text/javascript">
+function Audio_Switch(ele)
+{
+	//==========DIVISION==========
+	var i,j,k;
+	var arr00,arr01;
+	var ele00,ele01;
+	var elel00;
+	//==========DIVISION==========
+	ele00=document.getElementsByClassName("Audio_Short")[0];
+	ele01=document.getElementsByClassName("Audio_Long")[0];
+	ele00.style.backgroundColor="red";
+	ele01.style.backgroundColor="red";
+	ele.style.backgroundColor="#1EB0E9";
+	//==========DIVISION==========
+	ele00=document.getElementsByClassName("Audio_SD_Table")[0];
+	elel00=ele00.getElementsByTagName("tr");
+	if ( ele.className=="Audio_Short" )
+	{
+		arr00=["李洪志","真、善、忍","法輪功","法輪大法","李洪志真善忍法輪功好◯◯◯◯◯◯"];
+		arr01=["LHZ","Z,S,R","FLG","FLDF","LHZZSRFLGH_R6"];
+	}
+	else if ( ele.className=="Audio_Long" )
+	{
+		arr00=["李洪志_X1024","真、善、忍_X256","法輪功_X1024","法輪大法_X1024","李洪志真善忍法輪功好◯◯◯◯◯◯_X64"];
+		arr01=["LHZ_X1024","Z,S,R_X256","FLG_X1024","FLDF_X1024","LHZZSRFLGH_R6_X64"];
+	}
+	else		{}
+	//==========DIVISION==========
+	for (i=0;i<elel00.length;i++)
+	{
+		elel00[i].getElementsByTagName("span")[0].innerHTML=arr00[i];
+		elel00[i].getElementsByTagName("a")[0].href="Audio_SD/" + arr01[i] + ".mp3";
+		//elel00[i].getElementsByTagName("source")[0].src="Audio_SD/" + arr01[i] + ".mp3";
+		elel00[i].getElementsByTagName("td")[1].innerHTML=
+		'<video controls="" name="media" loop=true><source src="Audio_SD/' + arr01[i] + 
+		'.mp3" type="audio/mpeg">		</video>';
+	}
+	//==========DIVISION==========
+}
+
+function Audio_Official_Play(ele)
+{
+	//==========DIVISION==========
+	var i,j,k;
+	var num00;
+	var ele00,ele01;
+	var elel00;
+	//==========DIVISION==========
+	ele00=document.getElementsByClassName("Audio_Official_Table")[0];
+	elel00=ele00.getElementsByTagName("input");
+	elel01=ele00.getElementsByTagName("source");
+	//==========DIVISION==========
+	for (i=1;i<elel00.length;i++)
+	{
+		elel00[i].style.backgroundColor="red";
+		//num00=elel00[i].value;
+		//num00=parseInt(num00,10);
+		//elel01[i].src="https://media.falundafa.org/media1/media/dafa/gzjf/Guangzhou40k_" + num00 + ".mp3";
+		ele00.getElementsByTagName("td")[1 + (i - 1) * 2 + 1].innerHTML=//'';
+		'<video controls="" name="media" loop=true><source src="" type="audio/mpeg">		</video>';
+	}
+	//==========DIVISION==========
+	num00=ele.value;
+	num00=parseInt(num00,10);
+	ele.style.backgroundColor="#1EB0E9";
+	if ( num00>0 )
+	{
+		//elel01[num00].src="https://media.falundafa.org/media1/media/dafa/gzjf/Guangzhou40k_" + num00 + ".mp3";
+		ele00.getElementsByTagName("td")[1 + (num00 - 1) * 2 + 1].innerHTML=//num00;
+		'<video controls="" name="media" loop=true><source src="https://media.falundafa.org/media1/media/dafa/gzjf/Guangzhou40k_' + num00 + 
+		'.mp3" type="audio/mpeg">		</video>';
+	}
+	else		{}
+	//==========DIVISION==========
+}
+</script>
+<pre class="Text_CLS">
+================================================================================
+============================================================
+「李洪志」「大覺者」「的照片」「的講法錄音」，
+「用」「李洪志」「能量」、「真、善、忍法力」、「法輪功」「功力」，
+「安排你」「今後的人生道路」。
+「宇宙一切生命」：【人、动物、植物、宠物猫狗；佛陀、神仙；鬼魂、灵魂；......】，
+【真善忍李洪志能量】「都能安排的了。」
+【真善忍李洪志能量】「都能管得了。」
+
+<b style="color:red;">方法：一边听【讲法录音】，同时看【照片】</b>，感受【李洪志能量】的神奇现象，效果更好。
+
+「李洪志」「的照片」
+https://gb.falundafa.org/photo.html
+https://falundafa.org/images/master_Li_high.zip
+
+https://cn-text.github.io/view/Photo_View_01.html
+https://cn-text.github.io/view/master_Li_high.jpg
+https://cn-text.github.io/view/master_Li_high_R90.jpg
+https://cn-text.github.io/view/master_Li_high_R180.jpg
+https://cn-text.github.io/view/master_Li_high_R270.jpg
+
+Ctrl & +	放大
+Ctrl & -	缩小
+Ctrl & 0	恢复原尺寸
+F11			全屏
+============================================================
+【从李洪志师父的真人讲法录音中】【用<a href="https://github.com/audacity/audacity/" target=_blank>Audacity</a>截取+合并的：】
+「李洪志」「真善忍」「法輪功」「法輪大法」【音频】：<input type="button" class="Audio_Short" value="Short" onclick=Audio_Switch(this) style="background-color:#1EB0E9;"><input type="button" class="Audio_Long" value="Long" onclick=Audio_Switch(this) style="background-color:red;">
+<table class="Audio_SD_Table" cellSpacing=0 cellPadding=0 border=1><tbody>
+<tr>
+	<td><span>李洪志</span><a href="Audio_SD/LHZ.mp3" target=_blank download>↓</a></td>
+	<td><video controls="" name="media" loop=true><source src="Audio_SD/LHZ.mp3" type="audio/mpeg">				</video></td>
+	<td><span>3:</span></td>
+	<td style="display:none;"><span>3.1:</span></td>
+	<td><span>01.33.02.820	-	01.33.03.420</span></td>
+</tr>
+<tr>
+	<td><span>真、善、忍</span><a href="Audio_SD/Z,S,R.mp3" target=_blank download>↓</a></td>
+	<td><video controls="" name="media" loop=true><source src="Audio_SD/Z,S,R.mp3" type="audio/mpeg">			</video></td>
+	<td><span>1:</span></td>
+	<td style="display:none;"><span>1.1:</span></td>
+	<td><span>00.40.55.870	-	00.40.58.500</span></td>
+</tr>
+<tr>
+	<td><span>法輪功</span><a href="Audio_SD/FLG.mp3" target=_blank download>↓</a></td>
+	<td><video controls="" name="media" loop=true><source src="Audio_SD/FLG.mp3" type="audio/mpeg">				</video></td>
+	<td><span>1:</span></td>
+	<td style="display:none;"><span>1.1:</span></td>
+	<td><span>00.08.46.325	-	00.08.46.773</span></td>
+</tr>
+<tr>
+	<td><span>法輪大法</span><a href="Audio_SD/FLDF.mp3" target=_blank download>↓</a></td>
+	<td><video controls="" name="media" loop=true><source src="Audio_SD/FLDF.mp3" type="audio/mpeg">			</video></td>
+	<td><span>1:</span></td>
+	<td style="display:none;"><span>1.1:</span></td>
+	<td><span>01.27.09.800	-	01.27.10.800</span></td>
+</tr>
+<tr>
+	<td><span>李洪志真善忍法輪功好◯◯◯◯◯◯</span><a href="Audio_SD/LHZZSRFLGH_R6.mp3" target=_blank download>↓</a></td>
+	<td><video controls="" name="media" loop=true><source src="Audio_SD/LHZZSRFLGH_R6.mp3" type="audio/mpeg">	</video></td>
+	<td style="display:none;"><span>9:</span></td>
+	<td style="display:none;"><span>9.1:</span></td>
+	<td style="display:none;"><span>01.31.52.150	-	01.31.52.500</span></td>
+</tr>
+</tbody></table><!--
+<table cellSpacing=0 cellPadding=0 border=1 style="display:none;"><tbody>
+<tr><td>李洪志</td>		<td><span>3:</span></td>	<td style="display:none;"><span>3.1:</span></td>		<td>01.33.02.820	-	01.33.03.420</td></tr>
+<tr><td>真、善、忍</td>	<td><span>1:</span></td>	<td style="display:none;"><span>1.1:</span></td>		<td>00.40.55.870	-	00.40.58.500</td></tr>
+<tr><td>法輪功</td>		<td><span>1:</span></td>	<td style="display:none;"><span>1.1:</span></td>		<td>00.08.46.325	-	00.08.46.773</td></tr>
+<tr><td>法輪大法</td>	<td><span>1:</span></td>	<td style="display:none;"><span>1.1:</span></td>		<td>01.27.09.800	-	01.27.10.800</td></tr>
+<tr><td>好</td>			<td><span>9:</span></td>	<td style="display:none;"><span>9.1:</span></td>		<td>01.31.52.150	-	01.31.52.500</td></tr>
+</tbody></table>-->
+============================================================
+【李洪志师父的真人讲法录音录像：】
+https://gb.falundafa.org/falun-dafa-video-audio-9session.html
+
+<table class="Audio_Official_Table" cellSpacing=0 cellPadding=0 border=1><tbody>
+<tr>
+<td><input type="button" value="0" onclick=Audio_Official_Play(this) style="background-color:#1EB0E9;"></td>
+</tr>
+<tr>
+<td><input type="button" value="1" onclick=Audio_Official_Play(this)></td><td><video controls="" name="media" loop=true><source src="" type="audio/mpeg"></video></td>
+<td><input type="button" value="2" onclick=Audio_Official_Play(this)></td><td><video controls="" name="media" loop=true><source src="" type="audio/mpeg"></video></td>
+<td><input type="button" value="3" onclick=Audio_Official_Play(this)></td><td><video controls="" name="media" loop=true><source src="" type="audio/mpeg"></video></td>
+</tr>
+<tr>
+<td><input type="button" value="4" onclick=Audio_Official_Play(this)></td><td><video controls="" name="media" loop=true><source src="" type="audio/mpeg"></video></td>
+<td><input type="button" value="5" onclick=Audio_Official_Play(this)></td><td><video controls="" name="media" loop=true><source src="" type="audio/mpeg"></video></td>
+<td><input type="button" value="6" onclick=Audio_Official_Play(this)></td><td><video controls="" name="media" loop=true><source src="" type="audio/mpeg"></video></td>
+</tr>
+<tr>
+<td><input type="button" value="7" onclick=Audio_Official_Play(this)></td><td><video controls="" name="media" loop=true><source src="" type="audio/mpeg"></video></td>
+<td><input type="button" value="8" onclick=Audio_Official_Play(this)></td><td><video controls="" name="media" loop=true><source src="" type="audio/mpeg"></video></td>
+<td><input type="button" value="9" onclick=Audio_Official_Play(this)></td><td><video controls="" name="media" loop=true><source src="" type="audio/mpeg"></video></td>
+</tr>
+
+<tr><td colspan=6>https://media.falundafa.org/media1/media/dafa/gzjf/Guangzhou40k_1.mp3</td></tr>
+<tr><td colspan=6>https://media.falundafa.org/media1/media/dafa/gzjf/Guangzhou40k_2.mp3</td></tr>
+<tr><td colspan=6>https://media.falundafa.org/media1/media/dafa/gzjf/Guangzhou40k_3.mp3</td></tr>
+<tr><td colspan=6>https://media.falundafa.org/media1/media/dafa/gzjf/Guangzhou40k_4.mp3</td></tr>
+<tr><td colspan=6>https://media.falundafa.org/media1/media/dafa/gzjf/Guangzhou40k_5.mp3</td></tr>
+<tr><td colspan=6>https://media.falundafa.org/media1/media/dafa/gzjf/Guangzhou40k_6.mp3</td></tr>
+<tr><td colspan=6>https://media.falundafa.org/media1/media/dafa/gzjf/Guangzhou40k_7.mp3</td></tr>
+<tr><td colspan=6>https://media.falundafa.org/media1/media/dafa/gzjf/Guangzhou40k_8.mp3</td></tr>
+<tr><td colspan=6>https://media.falundafa.org/media1/media/dafa/gzjf/Guangzhou40k_9.mp3</td></tr>
+
+</tbody></table>
+
+「我的书中有法身，我的录像带、录音带上都有」
+「我的书中有」「能量」，「我的录像带、录音带上都有」
+
+「李洪志」「的录像带、录音带上都有」「李洪志」「能量」
+ site:falundafa.org
+
+============================================================
+================================================================================
+
+</pre>
+</body>
+</html>
