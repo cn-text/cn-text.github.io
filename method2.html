@@ -10,7 +10,7 @@ pre,span
 
 table.Audio_SD_Table video
 {
-	width:			400px;
+	width:			350px;
 	height:			30px;
 }
 
@@ -42,7 +42,7 @@ function Audio_Switch(ele)
 	var i,j,k;
 	var arr00,arr01;
 	var ele00,ele01;
-	var elel00;
+	var elel00,elel01;
 	//==========DIVISION==========
 	ele00=document.getElementsByClassName("Audio_Short")[0];
 	ele01=document.getElementsByClassName("Audio_Long")[0];
@@ -51,17 +51,33 @@ function Audio_Switch(ele)
 	ele.style.backgroundColor="#1EB0E9";
 	//==========DIVISION==========
 	ele00=document.getElementsByClassName("Audio_SD_Table")[0];
-	elel00=ele00.getElementsByTagName("tr");
+	elel00=ele00.getElementsByClassName("TD_Text");
+	elel01=ele00.getElementsByClassName("TD_Audio");
 	if ( ele.className=="Audio_Short" )
 	{
-		arr00=["李洪志","真、善、忍","法輪功","法輪大法","李洪志真善忍◯","李洪志真善忍好◯","李洪志真善忍法輪功好◯◯◯◯◯◯"];
-		arr01=["LHZ","Z,S,R","FLG","FLDF","LHZZSR","LHZZSRH","LHZZSRFLGH_R6"];
+		arr00=["李洪志","真、善、忍","法輪功","法輪大法","好",
+				"李洪志真善忍◯","李洪志真善忍好◯",
+				"法輪功真善忍◯","法輪功真善忍好◯",
+				"法輪大法真善忍◯","法輪大法真善忍好◯",
+				"李洪志真善忍法輪功好◯◯◯◯◯◯"];
+		arr01=["LHZ","Z,S,R","FLG","FLDF","H",
+				"LHZZSR","LHZZSRH",
+				"FLGZSR","FLGZSRH",
+				"FLDFZSR","FLDFZSRH",
+				"LHZZSRFLGH_R6"];
 	}
 	else if ( ele.className=="Audio_Long" )
 	{
-		arr00=["李洪志_X1024","真、善、忍_X256","法輪功_X1024","法輪大法_X1024",
-				"李洪志真善忍◯_X128","李洪志真善忍好◯_X256","李洪志真善忍法輪功好◯◯◯◯◯◯_X64"];
-		arr01=["LHZ_X1024","Z,S,R_X256","FLG_X1024","FLDF_X1024","LHZZSR_X128","LHZZSRH_X256","LHZZSRFLGH_R6_X64"];
+		arr00=["李洪志_X1024","真、善、忍_X256","法輪功_X1024","法輪大法_X1024","好",
+				"李洪志真善忍◯_X128","李洪志真善忍好◯_X256",
+				"法輪功真善忍◯_X128","法輪功真善忍好◯_X256",
+				"法輪大法真善忍◯_X128","法輪大法真善忍好◯_X256",
+				"李洪志真善忍法輪功好◯◯◯◯◯◯_X64"];
+		arr01=["LHZ_X1024","Z,S,R_X256","FLG_X1024","FLDF_X1024","H",
+				"LHZZSR_X128","LHZZSRH_X256",
+				"FLGZSR_X128","FLGZSRH_X256",
+				"FLDFZSR_X128","FLDFZSRH_X256",
+				"LHZZSRFLGH_R6_X64"];
 	}
 	else		{}
 	//==========DIVISION==========
@@ -70,7 +86,7 @@ function Audio_Switch(ele)
 		elel00[i].getElementsByTagName("span")[0].innerHTML=arr00[i];
 		elel00[i].getElementsByTagName("a")[0].href="Audio_SD/" + arr01[i] + ".mp3";
 		//elel00[i].getElementsByTagName("source")[0].src="Audio_SD/" + arr01[i] + ".mp3";
-		elel00[i].getElementsByTagName("td")[1].innerHTML=
+		elel01[i].innerHTML=
 		'<video controls="" name="media" loop=true><source src="Audio_SD/' + arr01[i] + 
 		'.mp3" type="audio/mpeg">		</video>';
 	}
@@ -145,50 +161,64 @@ F11			全屏
 「李洪志」「真善忍」「法輪功」「法輪大法」【音频】：<input type="button" class="Audio_Short" value="Short" onclick=Audio_Switch(this) style="background-color:#1EB0E9;"><input type="button" class="Audio_Long" value="Long" onclick=Audio_Switch(this) style="background-color:red;">
 <table class="Audio_SD_Table" cellSpacing=0 cellPadding=0 border=1><tbody>
 <tr>
-	<td><span>李洪志</span><a href="Audio_SD/LHZ.mp3" target=_blank download>↓</a></td>
-	<td><video controls="" name="media" loop=true><source src="Audio_SD/LHZ.mp3" type="audio/mpeg">				</video></td>
+	<td class="TD_Text"><span>李洪志</span><a href="Audio_SD/LHZ.mp3" target=_blank download>↓</a></td>
+	<td class="TD_Audio"><video controls="" name="media" loop=true><source src="Audio_SD/LHZ.mp3" type="audio/mpeg">			</video></td>
 	<td><span>3:</span></td>
 	<td style="display:none;"><span>3.1:</span></td>
 	<td><span>01.33.02.820	-	01.33.03.420</span></td>
 </tr>
 <tr>
-	<td><span>真、善、忍</span><a href="Audio_SD/Z,S,R.mp3" target=_blank download>↓</a></td>
-	<td><video controls="" name="media" loop=true><source src="Audio_SD/Z,S,R.mp3" type="audio/mpeg">			</video></td>
+	<td class="TD_Text"><span>真、善、忍</span><a href="Audio_SD/Z,S,R.mp3" target=_blank download>↓</a></td>
+	<td class="TD_Audio"><video controls="" name="media" loop=true><source src="Audio_SD/Z,S,R.mp3" type="audio/mpeg">			</video></td>
 	<td><span>1:</span></td>
 	<td style="display:none;"><span>1.1:</span></td>
 	<td><span>00.40.55.870	-	00.40.58.500</span></td>
 </tr>
 <tr>
-	<td><span>法輪功</span><a href="Audio_SD/FLG.mp3" target=_blank download>↓</a></td>
-	<td><video controls="" name="media" loop=true><source src="Audio_SD/FLG.mp3" type="audio/mpeg">				</video></td>
+	<td class="TD_Text"><span>法輪功</span><a href="Audio_SD/FLG.mp3" target=_blank download>↓</a></td>
+	<td class="TD_Audio"><video controls="" name="media" loop=true><source src="Audio_SD/FLG.mp3" type="audio/mpeg">			</video></td>
 	<td><span>1:</span></td>
 	<td style="display:none;"><span>1.1:</span></td>
 	<td><span>00.08.46.325	-	00.08.46.773</span></td>
 </tr>
 <tr>
-	<td><span>法輪大法</span><a href="Audio_SD/FLDF.mp3" target=_blank download>↓</a></td>
-	<td><video controls="" name="media" loop=true><source src="Audio_SD/FLDF.mp3" type="audio/mpeg">			</video></td>
+	<td class="TD_Text"><span>法輪大法</span><a href="Audio_SD/FLDF.mp3" target=_blank download>↓</a></td>
+	<td class="TD_Audio"><video controls="" name="media" loop=true><source src="Audio_SD/FLDF.mp3" type="audio/mpeg">			</video></td>
 	<td><span>1:</span></td>
 	<td style="display:none;"><span>1.1:</span></td>
 	<td><span>01.27.09.800	-	01.27.10.800</span></td>
 </tr>
 <tr>
-	<td><span>李洪志真善忍◯</span><a href="Audio_SD/LHZZSR.mp3" target=_blank download>↓</a></td>
-	<td><video controls="" name="media" loop=true><source src="Audio_SD/LHZZSR.mp3" type="audio/mpeg">			</video></td>
-	<td style="display:none;"><span></span></td>
-	<td style="display:none;"><span></span></td>
-	<td style="display:none;"><span></span></td>
+	<td class="TD_Text"><span>好</span><a href="Audio_SD/H.mp3" target=_blank download>↓</a></td>
+	<td class="TD_Audio"><video controls="" name="media" loop=true><source src="Audio_SD/H.mp3" type="audio/mpeg">				</video></td>
+	<td><span>9:</span></td>
+	<td style="display:none;"><span>9.1:</span></td>
+	<td><span>01.31.52.150	-	01.31.52.500</span></td>
 </tr>
+<tr><td colspan=5><table cellSpacing=0 cellPadding=0 border=1><tbody><tr>
+	<td class="TD_Text"><span>李洪志真善忍◯</span><a href="Audio_SD/LHZZSR.mp3" target=_blank download>↓</a></td>
+	<td class="TD_Audio"><video controls="" name="media" loop=true><source src="Audio_SD/LHZZSR.mp3" type="audio/mpeg">			</video></td>
+	<td class="TD_Text"><span>李洪志真善忍好◯</span><a href="Audio_SD/LHZZSRH.mp3" target=_blank download>↓</a></td>
+	<td class="TD_Audio"><video controls="" name="media" loop=true><source src="Audio_SD/LHZZSRH.mp3" type="audio/mpeg">		</video></td>
+	<td style="display:none;"><span></span></td>
+</tr></tbody></table></td></tr>
+<tr><td colspan=5><table cellSpacing=0 cellPadding=0 border=1><tbody><tr>
+	<td class="TD_Text"><span>法輪功真善忍◯</span><a href="Audio_SD/FLGZSR.mp3" target=_blank download>↓</a></td>
+	<td class="TD_Audio"><video controls="" name="media" loop=true><source src="Audio_SD/FLGZSR.mp3" type="audio/mpeg">			</video></td>
+	<td class="TD_Text"><span>法輪功真善忍好◯</span><a href="Audio_SD/FLGZSRH.mp3" target=_blank download>↓</a></td>
+	<td class="TD_Audio"><video controls="" name="media" loop=true><source src="Audio_SD/FLGZSRH.mp3" type="audio/mpeg">		</video></td>
+	<td style="display:none;"><span></span></td>
+</tr></tbody></table></td></tr>
+<tr><td colspan=5><table cellSpacing=0 cellPadding=0 border=1><tbody><tr>
+	<td class="TD_Text"><span>法輪大法真善忍◯</span><a href="Audio_SD/FLDFZSR.mp3" target=_blank download>↓</a></td>
+	<td class="TD_Audio"><video controls="" name="media" loop=true><source src="Audio_SD/FLDFZSR.mp3" type="audio/mpeg">		</video></td>
+	<td class="TD_Text"><span>法輪大法真善忍好◯</span><a href="Audio_SD/FLDFZSRH.mp3" target=_blank download>↓</a></td>
+	<td class="TD_Audio"><video controls="" name="media" loop=true><source src="Audio_SD/FLDFZSRH.mp3" type="audio/mpeg">		</video></td>
+	<td style="display:none;"><span></span></td>
+</tr></tbody></table></td></tr>
 <tr>
-	<td><span>李洪志真善忍好◯</span><a href="Audio_SD/LHZZSRH.mp3" target=_blank download>↓</a></td>
-	<td><video controls="" name="media" loop=true><source src="Audio_SD/LHZZSRH.mp3" type="audio/mpeg">			</video></td>
-	<td style="display:none;"><span></span></td>
-	<td style="display:none;"><span></span></td>
-	<td style="display:none;"><span></span></td>
-</tr>
-<tr>
-	<td><span>李洪志真善忍法輪功好◯◯◯◯◯◯</span><a href="Audio_SD/LHZZSRFLGH_R6.mp3" target=_blank download>↓</a></td>
-	<td><video controls="" name="media" loop=true><source src="Audio_SD/LHZZSRFLGH_R6.mp3" type="audio/mpeg">	</video></td>
+	<td class="TD_Text"><span>李洪志真善忍法輪功好◯◯◯◯◯◯</span><a href="Audio_SD/LHZZSRFLGH_R6.mp3" target=_blank download>↓</a></td>
+	<td class="TD_Audio"><video controls="" name="media" loop=true><source src="Audio_SD/LHZZSRFLGH_R6.mp3" type="audio/mpeg">	</video></td>
 	<td style="display:none;"><span>9:</span></td>
 	<td style="display:none;"><span>9.1:</span></td>
 	<td style="display:none;"><span>01.31.52.150	-	01.31.52.500</span></td>
