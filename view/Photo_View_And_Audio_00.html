@@ -1,0 +1,184 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<style type="text/css">
+*
+{
+	margin:					0px;
+	padding:				0px;
+}
+
+img.PIC_IMG
+{
+	height:					100%;
+}
+div.PIC_DIV
+{
+	text-align:				center;
+}
+
+</style>
+<title>Photo_View_And_Audio</title>
+</head>
+
+<body bgcolor=#CCE8CF>
+<script type="text/javascript">
+//UTF-8:●
+//========================================Base_Function========================================
+var TTI_IN_USE=10;
+function Parameter_Base_STR_ijk_XX(p_num)
+{
+	var i,j,str00,arr00;
+	str00="";
+	str00+="var i,j,k,m,n,p,q,r,s,t;" + "\n";
+	arr00=["num","ele","elel","str","arr","cls","fun","formData","file"];
+	//arr00=["num","ele","elel",,"str","arr","torf","flag"];
+
+	for (i=0;i<arr00.length;i++)
+	{
+		str00+="var ";
+		for (j=0;j<p_num;j++)
+		{
+			str00+=arr00[i] + ("00" + j.toString()).slice(-2);
+			if ( j<(p_num - 1) )			{str00+=",";}
+			else if ( j==(p_num - 1) )		{str00+=";" + "\n";}
+			else							{}
+		}
+	}
+
+	return str00;
+}
+//========================================Base_Function========================================
+//========================================Audio_CLS========================================
+var Audio_CLS			=
+{
+	Play_State			:	0,
+};
+
+function Audio_Play_State_Switch()
+{
+	var ele00;
+	Audio_CLS.Play_State=(Audio_CLS.Play_State + 1)%2;
+	if ( Audio_CLS.Play_State==0 )
+	{
+		ele00=document.getElementsByClassName("Audio_DIV")[0];
+		ele00.innerHTML="";
+	}
+	else if ( Audio_CLS.Play_State==1 )
+	{
+		Audio_Play_Pause();
+	}
+	else		{}
+}
+
+function Audio_Play_Pause()
+{
+	//==========DIVISION==========
+	eval(Parameter_Base_STR_ijk_XX(5));
+	//Photo_View_And_Audio_00.html?v=0_1_0&w=「宇宙最高的真理就是真、善、忍」
+	//Photo_View_And_Audio_00.html?v=0_1_0&w=「宇宙最高的真理就是」
+	//Photo_View_And_Audio_00.html?v=0_0_1&w=「宇宙最高的真理就是」&do=Click_The_Photo.
+	//==========DIVISION==========
+	str00=window.location.href;
+	str00=str00.replace(/^(.*\?v=)([0-9_]+)(&w=.*)$/gm,"$2");
+	if ( str00==window.location.href )
+	{
+		arr00=[0,1,0];
+	}
+	else
+	{
+		arr00=str00.split("_");
+	}
+	//alert(arr00);
+	//==========DIVISION==========
+	arr01=
+	[
+		["李洪志","真、善、忍","法輪功","法輪大法","好",
+			"李洪志真善忍◯","李洪志真善忍好◯",
+			"法輪功真善忍◯","法輪功真善忍好◯",
+			"法輪大法真善忍◯","法輪大法真善忍好◯",
+			"李洪志真善忍法輪功好◯◯◯◯◯◯"],
+		["李洪志_X1024","真、善、忍_X256","法輪功_X1024","法輪大法_X1024","好",
+			"李洪志真善忍◯_X128","李洪志真善忍好◯_X256",
+			"法輪功真善忍◯_X128","法輪功真善忍好◯_X256",
+			"法輪大法真善忍◯_X128","法輪大法真善忍好◯_X256",
+			"李洪志真善忍法輪功好◯◯◯◯◯◯_X64"]
+	];
+	arr02=
+	[
+		["LHZ","Z,S,R","FLG","FLDF","H",
+			"LHZZSR","LHZZSRH",
+			"FLGZSR","FLGZSRH",
+			"FLDFZSR","FLDFZSRH",
+			"LHZZSRFLGH_R6"],
+		["LHZ_X1024","Z,S,R_X256","FLG_X1024","FLDF_X1024","H",
+			"LHZZSR_X128","LHZZSRH_X256",
+			"FLGZSR_X128","FLGZSRH_X256",
+			"FLDFZSR_X128","FLDFZSRH_X256",
+			"LHZZSRFLGH_R6_X64"]
+	];
+	//==========DIVISION==========
+	arr03=["master_Li_high.jpg","master_Li_high_R90.jpg","master_Li_high_R180.jpg","master_Li_high_R270.jpg"];
+	//==========DIVISION==========
+	ele00=document.getElementsByClassName("Audio_DIV")[0];
+	ele00.innerHTML='<video autoplay="autoplay" controls="" name="media" loop=true><source src="' + "../Audio_SD/" + arr02[arr00[0]][arr00[1]] + ".mp3" + 
+					'" type="audio/mpeg"></video>';
+	ele01=document.getElementsByClassName("PIC_IMG")[0];
+	ele01.src=arr03[arr00[2]];
+	//==========DIVISION==========
+}
+//========================================Audio_CLS========================================
+</script>
+
+
+
+<div class="Audio_DIV" style="display:none;">
+	<video autoplay="autoplay" controls="" name="media" loop=true><source src="" type="audio/mpeg"></video>
+</div>
+<div class="PIC_DIV"><img class="PIC_IMG" src="" onclick=Audio_Play_State_Switch()></div>
+
+
+
+<script type="text/javascript">
+var Initiation_Flag=0;
+
+function Initiation()
+{
+	//==========DIVISION==========
+	//console___log("function now is : Initiation()");
+
+	if ( Initiation_Flag==1 )
+	{
+		document.getElementsByTagName("body")[0].setAttribute("onmouseover","");
+		return;
+	}
+	//==========DIVISION==========
+	Audio_CLS.Play_State=1;
+	Audio_Play_Pause();
+	if ( navigator.userAgent.indexOf("Chrome")>=0 )
+	{
+		Audio_CLS.Play_State=0;
+		//	try
+		//	{
+		//		var ele00;
+		//		ele00=document.getElementsByClassName("Audio_DIV")[0].getElementsByTagName("video")[0];
+		//		ele00.pause();
+		//		ele00.play();
+		//	}
+		//	catch (err)
+		//	{
+		//		console.log(err.message);
+		//		Audio_CLS.Play_State=0;
+		//	}
+	}
+	else		{}
+	//==========DIVISION==========
+	Initiation_Flag=1;
+	//==========DIVISION==========
+}
+Initiation();
+
+</script>
+
+</body>
+</html>
