@@ -1,0 +1,331 @@
+<html>
+<head>
+<title>ET_BGM_URL_ALL</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<style type="text/css">
+*
+{
+	margin:						0px;
+	padding:					0px;
+}
+
+table.Audio_ET_BGM_Table tr							{height:30px;}
+table.Audio_ET_BGM_Table td.TD_Audio video			{height:30px;width:250px;}
+table.Audio_ET_BGM_Table td.TD_Audio source			{height:30px;width:250px;}
+</style>
+</head>
+
+<body bgcolor=#CCE8CF>
+<script type="text/javascript">
+//========================================Audio_URL_STR_CLS========================================
+var Audio_URL_STR_CLS		=
+{
+	Network_Type			:	0,//0:"OFF";1:"ON";
+	Audio_Type				:	0,//0:"Audio_Short";1:"Audio_Long";
+	Base_URL_DIR			:	"https://cn-text.github.io/ET_BGM/",
+	Short_ARR				:	[[],[],[],[]],
+	Long_ARR				:	[[],[],[],[]],
+	Time_Info_ARR			:	[[]],
+};
+
+function Audio_URL_STR_CLS_INI()
+{
+	//==========DIVISION==========
+	var arr00,arr01,arr02;
+	//==========DIVISION==========
+	arr00=[[],[],[],[]];
+	//==========DIVISION==========
+	{
+		//==========DIVISION==========
+		arr00[0].push("0000");		arr00[1].push("X1");		arr00[2].push("ET_BGM_01/CB_01_04_ORI/CB_01_00_00_000_00_E_LHZ.mp3");			arr00[3].push("ET_BGM_01_00_李洪志_00");
+		arr00[0].push("0001");		arr00[1].push("X1");		arr00[2].push("ET_BGM_01/CB_01_04_ORI/CB_01_00_00_001_00_E_ZSR.mp3");			arr00[3].push("ET_BGM_01_00_真善忍_00");
+		arr00[0].push("0002");		arr00[1].push("X1");		arr00[2].push("ET_BGM_01/CB_01_04_ORI/CB_01_00_00_001_01_E_ZSR.mp3");			arr00[3].push("ET_BGM_01_00_真善忍_01");
+		arr00[0].push("0003");		arr00[1].push("X1");		arr00[2].push("ET_BGM_01/CB_01_04_ORI/CB_01_00_00_001_02_E_ZSR.mp3");			arr00[3].push("ET_BGM_01_00_真善忍_02");
+		arr00[0].push("0004");		arr00[1].push("X1");		arr00[2].push("ET_BGM_01/CB_01_04_ORI/CB_01_00_00_002_00_E_FLG.mp3");			arr00[3].push("ET_BGM_01_00_法輪功_00");
+		arr00[0].push("0005");		arr00[1].push("X1");		arr00[2].push("ET_BGM_01/CB_01_04_ORI/CB_01_00_00_002_01_E_FLG.mp3");			arr00[3].push("ET_BGM_01_00_法輪功_01");
+		arr00[0].push("0006");		arr00[1].push("X1");		arr00[2].push("ET_BGM_01/CB_01_04_ORI/CB_01_00_00_002_02_E_FLG.mp3");			arr00[3].push("ET_BGM_01_00_法輪功_02");
+		arr00[0].push("0007");		arr00[1].push("X1");		arr00[2].push("ET_BGM_01/CB_01_04_ORI/CB_01_00_00_003_00_E_FLDF.mp3");			arr00[3].push("ET_BGM_01_00_法輪大法_00");
+		//==========DIVISION==========
+		arr00[0].push("0100");		arr00[1].push("X1");		arr00[2].push("ET_BGM_02/ZSR_00_CB_01_02_ORI/CB_01_02_00_001_10_00_Z.mp3");		arr00[3].push("ET_BGM_02_00_真_00");
+		arr00[0].push("0101");		arr00[1].push("X1");		arr00[2].push("ET_BGM_02/ZSR_00_CB_01_02_ORI/CB_01_02_00_001_10_01_Z.mp3");		arr00[3].push("ET_BGM_02_00_真_01");
+		arr00[0].push("0102");		arr00[1].push("X1");		arr00[2].push("ET_BGM_02/ZSR_00_CB_01_02_ORI/CB_01_02_00_001_10_02_Z.mp3");		arr00[3].push("ET_BGM_02_00_真_02");
+		arr00[0].push("0103");		arr00[1].push("X1");		arr00[2].push("ET_BGM_02/ZSR_00_CB_01_02_ORI/CB_01_02_00_001_11_00_S.mp3");		arr00[3].push("ET_BGM_02_00_善_00");
+		arr00[0].push("0104");		arr00[1].push("X1");		arr00[2].push("ET_BGM_02/ZSR_00_CB_01_02_ORI/CB_01_02_00_001_11_01_S.mp3");		arr00[3].push("ET_BGM_02_00_善_01");
+		arr00[0].push("0105");		arr00[1].push("X1");		arr00[2].push("ET_BGM_02/ZSR_00_CB_01_02_ORI/CB_01_02_00_001_11_02_S.mp3");		arr00[3].push("ET_BGM_02_00_善_02");
+		arr00[0].push("0106");		arr00[1].push("X1");		arr00[2].push("ET_BGM_02/ZSR_00_CB_01_02_ORI/CB_01_02_00_001_12_00_R.mp3");		arr00[3].push("ET_BGM_02_00_忍_00");
+		arr00[0].push("0107");		arr00[1].push("X1");		arr00[2].push("ET_BGM_02/ZSR_00_CB_01_02_ORI/CB_01_02_00_001_12_01_R.mp3");		arr00[3].push("ET_BGM_02_00_忍_01");
+		arr00[0].push("0108");		arr00[1].push("X1");		arr00[2].push("ET_BGM_02/ZSR_00_CB_01_02_ORI/CB_01_02_00_001_12_02_R.mp3");		arr00[3].push("ET_BGM_02_00_忍_02");
+		arr00[0].push("0109");		arr00[1].push("X1");		arr00[2].push("ET_BGM_02/ZSR_00_CB_01_02_ORI/CB_01_02_00_001_12_03_R.mp3");		arr00[3].push("ET_BGM_02_00_忍_03");
+		arr00[0].push("0110");		arr00[1].push("X1");		arr00[2].push("ET_BGM_02/ZSR_00_CB_01_02_ORI/CB_01_02_00_001_12_10_R.mp3");		arr00[3].push("ET_BGM_02_00_忍_10");
+		arr00[0].push("0111");		arr00[1].push("X1");		arr00[2].push("ET_BGM_02/ZSR_00_CB_01_02_ORI/CB_01_02_00_001_12_11_R.mp3");		arr00[3].push("ET_BGM_02_00_忍_11");
+		arr00[0].push("0112");		arr00[1].push("X1");		arr00[2].push("ET_BGM_02/ZSR_00_CB_01_02_ORI/CB_01_02_00_001_12_12_R.mp3");		arr00[3].push("ET_BGM_02_00_忍_12");
+		arr00[0].push("0113");		arr00[1].push("X1");		arr00[2].push("ET_BGM_02/ZSR_00_CB_01_02_ORI/CB_01_02_00_001_12_13_R.mp3");		arr00[3].push("ET_BGM_02_00_忍_13");
+		arr00[0].push("0114");		arr00[1].push("X1");		arr00[2].push("ET_BGM_02/ZSR_00_CB_01_02_ORI/CB_01_02_00_001_12_14_R.mp3");		arr00[3].push("ET_BGM_02_00_忍_14");
+		//==========DIVISION==========
+		arr00[0].push("0200");		arr00[1].push("X1");		arr00[2].push("ET_BGM_03/CB_01_02_ORI/CB_01_02_00_001_20_00_Z.mp3");			arr00[3].push("ET_BGM_03_00_真_00");
+		arr00[0].push("0201");		arr00[1].push("X1");		arr00[2].push("ET_BGM_03/CB_01_02_ORI/CB_01_02_00_001_20_01_Z.mp3");			arr00[3].push("ET_BGM_03_00_真_01");
+		arr00[0].push("0202");		arr00[1].push("X1");		arr00[2].push("ET_BGM_03/CB_01_02_ORI/CB_01_02_00_001_20_02_Z.mp3");			arr00[3].push("ET_BGM_03_00_真_02");
+		arr00[0].push("0203");		arr00[1].push("X1");		arr00[2].push("ET_BGM_03/CB_01_02_ORI/CB_01_02_00_001_21_00_S.mp3");			arr00[3].push("ET_BGM_03_00_善_00");
+		arr00[0].push("0204");		arr00[1].push("X1");		arr00[2].push("ET_BGM_03/CB_01_02_ORI/CB_01_02_00_001_21_01_S.mp3");			arr00[3].push("ET_BGM_03_00_善_01");
+		arr00[0].push("0205");		arr00[1].push("X1");		arr00[2].push("ET_BGM_03/CB_01_02_ORI/CB_01_02_00_001_21_02_S.mp3");			arr00[3].push("ET_BGM_03_00_善_02");
+		arr00[0].push("0206");		arr00[1].push("X1");		arr00[2].push("ET_BGM_03/CB_01_02_ORI/CB_01_02_00_001_22_00_R.mp3");			arr00[3].push("ET_BGM_03_00_忍_00");
+		arr00[0].push("0207");		arr00[1].push("X1");		arr00[2].push("ET_BGM_03/CB_01_02_ORI/CB_01_02_00_001_22_01_R.mp3");			arr00[3].push("ET_BGM_03_00_忍_01");
+		arr00[0].push("0208");		arr00[1].push("X1");		arr00[2].push("ET_BGM_03/CB_01_02_ORI/CB_01_02_00_001_22_02_R.mp3");			arr00[3].push("ET_BGM_03_00_忍_02");
+		arr00[0].push("0209");		arr00[1].push("X1");		arr00[2].push("ET_BGM_03/CB_01_02_ORI/CB_01_02_00_001_22_03_R.mp3");			arr00[3].push("ET_BGM_03_00_忍_03");
+		arr00[0].push("0210");		arr00[1].push("X1");		arr00[2].push("ET_BGM_03/CB_01_02_ORI/CB_01_02_00_001_22_04_R.mp3");			arr00[3].push("ET_BGM_03_00_忍_04");
+		arr00[0].push("0211");		arr00[1].push("X1");		arr00[2].push("ET_BGM_03/CB_01_02_ORI/CB_01_02_00_001_22_05_R.mp3");			arr00[3].push("ET_BGM_03_00_忍_05");
+		arr00[0].push("0212");		arr00[1].push("X1");		arr00[2].push("ET_BGM_03/CB_01_02_ORI/CB_01_02_00_002_00_00_ZSR.mp3");			arr00[3].push("ET_BGM_03_00_真善忍_00");
+		//==========DIVISION==========
+	};
+	Audio_URL_STR_CLS.Short_ARR=arr00;
+	//==========DIVISION==========
+	arr01=[[],[],[],[]];
+	//==========DIVISION==========
+	{
+		//==========DIVISION==========
+		arr01[0].push("1000");		arr01[1].push("X2048");		arr01[2].push("ET_BGM_01/CB_01_14_ORI_X/CB_01_00_00_000_00_E_LHZ_X2048.mp3");			arr01[3].push("ET_BGM_01_01_李洪志_00_X2048");
+		arr01[0].push("1001");		arr01[1].push("X1024");		arr01[2].push("ET_BGM_01/CB_01_14_ORI_X/CB_01_00_00_001_00_E_ZSR_X1024.mp3");			arr01[3].push("ET_BGM_01_01_真善忍_00_X1024");
+		arr01[0].push("1002");		arr01[1].push("X1024");		arr01[2].push("ET_BGM_01/CB_01_14_ORI_X/CB_01_00_00_001_01_E_ZSR_X1024.mp3");			arr01[3].push("ET_BGM_01_01_真善忍_01_X1024");
+		arr01[0].push("1003");		arr01[1].push("X1024");		arr01[2].push("ET_BGM_01/CB_01_14_ORI_X/CB_01_00_00_001_02_E_ZSR_X1024.mp3");			arr01[3].push("ET_BGM_01_01_真善忍_02_X1024");
+		arr01[0].push("1004");		arr01[1].push("X1024");		arr01[2].push("ET_BGM_01/CB_01_14_ORI_X/CB_01_00_00_002_00_E_FLG_X1024.mp3");			arr01[3].push("ET_BGM_01_01_法輪功_00_X1024");
+		arr01[0].push("1005");		arr01[1].push("X1024");		arr01[2].push("ET_BGM_01/CB_01_14_ORI_X/CB_01_00_00_002_01_E_FLG_X1024.mp3");			arr01[3].push("ET_BGM_01_01_法輪功_01_X1024");
+		arr01[0].push("1006");		arr01[1].push("X1024");		arr01[2].push("ET_BGM_01/CB_01_14_ORI_X/CB_01_00_00_002_02_E_FLG_X1024.mp3");			arr01[3].push("ET_BGM_01_01_法輪功_02_X1024");
+		arr01[0].push("1007");		arr01[1].push("X2048");		arr01[2].push("ET_BGM_01/CB_01_14_ORI_X/CB_01_00_00_003_00_E_FLDF_X2048.mp3");			arr01[3].push("ET_BGM_01_01_法輪大法_00_X2048");
+		//==========DIVISION==========
+		arr01[0].push("1100");		arr01[1].push("X1024");		arr01[2].push("ET_BGM_02/ZSR_00_CB_01_12_ORI_X/CB_01_12_00_001_10_00_Z_X1024.mp3");		arr01[3].push("ET_BGM_02_01_真_00_X1024");
+		arr01[0].push("1101");		arr01[1].push("X2048");		arr01[2].push("ET_BGM_02/ZSR_00_CB_01_12_ORI_X/CB_01_12_00_001_10_01_Z_X2048.mp3");		arr01[3].push("ET_BGM_02_01_真_01_X2048");
+		arr01[0].push("1102");		arr01[1].push("X4096");		arr01[2].push("ET_BGM_02/ZSR_00_CB_01_12_ORI_X/CB_01_12_00_001_10_02_Z_X4096.mp3");		arr01[3].push("ET_BGM_02_01_真_02_X4096");
+		arr01[0].push("1103");		arr01[1].push("X1024");		arr01[2].push("ET_BGM_02/ZSR_00_CB_01_12_ORI_X/CB_01_12_00_001_11_00_S_X1024.mp3");		arr01[3].push("ET_BGM_02_01_善_00_X1024");
+		arr01[0].push("1104");		arr01[1].push("X2048");		arr01[2].push("ET_BGM_02/ZSR_00_CB_01_12_ORI_X/CB_01_12_00_001_11_01_S_X2048.mp3");		arr01[3].push("ET_BGM_02_01_善_01_X2048");
+		arr01[0].push("1105");		arr01[1].push("X4096");		arr01[2].push("ET_BGM_02/ZSR_00_CB_01_12_ORI_X/CB_01_12_00_001_11_02_S_X4096.mp3");		arr01[3].push("ET_BGM_02_01_善_02_X4096");
+		arr01[0].push("1106");		arr01[1].push("X1024");		arr01[2].push("ET_BGM_02/ZSR_00_CB_01_12_ORI_X/CB_01_12_00_001_12_00_R_X1024.mp3");		arr01[3].push("ET_BGM_02_01_忍_00_X1024");
+		arr01[0].push("1107");		arr01[1].push("X1024");		arr01[2].push("ET_BGM_02/ZSR_00_CB_01_12_ORI_X/CB_01_12_00_001_12_01_R_X1024.mp3");		arr01[3].push("ET_BGM_02_01_忍_01_X1024");
+		arr01[0].push("1108");		arr01[1].push("X2048");		arr01[2].push("ET_BGM_02/ZSR_00_CB_01_12_ORI_X/CB_01_12_00_001_12_02_R_X2048.mp3");		arr01[3].push("ET_BGM_02_01_忍_02_X2048");
+		arr01[0].push("1109");		arr01[1].push("X4096");		arr01[2].push("ET_BGM_02/ZSR_00_CB_01_12_ORI_X/CB_01_12_00_001_12_03_R_X4096.mp3");		arr01[3].push("ET_BGM_02_01_忍_03_X4096");
+		arr01[0].push("1110");		arr01[1].push("X1024");		arr01[2].push("ET_BGM_02/ZSR_00_CB_01_12_ORI_X/CB_01_12_00_001_12_10_R_X1024.mp3");		arr01[3].push("ET_BGM_02_01_忍_10_X1024");
+		arr01[0].push("1111");		arr01[1].push("X1024");		arr01[2].push("ET_BGM_02/ZSR_00_CB_01_12_ORI_X/CB_01_12_00_001_12_11_R_X1024.mp3");		arr01[3].push("ET_BGM_02_01_忍_11_X1024");
+		arr01[0].push("1112");		arr01[1].push("X1024");		arr01[2].push("ET_BGM_02/ZSR_00_CB_01_12_ORI_X/CB_01_12_00_001_12_12_R_X1024.mp3");		arr01[3].push("ET_BGM_02_01_忍_12_X1024");
+		arr01[0].push("1113");		arr01[1].push("X2048");		arr01[2].push("ET_BGM_02/ZSR_00_CB_01_12_ORI_X/CB_01_12_00_001_12_13_R_X2048.mp3");		arr01[3].push("ET_BGM_02_01_忍_13_X2048");
+		arr01[0].push("1114");		arr01[1].push("X4096");		arr01[2].push("ET_BGM_02/ZSR_00_CB_01_12_ORI_X/CB_01_12_00_001_12_14_R_X4096.mp3");		arr01[3].push("ET_BGM_02_01_忍_14_X4096");
+		//==========DIVISION==========
+		arr01[0].push("1200");		arr01[1].push("X4096");		arr01[2].push("ET_BGM_03/CB_01_12_ORI_X/CB_01_12_00_001_20_00_Z_X4096.mp3");			arr01[3].push("ET_BGM_03_01_真_00_X4096");
+		arr01[0].push("1201");		arr01[1].push("X4096");		arr01[2].push("ET_BGM_03/CB_01_12_ORI_X/CB_01_12_00_001_20_01_Z_X4096.mp3");			arr01[3].push("ET_BGM_03_01_真_01_X4096");
+		arr01[0].push("1202");		arr01[1].push("X4096");		arr01[2].push("ET_BGM_03/CB_01_12_ORI_X/CB_01_12_00_001_20_02_Z_X4096.mp3");			arr01[3].push("ET_BGM_03_01_真_02_X4096");
+		arr01[0].push("1203");		arr01[1].push("X4096");		arr01[2].push("ET_BGM_03/CB_01_12_ORI_X/CB_01_12_00_001_21_00_S_X4096.mp3");			arr01[3].push("ET_BGM_03_01_善_00_X4096");
+		arr01[0].push("1204");		arr01[1].push("X4096");		arr01[2].push("ET_BGM_03/CB_01_12_ORI_X/CB_01_12_00_001_21_01_S_X4096.mp3");			arr01[3].push("ET_BGM_03_01_善_01_X4096");
+		arr01[0].push("1205");		arr01[1].push("X4096");		arr01[2].push("ET_BGM_03/CB_01_12_ORI_X/CB_01_12_00_001_21_02_S_X4096.mp3");			arr01[3].push("ET_BGM_03_01_善_02_X4096");
+		arr01[0].push("1206");		arr01[1].push("X4096");		arr01[2].push("ET_BGM_03/CB_01_12_ORI_X/CB_01_12_00_001_22_00_R_X4096.mp3");			arr01[3].push("ET_BGM_03_01_忍_00_X4096");
+		arr01[0].push("1207");		arr01[1].push("X4096");		arr01[2].push("ET_BGM_03/CB_01_12_ORI_X/CB_01_12_00_001_22_01_R_X4096.mp3");			arr01[3].push("ET_BGM_03_01_忍_01_X4096");
+		arr01[0].push("1208");		arr01[1].push("X4096");		arr01[2].push("ET_BGM_03/CB_01_12_ORI_X/CB_01_12_00_001_22_02_R_X4096.mp3");			arr01[3].push("ET_BGM_03_01_忍_02_X4096");
+		arr01[0].push("1209");		arr01[1].push("X4096");		arr01[2].push("ET_BGM_03/CB_01_12_ORI_X/CB_01_12_00_001_22_03_R_X4096.mp3");			arr01[3].push("ET_BGM_03_01_忍_03_X4096");
+		arr01[0].push("1210");		arr01[1].push("X4096");		arr01[2].push("ET_BGM_03/CB_01_12_ORI_X/CB_01_12_00_001_22_04_R_X4096.mp3");			arr01[3].push("ET_BGM_03_01_忍_04_X4096");
+		arr01[0].push("1211");		arr01[1].push("X4096");		arr01[2].push("ET_BGM_03/CB_01_12_ORI_X/CB_01_12_00_001_22_05_R_X4096.mp3");			arr01[3].push("ET_BGM_03_01_忍_05_X4096");
+		arr01[0].push("1212");		arr01[1].push("X1024");		arr01[2].push("ET_BGM_03/CB_01_12_ORI_X/CB_01_12_00_002_00_00_ZSR_X1024.mp3");			arr01[3].push("ET_BGM_03_01_真善忍_00_X1024");
+		//==========DIVISION==========
+	};
+	Audio_URL_STR_CLS.Long_ARR=arr01;
+	//==========DIVISION==========
+	arr02=[[]];
+	//==========DIVISION==========
+	{
+		//==========DIVISION==========
+		arr02[0].push("0.210");
+		arr02[0].push("0.441");
+		arr02[0].push("0.400");
+		arr02[0].push("0.300");
+		arr02[0].push("0.767");
+		arr02[0].push("0.400");
+		arr02[0].push("0.300");
+		arr02[0].push("0.270");
+		//==========DIVISION==========
+		arr02[0].push("0.300");
+		arr02[0].push("0.200");
+		arr02[0].push("0.100");
+		arr02[0].push("0.300");
+		arr02[0].push("0.200");
+		arr02[0].push("0.100");
+		arr02[0].push("0.400");
+		arr02[0].push("0.300");
+		arr02[0].push("0.200");
+		arr02[0].push("0.100");
+		arr02[0].push("0.500");
+		arr02[0].push("0.400");
+		arr02[0].push("0.300");
+		arr02[0].push("0.200");
+		arr02[0].push("0.100");
+		//==========DIVISION==========
+		arr02[0].push("0.100");
+		arr02[0].push("0.100");
+		arr02[0].push("0.100");
+		arr02[0].push("0.100");
+		arr02[0].push("0.100");
+		arr02[0].push("0.100");
+		arr02[0].push("0.100");
+		arr02[0].push("0.100");
+		arr02[0].push("0.100");
+		arr02[0].push("0.100");
+		arr02[0].push("0.100");
+		arr02[0].push("0.100");
+		arr02[0].push("0.300");
+		//==========DIVISION==========
+	};
+	Audio_URL_STR_CLS.Time_Info_ARR=arr02;
+	//==========DIVISION==========
+	Audio_URL_STR_CLS.Network_Type=0;//0:"OFF";1:"ON";
+	document.getElementsByClassName("Network_Type_CLS")[0].value="OFF";
+	//==========DIVISION==========
+}
+//Audio_URL_STR_CLS_INI();
+console.log(Audio_URL_STR_CLS.Short_ARR);
+console.log(Audio_URL_STR_CLS.Long_ARR);
+console.log(Audio_URL_STR_CLS.Time_Info_ARR);
+//========================================Audio_URL_STR_CLS========================================
+//========================================Audio_Function========================================
+function Audio_Switch(ele)
+{
+	//==========DIVISION==========
+	var i,j,k;
+	var arr00,arr01,arr02,arr03;
+	var ele00,ele01;
+	var elel00,elel01;
+	//==========DIVISION==========
+	ele00=document.getElementsByClassName("Audio_Short")[0];
+	ele01=document.getElementsByClassName("Audio_Long")[0];
+	ele00.style.backgroundColor="red";
+	ele01.style.backgroundColor="red";
+	ele.style.backgroundColor="#1EB0E9";
+	//==========DIVISION==========
+	ele00=document.getElementsByClassName("Audio_ET_BGM_Table")[0].getElementsByTagName("tbody")[0];
+	arr00=[];arr01=[];arr02=[];arr03=[];
+	Audio_URL_STR_CLS.Audio_Type=ele.className;
+	if ( ele.className=="Audio_Short" )
+	{
+		arr00=Audio_URL_STR_CLS.Short_ARR[0];
+		arr01=Audio_URL_STR_CLS.Short_ARR[1];
+		arr02=Audio_URL_STR_CLS.Short_ARR[2];
+		arr03=Audio_URL_STR_CLS.Short_ARR[3];
+	}
+	else if ( ele.className=="Audio_Long" )
+	{
+		arr00=Audio_URL_STR_CLS.Long_ARR[0];
+		arr01=Audio_URL_STR_CLS.Long_ARR[1];
+		arr02=Audio_URL_STR_CLS.Long_ARR[2];
+		arr03=Audio_URL_STR_CLS.Long_ARR[3];
+	}
+	else		{}
+	//==========DIVISION==========
+	var Base_URL_DIR=["",Audio_URL_STR_CLS.Base_URL_DIR][Audio_URL_STR_CLS.Network_Type];
+	//==========DIVISION==========
+	str00="";
+	str00+="\n";
+	for (i=0;i<arr00.length;i++)
+	{
+		if ( i%3==0 )		{str00+="<tr>" + "\n";}
+		//arr03[i].replace(/^[\x00-\xFF]*/gm,"");
+		str00+='	<td class="TD_Text"><span>' + arr03[i] + 
+				'</span><a href="' + Base_URL_DIR + arr02[i] + '" target=_blank download>' + '↓</a></td>' + "\n";
+		str00+='	<td class="TD_Audio">' + '<video controls="" name="media" loop=true><source src="' + 
+				Base_URL_DIR + arr02[i] + '" type="audio/mpeg">		</video>' + '</td>' + "\n";
+		if ( i%3==2 )		{str00+="</tr>" + "\n";}
+	}
+	if ( i%3==0 )		{str00+="</tr>" + "\n";}
+	ele00.innerHTML=str00;
+	//==========DIVISION==========
+}
+
+function Network_Type_Switch(ele)
+{
+	Audio_URL_STR_CLS.Network_Type=(Audio_URL_STR_CLS.Network_Type + 1)%2;
+	ele.value=["OFF","ON"][Audio_URL_STR_CLS.Network_Type];
+	ele.style.backgroundColor=["red","#1EB0E9"][Audio_URL_STR_CLS.Network_Type];
+	document.getElementsByClassName(Audio_URL_STR_CLS.Audio_Type)[0].click();
+}
+//========================================Audio_Function========================================
+</script>
+<pre class="Text_CLS">
+================================================================================
+============================================================
+音频编辑合成软件：
+https://github.com/cn-text/cn-text.github.io/releases/tag/Audacity_Software
+<!--
+https://github.com/cn-text/cn-text.github.io/releases/download/Audacity_Software/Lame_v3.99.3_for_Windows.exe
+https://github.com/cn-text/cn-text.github.io/releases/download/Audacity_Software/audacity-win-2.0.5.zip
+https://github.com/cn-text/cn-text.github.io/releases/download/Audacity_Software/libmp3lame-win-3.99.3.zip
+-->
+Audacity编辑快捷键提示：
+到音轨起始点(j)、到音轨结束点(k)、Shift+Home、Ctrl+C、Ctrl+V...
+编辑－剪辑边界－连接(Ctrl+J)
+
+合成音频示例：
+https://github.com/cn-text/cn-text.github.io/releases/tag/ET_BGM
+<!--
+https://github.com/cn-text/cn-text.github.io/releases/download/ET_BGM/ET_BGM_01_Audacity_01_UL_Project_00__X1024_X16.7z
+https://github.com/cn-text/cn-text.github.io/releases/download/ET_BGM/ET_BGM_01_Audacity_01_UL_Result_Inuse.7z
+https://github.com/cn-text/cn-text.github.io/releases/download/ET_BGM/ET_BGM_02_ZSR_00_Project_00__X1024_X16.7z
+https://github.com/cn-text/cn-text.github.io/releases/download/ET_BGM/ET_BGM_02_ZSR_Audacity_UL_Inuse.7z
+https://github.com/cn-text/cn-text.github.io/releases/download/ET_BGM/ET_BGM_03_ZSR_00_Project_00__X4096_X16.7z
+https://github.com/cn-text/cn-text.github.io/releases/download/ET_BGM/ET_BGM_03_ZSR_01_Project_00__X1024_X16.7z
+https://github.com/cn-text/cn-text.github.io/releases/download/ET_BGM/ET_BGM_03_ZSR_Audacity_UL_Inuse.7z
+-->
+============================================================
+此处是带有[李洪志能量]的[无文字声音]，短时间的音频,重复合成:长时间的音频：
+分别是原声讲法录音中的："李洪志","真善忍","法輪功","法輪大法",["真、善、忍"中的"真","善","忍"]的音频的末尾[无文字声音]。
+
+此处的[无文字声音]用无人机用大喇叭，24小时不停地：在天空上超大声播放，只是有点敲锣打鼓的声音，没人知道这[无文字声音]是什么意思。也没人察觉。
+PC台式机电脑的两个音箱开最大声，让人听到了[李洪志能量]的[无文字声音]，其实很舒服。[无文字声音]让所有人感觉非常安全，零危险。
+PC台式机电脑的两个音箱开最大声，放在自己耳朵旁边，彻底让自己的心灵世界和联系的另外空间：接受[李洪志声音能量]的震动贯通。
+
+单纯用于传播[李洪志声音能量]使用。但没人知道。
+
+<b style="color:red;">[李洪志声音能量]让人意识清醒。
+人类、和另外空间的灵魂们，赶快听[李洪志能量]的[无文字声音]，获得：
+1.[真善忍李洪志声音能量]给人安排的将来。
+2.或是：「还有一些个幻听的。只能叫你幻听，其实你是真听到了，可是你听到的不是师父。它们会冒充师父的声音哪，连形像都会冒充的，利用你的执著骗你。」
+</b>
+============================================================
+================================================================================
+============================================================
+【从李洪志师父的真人讲法录音中】【用<a href="https://github.com/audacity/audacity/" target=_blank>Audacity</a>截取+合并的：】
+「李洪志」「真善忍」「法輪功」「法輪大法」【无文字音频】：<input type="button" class="Audio_Short" value="Short" onclick=Audio_Switch(this) style="background-color:#1EB0E9;"><input type="button" class="Audio_Long" value="Long" onclick=Audio_Switch(this) style="background-color:red;"><input type="button" class="Network_Type_CLS" value="OFF" onclick=Network_Type_Switch(this) style="background-color:red;">
+<table class="Audio_ET_BGM_Table" cellSpacing=0 cellPadding=0 border=1><tbody>
+<tr>
+	<td class="TD_Text"></td>
+	<td class="TD_Audio"></td>
+	<td class="TD_Text"></td>
+	<td class="TD_Audio"></td>
+</tr>
+</tbody></table>
+</pre>
+============================================================
+================================================================================
+<pre>
+</pre>
+
+
+
+<script type="text/javascript">
+var Initiation_Flag=0;
+
+function Initiation()
+{
+	//==========DIVISION==========
+	//console___log("function now is : Initiation()");
+
+	if ( Initiation_Flag==1 )
+	{
+		document.getElementsByTagName("body")[0].setAttribute("onmouseover","");
+		return;
+	}
+	//==========DIVISION==========
+	Audio_URL_STR_CLS_INI();
+	document.getElementsByClassName("Audio_Short")[0].click();
+	//==========DIVISION==========
+	Initiation_Flag=1;
+	//==========DIVISION==========
+}
+Initiation();
+
+</script>
+
+</body>
+</html>
