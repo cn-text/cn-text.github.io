@@ -10,8 +10,8 @@
 }
 
 table.Audio_ET_BGM_Table tr							{height:30px;}
-table.Audio_ET_BGM_Table td.TD_Audio video			{height:30px;width:250px;}
-table.Audio_ET_BGM_Table td.TD_Audio source			{height:30px;width:250px;}
+table.Audio_ET_BGM_Table td.TD_Audio video			{height:30px;width:350px;}
+table.Audio_ET_BGM_Table td.TD_Audio source			{height:30px;width:350px;}
 </style>
 </head>
 
@@ -185,6 +185,7 @@ function Audio_Switch(ele)
 {
 	//==========DIVISION==========
 	var i,j,k;
+	var num00,num01,num02,num03;
 	var arr00,arr01,arr02,arr03;
 	var ele00,ele01;
 	var elel00,elel01;
@@ -216,19 +217,20 @@ function Audio_Switch(ele)
 	//==========DIVISION==========
 	var Base_URL_DIR=["",Audio_URL_STR_CLS.Base_URL_DIR][Audio_URL_STR_CLS.Network_Type];
 	//==========DIVISION==========
+	num00=2;
 	str00="";
 	str00+="\n";
 	for (i=0;i<arr00.length;i++)
 	{
-		if ( i%3==0 )		{str00+="<tr>" + "\n";}
+		if ( i%num00==0 )		{str00+="<tr>" + "\n";}
 		//arr03[i].replace(/^[\x00-\xFF]*/gm,"");
 		str00+='	<td class="TD_Text"><span>' + arr03[i] + 
 				'</span><a href="' + Base_URL_DIR + arr02[i] + '" target=_blank download>' + '↓</a></td>' + "\n";
 		str00+='	<td class="TD_Audio">' + '<video controls="" name="media" loop=true><source src="' + 
 				Base_URL_DIR + arr02[i] + '" type="audio/mpeg">		</video>' + '</td>' + "\n";
-		if ( i%3==2 )		{str00+="</tr>" + "\n";}
+		if ( i%num00==2 )		{str00+="</tr>" + "\n";}
 	}
-	if ( i%3==0 )		{str00+="</tr>" + "\n";}
+	if ( i%num00==0 )		{str00+="</tr>" + "\n";}
 	ele00.innerHTML=str00;
 	//==========DIVISION==========
 }
