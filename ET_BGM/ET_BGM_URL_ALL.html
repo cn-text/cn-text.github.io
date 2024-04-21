@@ -10,8 +10,8 @@
 }
 
 table.Audio_ET_BGM_Table tr							{height:30px;}
-table.Audio_ET_BGM_Table td.TD_Audio video			{height:30px;width:350px;}
-table.Audio_ET_BGM_Table td.TD_Audio source			{height:30px;width:350px;}
+table.Audio_ET_BGM_Table td.TD_Audio video			{height:30px;width:250px;}
+table.Audio_ET_BGM_Table td.TD_Audio source			{height:30px;width:250px;}
 </style>
 </head>
 
@@ -185,7 +185,6 @@ function Audio_Switch(ele)
 {
 	//==========DIVISION==========
 	var i,j,k;
-	var num00,num01,num02,num03;
 	var arr00,arr01,arr02,arr03;
 	var ele00,ele01;
 	var elel00,elel01;
@@ -217,20 +216,19 @@ function Audio_Switch(ele)
 	//==========DIVISION==========
 	var Base_URL_DIR=["",Audio_URL_STR_CLS.Base_URL_DIR][Audio_URL_STR_CLS.Network_Type];
 	//==========DIVISION==========
-	num00=2;
 	str00="";
 	str00+="\n";
 	for (i=0;i<arr00.length;i++)
 	{
-		if ( i%num00==0 )		{str00+="<tr>" + "\n";}
+		if ( i%3==0 )		{str00+="<tr>" + "\n";}
 		//arr03[i].replace(/^[\x00-\xFF]*/gm,"");
 		str00+='	<td class="TD_Text"><span>' + arr03[i] + 
 				'</span><a href="' + Base_URL_DIR + arr02[i] + '" target=_blank download>' + '↓</a></td>' + "\n";
 		str00+='	<td class="TD_Audio">' + '<video controls="" name="media" loop=true><source src="' + 
 				Base_URL_DIR + arr02[i] + '" type="audio/mpeg">		</video>' + '</td>' + "\n";
-		if ( i%num00==2 )		{str00+="</tr>" + "\n";}
+		if ( i%3==2 )		{str00+="</tr>" + "\n";}
 	}
-	if ( i%num00==0 )		{str00+="</tr>" + "\n";}
+	if ( i%3==0 )		{str00+="</tr>" + "\n";}
 	ele00.innerHTML=str00;
 	//==========DIVISION==========
 }
@@ -280,7 +278,9 @@ PC台式机电脑的两个音箱开最大声，放在自己耳朵旁边，彻底
 单纯用于传播[李洪志声音能量]使用。但没人知道。
 
 <b style="color:red;">[李洪志声音能量]让人意识清醒。
-人类、和另外空间的灵魂们，赶快听[李洪志能量]的[无文字声音]，获得[真善忍李洪志声音能量]给人安排的将来。</b>
+人类、和另外空间的灵魂们，赶快听[李洪志能量]的[无文字声音]，获得：
+1.[真善忍李洪志声音能量]给人安排的将来。
+2.或是：「还有一些个幻听的。只能叫你幻听，其实你是真听到了，可是你听到的不是师父。它们会冒充师父的声音哪，连形像都会冒充的，利用你的执著骗你。」</b>
 ============================================================
 ================================================================================
 ============================================================
