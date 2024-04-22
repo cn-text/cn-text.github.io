@@ -10,13 +10,82 @@
 }
 
 table.Audio_ET_BGM_Table tr							{height:30px;}
-table.Audio_ET_BGM_Table td.TD_Audio video			{height:30px;width:250px;}
-table.Audio_ET_BGM_Table td.TD_Audio source			{height:30px;width:250px;}
+table.Audio_ET_BGM_Table td.TD_Audio video			{height:30px;width:350px;}
+table.Audio_ET_BGM_Table td.TD_Audio source			{height:30px;width:350px;}
+
+input.MultiPlier_CLS								{width:30px;}
 </style>
 </head>
 
 <body bgcolor=#CCE8CF>
 <script type="text/javascript">
+//========================================Base_Function========================================
+function Parameter_Base_STR_ijk_XX(p_num)
+{
+	var i,j,str00,arr00;
+	str00="";
+	str00+="var i,j,k,m,n,p,q,r,s,t;" + "\n";
+	arr00=["num","ele","elel","str","arr","cls","fun","formData","file"];
+	//arr00=["num","ele","elel",,"str","arr","torf","flag"];
+
+	for (i=0;i<arr00.length;i++)
+	{
+		str00+="var ";
+		for (j=0;j<p_num;j++)
+		{
+			str00+=arr00[i] + ("00" + j.toString()).slice(-2);
+			if ( j<(p_num - 1) )			{str00+=",";}
+			else if ( j==(p_num - 1) )		{str00+=";" + "\n";}
+			else							{}
+		}
+	}
+
+	return str00;
+}
+
+function createArray(length)
+{
+	var arr=new Array(length||0),i=length;
+	if ( arguments.length>1 )
+	{
+		var args=Array.prototype.slice.call(arguments,1);
+		while(i--)
+		{
+			arr[length-1-i]=createArray.apply(this,args);
+		}
+	}
+	return arr;
+}
+
+String.prototype.repeat = function( num )
+{
+	return new Array( num + 1 ).join( this );
+};
+
+function amplifyMedia(mediaElem,multiplier)
+{
+	var context=new( window.AudioContext || window.webkitAudioContext );
+	var result			=
+	{
+		context			:	context,
+		source			:	context.createMediaElementSource(mediaElem),
+		gain			:	context.createGain(),
+		media			:	mediaElem,
+		amplify			:	function(multiplier)
+		{
+			result.gain.gain.value=multiplier;
+		},
+		getAmpLevel		:	function()
+		{
+			return result.gain.gain.value;
+		}
+	};
+	result.source.connect(result.gain);
+	result.gain.connect(context.destination);
+	result.amplify(multiplier);
+	return result;
+}
+//========================================Base_Function========================================
 //========================================Audio_URL_STR_CLS========================================
 var Audio_URL_STR_CLS		=
 {
@@ -184,10 +253,8 @@ console.log(Audio_URL_STR_CLS.Time_Info_ARR);
 function Audio_Switch(ele)
 {
 	//==========DIVISION==========
-	var i,j,k;
-	var arr00,arr01,arr02,arr03;
-	var ele00,ele01;
-	var elel00,elel01;
+	eval(Parameter_Base_STR_ijk_XX(5));
+	var ID,LEN,ID_LEN;
 	//==========DIVISION==========
 	ele00=document.getElementsByClassName("Audio_Short")[0];
 	ele01=document.getElementsByClassName("Audio_Long")[0];
@@ -216,20 +283,44 @@ function Audio_Switch(ele)
 	//==========DIVISION==========
 	var Base_URL_DIR=["",Audio_URL_STR_CLS.Base_URL_DIR][Audio_URL_STR_CLS.Network_Type];
 	//==========DIVISION==========
+	num00=2;
 	str00="";
 	str00+="\n";
 	for (i=0;i<arr00.length;i++)
 	{
-		if ( i%3==0 )		{str00+="<tr>" + "\n";}
+		if ( i%num00==0 )		{str00+="<tr>" + "\n";}
 		//arr03[i].replace(/^[\x00-\xFF]*/gm,"");
 		str00+='	<td class="TD_Text"><span>' + arr03[i] + 
 				'</span><a href="' + Base_URL_DIR + arr02[i] + '" target=_blank download>' + '↓</a></td>' + "\n";
 		str00+='	<td class="TD_Audio">' + '<video controls="" name="media" loop=true><source src="' + 
 				Base_URL_DIR + arr02[i] + '" type="audio/mpeg">		</video>' + '</td>' + "\n";
-		if ( i%3==2 )		{str00+="</tr>" + "\n";}
+		if ( i%num00==2 )		{str00+="</tr>" + "\n";}
 	}
-	if ( i%3==0 )		{str00+="</tr>" + "\n";}
+	if ( i%num00==0 )		{str00+="</tr>" + "\n";}
 	ele00.innerHTML=str00;
+	//==========DIVISION==========
+	if ( Initiation_Flag==0 )
+	{
+	}
+	else if ( Initiation_Flag==1 )
+	{
+		ele01=document.getElementsByClassName("MultiPlier_CLS")[0];
+		//var multiplier=10.0;
+		var multiplier=parseInt(ele01.value,10);
+		for (i=0;i<arr00.length;i++)
+		{
+			ele01=document.createElement("DIV");
+			ele01.innerHTML=ele00.getElementsByClassName("TD_Audio")[i].innerHTML;
+
+			ele02=ele01.getElementsByTagName("video")[0];
+			amplifyMedia(ele02,multiplier);
+			ele02.playbackRate=1;
+
+			ele00.getElementsByClassName("TD_Audio")[i].innerHTML="";
+			ele00.getElementsByClassName("TD_Audio")[i].appendChild(ele01);
+		}
+	}
+	else		{}
 	//==========DIVISION==========
 }
 
@@ -285,7 +376,7 @@ PC台式机电脑的两个音箱开最大声，放在自己耳朵旁边，彻底
 ================================================================================
 ============================================================
 【从李洪志师父的真人讲法录音中】【用<a href="https://github.com/audacity/audacity/" target=_blank>Audacity</a>截取+合并的：】
-「李洪志」「真善忍」「法輪功」「法輪大法」【无文字音频】：<input type="button" class="Audio_Short" value="Short" onclick=Audio_Switch(this) style="background-color:#1EB0E9;"><input type="button" class="Audio_Long" value="Long" onclick=Audio_Switch(this) style="background-color:red;"><input type="button" class="Network_Type_CLS" value="OFF" onclick=Network_Type_Switch(this) style="background-color:red;">
+「李洪志」「真善忍」「法輪功」「法輪大法」【无文字音频】：<input type="button" class="Audio_Short" value="Short" onclick=Audio_Switch(this) style="background-color:#1EB0E9;"><input type="button" class="Audio_Long" value="Long" onclick=Audio_Switch(this) style="background-color:red;"><input type="button" class="Network_Type_CLS" value="OFF" onclick=Network_Type_Switch(this) style="background-color:red;"><input type="text" class="MultiPlier_CLS" title="MultiPlier_CLS" value="3">
 <table class="Audio_ET_BGM_Table" cellSpacing=0 cellPadding=0 border=1><tbody>
 <tr>
 	<td class="TD_Text"></td>
