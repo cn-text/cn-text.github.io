@@ -163,11 +163,12 @@ function Audio_URL_STR_CLS_INI()
 	};
 	Audio_URL_STR_CLS.Time_Info_ARR=arr02;
 	//==========DIVISION==========
-	console.log(location.href);
+	//console.log(location.href);
 	Audio_URL_STR_CLS.Network_Type=0;//0:"OFF";1:"ON";
 	if ( location.href.replace(/^(ftp|http).+$/gm,"")=="" )		{Audio_URL_STR_CLS.Network_Type=1;}
 	else														{}
 	document.getElementsByClassName("Network_Type_CLS")[0].value=["OFF","ON"][Audio_URL_STR_CLS.Network_Type];
+	document.getElementsByClassName("Network_Type_CLS")[0].style.backgroundColor=["red","#1EB0E9"][Audio_URL_STR_CLS.Network_Type];
 	var Base_URL_DIR_VAL=Audio_URL_STR_CLS.Base_URL_DIR_VAL=Audio_URL_STR_CLS.Base_URL_DIR_ARR[Audio_URL_STR_CLS.Network_Type];
 	//==========DIVISION==========
 	Audio_URL_STR_CLS.MultiPlier_EAB=0;//0:true;1:false;
