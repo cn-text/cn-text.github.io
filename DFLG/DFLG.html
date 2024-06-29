@@ -171,6 +171,13 @@ function Audio_URL_STR_CLS_INI()
 	document.getElementsByClassName("Network_Type_CLS")[0].style.backgroundColor=["red","#1EB0E9"][Audio_URL_STR_CLS.Network_Type];
 	var Base_URL_DIR_VAL=Audio_URL_STR_CLS.Base_URL_DIR_VAL=Audio_URL_STR_CLS.Base_URL_DIR_ARR[Audio_URL_STR_CLS.Network_Type];
 	//==========DIVISION==========
+	var AID=location.href.replace(/^(.+\?)(.*)(aid=)([^\?\&]*)(\&)(.*)$/gm,"$4");
+	var VID=location.href.replace(/^(.+\?)(.*)(vid=)([^\?\&]*)(\&)(.*)$/gm,"$4");
+	if ( !isNaN(AID) )	{AID=parseInt(AID,10);}
+	else				{AID="-";}
+	if ( !isNaN(VID) )	{VID=parseInt(VID,10);}
+	else				{VID="-";}
+	//==========DIVISION==========
 	Audio_URL_STR_CLS.MultiPlier_EAB=0;//0:true;1:false;
 	document.getElementsByClassName("MultiPlier_EAB")[0].style.backgroundColor=["red","#1EB0E9"][Audio_URL_STR_CLS.MultiPlier_EAB];
 	document.getElementsByClassName("MultiPlier_CLS")[0].disabled=[true,false][Audio_URL_STR_CLS.MultiPlier_EAB];
@@ -196,6 +203,18 @@ function Audio_URL_STR_CLS_INI()
 	}
 	//	if ( i%num00==0 )		{str00+="</tr>" + "\n";}
 	ele00.innerHTML=str00;
+	if ( !isNaN(AID) )
+	{
+		//	str00=ele00.getElementsByClassName("TD_Audio")[AID].getElementsByTagName("source")[0].src;
+		//	ele00.getElementsByClassName("TD_Audio")[AID].innerHTML="";
+		//	setTimeout(function(ele00,AID,str00)
+		//	{
+		//		//ele00.getElementsByTagName("video")[AID].play();
+		//		ele00.getElementsByClassName("TD_Audio")[AID].innerHTML=
+		//		'<video controls="" name="media" autoplay="autoplay" loop=true><source src="' + str00 + '" type="audio/mpeg"></video>';
+		//	},1000,ele00,AID,str00);
+	}
+	else		{}
 	//==========DIVISION==========
 	ele01=document.getElementsByClassName("Audio_DFLG_Ctrl_Table")[0].getElementsByClassName("DFLG_Video_SEL")[0];
 	arr01=Audio_URL_STR_CLS.Video_ARR;
@@ -207,7 +226,8 @@ function Audio_URL_STR_CLS_INI()
 	ele01.innerHTML=str01;
 	//==========DIVISION==========
 	ele00=document.getElementsByClassName("Audio_DFLG_Ctrl_Table")[0].getElementsByClassName("DFLG_Video_SEL")[0];
-	var VID=ele00.selectedIndex=2;
+	if ( !isNaN(VID) )	{ele00.selectedIndex=VID;}
+	else				{ele00.selectedIndex=VID=2;}
 	//==========DIVISION==========
 	ele00=document.getElementsByClassName("Audio_DFLG_Video_Content_Table")[0].getElementsByClassName("TD_VText")[0];
 	arr01=Audio_URL_STR_CLS.Video_ARR;
