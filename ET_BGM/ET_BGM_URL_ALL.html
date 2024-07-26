@@ -9,11 +9,15 @@
 	padding:					0px;
 }
 
-table.Audio_ET_BGM_Table tr							{height:30px;}
-table.Audio_ET_BGM_Table td.TD_Audio video			{height:30px;width:350px;}
-table.Audio_ET_BGM_Table td.TD_Audio source			{height:30px;width:350px;}
+table.Audio_ET_BGM_Content_Table tr							{height:30px;}
+table.Audio_ET_BGM_Content_Table td.TD_Audio video			{height:30px;width:350px;}
+table.Audio_ET_BGM_Content_Table td.TD_Audio source			{height:30px;width:350px;}
 
-input.MultiPlier_CLS								{width:30px;}
+input.MultiPlier_EAB								{width:20px;}
+input.MultiPlier_CLS								{width:70px;}
+input.Speed_EAB										{width:20px;}
+input.Speed_CLS										{width:70px;}
+
 </style>
 </head>
 
@@ -89,12 +93,25 @@ function amplifyMedia(mediaElem,multiplier)
 //========================================Audio_URL_STR_CLS========================================
 var Audio_URL_STR_CLS		=
 {
+	//==========DIVISION==========
 	Network_Type			:	0,//0:"OFF";1:"ON";
 	Audio_Type				:	0,//0:"Audio_Short";1:"Audio_Long";
 	Base_URL_DIR			:	"https://cn-text.github.io/ET_BGM/",
 	Short_ARR				:	[[],[],[],[]],
 	Long_ARR				:	[[],[],[],[]],
 	Time_Info_ARR			:	[[]],
+	//==========DIVISION==========
+	VAL						:
+	{
+		//==========DIVISION==========
+		MultiPlier_EAB		:	0,//0:false;1:true;
+		Speed_EAB			:	0,//0:false;1:true;
+		//==========DIVISION==========
+		MultiPlier			:	3,
+		Speed				:	1,
+		//==========DIVISION==========
+	},
+	//==========DIVISION==========
 };
 
 function Audio_URL_STR_CLS_INI()
@@ -243,6 +260,16 @@ function Audio_URL_STR_CLS_INI()
 	Audio_URL_STR_CLS.Network_Type=0;//0:"OFF";1:"ON";
 	document.getElementsByClassName("Network_Type_CLS")[0].value="OFF";
 	//==========DIVISION==========
+	Audio_URL_STR_CLS.VAL.MultiPlier_EAB=0;//0:false;1:true;
+	document.getElementsByClassName("MultiPlier_EAB")[0].style.backgroundColor	=["red","#1EB0E9"][Audio_URL_STR_CLS.VAL.MultiPlier_EAB];
+	document.getElementsByClassName("MultiPlier_CLS")[0].disabled				=[true,false][Audio_URL_STR_CLS.VAL.MultiPlier_EAB];
+	document.getElementsByClassName("MultiPlier_CLS")[0].value					=Audio_URL_STR_CLS.VAL.MultiPlier		=3;
+	//==========DIVISION==========
+	Audio_URL_STR_CLS.VAL.Speed_EAB=0;//0:false;1:true;
+	document.getElementsByClassName("Speed_EAB")[0].style.backgroundColor		=["red","#1EB0E9"][Audio_URL_STR_CLS.VAL.Speed_EAB];
+	document.getElementsByClassName("Speed_CLS")[0].disabled					=[true,false][Audio_URL_STR_CLS.VAL.Speed_EAB];
+	document.getElementsByClassName("Speed_CLS")[0].value						=Audio_URL_STR_CLS.VAL.Speed			=1;
+	//==========DIVISION==========
 }
 //Audio_URL_STR_CLS_INI();
 console.log(Audio_URL_STR_CLS.Short_ARR);
@@ -262,7 +289,7 @@ function Audio_Switch(ele)
 	ele01.style.backgroundColor="red";
 	ele.style.backgroundColor="#1EB0E9";
 	//==========DIVISION==========
-	ele00=document.getElementsByClassName("Audio_ET_BGM_Table")[0].getElementsByTagName("tbody")[0];
+	ele00=document.getElementsByClassName("Audio_ET_BGM_Content_Table")[0].getElementsByTagName("tbody")[0];
 	arr00=[];arr01=[];arr02=[];arr03=[];
 	Audio_URL_STR_CLS.Audio_Type=ele.className;
 	if ( ele.className=="Audio_Short" )
@@ -304,21 +331,44 @@ function Audio_Switch(ele)
 	}
 	else if ( Initiation_Flag==1 )
 	{
+		//==========DIVISION==========
 		ele01=document.getElementsByClassName("MultiPlier_CLS")[0];
 		//var multiplier=10.0;
 		var multiplier=parseInt(ele01.value,10);
+		//==========DIVISION==========
+		ele01=document.getElementsByClassName("Speed_CLS")[0];
+		//var speed=10.0;
+		var speed=parseInt(ele01.value,10);
+		//==========DIVISION==========
+		var multiplier=Audio_URL_STR_CLS.VAL.MultiPlier;
+		var speed=Audio_URL_STR_CLS.VAL.Speed;
+		//==========DIVISION==========
 		for (i=0;i<arr00.length;i++)
 		{
+			//==========DIVISION==========
 			ele01=document.createElement("DIV");
 			ele01.innerHTML=ele00.getElementsByClassName("TD_Audio")[i].innerHTML;
-
 			ele02=ele01.getElementsByTagName("video")[0];
-			amplifyMedia(ele02,multiplier);
-			ele02.playbackRate=1;
-
+			//==========DIVISION==========
+			if ( Audio_URL_STR_CLS.VAL.MultiPlier_EAB==0 )			{}
+			else if ( Audio_URL_STR_CLS.VAL.MultiPlier_EAB==1 )
+			{
+				amplifyMedia(ele02,multiplier);
+			}
+			else		{}
+			//==========DIVISION==========
+			if ( Audio_URL_STR_CLS.VAL.Speed_EAB==0 )				{}
+			else if ( Audio_URL_STR_CLS.VAL.Speed_EAB==1 )
+			{
+				ele02.playbackRate=speed;
+			}
+			else		{}
+			//==========DIVISION==========
 			ele00.getElementsByClassName("TD_Audio")[i].innerHTML="";
 			ele00.getElementsByClassName("TD_Audio")[i].appendChild(ele01);
+			//==========DIVISION==========
 		}
+		//==========DIVISION==========
 	}
 	else		{}
 	//==========DIVISION==========
@@ -331,7 +381,213 @@ function Network_Type_Switch(ele)
 	ele.style.backgroundColor=["red","#1EB0E9"][Audio_URL_STR_CLS.Network_Type];
 	document.getElementsByClassName(Audio_URL_STR_CLS.Audio_Type)[0].click();
 }
+
+function MultiPlier_EAB_Switch(ele)
+{
+	Audio_URL_STR_CLS.VAL.MultiPlier_EAB=(Audio_URL_STR_CLS.VAL.MultiPlier_EAB + 1)%2;
+	ele.style.backgroundColor=["red","#1EB0E9"][Audio_URL_STR_CLS.VAL.MultiPlier_EAB];
+	document.getElementsByClassName("MultiPlier_CLS")[0].disabled=[true,false][Audio_URL_STR_CLS.VAL.MultiPlier_EAB];
+}
+
+function Speed_EAB_Switch(ele)
+{
+	Audio_URL_STR_CLS.VAL.Speed_EAB=(Audio_URL_STR_CLS.VAL.Speed_EAB + 1)%2;
+	ele.style.backgroundColor=["red","#1EB0E9"][Audio_URL_STR_CLS.VAL.Speed_EAB];
+	document.getElementsByClassName("Speed_CLS")[0].disabled=[true,false][Audio_URL_STR_CLS.VAL.Speed_EAB];
+}
 //========================================Audio_Function========================================
+//==================================================控件動作變化==================================================
+function TEXT_ATTRIBUTION(ele,evt,n)
+{
+	eval(Parameter_Base_STR_ijk_XX(5));
+	//eval(ELE_ELEL_STR_INI());
+
+	//console___log("function now is : TEXT_ATTRIBUTION(ele,evt,n)");
+
+	//IE7 : evt.srcElement ;Other : evt.target;
+	var evt_target = evt.target ? evt.target : evt.srcElement;
+	//alert(evt_target.tagName);
+
+	var ele_disabled;
+	if ( n==0 )//鼠標移入。
+	{
+		if ( evt_target.tagName.toUpperCase()=="TEXTAREA" || evt_target.tagName.toUpperCase()=="INPUT" )
+		{
+			try
+			{
+				if ( evt_target.disabled==true )	{ele_disabled=true;evt_target.disabled=false;}
+				evt_target.focus();//設置焦點。
+				evt_target.select();//選中全文。
+				if ( ele_disabled==true )			{evt_target.disabled=true;}
+			}
+			catch (err)
+			{
+				console___log(err.message);
+			}
+		}
+		else		{}
+	}
+	else if ( n==1 )//鼠標移出。
+	{
+		//ele.blur();//失去焦點。
+	}
+	else if ( n==2 )//更改了文本框的內容。
+	{
+		if ( ele.className=="Audio_ET_BGM_Ctrl_Table" && 
+				( evt_target.className=="MultiPlier_CLS" || evt_target.className=="Speed_CLS" ) )
+		{
+			if ( evt_target.value!="" && !isNaN(evt_target.value) && ( evt_target.value.replace(/[0-9\.]+/gm,"")=="" ) )
+			{
+				//==========DIVISION==========
+				str00="Audio_URL_STR_CLS.VAL." + evt_target.className.replace(/_CLS$/gm,"") + "=parseFloat(evt_target.value);";
+				eval(str00);
+				//==========DIVISION==========
+			}
+			else
+			{
+				alert("Error , it must be setted to a number .");
+				evt_target.focus();
+				str00="evt_target.value=Audio_URL_STR_CLS.VAL." + evt_target.className.replace(/_CLS$/gm,"") + ";";
+				eval(str00);
+				evt_target.setAttribute("value",evt_target.value);
+			}
+			//	console.log("Audio_URL_STR_CLS.VAL.MultiPlier : " + Audio_URL_STR_CLS.VAL.MultiPlier + ";\t" + 
+			//				"Audio_URL_STR_CLS.VAL.Speed : " + Audio_URL_STR_CLS.VAL.Speed + ";\t" + 
+			//				"");
+		}
+		else		{}
+	}
+	else if ( n==3 )//點擊了按鈕。
+	{
+	}
+	else
+	{
+	}
+}
+//==================================================控件動作變化==================================================
+//========================================Audio_ET_BGM_Hotkey_Mouse========================================
+function Audio_ET_BGM_Hotkey_Mouse(ele,evt,post_method)
+{
+	//==========DIVISION==========
+	eval(Parameter_Base_STR_ijk_XX(10));
+	//eval(ELE_ELEL_STR_INI());
+	var ID,LEN,ID_LEN;
+	//==========DIVISION==========
+	//console.log("function now is : TEXT_ATTRIBUTION(ele,evt,n)");
+
+	//IE7 : evt.srcElement ;Other : evt.target;
+	var evt_target = evt.target ? evt.target : evt.srcElement;
+	//alert(evt_target.outerHTML + "\n" + 
+	//	evt_target.tagName + "\n" + evt_target.className + "\n" + 
+	//	evt_target.tpye + "\n" + evt_target.getAttribute("type") + "\n" + 
+	//	evt_target.getAttribute("type_x_y"));
+
+	//evt.ctrlKey失效可能是其他函数的原因。
+	//console.log("evt _ evt.ctrlKey _ evt.altKey _ evt.shiftKey _ evt.which : " + evt + evt.ctrlKey + "_" + evt.altKey + "_" + evt.shiftKey + "_" + evt.which);
+	//						17				18			16
+	//==========DIVISION==========
+	var referenceNode;
+	if ( post_method==0 && evt && evt.type=="keydown" && evt.which==13 )//enter:13;
+	{
+		if ( ele.className=="Audio_ET_BGM_Table" && evt_target.className=="" )
+		{
+			ele01=evt_target.parentNode;
+			//	while ( ele01.className!="??????" )		{ele01=ele01.parentNode;}
+			//	ele01.getElementsByClassName("??????")[0].click();
+		}
+		else
+		{
+		}
+	}
+	else if ( post_method==0 && evt && evt.type=="keydown" && 
+				( ( evt.which == 33 || evt.which == 34 || evt.which == 38 || evt.which == 40 || evt.which == 36 || evt.which == 35 ) || 
+				( evt.which == 38 || evt.which == 40 ) || 
+				//( evt.which == 17 && evt.ctrlKey || evt.which == 18 && evt.altKey || evt.which == 16 && evt.shiftKey ) || 
+				0 ) )
+	{
+		/*
+		up arrow	38
+		down arrow	40
+		page up		33
+		page down	34
+		home	36
+		end		35
+		*/
+		var i,j,str;
+		var NUM_10,NUM_X,NUM_MIN,NUM_MAX;
+		var number_system,NS,NUM_SYS_MAX;
+		var NS_00,NS_01;
+		var evt_sd;
+		NS_00=10;
+
+		if ( ( evt.which == 33 || evt.which == 34 || evt.which == 38 || evt.which == 40 || evt.which == 36 || evt.which == 35 ) && 
+				ele.tagName.toUpperCase()=="TABLE" && 
+				( evt_target.className=="MultiPlier_CLS" || evt_target.className=="Speed_CLS" || 
+				0 ) )
+		{
+			//==========DIVISION==========
+			NUM_MAX=10000*10000;
+
+			if ( evt_target.className=="MultiPlier_CLS" )					{NUM_MIN=0;NUM_MAX=100;}
+			else if ( evt_target.className=="Speed_CLS" )					{NUM_MIN=0;NUM_MAX=100;}
+			else															{NUM_MIN=0;NUM_MAX=10000*10000;}
+
+			//evt_target.value=("00" + evt_target.value).slice(-2);
+			if ( evt_target.className=="MultiPlier_CLS" )					{NUM_10=parseFloat(evt_target.value);}
+			else if ( evt_target.className=="Speed_CLS" )					{NUM_10=parseFloat(evt_target.value);}
+			else															{NUM_10=parseInt(evt_target.value,10);}
+
+			num00=0;
+			if		( evt.which == 38 )	{num00++;}		//up arrow		38
+			else if ( evt.which == 40 )	{num00--;}		//down arrow	40
+			else if ( evt.which == 33 )	{num00+=10;}	//page up		33
+			else if ( evt.which == 34 )	{num00-=10;}	//page down		34
+			else if ( evt.which == 36 )	{num00+=100;}	//home			36
+			else if ( evt.which == 35 )	{num00-=100;}	//end			35
+			else{}
+
+			if ( evt.ctrlKey || evt.altKey || evt.shiftKey )
+			{
+				if ( evt.ctrlKey )			{num00*=Math.pow(NS_00,1);}	//{num00*=Math.pow(10,1);}
+				else if ( evt.altKey )		{num00*=Math.pow(NS_00,2);}	//{num00*=Math.pow(10,2);}
+				else if ( evt.shiftKey )	{num00*=Math.pow(NS_00,3);}	//{num00*=Math.pow(10,3);}
+				else						{num00*=Math.pow(NS_00,0);}	//{num00*=Math.pow(10,0);}
+			}
+			else							{num00*=Math.pow(NS_00,0);}	//{num00*=Math.pow(10,0);}
+
+			if ( evt_target.className=="MultiPlier_CLS" )					{NUM_10=(parseFloat(num00/1000) + NUM_10).toFixed(3);}
+			else if ( evt_target.className=="Speed_CLS" )					{NUM_10=(parseFloat(num00/1000) + NUM_10).toFixed(3);}
+			else															{NUM_10=num00 + NUM_10;}
+
+			if		( NUM_10<NUM_MIN )						{NUM_10=NUM_MIN;}
+			else if ( NUM_10>NUM_MAX )						{NUM_10=NUM_MAX;}
+			else{}
+
+			evt_target.value=NUM_10;
+
+			if ( evt_target.className=="MultiPlier_CLS" )					{Audio_URL_STR_CLS.VAL.MultiPlier		=parseFloat(NUM_10);}
+			else if ( evt_target.className=="Speed_CLS" )					{Audio_URL_STR_CLS.VAL.Speed			=parseFloat(NUM_10);}
+			else															{}
+
+			if ( evt_target.className=="MultiPlier_CLS" )
+			{
+				//"↑";NUM_10=NUM_10;
+				//ele_Audio_ET_BGM_Ctrl_Table.getElementsByClassName(Audio_URL_STR_CLS.Audio_Type)[0].click();
+			}
+			else																{}
+		}
+		else
+		{
+		}
+
+		//console.log(evt_target.className + "\n" + ele.className);
+	}
+	else
+	{
+	}
+	//==========DIVISION==========
+}
+//========================================Audio_ET_BGM_Hotkey_Mouse========================================
 </script>
 <pre class="Text_CLS">
 ================================================================================
@@ -364,7 +620,7 @@ https://github.com/cn-text/cn-text.github.io/releases/download/ET_BGM/ET_BGM_03_
 
 此处的[无文字声音]用无人机用大喇叭，24小时不停地：在天空上超大声播放，只是有点敲锣打鼓的声音，没人知道这[无文字声音]是什么意思。也没人察觉。
 PC台式机电脑的两个音箱开最大声，让人听到了[李洪志能量]的[无文字声音]，其实很舒服。[无文字声音]让所有人感觉非常安全，零危险。
-PC台式机电脑的两个音箱开最大声，放在自己耳朵旁边，彻底让自己的心灵世界和联系的另外空间：接受[李洪志声音能量]的震动贯通。
+<b style="color:red;">PC台式机电脑</b>的两个<b style="color:red;">音箱</b>开最大声，放在自己耳朵旁边，彻底让自己的心灵世界和联系的另外空间：接受[李洪志声音能量]的震动贯通。
 <b style="color:red;">(最大声)手机声音孔贴耳</b>，效果很明显。
 
 单纯用于传播[李洪志声音能量]使用。但没人知道。
@@ -376,15 +632,27 @@ PC台式机电脑的两个音箱开最大声，放在自己耳朵旁边，彻底
 ============================================================
 ================================================================================
 ============================================================
-【从李洪志师父的真人讲法录音中】【用<a href="https://github.com/audacity/audacity/" target=_blank>Audacity</a>截取+合并的：】
-「李洪志」「真善忍」「法輪功」「法輪大法」【无文字音频】：<input type="button" class="Audio_Short" value="Short" onclick=Audio_Switch(this) style="background-color:#1EB0E9;"><input type="button" class="Audio_Long" value="Long" onclick=Audio_Switch(this) style="background-color:red;"><input type="button" class="Network_Type_CLS" value="OFF" onclick=Network_Type_Switch(this) style="background-color:red;"><input type="text" class="MultiPlier_CLS" title="MultiPlier_CLS" value="3">
-<table class="Audio_ET_BGM_Table" cellSpacing=0 cellPadding=0 border=1><tbody>
-<tr>
+<table class="Audio_ET_BGM_Table" cellSpacing=0 cellPadding=0 border=1 onkeydown=Audio_ET_BGM_Hotkey_Mouse(this,event,0) onmouseover=TEXT_ATTRIBUTION(this,event,0) onmouseout=TEXT_ATTRIBUTION(this,event,1) onchange=TEXT_ATTRIBUTION(this,event,2)><tbody>
+<tr><td><table class="Audio_ET_BGM_Ctrl_Table" cellSpacing=0 cellPadding=0 border=1><tbody>
+	<tr>
+		<td colspan=10><span>【从李洪志师父的真人讲法录音中】【用<a href="https://github.com/audacity/audacity/" target=_blank>Audacity</a>截取+合并的：】</span></td>
+	</tr><tr>
+		<td><span>「李洪志」「真善忍」「法輪功」「法輪大法」【无文字音频】：</span></td>
+		<td><input type="button" class="Audio_Short" value="Short" onclick=Audio_Switch(this) style="background-color:#1EB0E9;"></td>
+		<td><input type="button" class="Audio_Long" value="Long" onclick=Audio_Switch(this) style="background-color:red;"></td>
+		<td><input type="button" class="Network_Type_CLS" value="OFF" onclick=Network_Type_Switch(this) style="background-color:red;"></td>
+		<td><input type="button" class="MultiPlier_EAB" title="MultiPlier_EAB" value="M" onclick=MultiPlier_EAB_Switch(this)></td>
+		<td><input type="text" class="MultiPlier_CLS" title="MultiPlier_CLS" value="3"></td>
+		<td><input type="button" class="Speed_EAB" title="Speed_EAB" value="S" onclick=Speed_EAB_Switch(this)></td>
+		<td><input type="text" class="Speed_CLS" title="Speed_CLS" value="1"></td>
+	</tr>
+</tbody></table></tr>
+<tr><td><table class="Audio_ET_BGM_Content_Table" cellSpacing=0 cellPadding=0 border=1><tbody><tr>
 	<td class="TD_Text"></td>
 	<td class="TD_Audio"></td>
 	<td class="TD_Text"></td>
 	<td class="TD_Audio"></td>
-</tr>
+</tr></tbody></table></tr>
 </tbody></table>
 </pre>
 ============================================================
