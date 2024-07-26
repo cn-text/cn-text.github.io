@@ -11,15 +11,26 @@
 }
 
 table.Audio_DFLG_Audio_Content_Table tr							{height:30px;}
-table.Audio_DFLG_Audio_Content_Table td.TD_Audio video			{height:30px;width:350px;}
-table.Audio_DFLG_Audio_Content_Table td.TD_Audio source			{height:30px;width:350px;}
+table.Audio_DFLG_Audio_Content_Table td.TD_Audio video			{width:350px;height:30px;}
+table.Audio_DFLG_Audio_Content_Table td.TD_Audio source			{width:350px;height:30px;}
 
-input.MultiPlier_EAB								{width:20px;}
+input.MultiPlier_EAB								{}
 input.MultiPlier_CLS								{width:70px;}
+input.Speed_EAB										{}
 input.Speed_CLS										{width:70px;}
+
+input.Multi_Video_EAB								{}
+input.Multi_Video_Fit_BTN							{}
+input.Multi_Video_X_CLS								{width:70px;}
+input.Multi_Video_Y_CLS								{width:70px;}
+input.Multi_Video_VID_List_STR_CLS					{width:200px;}
+select.Multi_Video_VID_List_STR_SEL					{width:60px;}
+a.Multi_Video_TOP									{}
 
 td													{vertical-align:text-top;}
 
+</style>
+<style type="text/css" class="CSS_SD_TD_Multi_Video">
 </style>
 </head>
 
@@ -93,24 +104,35 @@ function amplifyMedia(mediaElem,multiplier)
 }
 //========================================Base_Function========================================
 //========================================Audio_URL_STR_CLS========================================
-var Audio_URL_STR_CLS		=
+var Audio_URL_STR_CLS				=
 {
 	//==========DIVISION==========
-	Network_Type			:	0,//0:"OFF";1:"ON";
-	Audio_Type				:	0,//0:"Audio_Short";1:"Audio_Long";
-	MultiPlier_EAB			:	0,//0:true;1:false;
-	//	Base_URL_DIR_ARR		:	["DFLG_AV/","https://cn-text.github.io/DFLG/DFLG_AV/"],
-	//	Base_URL_DIR_VAL		:	"https://cn-text.github.io/DFLG/DFLG_AV/",
-	Base_URL_DIR_ARR		:	["DFLG_AV/","https://github.com/cn-text/cn-text.github.io/releases/download/DFLG_AV/"],
-	Base_URL_DIR_VAL		:	"https://github.com/cn-text/cn-text.github.io/releases/download/DFLG_AV/",
-	Audio_ARR				:	[[],[],[],[],[]],
-	Video_ARR				:	[[],[],[],[],[]],
-	Time_Info_ARR			:	[[]],
+	Network_Type					:	0,//0:"OFF";1:"ON";
+	Audio_Type						:	0,//0:"Audio_Short";1:"Audio_Long";
+	//	Base_URL_DIR_ARR				:	["DFLG_AV/","https://cn-text.github.io/DFLG/DFLG_AV/"],
+	//	Base_URL_DIR_VAL				:	"https://cn-text.github.io/DFLG/DFLG_AV/",
+	Base_URL_DIR_ARR				:	["DFLG_AV/","https://github.com/cn-text/cn-text.github.io/releases/download/DFLG_AV/"],
+	Base_URL_DIR_VAL				:	"https://github.com/cn-text/cn-text.github.io/releases/download/DFLG_AV/",
+	Audio_ARR						:	[[],[],[],[],[]],
+	Video_ARR						:	[[],[],[],[],[]],
+	Time_Info_ARR					:	[[]],
 	//==========DIVISION==========
-	VAL						:
+	VAL								:
 	{
-		MultiPlier			:	1,
-		Speed				:	1,
+		//==========DIVISION==========
+		MultiPlier_EAB				:	0,//0:false;1:true;
+		Speed_EAB					:	0,//0:false;1:true;
+		//==========DIVISION==========
+		MultiPlier					:	1,
+		Speed						:	1,
+		//==========DIVISION==========
+		Multi_Video_EAB				:	1,
+		Multi_Video_Fit				:	1,
+		Multi_Video_X				:	4,
+		Multi_Video_Y				:	3,
+		Multi_Video_VID_List_ARR	:	[2],//[2,8,9,10,11,12],
+		Multi_Video_VID_List_STR	:	"[2]",//"[2,8,9,10,11,12]",
+		//==========DIVISION==========
 	},
 	//==========DIVISION==========
 };
@@ -178,12 +200,29 @@ function Audio_URL_STR_CLS_INI()
 	if ( !isNaN(VID) )	{VID=parseInt(VID,10);}
 	else				{VID="-";}
 	//==========DIVISION==========
-	Audio_URL_STR_CLS.MultiPlier_EAB=0;//0:true;1:false;
-	document.getElementsByClassName("MultiPlier_EAB")[0].style.backgroundColor=["red","#1EB0E9"][Audio_URL_STR_CLS.MultiPlier_EAB];
-	document.getElementsByClassName("MultiPlier_CLS")[0].disabled=[true,false][Audio_URL_STR_CLS.MultiPlier_EAB];
-	document.getElementsByClassName("Speed_CLS")[0].disabled=[true,false][Audio_URL_STR_CLS.MultiPlier_EAB];
-	document.getElementsByClassName("MultiPlier_CLS")[0].value=	Audio_URL_STR_CLS.VAL.MultiPlier	=3;
-	document.getElementsByClassName("Speed_CLS")[0].value=		Audio_URL_STR_CLS.VAL.Speed			=1;
+	Audio_URL_STR_CLS.VAL.MultiPlier_EAB=0;//0:false;1:true;
+	document.getElementsByClassName("MultiPlier_EAB")[0].style.backgroundColor	=["red","#1EB0E9"][Audio_URL_STR_CLS.VAL.MultiPlier_EAB];
+	document.getElementsByClassName("MultiPlier_CLS")[0].disabled				=[true,false][Audio_URL_STR_CLS.VAL.MultiPlier_EAB];
+	document.getElementsByClassName("MultiPlier_CLS")[0].value					=Audio_URL_STR_CLS.VAL.MultiPlier				=3;
+	//==========DIVISION==========
+	Audio_URL_STR_CLS.VAL.Speed_EAB=0;//0:false;1:true;
+	document.getElementsByClassName("Speed_EAB")[0].style.backgroundColor		=["red","#1EB0E9"][Audio_URL_STR_CLS.VAL.Speed_EAB];
+	document.getElementsByClassName("Speed_CLS")[0].disabled					=[true,false][Audio_URL_STR_CLS.VAL.Speed_EAB];
+	document.getElementsByClassName("Speed_CLS")[0].value						=Audio_URL_STR_CLS.VAL.Speed					=1;
+	//==========DIVISION==========
+	Audio_URL_STR_CLS.VAL.Multi_Video_EAB=0;//0:false;1:true;
+	document.getElementsByClassName("Multi_Video_EAB")[0].style.backgroundColor	=["red","#1EB0E9"][Audio_URL_STR_CLS.VAL.Multi_Video_EAB];
+	document.getElementsByClassName("Multi_Video_Fit_BTN")[0].disabled			=[true,false][Audio_URL_STR_CLS.VAL.Multi_Video_EAB];
+	document.getElementsByClassName("Multi_Video_X_CLS")[0].disabled			=[true,false][Audio_URL_STR_CLS.VAL.Multi_Video_EAB];
+	document.getElementsByClassName("Multi_Video_Y_CLS")[0].disabled			=[true,false][Audio_URL_STR_CLS.VAL.Multi_Video_EAB];
+	document.getElementsByClassName("Multi_Video_VID_List_STR_CLS")[0].disabled	=[true,false][Audio_URL_STR_CLS.VAL.Multi_Video_EAB];
+																				;Audio_URL_STR_CLS.VAL.Multi_Video_Fit			=1;
+	document.getElementsByClassName("Multi_Video_Fit_BTN")[0].style.backgroundColor
+																				=["red","#1EB0E9"][Audio_URL_STR_CLS.VAL.Multi_Video_Fit];
+	document.getElementsByClassName("Multi_Video_X_CLS")[0].value				=Audio_URL_STR_CLS.VAL.Multi_Video_X			=4;
+	document.getElementsByClassName("Multi_Video_Y_CLS")[0].value				=Audio_URL_STR_CLS.VAL.Multi_Video_Y			=3;
+	document.getElementsByClassName("Multi_Video_VID_List_STR_CLS")[0].value	=Audio_URL_STR_CLS.VAL.Multi_Video_VID_List_STR	="[2]";//"[2,8,9,10,11,12]";
+	eval("Audio_URL_STR_CLS.VAL.Multi_Video_VID_List_ARR=" + Audio_URL_STR_CLS.VAL.Multi_Video_VID_List_STR + ";");
 	//==========DIVISION==========
 	ele00=document.getElementsByClassName("Audio_DFLG_Audio_Content_Table")[0].getElementsByTagName("tbody")[0];
 	arr00=Audio_URL_STR_CLS.Audio_ARR;
@@ -197,8 +236,8 @@ function Audio_URL_STR_CLS_INI()
 		str00+='	<td class="TD_AText"><span>' + arr00[3][i] + 
 				'</span><a href="' + Base_URL_DIR_VAL + arr00[1][i] + '" target=_blank download>' + '↓</a>' + 
 				'<a href="' + Base_URL_DIR_VAL + arr00[1][i] + '" target=_blank>' + '→</a></td>' + "\n";
-		str00+='	<td class="TD_Audio">' + '<video controls="" name="media" loop=true><source src="' + 
-				Base_URL_DIR_VAL + arr00[1][i] + '" type="audio/mpeg">		</video>' + '</td>' + "\n";
+		str00+='	<td class="TD_Audio">' + '<div><video controls="" name="media" loop=true><source src="' + 
+				Base_URL_DIR_VAL + arr00[1][i] + '" type="audio/mpeg">		</video></div>' + '</td>' + "\n";
 		if ( i%num00==0 )		{str00+="</tr>" + "\n";}
 	}
 	//	if ( i%num00==0 )		{str00+="</tr>" + "\n";}
@@ -211,7 +250,7 @@ function Audio_URL_STR_CLS_INI()
 		//	{
 		//		//ele00.getElementsByTagName("video")[AID].play();
 		//		ele00.getElementsByClassName("TD_Audio")[AID].innerHTML=
-		//		'<video controls="" name="media" autoplay="autoplay" loop=true><source src="' + str00 + '" type="audio/mpeg"></video>';
+		//		'<div><video controls="" name="media" autoplay="autoplay" loop=true><source src="' + str00 + '" type="audio/mpeg"></video></div>';
 		//	},1000,ele00,AID,str00);
 	}
 	else		{}
@@ -229,6 +268,14 @@ function Audio_URL_STR_CLS_INI()
 	if ( !isNaN(VID) )	{ele00.selectedIndex=VID;}
 	else				{ele00.selectedIndex=VID=2;}
 	//==========DIVISION==========
+	ele00=document.getElementsByClassName("Audio_DFLG_Ctrl_Table")[0].getElementsByClassName("Multi_Video_VID_List_STR_SEL")[0];
+	str00="";
+	str00+="<option>[2]</option>";
+	str00+="<option>[2,3,4,5,6,7]</option>";
+	str00+="<option>[2,8,9,10,11,12]</option>";
+	ele00.innerHTML=str00;
+	ele00.selectedIndex=0;
+	//==========DIVISION==========
 	ele00=document.getElementsByClassName("Audio_DFLG_Video_Content_Table")[0].getElementsByClassName("TD_VText")[0];
 	arr01=Audio_URL_STR_CLS.Video_ARR;
 	ele00.getElementsByTagName("span")[0].innerHTML="李洪志做五套功法：" + arr01[4][VID] + 
@@ -237,8 +284,8 @@ function Audio_URL_STR_CLS_INI()
 	//==========DIVISION==========
 	ele00=document.getElementsByClassName("Audio_DFLG_Video_Content_Table")[0].getElementsByClassName("TD_Video")[0];
 	str00="";
-	str00+='<video controls="" name="media" autoplay="autoplay" loop=true muted><source src="' + 
-			Base_URL_DIR_VAL + arr01[1][VID] + '" type="audio/mpeg">		</video>';
+	str00+='<div><video controls="" name="media" autoplay="autoplay" loop=true muted><source src="' + 
+			Base_URL_DIR_VAL + arr01[1][VID] + '" type="audio/mpeg">		</video></div>';
 	ele00.innerHTML=str00;
 	//==========DIVISION==========
 }
@@ -269,8 +316,8 @@ function Audio_Switch(ele)
 		//arr03[i].replace(/^[\x00-\xFF]*/gm,"");
 		str00+='	<td class="TD_AText"><span>' + arr00[3][i] + 
 				'</span><a href="' + Base_URL_DIR_VAL + arr00[1][i] + '" target=_blank download>' + '↓</a></td>' + "\n";
-		str00+='	<td class="TD_Audio">' + '<video controls="" name="media" loop=true><source src="' + 
-				Base_URL_DIR_VAL + arr00[1][i] + '" type="audio/mpeg">		</video>' + '</td>' + "\n";
+		str00+='	<td class="TD_Audio">' + '<div><video controls="" name="media" loop=true><source src="' + 
+				Base_URL_DIR_VAL + arr00[1][i] + '" type="audio/mpeg">		</video></div>' + '</td>' + "\n";
 		if ( i%num00==0 )		{str00+="</tr>" + "\n";}
 	}
 	//	if ( i%num00==0 )		{str00+="</tr>" + "\n";}
@@ -288,20 +335,24 @@ function Audio_Switch(ele)
 			//==========DIVISION==========
 			ele01=document.createElement("DIV");
 			ele01.innerHTML=ele00.getElementsByClassName("TD_Audio")[i].innerHTML;
+			ele02=ele01.getElementsByTagName("video")[0];
 			//==========DIVISION==========
-			if ( Audio_URL_STR_CLS.MultiPlier_EAB==0 )
+			if ( Audio_URL_STR_CLS.VAL.MultiPlier_EAB==0 )			{}
+			else if ( Audio_URL_STR_CLS.VAL.MultiPlier_EAB==1 )
 			{
-			}
-			else if ( Audio_URL_STR_CLS.MultiPlier_EAB==1 )
-			{
-				ele02=ele01.getElementsByTagName("video")[0];
 				amplifyMedia(ele02,multiplier);
+			}
+			else		{}
+			//==========DIVISION==========
+			if ( Audio_URL_STR_CLS.VAL.Speed_EAB==0 )				{}
+			else if ( Audio_URL_STR_CLS.VAL.Speed_EAB==1 )
+			{
 				ele02.playbackRate=speed;
 			}
 			else		{}
 			//==========DIVISION==========
 			ele00.getElementsByClassName("TD_Audio")[i].innerHTML="";
-			ele00.getElementsByClassName("TD_Audio")[i].appendChild(ele01);
+			ele00.getElementsByClassName("TD_Audio")[i].appendChild(ele01.getElementsByTagName("div")[0]);
 			//==========DIVISION==========
 		}
 	}
@@ -314,6 +365,7 @@ function Video_Switch(ele)
 	//==========DIVISION==========
 	eval(Parameter_Base_STR_ijk_XX(5));
 	var ID,LEN,ID_LEN;
+	var VID,VID_LEN;
 	//==========DIVISION==========
 	var Base_URL_DIR_VAL=Audio_URL_STR_CLS.Base_URL_DIR_VAL=Audio_URL_STR_CLS.Base_URL_DIR_ARR[Audio_URL_STR_CLS.Network_Type];
 	//==========DIVISION==========
@@ -331,40 +383,82 @@ function Video_Switch(ele)
 	'：<br>可<span style="color:red;font-weight:bold;">全屏近距离</span>观看：' + 
 	'<a href="' + Base_URL_DIR_VAL + arr01[1][VID] + '" target=_blank>' + arr01[3][VID] + "</a>" + "。";
 	//==========DIVISION==========
+	var TD_Video_InnerHTML;
 	ele00=document.getElementsByClassName("Audio_DFLG_Video_Content_Table")[0].getElementsByClassName("TD_Video")[0];
 	str00="";
-	str00+='<video controls="" name="media" autoplay="autoplay" loop=true muted><source src="' + 
-			Base_URL_DIR_VAL + arr01[1][VID] + '" type="audio/mpeg">		</video>';
-	ele00.innerHTML=str00;
+	str00+='<div><video controls="" name="media" autoplay="autoplay" loop=true muted><source src="' + 
+			Base_URL_DIR_VAL + arr01[1][VID] + '" type="audio/mpeg">		</video></div>';
+	ele00.innerHTML=TD_Video_InnerHTML=str00;
+	arr02=[[[ele00,TD_Video_InnerHTML]]];
 	//==========DIVISION==========
 	if ( Initiation_Flag==0 )
 	{
 	}
 	else if ( Initiation_Flag==1 )
 	{
+		//==========DIVISION==========
 		var multiplier=Audio_URL_STR_CLS.VAL.MultiPlier;
 		var speed=Audio_URL_STR_CLS.VAL.Speed;
-		for (i=0;i<arr01[0].length;i++)
+		//==========DIVISION==========
+		if ( Audio_URL_STR_CLS.VAL.Multi_Video_EAB==0 )			{}
+		else if ( Audio_URL_STR_CLS.VAL.Multi_Video_EAB==1 )
 		{
 			//==========DIVISION==========
-			ele01=document.createElement("DIV");
-			ele01.innerHTML=ele00.innerHTML;
+			elel03=document.getElementsByClassName("Audio_DFLG_Multi_Video_Content_Table")[0].getElementsByClassName("TD_Video");
 			//==========DIVISION==========
-			if ( Audio_URL_STR_CLS.MultiPlier_EAB==0 )
+			VID_LEN=Audio_URL_STR_CLS.VAL.Multi_Video_VID_List_ARR.length;
+			arr02.push([]);
+			for (i=0;i<elel03.length;i++)
 			{
+				VID=Audio_URL_STR_CLS.VAL.Multi_Video_VID_List_ARR[i % VID_LEN];
+				str03="";
+				str03+='<div><video controls="" name="media" autoplay="autoplay" loop=true muted><source src="' + 
+						Base_URL_DIR_VAL + arr01[1][VID] + '" type="audio/mpeg">		</video></div>';
+				arr02[1].push([null,null]);
+				arr02[1][i][0]=elel03[i];
+				arr02[1][i][1]=elel03[i].innerHTML=str03;
 			}
-			else if ( Audio_URL_STR_CLS.MultiPlier_EAB==1 )
-			{
-				ele02=ele01.getElementsByTagName("video")[0];
-				amplifyMedia(ele02,multiplier);
-				ele02.playbackRate=speed;
-			}
-			else		{}
-			//==========DIVISION==========
-			ele00.innerHTML="";
-			ele00.appendChild(ele01);
 			//==========DIVISION==========
 		}
+		else		{}
+		//==========DIVISION==========
+		//console.log(arr02);
+		for (i=0;i<arr02.length;i++)
+		{
+			for (j=0;j<arr02[i].length;j++)
+			{
+				//==========DIVISION==========
+				ele01=document.createElement("DIV");
+				ele01.innerHTML=arr02[i][j][1];
+				ele02=ele01.getElementsByTagName("video")[0];
+				//==========DIVISION==========
+				if ( Audio_URL_STR_CLS.VAL.MultiPlier_EAB==0 )			{}
+				else if ( Audio_URL_STR_CLS.VAL.MultiPlier_EAB==1 )
+				{
+					amplifyMedia(ele02,multiplier);
+				}
+				else		{}
+				//==========DIVISION==========
+				if ( Audio_URL_STR_CLS.VAL.Speed_EAB==0 )				{}
+				else if ( Audio_URL_STR_CLS.VAL.Speed_EAB==1 )
+				{
+					ele02.playbackRate=speed;
+				}
+				else		{}
+				//==========DIVISION==========
+				//	console.log(arr02[i][j][0]);
+				//	console.log("i : " + i + ";\t" + 
+				//				"j : " + j + ";\t" + 
+				//				"");
+				arr02[i][j][0].innerHTML="";
+				arr02[i][j][0].appendChild(ele01.getElementsByTagName("div")[0]);
+				//==========DIVISION==========
+			}
+		}
+		//==========DIVISION==========
+		for (i=0;i<arr02.length;i++)		{for (j=0;j<arr02[i].length;j++)		{ele02=arr02[i][j][0].getElementsByTagName("video")[0];ele02.pause();}}
+		for (i=0;i<arr02.length;i++)		{for (j=0;j<arr02[i].length;j++)		{ele02=arr02[i][j][0].getElementsByTagName("video")[0];ele02.play();}}
+		//==========DIVISION==========
 	}
 	else		{}
 	//==========DIVISION==========
@@ -382,11 +476,68 @@ function Network_Type_Switch(ele)
 
 function MultiPlier_EAB_Switch(ele)
 {
-	Audio_URL_STR_CLS.MultiPlier_EAB=(Audio_URL_STR_CLS.MultiPlier_EAB + 1)%2;
-	ele.style.backgroundColor=["red","#1EB0E9"][Audio_URL_STR_CLS.MultiPlier_EAB];
-	document.getElementsByClassName("MultiPlier_CLS")[0].disabled=[true,false][Audio_URL_STR_CLS.MultiPlier_EAB];
-	document.getElementsByClassName("Speed_CLS")[0].disabled=[true,false][Audio_URL_STR_CLS.MultiPlier_EAB];
-	//console.log("Audio_URL_STR_CLS.MultiPlier_EAB : " + Audio_URL_STR_CLS.MultiPlier_EAB);
+	Audio_URL_STR_CLS.VAL.MultiPlier_EAB=(Audio_URL_STR_CLS.VAL.MultiPlier_EAB + 1)%2;
+	ele.style.backgroundColor=["red","#1EB0E9"][Audio_URL_STR_CLS.VAL.MultiPlier_EAB];
+	document.getElementsByClassName("MultiPlier_CLS")[0].disabled=[true,false][Audio_URL_STR_CLS.VAL.MultiPlier_EAB];
+}
+
+function Speed_EAB_Switch(ele)
+{
+	Audio_URL_STR_CLS.VAL.Speed_EAB=(Audio_URL_STR_CLS.VAL.Speed_EAB + 1)%2;
+	ele.style.backgroundColor=["red","#1EB0E9"][Audio_URL_STR_CLS.VAL.Speed_EAB];
+	document.getElementsByClassName("Speed_CLS")[0].disabled=[true,false][Audio_URL_STR_CLS.VAL.Speed_EAB];
+}
+
+function Multi_Video_EAB_Switch(ele)
+{
+	Audio_URL_STR_CLS.VAL.Multi_Video_EAB=(Audio_URL_STR_CLS.VAL.Multi_Video_EAB + 1)%2;
+	ele.style.backgroundColor=["red","#1EB0E9"][Audio_URL_STR_CLS.VAL.Multi_Video_EAB];
+	document.getElementsByClassName("Multi_Video_Fit_BTN")[0].disabled			=[true,false][Audio_URL_STR_CLS.VAL.Multi_Video_EAB];
+	document.getElementsByClassName("Multi_Video_X_CLS")[0].disabled			=[true,false][Audio_URL_STR_CLS.VAL.Multi_Video_EAB];
+	document.getElementsByClassName("Multi_Video_Y_CLS")[0].disabled			=[true,false][Audio_URL_STR_CLS.VAL.Multi_Video_EAB];
+	document.getElementsByClassName("Multi_Video_VID_List_STR_CLS")[0].disabled	=[true,false][Audio_URL_STR_CLS.VAL.Multi_Video_EAB];
+	var evt_target=ele;
+	Multi_Video_CLS_INI(evt_target);
+}
+
+function Multi_Video_Fit_Switch(ele)
+{
+	Audio_URL_STR_CLS.VAL.Multi_Video_Fit=(Audio_URL_STR_CLS.VAL.Multi_Video_Fit + 1)%2;
+	ele.style.backgroundColor=["red","#1EB0E9"][Audio_URL_STR_CLS.VAL.Multi_Video_Fit];
+	var evt_target=ele;
+	Multi_Video_CLS_INI(evt_target);
+}
+
+function Multi_Video_CLS_INI(ele)
+{
+	//==========DIVISION==========
+	eval(Parameter_Base_STR_ijk_XX(5));
+	//==========DIVISION==========
+	ele03=document.getElementsByClassName("Audio_DFLG_Multi_Video_Content_Table")[0].getElementsByTagName("tbody")[0];
+	str03=	"\n" + 
+			(("\t<tr>\n") + 
+			("\t\t<td class=\"TD_Video\"></td>\n").repeat(Audio_URL_STR_CLS.VAL.Multi_Video_X) + 
+			("\t</tr>\n")).repeat(Audio_URL_STR_CLS.VAL.Multi_Video_Y);
+	var Screen_Width	=1920;
+	var Screen_Height	=1080;
+	var Video_Width		=Screen_Width / Audio_URL_STR_CLS.VAL.Multi_Video_X;
+	var Video_Height	=Screen_Height / Audio_URL_STR_CLS.VAL.Multi_Video_Y;
+	ele03.innerHTML=str03;
+	//==========DIVISION==========
+	ele04=document.getElementsByClassName("CSS_SD_TD_Multi_Video")[0];
+	str04="";
+	if ( Audio_URL_STR_CLS.VAL.Multi_Video_Fit==0 )			{ele04.innerHTML="";}
+	else if ( Audio_URL_STR_CLS.VAL.Multi_Video_Fit==1 )
+	{
+		str04="\n";
+		str04+="table.Audio_DFLG_Multi_Video_Content_Table td.TD_Video video	{width:" + 
+				Video_Width.toString() + "px;height:" + Video_Height.toString() + "px;}" + "\n";
+		str04+="table.Audio_DFLG_Multi_Video_Content_Table td.TD_Video source	{width:" + 
+				Video_Width.toString() + "px;height:" + Video_Height.toString() + "px;}" + "\n";
+	}
+	else		{}
+	ele04.innerHTML=str04;
+	//==========DIVISION==========
 }
 //========================================Audio_Function========================================
 //==================================================控件動作變化==================================================
@@ -415,7 +566,7 @@ function TEXT_ATTRIBUTION(ele,evt,n)
 			}
 			catch (err)
 			{
-				console___log(err.message);
+				console.log(err.message);
 			}
 		}
 		else		{}
@@ -426,13 +577,24 @@ function TEXT_ATTRIBUTION(ele,evt,n)
 	}
 	else if ( n==2 )//更改了文本框的內容。
 	{
+		//==========DIVISION==========
 		if ( ele.className=="Audio_DFLG_Table" && 
-				( evt_target.className=="MultiPlier_CLS" || evt_target.className=="Speed_CLS" ) )
+				( evt_target.className=="MultiPlier_CLS" || evt_target.className=="Speed_CLS" || 
+				evt_target.className=="Multi_Video_X_CLS" || evt_target.className=="Multi_Video_Y_CLS" || 
+				0 ) )
 		{
+			//==========DIVISION==========
+			var parseType="",parseType_STR="",RegExp_STR="";
+			if ( evt_target.className=="MultiPlier_CLS" || evt_target.className=="Speed_CLS" )
+			{parseType="parseFloat";	parseType_STR="parseFloat(evt_target.value)";	RegExp_STR="[0-9\.]+";}
+			else if ( evt_target.className=="Multi_Video_X_CLS" || evt_target.className=="Multi_Video_Y_CLS" )
+			{parseType="parseInt";		parseType_STR="parseInt(evt_target.value,10)";	RegExp_STR="[0-9]+";}
+			else		{}
+			//==========DIVISION==========
 			if ( evt_target.value!="" && !isNaN(evt_target.value) && ( evt_target.value.replace(/[0-9\.]+/gm,"")=="" ) )
 			{
 				//==========DIVISION==========
-				str00="Audio_URL_STR_CLS.VAL." + evt_target.className.replace(/_CLS$/gm,"") + "=parseFloat(evt_target.value);";
+				str00="Audio_URL_STR_CLS.VAL." + evt_target.className.replace(/_CLS$/gm,"") + "=" + parseType_STR + ";";
 				eval(str00);
 				//==========DIVISION==========
 			}
@@ -444,11 +606,45 @@ function TEXT_ATTRIBUTION(ele,evt,n)
 				eval(str00);
 				evt_target.setAttribute("value",evt_target.value);
 			}
-			//	console.log("Audio_URL_STR_CLS.VAL.MultiPlier : " + Audio_URL_STR_CLS.VAL.MultiPlier + ";\t" + 
-			//				"Audio_URL_STR_CLS.VAL.Speed : " + Audio_URL_STR_CLS.VAL.Speed + ";\t" + 
-			//				"");
+			//==========DIVISION==========
+		}
+		else if ( ele.className=="Audio_DFLG_Table" && evt_target.className=="Multi_Video_VID_List_STR_CLS" )
+		{
+			if ( evt_target.value!="" && evt_target.value.replace(/^\[[0-9\,]+\]$/gm,"")=="" && 
+											evt_target.value.replace(/(\[\,|\,\,|\,\])/gm,"")==evt_target.value )
+			{
+				eval("Audio_URL_STR_CLS.VAL.Multi_Video_VID_List_STR=\"" + evt_target.value + "\"");
+				eval("Audio_URL_STR_CLS.VAL.Multi_Video_VID_List_ARR=" + Audio_URL_STR_CLS.VAL.Multi_Video_VID_List_STR + ";");
+			}
+			else
+			{
+				alert("Error , it must be setted to a array .");
+				evt_target.focus();
+				evt_target.value=Audio_URL_STR_CLS.VAL.Multi_Video_VID_List_STR.toString();
+				evt_target.setAttribute("value",evt_target.value);
+			}
+		}
+		else if ( ele.className=="Audio_DFLG_Table" && evt_target.className=="Multi_Video_VID_List_STR_SEL" )
+		{
+			ele00=document.getElementsByClassName("Audio_DFLG_Ctrl_Table")[0].getElementsByClassName("Multi_Video_VID_List_STR_CLS")[0];
+			ele00.value=evt_target.options[evt_target.selectedIndex].value;
+			var evt={target:ele00};
+			TEXT_ATTRIBUTION(ele,evt,n);
 		}
 		else		{}
+		//==========DIVISION==========
+		if ( ele.className=="Audio_DFLG_Table" && 
+				( evt_target.className=="Multi_Video_X_CLS" || evt_target.className=="Multi_Video_Y_CLS" || 
+				evt_target.className=="Multi_Video_VID_List_STR_CLS" || 
+				0 ) )
+		{
+			Multi_Video_CLS_INI(evt_target);
+		}
+		else		{}
+		//==========DIVISION==========
+		console.log("Audio_URL_STR_CLS.VAL : " + JSON.stringify(Audio_URL_STR_CLS.VAL,null,"\t") + ";\t" + 
+					"");
+		//==========DIVISION==========
 	}
 	else if ( n==3 )//點擊了按鈕。
 	{
@@ -516,6 +712,7 @@ function Audio_DFLG_Hotkey_Mouse(ele,evt,post_method)
 		if ( ( evt.which == 33 || evt.which == 34 || evt.which == 38 || evt.which == 40 || evt.which == 36 || evt.which == 35 ) && 
 				ele.tagName.toUpperCase()=="TABLE" && 
 				( evt_target.className=="MultiPlier_CLS" || evt_target.className=="Speed_CLS" || 
+				evt_target.className=="Multi_Video_X_CLS" || evt_target.className=="Multi_Video_Y_CLS" || 
 				0 ) )
 		{
 			//==========DIVISION==========
@@ -523,6 +720,8 @@ function Audio_DFLG_Hotkey_Mouse(ele,evt,post_method)
 
 			if ( evt_target.className=="MultiPlier_CLS" )					{NUM_MIN=0;NUM_MAX=100;}
 			else if ( evt_target.className=="Speed_CLS" )					{NUM_MIN=0;NUM_MAX=100;}
+			else if ( evt_target.className=="Multi_Video_X_CLS" )			{NUM_MIN=0;NUM_MAX=10000*10000;}
+			else if ( evt_target.className=="Multi_Video_Y_CLS" )			{NUM_MIN=0;NUM_MAX=10000*10000;}
 			else															{NUM_MIN=0;NUM_MAX=10000*10000;}
 
 			//evt_target.value=("00" + evt_target.value).slice(-2);
@@ -560,8 +759,10 @@ function Audio_DFLG_Hotkey_Mouse(ele,evt,post_method)
 
 			if ( evt_target.className=="MultiPlier_CLS" )					{Audio_URL_STR_CLS.VAL.MultiPlier=NUM_10;}
 			else if ( evt_target.className=="Speed_CLS" )					{Audio_URL_STR_CLS.VAL.Speed=NUM_10;}
+			else if ( evt_target.className=="Multi_Video_X_CLS" )			{Audio_URL_STR_CLS.VAL.Multi_Video_X=NUM_10;}
+			else if ( evt_target.className=="Multi_Video_Y_CLS" )			{Audio_URL_STR_CLS.VAL.Multi_Video_Y=NUM_10;}
 			else															{}
-
+			//==========DIVISION==========
 			if ( evt_target.className=="MultiPlier_CLS" || evt_target.className=="Speed_CLS" )
 			{
 				//"↑";NUM_10=NUM_10;
@@ -570,7 +771,12 @@ function Audio_DFLG_Hotkey_Mouse(ele,evt,post_method)
 				//ele00.click();
 				//ele01.click();
 			}
-			else																{}
+			else if ( evt_target.className=="Multi_Video_X_CLS" || evt_target.className=="Multi_Video_Y_CLS" )
+			{
+				Multi_Video_CLS_INI(evt_target);
+			}
+			else															{}
+			//==========DIVISION==========
 		}
 		else
 		{
@@ -610,15 +816,23 @@ function Audio_DFLG_Hotkey_Mouse(ele,evt,post_method)
 		<td><input type="button" class="Network_Type_CLS" value="OFF" onclick=Network_Type_Switch(this) style="background-color:red;"></td>
 		<td><input type="button" class="MultiPlier_EAB" title="MultiPlier_EAB" value="M" onclick=MultiPlier_EAB_Switch(this)></td>
 		<td><input type="text" class="MultiPlier_CLS" title="MultiPlier_CLS" value="3"></td>
+		<td><input type="button" class="Speed_EAB" title="Speed_EAB" value="S" onclick=Speed_EAB_Switch(this)></td>
 		<td><input type="text" class="Speed_CLS" title="Speed_CLS" value="1"></td>
+		<td><input type="button" class="Multi_Video_EAB" title="Multi_Video_EAB" value="MV" onclick=Multi_Video_EAB_Switch(this)></td>
+		<td><input type="button" class="Multi_Video_Fit_BTN" title="Multi_Video_Fit_BTN" value="F" onclick=Multi_Video_Fit_Switch(this)></td>
+		<td><input type="text" class="Multi_Video_X_CLS" title="Multi_Video_X_CLS" value="4"></td>
+		<td><input type="text" class="Multi_Video_Y_CLS" title="Multi_Video_Y_CLS" value="3"></td>
+		<td><input type="text" class="Multi_Video_VID_List_STR_CLS" title="Multi_Video_VID_List_STR_CLS" value="[2,8,9,10,11,12]"></td>
+		<td><select class="Multi_Video_VID_List_STR_SEL" title="Multi_Video_VID_List_STR_SEL""></select></td>
+		<td><a class="Multi_Video_TOP" title="Multi_Video_TOP" href="#Audio_DFLG_Multi_Video_Content_Table">↓</a></td>
 	</tr>
 </tbody></table></td></tr>
 
 <tr>
-	<td><table cellSpacing=0 cellPadding=0 border=0><tbody>
+	<td style="width:550px;max-width:550px;"><table cellSpacing=0 cellPadding=0 border=0><tbody>
 		<tr><td><table class="Audio_DFLG_Video_Content_Table" cellSpacing=0 cellPadding=0 border=0><tbody>
 			<tr><td class="TD_VText"><span style="font-size:20px;">李洪志做五套功法：<br>可<span style="color:red;font-weight:bold;">全屏近距离</span>观看：</span></td></tr>
-			<tr><td class="TD_Video"></td></tr>
+			<tr><td class="TD_Video" style="width:550px;max-width:550px;"></td></tr>
 		</tbody></table></td></tr>
 	</tbody></table></td>
 
@@ -635,8 +849,19 @@ function Audio_DFLG_Hotkey_Mouse(ele,evt,post_method)
 	</tbody></table></td>
 </tr>
 
+<tr><td colspan=2>================================================================================</td></tr>
+
+<tr><td colspan=2><table class="Audio_DFLG_Multi_Video_Content_Table" id="Audio_DFLG_Multi_Video_Content_Table" cellSpacing=0 cellPadding=0 border=0><tbody>
+	<tr>
+		<td class="TD_Video"></td>
+		<td class="TD_Video"></td>
+	</tr>
+</tbody></table></td></tr>
+
+<tr><td colspan=2>================================================================================</td></tr>
+
 </tbody></table>
-================================================================================
+
 </pre>
 
 
