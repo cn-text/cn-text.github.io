@@ -518,8 +518,8 @@ function Multi_Video_CLS_INI(ele)
 			(("\t<tr>\n") + 
 			("\t\t<td class=\"TD_Video\"></td>\n").repeat(Audio_URL_STR_CLS.VAL.Multi_Video_X) + 
 			("\t</tr>\n")).repeat(Audio_URL_STR_CLS.VAL.Multi_Video_Y);
-	var Screen_Width	=1920;
-	var Screen_Height	=1080;
+	var Screen_Width	=window.screen.width;
+	var Screen_Height	=window.screen.height;
 	var Video_Width		=Screen_Width / Audio_URL_STR_CLS.VAL.Multi_Video_X;
 	var Video_Height	=Screen_Height / Audio_URL_STR_CLS.VAL.Multi_Video_Y;
 	ele03.innerHTML=str03;
