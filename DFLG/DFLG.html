@@ -102,6 +102,9 @@ function amplifyMedia(mediaElem,multiplier)
 	result.amplify(multiplier);
 	return result;
 }
+
+var TTIS=100;
+var TTI_IN_USE=TTIS;
 //========================================Base_Function========================================
 //========================================Audio_URL_STR_CLS========================================
 var Audio_URL_STR_CLS				=
@@ -140,7 +143,7 @@ var Audio_URL_STR_CLS				=
 function Audio_URL_STR_CLS_INI()
 {
 	//==========DIVISION==========
-	var arr00,arr01,arr02;
+	eval(Parameter_Base_STR_ijk_XX(10));
 	//==========DIVISION==========
 	arr00=[[],[],[],[],[],[]];
 	//==========DIVISION==========
@@ -288,6 +291,201 @@ function Audio_URL_STR_CLS_INI()
 			Base_URL_DIR_VAL + arr01[1][VID] + '" type="audio/mpeg">		</video></div>';
 	ele00.innerHTML=str00;
 	//==========DIVISION==========
+	//==============================ELE_Preset==============================
+	//==========DIVISION==========
+	var location_href=location.href;
+	ele00=document.getElementsByClassName("Audio_DFLG_Ctrl_Table")[0];
+	//==========DIVISION==========
+	//	<td><input type="button" class="MultiPlier_EAB" title="MultiPlier_EAB" value="M" onclick=MultiPlier_EAB_Switch(this)></td>
+	//	<td><input type="text" class="MultiPlier_CLS" title="MultiPlier_CLS" value="3"></td>
+	//	<td><input type="button" class="Speed_EAB" title="Speed_EAB" value="S" onclick=Speed_EAB_Switch(this)></td>
+	//	<td><input type="text" class="Speed_CLS" title="Speed_CLS" value="1"></td>
+	//==========DIVISION==========
+	//	<td><input type="button" class="Multi_Video_EAB" title="Multi_Video_EAB" value="MV" onclick=Multi_Video_EAB_Switch(this)></td>
+	//	<td><input type="button" class="Multi_Video_Fit_BTN" title="Multi_Video_Fit_BTN" value="F" onclick=Multi_Video_Fit_Switch(this)></td>
+	//	<td><input type="text" class="Multi_Video_X_CLS" title="Multi_Video_X_CLS" value="4"></td>
+	//	<td><input type="text" class="Multi_Video_Y_CLS" title="Multi_Video_Y_CLS" value="3"></td>
+	//	<td><input type="text" class="Multi_Video_VID_List_STR_CLS" title="Multi_Video_VID_List_STR_CLS" value="[2,8,9,10,11,12]"></td>
+	//	<td><select class="Multi_Video_VID_List_STR_SEL" title="Multi_Video_VID_List_STR_SEL"></select></td>
+	//==========DIVISION==========
+	var VME		=location_href.replace(new RegExp("^(.+\\?)(.*)(" + "vme"		 + "=)([^\\?\\&]*)(\\&)(.*)$","gm"),"$4").replace(/^(ftp|http|file).*$/gm,"#####");//"MultiPlier_EAB";
+	var VMC		=location_href.replace(new RegExp("^(.+\\?)(.*)(" + "vmc"		 + "=)([^\\?\\&]*)(\\&)(.*)$","gm"),"$4").replace(/^(ftp|http|file).*$/gm,"#####");//"MultiPlier_CLS";
+	var VSE		=location_href.replace(new RegExp("^(.+\\?)(.*)(" + "vse"		 + "=)([^\\?\\&]*)(\\&)(.*)$","gm"),"$4").replace(/^(ftp|http|file).*$/gm,"#####");//"Speed_EAB";
+	var VSC		=location_href.replace(new RegExp("^(.+\\?)(.*)(" + "vsc"		 + "=)([^\\?\\&]*)(\\&)(.*)$","gm"),"$4").replace(/^(ftp|http|file).*$/gm,"#####");//"Speed_CLS";
+	//==========DIVISION==========
+	var VMVE	=location_href.replace(new RegExp("^(.+\\?)(.*)(" + "vmve"		 + "=)([^\\?\\&]*)(\\&)(.*)$","gm"),"$4").replace(/^(ftp|http|file).*$/gm,"#####");//"Multi_Video_EAB";
+	var VMVFB	=location_href.replace(new RegExp("^(.+\\?)(.*)(" + "vmvfb"		 + "=)([^\\?\\&]*)(\\&)(.*)$","gm"),"$4").replace(/^(ftp|http|file).*$/gm,"#####");//"Multi_Video_Fit_BTN";
+	var VMVXC	=location_href.replace(new RegExp("^(.+\\?)(.*)(" + "vmvxc"		 + "=)([^\\?\\&]*)(\\&)(.*)$","gm"),"$4").replace(/^(ftp|http|file).*$/gm,"#####");//"Multi_Video_X_CLS";
+	var VMVYC	=location_href.replace(new RegExp("^(.+\\?)(.*)(" + "vmvyc"		 + "=)([^\\?\\&]*)(\\&)(.*)$","gm"),"$4").replace(/^(ftp|http|file).*$/gm,"#####");//"Multi_Video_Y_CLS";
+	var VMVVLSC	=location_href.replace(new RegExp("^(.+\\?)(.*)(" + "vmvvlsc"	 + "=)([^\\?\\&]*)(\\&)(.*)$","gm"),"$4").replace(/^(ftp|http|file).*$/gm,"#####");//"Multi_Video_VID_List_STR_CLS";
+	var VMVVLSS	=location_href.replace(new RegExp("^(.+\\?)(.*)(" + "vmvvlss"	 + "=)([^\\?\\&]*)(\\&)(.*)$","gm"),"$4").replace(/^(ftp|http|file).*$/gm,"#####");//"Multi_Video_VID_List_STR_SEL";
+	//==========DIVISION==========
+	var EME		=ele00.getElementsByClassName("MultiPlier_EAB"		)[0];
+	var EMC		=ele00.getElementsByClassName("MultiPlier_CLS"		)[0];
+	var ESE		=ele00.getElementsByClassName("Speed_EAB"			)[0];
+	var ESC		=ele00.getElementsByClassName("Speed_CLS"			)[0];
+	//==========DIVISION==========
+	var EMVE	=ele00.getElementsByClassName("Multi_Video_EAB"					)[0];
+	var EMVFB	=ele00.getElementsByClassName("Multi_Video_Fit_BTN"				)[0];
+	var EMVXC	=ele00.getElementsByClassName("Multi_Video_X_CLS"				)[0];
+	var EMVYC	=ele00.getElementsByClassName("Multi_Video_Y_CLS"				)[0];
+	var EMVVLSC	=ele00.getElementsByClassName("Multi_Video_VID_List_STR_CLS"	)[0];
+	var EMVVLSS	=ele00.getElementsByClassName("Multi_Video_VID_List_STR_SEL"	)[0];
+	//==========DIVISION==========
+	if ( VME	!="#####" )	{	VME			=	parseInt	(VME	,10)	;	}//	:	0,//0:false;1:true;
+	if ( VSE	!="#####" )	{	VSE			=	parseInt	(VSE	,10)	;	}//	:	0,//0:false;1:true;
+	if ( VME	!="#####" )	{	if ( VME!=Audio_URL_STR_CLS.VAL.MultiPlier_EAB	)		{EME.click();}	}
+	if ( VSE	!="#####" )	{	if ( VSE!=Audio_URL_STR_CLS.VAL.Speed_EAB		)		{ESE.click();}	}
+	//==========DIVISION==========
+	if ( VMC	!="#####" )	{	Audio_URL_STR_CLS.VAL.MultiPlier					=	EMC		.value			=	VMC			=	parseInt	(VMC	,10)	;	}//	:	1,
+	if ( VSC	!="#####" )	{	Audio_URL_STR_CLS.VAL.Speed							=	ESC		.value			=	VSC			=	parseInt	(VSC	,10)	;	}//	:	1,
+	//==========DIVISION==========
+	if ( VMVE	!="#####" )	{	VMVE		=	parseInt	(VMVE	,10)	;	}//	:	1,
+	if ( VMVFB	!="#####" )	{	VMVFB		=	parseInt	(VMVFB	,10)	;	}//	:	1,
+	if ( VMVE	!="#####" )	{	if ( VMVE!=Audio_URL_STR_CLS.VAL.Multi_Video_EAB	)		{EMVE.click();}		}
+	if ( VMVFB	!="#####" )	{	if ( VMVFB!=Audio_URL_STR_CLS.VAL.Multi_Video_Fit	)		{EMVFB.click();}	}
+	//==========DIVISION==========
+	if ( VMVXC	!="#####" )	{	Audio_URL_STR_CLS.VAL.Multi_Video_X					=	EMVXC	.value			=	VMVXC		=	parseInt	(VMVXC	,10)	;	Multi_Video_CLS_INI(EMVYC);	}//	:	4,
+	if ( VMVYC	!="#####" )	{	Audio_URL_STR_CLS.VAL.Multi_Video_Y					=	EMVYC	.value			=	VMVYC		=	parseInt	(VMVYC	,10)	;	Multi_Video_CLS_INI(EMVYC);	}//	:	3,
+	if ( VMVVLSS!="#####" )
+	{
+																EMVVLSS.selectedIndex	=	VMVVLSS		=	parseInt	(VMVVLSS,10)			;//	:	"[2]",//"[2,8,9,10,11,12]",
+		Audio_URL_STR_CLS.VAL.Multi_Video_VID_List_STR		=	EMVVLSS.options[EMVVLSS.selectedIndex].innerHTML								;
+																EMVVLSC	.value			=	EMVVLSS.options[EMVVLSS.selectedIndex].innerHTML	;
+		eval("Audio_URL_STR_CLS.VAL.Multi_Video_VID_List_ARR=" + Audio_URL_STR_CLS.VAL.Multi_Video_VID_List_STR + ";");
+	}
+	if ( VMVVLSC!="#####" )	{	Audio_URL_STR_CLS.VAL.Multi_Video_VID_List_ARR		=	EMVVLSC	.value			=	VMVVLSC		;	eval("MVVLSC=" + decodeURIComponent(VMVVLSC) + ";");	}//	:	[2],//[2,8,9,10,11,12],
+	//==========DIVISION==========
+	//	<td><input type="button" class="DFLG_Audio" value="Audio" onclick=Audio_Switch(this) style="background-color:#1EB0E9;"></td>
+	//	<td><input type="button" class="DFLG_Video" value="Video" onclick=Video_Switch(this) style="background-color:#1EB0E9;"></td>
+	//	<td><a class="Multi_Video_TOP" title="Multi_Video_TOP" href="#Audio_DFLG_Multi_Video_Content_Table">↓</a></td>
+	//==========DIVISION==========
+	var VDA		=location_href.replace(new RegExp("^(.+\\?)(.*)(" + "vda"		 + "=)([^\\?\\&]*)(\\&)(.*)$","gm"),"$4").replace(/^(ftp|http|file).*$/gm,"#####");//"DFLG_Audio";
+	var VDV		=location_href.replace(new RegExp("^(.+\\?)(.*)(" + "vdv"		 + "=)([^\\?\\&]*)(\\&)(.*)$","gm"),"$4").replace(/^(ftp|http|file).*$/gm,"#####");//"DFLG_Video";
+	var VMVT	=location_href.replace(new RegExp("^(.+\\?)(.*)(" + "vmvt"		 + "=)([^\\?\\&]*)(\\&)(.*)$","gm"),"$4").replace(/^(ftp|http|file).*$/gm,"#####");//"Multi_Video_TOP";
+	//==========DIVISION==========
+	var EDA		=ele00.getElementsByClassName("DFLG_Audio"		)[0];
+	var EDV		=ele00.getElementsByClassName("DFLG_Video"		)[0];
+	var EMVT	=ele00.getElementsByClassName("Multi_Video_TOP"	)[0];
+	//==========DIVISION==========
+	if ( VDA	!="#####" )	{	VDA			=	parseInt	(VDA	,10)	;	}//	:	0,//0:false;1:true;
+	if ( VDV	!="#####" )	{	VDV			=	parseInt	(VDV	,10)	;	}//	:	0,//0:false;1:true;
+	if ( VMVT	!="#####" )	{	VMVT		=	parseInt	(VMVT	,10)	;	}//	:	0,//0:false;1:true;
+	//==========DIVISION==========
+	if ( VDA	==1 )	{EDA	.click();}
+	//==========DIVISION==========
+	//	setTimeout(function()
+	//	{
+	//		if ( VDV	==1 )	{EDV	.click();}
+	//		if ( VMVT	==1 )	{EMVT	.click();}
+	//		document.documentElement.requestFullscreen();
+	//		if ( document.fullscreenElement || document.mozFullScreenElement || document.webkitFullscreenElement || document.msFullscreenElement )
+	//		{
+	//			if ( document.documentElement.requestFullscreen )			{document.documentElement.requestFullscreen();}
+	//			else if (document.documentElement.mozRequestFullScreen)		{document.documentElement.mozRequestFullScreen();}
+	//			else if (document.documentElement.webkitRequestFullscreen)	{document.documentElement.webkitRequestFullscreen();}
+	//			else if (document.documentElement.msRequestFullscreen)		{document.documentElement.msRequestFullscreen();}
+	//		}
+	//		else		{}
+	//	},1000);
+	//==========DIVISION==========
+	var this_step=0;
+	setTimeout(function (this_step,VDV,VMVT,EDV,EMVT)
+	{
+		//====================arguments.callee====================
+		var fun_ct_cache;
+		fun_ct_cache=arguments.callee;
+		//====================arguments.callee====================
+		//====================Variable_Predefinition====================
+		//==========DIVISION==========
+		eval(Parameter_Base_STR_ijk_XX(5));
+		var ID,LEN;
+		var STO=0;//0:Do_Not_Run_setTimeout;1:Run_setTimeout;2:Run_Function_Now;
+		//==========DIVISION==========
+		//====================Variable_Predefinition====================
+		//====================this_step====================
+		if ( this_step==0 )
+		{
+			//==========DIVISION==========
+			if ( VDV	==1 )	{EDV	.click();}
+			//==========DIVISION==========
+			if ( this_step==0 )			{this_step++;STO=1;}
+			//==========DIVISION==========
+		}
+		else if ( this_step==1 )
+		{
+			//==========DIVISION==========
+			var ALL_Ready_Or_Not=1;
+			var elel00=document.getElementsByClassName("Audio_DFLG_Multi_Video_Content_Table")[0].getElementsByTagName("video");
+			for (i=0;i<elel00.length;i++)
+			{
+				if ( elel00[i].readyState==4 )	{}
+				else		{ALL_Ready_Or_Not=0;break;}
+			}
+			//==========DIVISION==========
+			if ( ALL_Ready_Or_Not==0 )
+			{
+				if ( this_step==1 )			{STO=1;}
+			}
+			else if ( ALL_Ready_Or_Not==1 )
+			{
+				console.log("i : " + i + ";\t" + 
+							"ALL_Ready_Or_Not : " + ALL_Ready_Or_Not + ";\t" + 
+							"");
+				if ( this_step==1 )			{this_step++;STO=1;}
+			}
+			else		{}
+			//==========DIVISION==========
+		}
+		else if ( this_step==2 )
+		{
+			//==========DIVISION==========
+			if ( VMVT	==1 )	{EMVT	.click();}
+			try
+			{
+				//document.documentElement.requestFullscreen();
+				//Uncaught (in promise) TypeError: Permissions check failed
+			}
+			catch (err)
+			{
+				console.log(err.message);
+			}
+			//==========DIVISION==========
+			if ( this_step==2 )			{this_step++;STO=1;}
+			//==========DIVISION==========
+		}
+		else if ( this_step==3 )
+		{
+			//==========DIVISION==========
+			//==========DIVISION==========
+			if ( this_step==3 )			{this_step++;STO=1;}
+			//==========DIVISION==========
+		}
+		else		{STO=0;}
+		//==========DIVISION==========
+		//====================this_step====================
+		//====================STO====================
+		if ( STO==0 )//0:Do_Not_Run_setTimeout;1:Run_setTimeout;2:Run_Function_Now;
+		{
+		}
+		else if ( STO==1 )//0:Do_Not_Run_setTimeout;1:Run_setTimeout;2:Run_Function_Now;
+		{
+			setTimeout(fun_ct_cache,TTI_IN_USE,this_step,VDV,VMVT,EDV,EMVT);
+		}
+		else if ( STO==2 )//0:Do_Not_Run_setTimeout;1:Run_setTimeout;2:Run_Function_Now;
+		{
+			fun_ct_cache(this_step,VDV,VMVT,EDV,EMVT);
+		}
+		else		{}
+		//====================STO====================
+	},TTI_IN_USE,this_step,VDV,VMVT,EDV,EMVT);
+	//==========DIVISION==========
+	//Ex.:
+	//DFLG_01.html?vid=2&vmve=1&vdv=1&vmvt=1&w=
+	//DFLG_01.html?vid=2&vmve=1&vmvxc=4&vmvyc=3&vdv=1&vmvt=1&w=
+	//DFLG_01.html?vid=2&vmve=1&vmvxc=5&vmvyc=4&vdv=1&vmvt=1&vse=1&vsc=2&w=
+	//==========DIVISION==========
+	//==============================ELE_Preset==============================
 }
 //Audio_URL_STR_CLS_INI();
 console.log(Audio_URL_STR_CLS.Video_ARR);
@@ -757,10 +955,10 @@ function Audio_DFLG_Hotkey_Mouse(ele,evt,post_method)
 
 			evt_target.value=NUM_10;
 
-			if ( evt_target.className=="MultiPlier_CLS" )					{Audio_URL_STR_CLS.VAL.MultiPlier=NUM_10;}
-			else if ( evt_target.className=="Speed_CLS" )					{Audio_URL_STR_CLS.VAL.Speed=NUM_10;}
-			else if ( evt_target.className=="Multi_Video_X_CLS" )			{Audio_URL_STR_CLS.VAL.Multi_Video_X=NUM_10;}
-			else if ( evt_target.className=="Multi_Video_Y_CLS" )			{Audio_URL_STR_CLS.VAL.Multi_Video_Y=NUM_10;}
+			if ( evt_target.className=="MultiPlier_CLS" )					{Audio_URL_STR_CLS.VAL.MultiPlier		=parseFloat(NUM_10);}
+			else if ( evt_target.className=="Speed_CLS" )					{Audio_URL_STR_CLS.VAL.Speed			=parseFloat(NUM_10);}
+			else if ( evt_target.className=="Multi_Video_X_CLS" )			{Audio_URL_STR_CLS.VAL.Multi_Video_X	=NUM_10;}
+			else if ( evt_target.className=="Multi_Video_Y_CLS" )			{Audio_URL_STR_CLS.VAL.Multi_Video_Y	=NUM_10;}
 			else															{}
 			//==========DIVISION==========
 			if ( evt_target.className=="MultiPlier_CLS" || evt_target.className=="Speed_CLS" )
