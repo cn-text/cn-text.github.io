@@ -493,6 +493,7 @@ console.log(Audio_URL_STR_CLS.Audio_ARR);
 console.log(Audio_URL_STR_CLS.Time_Info_ARR);
 //========================================Audio_URL_STR_CLS========================================
 //========================================Audio_Function========================================
+//==============================DIVISION==============================
 function Audio_Switch(ele)
 {
 	//==========DIVISION==========
@@ -557,7 +558,7 @@ function Audio_Switch(ele)
 	else		{}
 	//==========DIVISION==========
 }
-
+//==============================DIVISION==============================
 function Video_Switch(ele)
 {
 	//==========DIVISION==========
@@ -592,7 +593,7 @@ function Video_Switch(ele)
 	if ( Initiation_Flag==0 )
 	{
 	}
-	else if ( Initiation_Flag==1 )
+	else if ( Initiation_Flag==1 || Initiation_Flag==2 )
 	{
 		//==========DIVISION==========
 		var multiplier=Audio_URL_STR_CLS.VAL.MultiPlier;
@@ -620,48 +621,19 @@ function Video_Switch(ele)
 		}
 		else		{}
 		//==========DIVISION==========
-		//console.log(arr02);
-		for (i=0;i<arr02.length;i++)
-		{
-			for (j=0;j<arr02[i].length;j++)
-			{
-				//==========DIVISION==========
-				ele01=document.createElement("DIV");
-				ele01.innerHTML=arr02[i][j][1];
-				ele02=ele01.getElementsByTagName("video")[0];
-				//==========DIVISION==========
-				if ( Audio_URL_STR_CLS.VAL.MultiPlier_EAB==0 )			{}
-				else if ( Audio_URL_STR_CLS.VAL.MultiPlier_EAB==1 )
-				{
-					amplifyMedia(ele02,multiplier);
-				}
-				else		{}
-				//==========DIVISION==========
-				if ( Audio_URL_STR_CLS.VAL.Speed_EAB==0 )				{}
-				else if ( Audio_URL_STR_CLS.VAL.Speed_EAB==1 )
-				{
-					ele02.playbackRate=speed;
-				}
-				else		{}
-				//==========DIVISION==========
-				//	console.log(arr02[i][j][0]);
-				//	console.log("i : " + i + ";\t" + 
-				//				"j : " + j + ";\t" + 
-				//				"");
-				arr02[i][j][0].innerHTML="";
-				arr02[i][j][0].appendChild(ele01.getElementsByTagName("div")[0]);
-				//==========DIVISION==========
-			}
-		}
-		//==========DIVISION==========
-		for (i=0;i<arr02.length;i++)		{for (j=0;j<arr02[i].length;j++)		{ele02=arr02[i][j][0].getElementsByTagName("video")[0];ele02.pause();}}
-		for (i=0;i<arr02.length;i++)		{for (j=0;j<arr02[i].length;j++)		{ele02=arr02[i][j][0].getElementsByTagName("video")[0];ele02.play();}}
+		console.log(arr02);
+		var Main_And_Multi_Video_ARR=arr02;
+		MultiPlier_EAB_Core_Action(Main_And_Multi_Video_ARR);
+		Speed_EAB_Core_Action(Main_And_Multi_Video_ARR);
+		Multi_Video_Timer_Mode_Core_Action(Main_And_Multi_Video_ARR);//No_EAB;
 		//==========DIVISION==========
 	}
 	else		{}
 	//==========DIVISION==========
+	if ( Initiation_Flag==1 )	{Initiation_Flag++;}
+	//==========DIVISION==========
 }
-
+//==============================DIVISION==============================
 function Network_Type_Switch(ele)
 {
 	Audio_URL_STR_CLS.Network_Type=(Audio_URL_STR_CLS.Network_Type + 1)%2;
@@ -674,20 +646,31 @@ function Network_Type_Switch(ele)
 
 function MultiPlier_EAB_Switch(ele)
 {
+	//==========DIVISION==========
 	Audio_URL_STR_CLS.VAL.MultiPlier_EAB=(Audio_URL_STR_CLS.VAL.MultiPlier_EAB + 1)%2;
 	ele.style.backgroundColor=["red","#1EB0E9"][Audio_URL_STR_CLS.VAL.MultiPlier_EAB];
 	document.getElementsByClassName("MultiPlier_CLS")[0].disabled=[true,false][Audio_URL_STR_CLS.VAL.MultiPlier_EAB];
+	//==========DIVISION==========
+	//var Main_And_Multi_Video_ARR=Main_And_Multi_Video_ARR_Get();
+	//MultiPlier_EAB_Core_Action(Main_And_Multi_Video_ARR);
+	//==========DIVISION==========
 }
 
 function Speed_EAB_Switch(ele)
 {
+	//==========DIVISION==========
 	Audio_URL_STR_CLS.VAL.Speed_EAB=(Audio_URL_STR_CLS.VAL.Speed_EAB + 1)%2;
 	ele.style.backgroundColor=["red","#1EB0E9"][Audio_URL_STR_CLS.VAL.Speed_EAB];
 	document.getElementsByClassName("Speed_CLS")[0].disabled=[true,false][Audio_URL_STR_CLS.VAL.Speed_EAB];
+	//==========DIVISION==========
+	var Main_And_Multi_Video_ARR=Main_And_Multi_Video_ARR_Get();
+	Speed_EAB_Core_Action(Main_And_Multi_Video_ARR);
+	//==========DIVISION==========
 }
 
 function Multi_Video_EAB_Switch(ele)
 {
+	//==========DIVISION==========
 	Audio_URL_STR_CLS.VAL.Multi_Video_EAB=(Audio_URL_STR_CLS.VAL.Multi_Video_EAB + 1)%2;
 	ele.style.backgroundColor=["red","#1EB0E9"][Audio_URL_STR_CLS.VAL.Multi_Video_EAB];
 	document.getElementsByClassName("Multi_Video_Fit_BTN")[0].disabled			=[true,false][Audio_URL_STR_CLS.VAL.Multi_Video_EAB];
@@ -696,6 +679,10 @@ function Multi_Video_EAB_Switch(ele)
 	document.getElementsByClassName("Multi_Video_VID_List_STR_CLS")[0].disabled	=[true,false][Audio_URL_STR_CLS.VAL.Multi_Video_EAB];
 	var evt_target=ele;
 	Multi_Video_CLS_INI(evt_target);
+	//==========DIVISION==========
+	//var Main_And_Multi_Video_ARR=Main_And_Multi_Video_ARR_Get();
+	//Multi_Video_EAB_Core_Action(Main_And_Multi_Video_ARR);
+	//==========DIVISION==========
 }
 
 function Multi_Video_Fit_Switch(ele)
@@ -737,6 +724,147 @@ function Multi_Video_CLS_INI(ele)
 	ele04.innerHTML=str04;
 	//==========DIVISION==========
 }
+//==============================DIVISION==============================
+//==========DIVISION==========
+function Main_And_Multi_Video_ARR_Get()
+{
+	//==========DIVISION==========
+	eval(Parameter_Base_STR_ijk_XX(5));
+	//eval(ELE_ELEL_STR_INI());
+	var ID,LEN,ID_LEN;
+	//==========DIVISION==========
+	var ele_Audio_DFLG_Table						=document.getElementsByClassName("Audio_DFLG_Table")[0];
+	//==========DIVISION==========
+	var ele_Audio_DFLG_Video_Content_Table			=ele_Audio_DFLG_Table.getElementsByClassName("Audio_DFLG_Video_Content_Table")[0];
+	var ele_Audio_DFLG_Audio_Content_Table			=ele_Audio_DFLG_Table.getElementsByClassName("Audio_DFLG_Audio_Content_Table")[0];
+	var ele_Audio_DFLG_Multi_Video_Content_Table	=ele_Audio_DFLG_Table.getElementsByClassName("Audio_DFLG_Multi_Video_Content_Table")[0];
+	//==========DIVISION==========
+	var elel_MainV_TD_Video							=ele_Audio_DFLG_Video_Content_Table.getElementsByClassName("TD_Video");
+	var elel_MultiV_TD_Video						=ele_Audio_DFLG_Multi_Video_Content_Table.getElementsByClassName("TD_Video");
+	//==========DIVISION==========
+	var TD_Video_InnerHTML;
+	ele00					=elel_MainV_TD_Video[0];
+	TD_Video_InnerHTML		=elel_MainV_TD_Video[0].innerHTML;
+	arr02=[];
+	arr02.push([[ele00,TD_Video_InnerHTML]]);
+	//==========DIVISION==========
+	elel03=elel_MultiV_TD_Video;
+	arr02.push([]);
+	for (j=0;j<elel03.length;j++)
+	{
+		arr02[1].push([elel03[j],elel03[j].innerHTML]);
+	}
+	//==========DIVISION==========
+	return arr02;
+	//==========DIVISION==========
+}
+//==========DIVISION==========
+function MultiPlier_EAB_Core_Action(Main_And_Multi_Video_ARR)
+{
+	//==========DIVISION==========
+	//eval(ELE_ELEL_STR_INI());
+	eval(Parameter_Base_STR_ijk_XX(10));
+	var ID,LEN,ID_LEN;
+	//==========DIVISION==========
+	arr02=Main_And_Multi_Video_ARR;
+	//==========DIVISION==========
+	if ( Initiation_Flag==0 )
+	{
+	}
+	else if ( Initiation_Flag==1 || Initiation_Flag==2 )
+	{
+		//==========DIVISION==========
+		var multiplier=Audio_URL_STR_CLS.VAL.MultiPlier;
+		//==========DIVISION==========
+		if ( Initiation_Flag==1 || ( Initiation_Flag==2 && Audio_URL_STR_CLS.VAL.MultiPlier_EAB==1 ) )
+		{
+			//==========DIVISION==========
+			//console.log(arr02);
+			for (i=0;i<arr02.length;i++)
+			{
+				for (j=0;j<arr02[i].length;j++)
+				{
+					//==========DIVISION==========
+					ele01=document.createElement("DIV");
+					ele01.innerHTML=arr02[i][j][1];
+					ele02=ele01.getElementsByTagName("video")[0];
+					if ( ele02==undefined )			{continue;}
+					//==========DIVISION==========
+					if ( Audio_URL_STR_CLS.VAL.MultiPlier_EAB==0 )			{}
+					else if ( Audio_URL_STR_CLS.VAL.MultiPlier_EAB==1 )
+					{
+						amplifyMedia(ele02,multiplier);
+					}
+					else		{}
+					//==========DIVISION==========
+					//	console.log(arr02[i][j][0]);
+					//	console.log("i : " + i + ";\t" + 
+					//				"j : " + j + ";\t" + 
+					//				"");
+					arr02[i][j][0].innerHTML="";
+					arr02[i][j][0].appendChild(ele01.getElementsByTagName("div")[0]);
+					//==========DIVISION==========
+				}
+			}
+			//==========DIVISION==========
+		}
+		else		{}
+		//==========DIVISION==========
+	}
+	else		{}
+	//==========DIVISION==========
+	if ( Initiation_Flag==1 )	{Initiation_Flag++;}
+	//==========DIVISION==========
+}
+//==========DIVISION==========
+function Speed_EAB_Core_Action(Main_And_Multi_Video_ARR)
+{
+	//==========DIVISION==========
+	//eval(ELE_ELEL_STR_INI());
+	eval(Parameter_Base_STR_ijk_XX(10));
+	var ID,LEN,ID_LEN;
+	//==========DIVISION==========
+	arr02=Main_And_Multi_Video_ARR;
+	//==========DIVISION==========
+	if ( Initiation_Flag==0 )
+	{
+	}
+	else if ( Initiation_Flag==1 || Initiation_Flag==2 )
+	{
+		var speed=Audio_URL_STR_CLS.VAL.Speed;
+		if ( Audio_URL_STR_CLS.VAL.Speed_EAB==0 )				{}
+		else if ( Audio_URL_STR_CLS.VAL.Speed_EAB==1 )
+		{
+			for (i=0;i<arr02.length;i++)
+			{
+				for (j=0;j<arr02[i].length;j++)
+				{
+					ele02=arr02[i][j][0].getElementsByTagName("video")[0];
+					if ( ele02==undefined )			{continue;}
+					ele02.playbackRate=speed;
+				}
+			}
+		}
+		else		{}
+	}
+	else		{}
+	//==========DIVISION==========
+	if ( Initiation_Flag==1 )	{Initiation_Flag++;}
+	//==========DIVISION==========
+}
+//==========DIVISION==========
+function Multi_Video_Timer_Mode_Core_Action(Main_And_Multi_Video_ARR)//No_EAB;
+{
+	//==========DIVISION==========
+	eval(Parameter_Base_STR_ijk_XX(5));
+	arr02=Main_And_Multi_Video_ARR;
+	//==========DIVISION==========
+	for (i=0;i<arr02.length;i++)	{for (j=0;j<arr02[i].length;j++)	{ele02=arr02[i][j][0].getElementsByTagName("video")[0];ele02.pause();}}
+	for (i=0;i<arr02.length;i++)	{for (j=0;j<arr02[i].length;j++)	{ele02=arr02[i][j][0].getElementsByTagName("video")[0];ele02.play();}}
+	//==========DIVISION==========
+}
+//==========DIVISION==========
+//==============================DIVISION==============================
 //========================================Audio_Function========================================
 //==================================================控件動作變化==================================================
 function TEXT_ATTRIBUTION(ele,evt,n)
@@ -837,6 +965,11 @@ function TEXT_ATTRIBUTION(ele,evt,n)
 				0 ) )
 		{
 			Multi_Video_CLS_INI(evt_target);
+		}
+		else if ( ele.className=="Audio_DFLG_Table" && evt_target.className=="Speed_CLS" )
+		{
+			var Main_And_Multi_Video_ARR=Main_And_Multi_Video_ARR_Get();
+			Speed_EAB_Core_Action(Main_And_Multi_Video_ARR);
 		}
 		else		{}
 		//==========DIVISION==========
@@ -961,13 +1094,18 @@ function Audio_DFLG_Hotkey_Mouse(ele,evt,post_method)
 			else if ( evt_target.className=="Multi_Video_Y_CLS" )			{Audio_URL_STR_CLS.VAL.Multi_Video_Y	=NUM_10;}
 			else															{}
 			//==========DIVISION==========
-			if ( evt_target.className=="MultiPlier_CLS" || evt_target.className=="Speed_CLS" )
+			if ( evt_target.className=="MultiPlier_CLS" )
 			{
 				//"↑";NUM_10=NUM_10;
 				//ele00=document.getElementsByClassName("Audio_DFLG_Ctrl_Table")[0].getElementsByClassName("DFLG_Audio")[0];
 				//ele01=document.getElementsByClassName("Audio_DFLG_Ctrl_Table")[0].getElementsByClassName("DFLG_Video")[0];
 				//ele00.click();
 				//ele01.click();
+			}
+			else if ( evt_target.className=="Speed_CLS" )
+			{
+				var Main_And_Multi_Video_ARR=Main_And_Multi_Video_ARR_Get();
+				Speed_EAB_Core_Action(Main_And_Multi_Video_ARR);
 			}
 			else if ( evt_target.className=="Multi_Video_X_CLS" || evt_target.className=="Multi_Video_Y_CLS" )
 			{
