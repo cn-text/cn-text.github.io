@@ -397,7 +397,7 @@ function Audio_Switch(ele)
 			str00+='	<td class="TD_Text"><span>' + arr00[j][i].replace(/^[\x00-\xFF]*/gm,"") + 
 					'</span><a href="Audio_SD_01/' + arr01[j][i] + '.mp3" target=_blank download>' + '↓</a></td>' + "\n";
 			str00+='	<td class="TD_Audio">' + '<video controls="" name="media" loop=true><source src="Audio_SD_01/' + 
-					arr01[j][i] + '.mp3" type="audio/mpeg">		</video>' + '</td>' + "\n";
+					arr01[j][i].replace(/[\\]+/gm,"\/") + '.mp3" type="audio/mpeg">		</video>' + '</td>' + "\n";
 		}
 		str00+="</tr>" + "\n";
 	}
