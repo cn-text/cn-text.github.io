@@ -337,8 +337,8 @@ function Audio_URL_STR_CLS_INI()
 	if ( VME	!="#####" )	{	if ( VME!=Audio_URL_STR_CLS.VAL.MultiPlier_EAB	)		{EME.click();}	}
 	if ( VSE	!="#####" )	{	if ( VSE!=Audio_URL_STR_CLS.VAL.Speed_EAB		)		{ESE.click();}	}
 	//==========DIVISION==========
-	if ( VMC	!="#####" )	{	Audio_URL_STR_CLS.VAL.MultiPlier					=	EMC		.value			=	VMC			=	parseInt	(VMC	,10)	;	}//	:	1,
-	if ( VSC	!="#####" )	{	Audio_URL_STR_CLS.VAL.Speed							=	ESC		.value			=	VSC			=	parseInt	(VSC	,10)	;	}//	:	1,
+	if ( VMC	!="#####" )	{	Audio_URL_STR_CLS.VAL.MultiPlier					=	EMC		.value			=	VMC			=	parseFloat	(VMC		)	;	}//	:	1,
+	if ( VSC	!="#####" )	{	Audio_URL_STR_CLS.VAL.Speed							=	ESC		.value			=	VSC			=	parseFloat	(VSC		)	;	}//	:	1,
 	//==========DIVISION==========
 	if ( VMVE	!="#####" )	{	VMVE		=	parseInt	(VMVE	,10)	;	}//	:	1,
 	if ( VMVFB	!="#####" )	{	VMVFB		=	parseInt	(VMVFB	,10)	;	}//	:	1,
@@ -482,8 +482,9 @@ function Audio_URL_STR_CLS_INI()
 	//==========DIVISION==========
 	//Ex.:
 	//DFLG_01.html?vid=2&vmve=1&vdv=1&vmvt=1&w=
-	//DFLG_01.html?vid=2&vmve=1&vmvxc=4&vmvyc=3&vdv=1&vmvt=1&w=
-	//DFLG_01.html?vid=2&vmve=1&vmvxc=5&vmvyc=4&vdv=1&vmvt=1&vse=1&vsc=2&w=
+	//DFLG_01.html?vid=2&vmve=1&vmvxc=3&vmvyc=2&vdv=1&vmvt=1&vse=1&vsc=1.5&w=
+	//DFLG_01.html?vid=2&vmve=1&vmvxc=4&vmvyc=3&vdv=1&vmvt=1&vse=1&vsc=2&w=
+	//DFLG_01.html?vid=2&vmve=1&vmvxc=5&vmvyc=4&vdv=1&vmvt=1&w=
 	//==========DIVISION==========
 	//==============================ELE_Preset==============================
 }
