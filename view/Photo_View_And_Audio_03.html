@@ -550,13 +550,26 @@ function Audio_Play_Pause()
 	console.log(arr01[arr00[0]][1][arr00[1]][num02]);
 	//==========DIVISION==========
 	arr03=["master_Li_high.jpg","master_Li_high_R90.jpg","master_Li_high_R180.jpg","master_Li_high_R270.jpg"];
-	arr04=[	"../DFLG/DFLG_AV/ChineseMandarin_2016-01-18_00_DaShouYin.mp4",
-			"../DFLG/DFLG_AV/ChineseMandarin_2016-01-18_20_GongFa_1.mp4",
-			"../DFLG/DFLG_AV/ChineseMandarin_2016-01-18_21_GongFa_2.mp4",
-			"../DFLG/DFLG_AV/ChineseMandarin_2016-01-18_22_GongFa_3.mp4",
-			"../DFLG/DFLG_AV/ChineseMandarin_2016-01-18_23_GongFa_4.mp4",
-			"../DFLG/DFLG_AV/ChineseMandarin_2016-01-18_24_GongFa_5.mp4",
-			];
+	if ( window.location.href.replace(/^http[s]*\:\/\/cn-text.github.io\/.*$/gm,"")=="" )
+	{
+		arr04=[	"https://github.com/cn-text/cn-text.github.io/releases/download/DFLG_AV/ChineseMandarin_2016-01-18_00_DaShouYin.mp4",
+				"https://github.com/cn-text/cn-text.github.io/releases/download/DFLG_AV/ChineseMandarin_2016-01-18_20_GongFa_1.mp4",
+				"https://github.com/cn-text/cn-text.github.io/releases/download/DFLG_AV/ChineseMandarin_2016-01-18_21_GongFa_2.mp4",
+				"https://github.com/cn-text/cn-text.github.io/releases/download/DFLG_AV/ChineseMandarin_2016-01-18_22_GongFa_3.mp4",
+				"https://github.com/cn-text/cn-text.github.io/releases/download/DFLG_AV/ChineseMandarin_2016-01-18_23_GongFa_4.mp4",
+				"https://github.com/cn-text/cn-text.github.io/releases/download/DFLG_AV/ChineseMandarin_2016-01-18_24_GongFa_5.mp4",
+				];
+	}
+	else
+	{
+		arr04=[	"../DFLG/DFLG_AV/ChineseMandarin_2016-01-18_00_DaShouYin.mp4",
+				"../DFLG/DFLG_AV/ChineseMandarin_2016-01-18_20_GongFa_1.mp4",
+				"../DFLG/DFLG_AV/ChineseMandarin_2016-01-18_21_GongFa_2.mp4",
+				"../DFLG/DFLG_AV/ChineseMandarin_2016-01-18_22_GongFa_3.mp4",
+				"../DFLG/DFLG_AV/ChineseMandarin_2016-01-18_23_GongFa_4.mp4",
+				"../DFLG/DFLG_AV/ChineseMandarin_2016-01-18_24_GongFa_5.mp4",
+				];
+	}
 	//==========DIVISION==========
 	ele00=document.getElementsByClassName("Audio_DIV")[0];
 	ele00.innerHTML='<video autoplay="autoplay" controls="" name="media" loop=true><source src="' + 
