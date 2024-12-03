@@ -1,0 +1,4092 @@
+<html>
+<head>
+<title>DFLG</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<style type="text/css">
+/*==========DIVISION==========*/
+*
+{
+	margin:						0px;
+	padding:					0px;
+	font-size:					18px;
+}
+/*
+td.TD_Video																{transform-origin:	50% 50%;}
+td.TD_Video																{transform:			rotate(180deg);}
+td.TD_Video																{transform:			rotateY(180deg);}
+*/
+/*video{-webkit-animation-direction:alternate;}*/
+/*==========DIVISION==========*/
+table.Audio_TOP_Ctrl_Table input.Video_Control_Bar_BTN					{width:20px;}
+table.Audio_TOP_Ctrl_Table input.MultiPlier_EAB							{}
+table.Audio_TOP_Ctrl_Table input.MultiPlier_CLS							{width:70px;}
+table.Audio_TOP_Ctrl_Table input.Audio_Setting_Use_CLS					{}
+table.Audio_TOP_Ctrl_Table select.Usage_Collection_SEL					{width:100px;}
+/*==========DIVISION==========*/
+table.Audio_ITime_Ctrl_Table input.ITime_EAB							{width:20px;}
+table.Audio_ITime_Ctrl_Table input.ITime_CLS							{width:75px;}
+table.Audio_ITime_Ctrl_Table select.ITime_Type_SEL						{height:25px;width:75px;}
+table.Audio_ITime_Ctrl_Table select.ICTime_Type_SEL						{width:75px;}
+table.Audio_ITime_Ctrl_Table select.E_E2B_Time_Type_SEL					{width:75px;}
+table.Audio_ITime_Ctrl_Table input.BITime_CLS							{width:75px;}
+table.Audio_ITime_Ctrl_Table input.EITime_CLS							{width:75px;}
+table.Audio_ITime_Ctrl_Table input.BEITime_BTTI_CLS						{width:75px;}
+table.Audio_ITime_Ctrl_Table input.BEITime_ETTI_CLS						{width:75px;}
+table.Audio_ITime_Ctrl_Table select.BEITime_BETTI_VAL_Set_SEL			{width:150px;}
+table.Audio_ITime_Ctrl_Table select.ITime_2_Time_Fun_Type_SEL			{height:25px;width:75px;}
+table.Audio_ITime_Ctrl_Table textarea.ITime_2_Time_Fun_EVAL_Code		{height:25px;width:75px;}
+/*==========DIVISION==========*/
+table.Audio_Speed_Ctrl_Table input.Speed_EAB							{width:20px;}
+table.Audio_Speed_Ctrl_Table input.Speed_Negative_Or_Positive_BTN		{width:20px;}
+table.Audio_Speed_Ctrl_Table input.Speed_CLS							{width:75px;}
+table.Audio_Speed_Ctrl_Table select.Speed_Type_SEL						{height:25px;width:75px;}
+table.Audio_Speed_Ctrl_Table input.BSpeed_CLS							{width:75px;}
+table.Audio_Speed_Ctrl_Table input.ESpeed_CLS							{width:75px;}
+table.Audio_Speed_Ctrl_Table input.BESpeed_BTTI_CLS						{width:75px;}
+table.Audio_Speed_Ctrl_Table input.BESpeed_ETTI_CLS						{width:75px;}
+table.Audio_Speed_Ctrl_Table select.BESpeed_BETTI_VAL_Set_SEL			{width:150px;}
+table.Audio_Speed_Ctrl_Table select.Speed_2_Time_Fun_Type_SEL			{height:25px;width:75px;}
+table.Audio_Speed_Ctrl_Table textarea.Speed_2_Time_Fun_EVAL_Code		{height:25px;width:75px;}
+/*==========DIVISION==========*/
+table.Audio_IMG_ARGMS_Ctrl_Table input.IMG_ARGMS_EAB					{width:35px;}
+table.Audio_IMG_ARGMS_Ctrl_Table input.IMG_ARGMS_Opacity_CLS			{width:70px;}
+table.Audio_IMG_ARGMS_Ctrl_Table select.IMG_ARGMS_Direction_Type_SEL	{width:120px;}
+/*==========DIVISION==========*/
+table.Audio_Multi_Video_Ctrl_Table input.Multi_Video_EAB				{}
+table.Audio_Multi_Video_Ctrl_Table input.Multi_Video_Fit_BTN			{}
+table.Audio_Multi_Video_Ctrl_Table input.Multi_Video_X_CLS				{width:35px;}
+table.Audio_Multi_Video_Ctrl_Table input.Multi_Video_Y_CLS				{width:35px;}
+table.Audio_Multi_Video_Ctrl_Table input.Multi_Video_VID_List_STR_CLS	{width:200px;}
+table.Audio_Multi_Video_Ctrl_Table select.Multi_Video_VID_List_STR_SEL	{height:25px;width:60px;}
+table.Audio_Multi_Video_Ctrl_Table select.Multi_Video_VID_Type_SEL		{height:25px;width:60px;}
+table.Audio_Multi_Video_Ctrl_Table select.Multi_Video_Timer_Mode_SEL	{height:25px;width:60px;}
+table.Audio_Multi_Video_Ctrl_Table a.Multi_Video_TOP					{}
+/*==========DIVISION==========*/
+table.Audio_DFLG_Audio_Content_Table tr									{height:30px;}
+table.Audio_DFLG_Audio_Content_Table td.TD_Audio video					{width:350px;height:30px;}
+table.Audio_DFLG_Audio_Content_Table td.TD_Audio source					{width:350px;height:30px;}
+/*==========DIVISION==========*/
+
+</style>
+<style type="text/css" class="CSS_SD_TD_Multi_Video">
+</style>
+</head>
+
+<body bgcolor=#CCE8CF>
+<script type="text/javascript">
+//========================================Base_Function========================================
+function Parameter_Base_STR_ijk_XX(p_num)
+{
+	var i,j,str00,arr00;
+	str00="";
+	str00+="var i,j,k,m,n,p,q,r,s,t;" + "\n";
+	arr00=["num","ele","elel","str","arr","cls","fun","formData","file"];
+	//arr00=["num","ele","elel",,"str","arr","torf","flag"];
+
+	for (i=0;i<arr00.length;i++)
+	{
+		str00+="var ";
+		for (j=0;j<p_num;j++)
+		{
+			str00+=arr00[i] + ("00" + j.toString()).slice(-2);
+			if ( j<(p_num - 1) )			{str00+=",";}
+			else if ( j==(p_num - 1) )		{str00+=";" + "\n";}
+			else							{}
+		}
+	}
+
+	return str00;
+}
+
+function createArray(length)
+{
+	var arr=new Array(length||0),i=length;
+	if ( arguments.length>1 )
+	{
+		var args=Array.prototype.slice.call(arguments,1);
+		while(i--)
+		{
+			arr[length-1-i]=createArray.apply(this,args);
+		}
+	}
+	return arr;
+}
+
+String.prototype.repeat = function( num )
+{
+	return new Array( num + 1 ).join( this );
+};
+
+function ReadTextFile(oFile)
+{
+	if (window.XMLHttpRequest)//code for IE7+, Firefox, Chrome, Opera, Safari
+	{
+		xmlhttp=new XMLHttpRequest();
+	}
+	else// code for IE6, IE5
+	{
+		xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+	}
+
+	xmlhttp.open("GET",oFile,false);
+	xmlhttp.send();
+	var xmlText=xmlhttp.responseText; 
+	return xmlText;
+}
+
+var TTIS=100;
+var TTI_IN_USE=TTIS;
+//========================================Base_Function========================================
+//========================================Audio_Base_Function========================================
+function amplifyMedia(mediaElem,multiplier)
+{
+	var context=new( window.AudioContext || window.webkitAudioContext );
+	var result			=
+	{
+		context			:	context,
+		source			:	context.createMediaElementSource(mediaElem),
+		gain			:	context.createGain(),
+		media			:	mediaElem,
+		amplify			:	function(multiplier)
+		{
+			result.gain.gain.value=multiplier;
+		},
+		getAmpLevel		:	function()
+		{
+			return result.gain.gain.value;
+		}
+	};
+	result.source.connect(result.gain);
+	result.gain.connect(context.destination);
+	result.amplify(multiplier);
+	return result;
+}
+//========================================Audio_Base_Function========================================
+//========================================Pre_Definition========================================
+function ELE_ELEL_STR_INI()
+{
+	//==============================ELE_ELEL_STR_INI.Begin==============================
+	//====================DIVISION====================
+	//==========DIVISION==========
+	var ID,LEN,ID_LEN;
+	//==========DIVISION==========
+	var ele_CSS_SD_TD_Multi_Video					=document.getElementsByClassName("CSS_SD_TD_Multi_Video")[0];
+	var ele_Audio_DFLG_Table						=document.getElementsByClassName("Audio_DFLG_Table")[0];
+	//==========DIVISION==========
+	var elel_Audio_DFLG_Ctrl_Table					=ele_Audio_DFLG_Table.getElementsByClassName("Audio_DFLG_Ctrl_Table");
+	var ele_Audio_TOP_Ctrl_Table					=elel_Audio_DFLG_Ctrl_Table[0].getElementsByClassName("Audio_TOP_Ctrl_Table")[0];
+	var ele_Audio_ITime_Ctrl_Table					=elel_Audio_DFLG_Ctrl_Table[0].getElementsByClassName("Audio_ITime_Ctrl_Table")[0];
+	var ele_Audio_Speed_Ctrl_Table					=elel_Audio_DFLG_Ctrl_Table[0].getElementsByClassName("Audio_Speed_Ctrl_Table")[0];
+	var ele_Audio_Multi_Video_Ctrl_Table			=elel_Audio_DFLG_Ctrl_Table[0].getElementsByClassName("Audio_Multi_Video_Ctrl_Table")[0];
+	//==========DIVISION==========
+	//====================DIVISION====================
+	//==========DIVISION==========
+	var ele_Audio_DFLG_Video_Content_Table			=ele_Audio_DFLG_Table.getElementsByClassName("Audio_DFLG_Video_Content_Table")[0];
+	var ele_Audio_DFLG_Audio_Content_Table			=ele_Audio_DFLG_Table.getElementsByClassName("Audio_DFLG_Audio_Content_Table")[0];
+	var ele_Audio_DFLG_Multi_Video_Content_Table	=ele_Audio_DFLG_Table.getElementsByClassName("Audio_DFLG_Multi_Video_Content_Table")[0];
+	//==========DIVISION==========
+	var ele_DFLG_Audio								=ele_Audio_TOP_Ctrl_Table.getElementsByClassName("DFLG_Audio"					)[0];
+	var ele_DFLG_Video								=ele_Audio_TOP_Ctrl_Table.getElementsByClassName("DFLG_Video"					)[0];
+	var ele_Video_Control_Bar_BTN					=ele_Audio_TOP_Ctrl_Table.getElementsByClassName("Video_Control_Bar_BTN"		)[0];
+	var ele_DFLG_Video_SEL							=ele_Audio_TOP_Ctrl_Table.getElementsByClassName("DFLG_Video_SEL"				)[0];
+	var ele_Network_Type_CLS						=ele_Audio_TOP_Ctrl_Table.getElementsByClassName("Network_Type_CLS"				)[0];
+	var ele_Audio_Setting_Use_CLS					=ele_Audio_TOP_Ctrl_Table.getElementsByClassName("Audio_Setting_Use_CLS"		)[0];
+	var ele_Usage_Collection_SEL					=ele_Audio_TOP_Ctrl_Table.getElementsByClassName("Usage_Collection_SEL"			)[0];
+	var ele_MultiPlier_EAB							=ele_Audio_TOP_Ctrl_Table.getElementsByClassName("MultiPlier_EAB"				)[0];
+	var ele_MultiPlier_CLS							=ele_Audio_TOP_Ctrl_Table.getElementsByClassName("MultiPlier_CLS"				)[0];
+	//==========DIVISION==========
+	var ele_ITime_EAB								=ele_Audio_ITime_Ctrl_Table.getElementsByClassName("ITime_EAB"							)[0];
+	var ele_ITime_CLS								=ele_Audio_ITime_Ctrl_Table.getElementsByClassName("ITime_CLS"							)[0];
+	var ele_ITime_Type_SEL							=ele_Audio_ITime_Ctrl_Table.getElementsByClassName("ITime_Type_SEL"						)[0];
+	var ele_ICTime_Type_SEL							=ele_Audio_ITime_Ctrl_Table.getElementsByClassName("ICTime_Type_SEL"					)[0];
+	var ele_E_E2B_Time_Type_SEL						=ele_Audio_ITime_Ctrl_Table.getElementsByClassName("E_E2B_Time_Type_SEL"				)[0];
+	var ele_BITime_CLS								=ele_Audio_ITime_Ctrl_Table.getElementsByClassName("BITime_CLS"							)[0];
+	var ele_EITime_CLS								=ele_Audio_ITime_Ctrl_Table.getElementsByClassName("EITime_CLS"							)[0];
+	var ele_BEITime_BTTI_CLS						=ele_Audio_ITime_Ctrl_Table.getElementsByClassName("BEITime_BTTI_CLS"					)[0];
+	var ele_BEITime_ETTI_CLS						=ele_Audio_ITime_Ctrl_Table.getElementsByClassName("BEITime_ETTI_CLS"					)[0];
+	var ele_BEITime_BETTI_VAL_Set_SEL				=ele_Audio_ITime_Ctrl_Table.getElementsByClassName("BEITime_BETTI_VAL_Set_SEL"			)[0];
+	var ele_ITime_2_Time_Fun_Type_SEL				=ele_Audio_ITime_Ctrl_Table.getElementsByClassName("ITime_2_Time_Fun_Type_SEL"			)[0];
+	var ele_ITime_2_Time_Fun_TextArea_Resize		=ele_Audio_ITime_Ctrl_Table.getElementsByClassName("ITime_2_Time_Fun_TextArea_Resize"	)[0];
+	var ele_ITime_2_Time_Fun_EVAL_Code				=ele_Audio_ITime_Ctrl_Table.getElementsByClassName("ITime_2_Time_Fun_EVAL_Code"			)[0];
+	//==========DIVISION==========
+	var ele_Speed_EAB								=ele_Audio_Speed_Ctrl_Table.getElementsByClassName("Speed_EAB"							)[0];
+	var ele_Speed_Negative_Or_Positive_BTN			=ele_Audio_Speed_Ctrl_Table.getElementsByClassName("Speed_Negative_Or_Positive_BTN"		)[0];
+	var ele_Speed_CLS								=ele_Audio_Speed_Ctrl_Table.getElementsByClassName("Speed_CLS"							)[0];
+	var ele_Speed_Type_SEL							=ele_Audio_Speed_Ctrl_Table.getElementsByClassName("Speed_Type_SEL"						)[0];
+	var ele_BSpeed_CLS								=ele_Audio_Speed_Ctrl_Table.getElementsByClassName("BSpeed_CLS"							)[0];
+	var ele_ESpeed_CLS								=ele_Audio_Speed_Ctrl_Table.getElementsByClassName("ESpeed_CLS"							)[0];
+	var ele_BESpeed_BTTI_CLS						=ele_Audio_Speed_Ctrl_Table.getElementsByClassName("BESpeed_BTTI_CLS"					)[0];
+	var ele_BESpeed_ETTI_CLS						=ele_Audio_Speed_Ctrl_Table.getElementsByClassName("BESpeed_ETTI_CLS"					)[0];
+	var ele_BESpeed_BETTI_VAL_Set_SEL				=ele_Audio_Speed_Ctrl_Table.getElementsByClassName("BESpeed_BETTI_VAL_Set_SEL"			)[0];
+	var ele_Speed_2_Time_Fun_Type_SEL				=ele_Audio_Speed_Ctrl_Table.getElementsByClassName("Speed_2_Time_Fun_Type_SEL"			)[0];
+	var ele_Speed_2_Time_Fun_TextArea_Resize		=ele_Audio_Speed_Ctrl_Table.getElementsByClassName("Speed_2_Time_Fun_TextArea_Resize"	)[0];
+	var ele_Speed_2_Time_Fun_EVAL_Code				=ele_Audio_Speed_Ctrl_Table.getElementsByClassName("Speed_2_Time_Fun_EVAL_Code"			)[0];
+	//==========DIVISION==========
+	var ele_Multi_Video_EAB							=ele_Audio_Multi_Video_Ctrl_Table.getElementsByClassName("Multi_Video_EAB"				)[0];
+	var ele_Multi_Video_Fit_BTN						=ele_Audio_Multi_Video_Ctrl_Table.getElementsByClassName("Multi_Video_Fit_BTN"			)[0];
+	var ele_Multi_Video_X_CLS						=ele_Audio_Multi_Video_Ctrl_Table.getElementsByClassName("Multi_Video_X_CLS"			)[0];
+	var ele_Multi_Video_Y_CLS						=ele_Audio_Multi_Video_Ctrl_Table.getElementsByClassName("Multi_Video_Y_CLS"			)[0];
+	var ele_Multi_Video_VID_List_STR_CLS			=ele_Audio_Multi_Video_Ctrl_Table.getElementsByClassName("Multi_Video_VID_List_STR_CLS"	)[0];
+	var ele_Multi_Video_VID_List_STR_SEL			=ele_Audio_Multi_Video_Ctrl_Table.getElementsByClassName("Multi_Video_VID_List_STR_SEL"	)[0];
+	var ele_Multi_Video_VID_Type_SEL				=ele_Audio_Multi_Video_Ctrl_Table.getElementsByClassName("Multi_Video_VID_Type_SEL"		)[0];
+	var ele_Multi_Video_Timer_Mode_SEL				=ele_Audio_Multi_Video_Ctrl_Table.getElementsByClassName("Multi_Video_Timer_Mode_SEL"	)[0];
+	var ele_Multi_Video_TOP							=ele_Audio_Multi_Video_Ctrl_Table.getElementsByClassName("Multi_Video_TOP"				)[0];
+	//==========DIVISION==========
+	//====================DIVISION====================
+	//==========DIVISION==========
+	var ele_Audio_IMG_ARGMS_Ctrl_Table				=elel_Audio_DFLG_Ctrl_Table[1].getElementsByClassName("Audio_IMG_ARGMS_Ctrl_Table"		)[0];
+	//==========DIVISION==========
+	var ele_AIASCT=ele_Audio_IMG_ARGMS_Ctrl_Table;
+	var ele_IMG_ARGMS_EAB								=ele_AIASCT.getElementsByClassName("IMG_ARGMS_EAB"							)[0];
+	var ele_IMG_ARGMS_Opacity_CLS						=ele_AIASCT.getElementsByClassName("IMG_ARGMS_Opacity_CLS"					)[0];
+	var ele_IMG_ARGMS_Direction_Type_SEL				=ele_AIASCT.getElementsByClassName("IMG_ARGMS_Direction_Type_SEL"			)[0];
+	//==========DIVISION==========
+	//====================DIVISION====================
+	//==========DIVISION==========
+	var ele_IMG_ARGMS_DIV							=ele_Audio_DFLG_Table.getElementsByClassName("IMG_ARGMS_DIV")[0];
+	var ele_IASD_CLS								={};
+		ele_IASD_CLS.ele_IMG_On_Show_DIV_Table		=ele_IMG_ARGMS_DIV.getElementsByClassName("IMG_On_Show_DIV_Table")[0];
+		ele_IASD_CLS.elel_IMG_On_Show_DIV_TR		=ele_IMG_ARGMS_DIV.getElementsByClassName("IMG_On_Show_DIV_TR");
+		ele_IASD_CLS.elel_IMG_On_Show_DIV_TD		=ele_IMG_ARGMS_DIV.getElementsByClassName("IMG_On_Show_DIV_TD");
+		ele_IASD_CLS.elel_TAG_IMG					=ele_IMG_ARGMS_DIV.getElementsByTagName("img");
+	//==========DIVISION==========
+	//====================DIVISION====================
+	//==========DIVISION==========
+	var elel_MainV_TD_VText							=ele_Audio_DFLG_Video_Content_Table.getElementsByClassName("TD_VText");
+	var elel_MainV_TD_Video							=ele_Audio_DFLG_Video_Content_Table.getElementsByClassName("TD_Video");
+	//==========DIVISION==========
+	var elel_MainA_TD_AText							=ele_Audio_DFLG_Audio_Content_Table.getElementsByClassName("TD_AText");
+	var elel_MainA_TD_Audio							=ele_Audio_DFLG_Audio_Content_Table.getElementsByClassName("TD_Audio");
+	//==========DIVISION==========
+	var elel_MultiV_TD_Video						=ele_Audio_DFLG_Multi_Video_Content_Table.getElementsByClassName("TD_Video");
+	//==========DIVISION==========
+	//	var elel_TD_RP_BTN								=ele_JS_Audio_Player_Content_Table.getElementsByClassName("TD_RP_BTN"			);
+	//	var elel_RP_BTN									=ele_JS_Audio_Player_Content_Table.getElementsByClassName("RP_BTN"				);
+	//==========DIVISION==========
+	//====================DIVISION====================
+	//==============================ELE_ELEL_STR_INI.End==============================
+	var fun_ct_cache;
+	fun_ct_cache=arguments.callee;
+	var str00;
+	str00=fun_ct_cache.toString()
+	//Use 0.104 s .//.replace(new RegExp("^[\\s\\S]+\\r\\n\\t+(\\/\\/=+BC_Code_Almost_Same_Area\\(\\\"" + 
+	//Use 0.003 s .//.replace(new RegExp("^function[ ]*[\\s\\S]+\\r\\n\\t+(\\/\\/=+BC_Code_Almost_Same_Area\\(\\\"" + 
+	//Use 0.001-0.002 s .//
+	.replace(new RegExp("^function[ ]*" + fun_ct_cache.name + "\\(\\)\\n[\\t]*\\{\\n([\\t]*\\/\\/=+" + fun_ct_cache.name + "\.Begin)","gm"),"$1")
+	.replace(new RegExp("(\\/\\/=+" + fun_ct_cache.name + "\.End=+\\n)[\\s\\S]*$","gm"),"$1")
+	.replace(/(\n)[\t]{1}/gm,"$1");
+	return str00;
+}
+//========================================Pre_Definition========================================
+//========================================Audio_URL_STR_CLS========================================
+var Audio_URL_STR_CLS						=
+{
+	//==========DIVISION==========
+	Network_Type							:	0,//0:"OFF";1:"ON";
+	Audio_Type								:	0,//0:"Audio_Short";1:"Audio_Long";
+	//	Base_URL_DIR_ARR						:	["DFLG_AV/","https://cn-text.github.io/DFLG/DFLG_AV/"],
+	//	Base_URL_DIR_VAL						:	"https://cn-text.github.io/DFLG/DFLG_AV/",
+	Base_URL_DIR_ARR						:	["DFLG_AV/","https://github.com/cn-text/cn-text.github.io/releases/download/DFLG_AV/"],
+	Base_URL_DIR_VAL						:	"https://github.com/cn-text/cn-text.github.io/releases/download/DFLG_AV/",
+	Audio_ARR								:	[[],[],[],[],[]],
+	Video_ARR								:	[[],[],[],[],[]],
+	Time_Info_ARR							:	[[]],
+	//==========DIVISION==========
+	VAL										:
+	{
+		//==========DIVISION==========
+		//Audio_Setting_Use					:	0,
+		Usage_Collection					:	0,
+		//==========DIVISION==========
+		MultiPlier_EAB						:	0,//0:false;1:true;
+		MultiPlier							:	1,
+		//==========DIVISION==========
+		ITime_EAB							:	0,//0:false;1:true;
+		ITime								:	1,
+		ITime_Type							:	0,//0;1;2;3;4;5;6;
+		//	0 : Normal ITime .
+		//	1 : Begin to End Random ITime , ITime will not be changed .
+		//	2 : Begin to End Random ITime , change after BEITime_BTTI seconds .
+		//	3 : Begin to End Random ITime , change after BEITime_BTTI to BEITime_ETTI random seconds .
+		//	4 : Begin to End Random ITime , change after video duration seconds .
+		//	5 : Begin to End Random ITime , change after video duration random seconds .
+		//	6 : Begin to End Random ITime , eval : v=f(t) .
+		AR_ID_Pre_Time_ARR					:	[[]],
+		ICTime_Type							:	0,//0;1;
+		//	0 : Pre_Time + Interval_Time .
+		//	1 : Current_Time + Interval_Time .
+		//	2 : Current_Time .
+		E_E2B_Time_Type						:	0,//0;1;
+		//	0 : End_Time .
+		//	1 : End_2_Begin_Time .
+		BITime								:	0.500,
+		EITime								:	3.500,
+		BEITime_BTTI						:	60000,
+		BEITime_ETTI						:	180000,
+		Multi_Video_ITime_Timer_ID_ARR		:	[],
+		BEITime_BETTI_VAL_Set				:	0,
+		ITime_2_Time_Fun_Type				:	0,
+		ITime_2_Time_Fun_TextArea_Resize	:	0,//0:{height:19px;width:75px;};1:{height:200px;width:400px;};
+		ITime_2_Time_Fun_EVAL_Code			:	"",
+		ITime_2_Time_TTI_SD_ID_ARR			:	[],
+		//==========DIVISION==========
+		Speed_EAB							:	0,//0:false;1:true;
+		Speed_Negative_Or_Positive			:	1,//0:"Negative";1:"Positive";
+		Speed								:	1,
+		Speed_Type							:	0,//0;1;2;3;4;5;6;
+		//	0 : Normal Speed .
+		//	1 : Begin to End Random Speed , speed will not be changed .
+		//	2 : Begin to End Random Speed , change after BESpeed_BTTI seconds .
+		//	3 : Begin to End Random Speed , change after BESpeed_BTTI to BESpeed_ETTI random seconds .
+		//	4 : Begin to End Random Speed , change after video duration seconds .
+		//	5 : Begin to End Random Speed , change after video duration random seconds .
+		//	6 : Begin to End Random Speed , eval : v=f(t) .
+		BSpeed								:	0.500,
+		ESpeed								:	3.000,
+		BESpeed_BTTI						:	60000,
+		BESpeed_ETTI						:	180000,
+		Multi_Video_Speed_Timer_ID_ARR		:	[],
+		BESpeed_BETTI_VAL_Set				:	0,
+		Speed_2_Time_Fun_Type				:	0,
+		Speed_2_Time_Fun_TextArea_Resize	:	0,//0:{height:19px;width:75px;};1:{height:200px;width:400px;};
+		Speed_2_Time_Fun_EVAL_Code			:	"",
+		Speed_2_Time_TTI_SD_ID_ARR			:	[],
+		//==========DIVISION==========
+		Multi_Video_EAB						:	1,
+		Multi_Video_Fit						:	1,
+		Multi_Video_X						:	4,
+		Multi_Video_Y						:	3,
+		Multi_Video_VID_List_ARR			:	[2],//[2,8,9,10,11,12],
+		Multi_Video_VID_List_STR			:	"[2]",//"[2,8,9,10,11,12]",
+		//==========DIVISION==========
+		Multi_Video_VID_Type				:	0,//0;1;2;3;4;5;6;
+		//	0.打横										//	0 : Transversal position .
+		//	1.打竖										//	1 : Vertical position .
+		//	2.随机										//	2 : Random position .
+		//	3.随机+定时改变								//	3 : Random position and video time timing change .
+		//	4.随机+不定时改变							//	4 : Random position and Random timing change .
+		//	5.随机+定时改变+随即速度改变_00_Random_Gen	//	5 : Random position and video time and random speed timing change 00 Random_Gen .
+		//	6.随机+定时改变+随即速度改变_01_Speed_EAB	//	6 : Random position and video time and random speed timing change 01 Speed_EAB .
+		Multi_Video_VID_Timer_ID_ARR		:	[],
+		//==========DIVISION==========
+		Multi_Video_Timer_Mode				:	1,//0;1;2;3;
+		//	0 : Normal Start .
+		//	1 : All Start in the same time adjustment .
+		//	2 : Video play start in the random time .
+		//	3 : Video play start in the random time , reset random after the video time .
+		Multi_Video_Duration_Timer_ID_ARR	:	[],
+		//==========DIVISION==========
+		Multi_Video_Time_Offset				:	300,//ms;
+		TTI_IN_USE_Average					:	150,
+		TTI_IN_USE_Average_MOD				:	function ()
+		{
+			var TTI=Audio_URL_STR_CLS.VAL.TTI_IN_USE_Average * 
+				(Audio_URL_STR_CLS.VAL.Multi_Video_EAB * Audio_URL_STR_CLS.VAL.Multi_Video_X * Audio_URL_STR_CLS.VAL.Multi_Video_Y + 1) * 
+				Audio_URL_STR_CLS.VAL.Speed;
+			return TTI;
+		},
+		Multi_Video_Time_Random_VAR_00		:	0.3,//0.5;
+		//==========DIVISION==========
+		IMG_ARGMS_EAB						:	0,//0:false;1:true;
+		IMG_ARGMS_Opacity					:	0.7,
+		IMG_ARGMS_Direction_Type			:	0,
+		//==========DIVISION==========
+	},
+	//==========DIVISION==========
+	FUN										:
+	{
+		Audio_VAR_2_Time_Fun_EVAL_Code		:	function (Speed_2_Time_Fun_Type)
+		{
+			//==========DIVISION==========
+			var fun_ct_cache;
+			fun_ct_cache=arguments.callee;
+			//==========DIVISION==========
+			eval(Parameter_Base_STR_ijk_XX(5));
+			var EVAL_Code_FUN,EVAL_Code_STR="";
+			var Evoke_By_OBJ,TTI_SD,TTI_SD_ID;
+			//==========DIVISION==========
+			//Audio_URL_STR_CLS.VAL.Speed_2_Time_Fun_Type;
+			if ( Speed_2_Time_Fun_Type==0 )
+			{
+				//==============================Fun_EVAL_Code_Area("00000000").Begin==============================
+				//"↑":ITime_2_Time_TTI_SD_ID_ARR;Speed_2_Time_TTI_SD_ID_ARR;
+				//var TTI_SD_ID=30;
+				var Audio_VAR_CLS=(function(Evoke_By_OBJ,TTI_SD_ID)
+				{
+					var v,t;
+					t=TTI_SD_ID;
+					v=0;
+					if ( Evoke_By_OBJ=="ITime" )
+					{
+						var BITime=Audio_URL_STR_CLS.VAL.BITime;
+						var EITime=Audio_URL_STR_CLS.VAL.EITime;
+						v=(BITime + (EITime - BITime) / 2) + Math.sin(Math.PI / 2 / 90 * t) * (EITime - BITime) / (1 - (-1));//-1 - 1;
+					}
+					else if ( Evoke_By_OBJ=="Speed" )
+					{
+						v=Math.sin(Math.PI / 2 / 90 * t) + 1.5;//0.5-2.5;
+					}
+					else		{}
+					var TTI_SD=TTI_IN_USE * 10;
+					return {v:v,t:t,TTI_SD:TTI_SD};
+				})(Evoke_By_OBJ,TTI_SD_ID);
+				//==============================Fun_EVAL_Code_Area("00000000").End==============================
+			}
+			else if ( Speed_2_Time_Fun_Type==1 )
+			{
+				//==============================Fun_EVAL_Code_Area("00000001").Begin==============================
+				//"↑":ITime_2_Time_TTI_SD_ID_ARR;Speed_2_Time_TTI_SD_ID_ARR;
+				//var TTI_SD_ID=30;
+				var Audio_VAR_CLS=(function(Evoke_By_OBJ,TTI_SD_ID)
+				{
+					var v,t;
+					t=TTI_SD_ID;
+					v="?????00000001?????";
+					if ( Evoke_By_OBJ=="ITime" )
+					{
+						v="?????00000001?????";
+					}
+					else if ( Evoke_By_OBJ=="Speed" )
+					{
+						v="?????00000001?????";
+					}
+					else		{}
+					var TTI_SD=TTI_IN_USE * 10;
+					return {v:v,t:t,TTI_SD:TTI_SD};
+				})(Evoke_By_OBJ,TTI_SD_ID);
+				//==============================Fun_EVAL_Code_Area("00000001").End==============================
+			}
+			else if ( Speed_2_Time_Fun_Type==2 )
+			{
+				//==============================Fun_EVAL_Code_Area("00000002").Begin==============================
+				//"↑":ITime_2_Time_TTI_SD_ID_ARR;Speed_2_Time_TTI_SD_ID_ARR;
+				//var TTI_SD_ID=30;
+				var Audio_VAR_CLS=(function(Evoke_By_OBJ,TTI_SD_ID)
+				{
+					var v,t;
+					t=TTI_SD_ID;
+					v="?????00000002?????";
+					if ( Evoke_By_OBJ=="ITime" )
+					{
+						v="?????00000002?????";
+					}
+					else if ( Evoke_By_OBJ=="Speed" )
+					{
+						v="?????00000002?????";
+					}
+					else		{}
+					var TTI_SD=TTI_IN_USE * 10;
+					return {v:v,t:t,TTI_SD:TTI_SD};
+				})(Evoke_By_OBJ,TTI_SD_ID);
+				//==============================Fun_EVAL_Code_Area("00000002").End==============================
+			}
+			else if ( Speed_2_Time_Fun_Type==3 )
+			{
+				//==============================Fun_EVAL_Code_Area("00000003").Begin==============================
+				//"↑":ITime_2_Time_TTI_SD_ID_ARR;Speed_2_Time_TTI_SD_ID_ARR;
+				//var TTI_SD_ID=30;
+				var Audio_VAR_CLS=(function(Evoke_By_OBJ,TTI_SD_ID)
+				{
+					var v,t;
+					t=TTI_SD_ID;
+					v="?????00000003?????";
+					if ( Evoke_By_OBJ=="ITime" )
+					{
+						v="?????00000003?????";
+					}
+					else if ( Evoke_By_OBJ=="Speed" )
+					{
+						v="?????00000003?????";
+					}
+					else		{}
+					var TTI_SD=TTI_IN_USE * 10;
+					return {v:v,t:t,TTI_SD:TTI_SD};
+				})(Evoke_By_OBJ,TTI_SD_ID);
+				//==============================Fun_EVAL_Code_Area("00000003").End==============================
+			}
+			else		{}
+			//==========DIVISION==========
+			EVAL_Code_STR=fun_ct_cache.toString()
+				//Use 0.104 s .//.replace(new RegExp("^[\\s\\S]+[\\r]*\\n\\t+(\\/\\/=+Fun_EVAL_Code_Area\\(\\\"" + 
+				//Use 0.003 s .//.replace(new RegExp("^function[ ]*[\\s\\S]+[\\r]*\\n\\t+(\\/\\/=+Fun_EVAL_Code_Area\\(\\\"" + 
+				//Use 0.001-0.002 s .//
+				.replace(new RegExp("^function[ ]*[\\s\\S]+[\\r]*\\n[\\t]+(\\/\\/=+Fun_EVAL_Code_Area\\(\\\"" + 
+										("0".repeat(8) + Speed_2_Time_Fun_Type.toString()).slice(-8) + "\\\"\\)\.Begin)","gm"),"$1")
+				.replace(new RegExp("(Fun_EVAL_Code_Area\\(\\\"" + 
+										("0".repeat(8) + Speed_2_Time_Fun_Type.toString()).slice(-8) + "\\\"\\)\.End=+[\\r]*\\n)[\\s\\S]+","gm"),"$1")
+				.replace(/(\r\n)[\t]{4}/gm,"$1")
+				.replace(/(\n)[\t]{4}/gm,"$1");
+			//console.log(EVAL_Code_STR);
+			//console.log(eval(EVAL_Code_STR));
+			//console.log(Audio_VAR_CLS);
+			return EVAL_Code_STR;
+			//==========DIVISION==========
+		},
+		//Audio_URL_STR_CLS.FUN.Audio_VAR_2_Time_Fun_EVAL_Code(0);
+	},
+	//==========DIVISION==========
+};
+
+function Audio_URL_STR_CLS_INI()
+{
+	//====================DIVISION====================
+	//==========DIVISION==========
+	eval(ELE_ELEL_STR_INI());
+	eval(Parameter_Base_STR_ijk_XX(10));
+	var ID,LEN,ID_LEN;
+	var AR_ID;
+	var evt_target;
+	//==========DIVISION==========
+	arr00=[[],[],[],[],[],[]];
+	//==========DIVISION==========
+	{
+		//==========DIVISION==========
+		arr00[0].push("0000");	arr00[1].push("exercise_1.mp3");	arr00[2].push("LG_PuTongHua_ShiFu_PeiYin_1");	arr00[3].push("第一套功法_佛展千手法");	arr00[4].push("");
+		arr00[0].push("0001");	arr00[1].push("exercise_2.mp3");	arr00[2].push("LG_PuTongHua_ShiFu_PeiYin_2");	arr00[3].push("第二套功法_法轮桩法");	arr00[4].push("");
+		arr00[0].push("0010");	arr00[1].push("exercise_3.mp3");	arr00[2].push("LG_PuTongHua_ShiFu_PeiYin_3");	arr00[3].push("第三套功法_贯通两极法");	arr00[4].push("");
+		arr00[0].push("0020");	arr00[1].push("exercise_4.mp3");	arr00[2].push("LG_PuTongHua_ShiFu_PeiYin_4");	arr00[3].push("第四套功法_法轮周天法");	arr00[4].push("");
+		arr00[0].push("0021");	arr00[1].push("exercise_5.mp3");	arr00[2].push("LG_PuTongHua_ShiFu_PeiYin_5");	arr00[3].push("第五套功法_神通加持法");	arr00[4].push("");
+		//==========DIVISION==========
+	};
+	Audio_URL_STR_CLS.Audio_ARR=arr00;
+	//==========DIVISION==========
+	arr01=[[],[],[],[],[],[]];
+	//==========DIVISION==========
+	{
+		//==========DIVISION==========
+		arr01[0].push("0000");	arr01[1].push("ChineseMandarin_2016-01-18.mp4"				);	arr01[2].push("LG_PuTongHua_ALL");			arr01[3].push("五套功法(普通话)");							arr01[4].push("00:00:00.00	-	00:58:32.01");
+		arr01[0].push("0001");	arr01[1].push("Cantonese_2015-12-24.mp4"					);	arr01[2].push("LG_YueYu_ALL");				arr01[3].push("五套功法(粤语)");							arr01[4].push("00:00:00.00	-	00:58:32.01");
+		arr01[0].push("0010");	arr01[1].push("ChineseMandarin_2016-01-18_00_DaShouYin.mp4"	);	arr01[2].push("DaShouYin");					arr01[3].push("李洪志打大手印");							arr01[4].push("00:02:40.15	-	00:04:04.03");
+		arr01[0].push("0020");	arr01[1].push("ChineseMandarin_2016-01-18_10_GongFa_1.mp4"	);	arr01[2].push("LG_PuTongHua_JiaoGong_1");	arr01[3].push("李洪志教功_第一套功法_佛展千手法");			arr01[4].push("00:04:05.00	-	00:14:16.13");
+		arr01[0].push("0021");	arr01[1].push("ChineseMandarin_2016-01-18_11_GongFa_2.mp4"	);	arr01[2].push("LG_PuTongHua_JiaoGong_2");	arr01[3].push("李洪志教功_第二套功法_法轮桩法");			arr01[4].push("00:14:16.15	-	00:18:48.15");
+		arr01[0].push("0022");	arr01[1].push("ChineseMandarin_2016-01-18_12_GongFa_3.mp4"	);	arr01[2].push("LG_PuTongHua_JiaoGong_3");	arr01[3].push("李洪志教功_第三套功法_贯通两极法");			arr01[4].push("00:18:48.17	-	00:24:24.22");
+		arr01[0].push("0023");	arr01[1].push("ChineseMandarin_2016-01-18_13_GongFa_4.mp4"	);	arr01[2].push("LG_PuTongHua_JiaoGong_4");	arr01[3].push("李洪志教功_第四套功法_法轮周天法");			arr01[4].push("00:24:24.23	-	00:29:10.18");
+		arr01[0].push("0024");	arr01[1].push("ChineseMandarin_2016-01-18_14_GongFa_5.mp4"	);	arr01[2].push("LG_PuTongHua_JiaoGong_5");	arr01[3].push("李洪志教功_第五套功法_神通加持法");			arr01[4].push("00:29:10.20	-	00:37:08.19");
+		arr01[0].push("0030");	arr01[1].push("ChineseMandarin_2016-01-18_20_GongFa_1.mp4"	);	arr01[2].push("LG_PuTongHua_LianXi_1");		arr01[3].push("李洪志炼功动作_第一套功法_佛展千手法");		arr01[4].push("00:37:14.06	-	00:39:43.16");
+		arr01[0].push("0031");	arr01[1].push("ChineseMandarin_2016-01-18_21_GongFa_2.mp4"	);	arr01[2].push("LG_PuTongHua_LianXi_2");		arr01[3].push("李洪志炼功动作_第二套功法_法轮桩法");		arr01[4].push("00:39:46.03	-	00:43:35.00");
+		arr01[0].push("0032");	arr01[1].push("ChineseMandarin_2016-01-18_22_GongFa_3.mp4"	);	arr01[2].push("LG_PuTongHua_LianXi_3");		arr01[3].push("李洪志炼功动作_第三套功法_贯通两极法");		arr01[4].push("00:43:37.03	-	00:47:09.22");
+		arr01[0].push("0033");	arr01[1].push("ChineseMandarin_2016-01-18_23_GongFa_4.mp4"	);	arr01[2].push("LG_PuTongHua_LianXi_4");		arr01[3].push("李洪志炼功动作_第四套功法_法轮周天法");		arr01[4].push("00:47:11.17	-	00:50:57.03");
+		arr01[0].push("0034");	arr01[1].push("ChineseMandarin_2016-01-18_24_GongFa_5.mp4"	);	arr01[2].push("LG_PuTongHua_LianXi_5");		arr01[3].push("李洪志炼功动作_第五套功法_神通加持法");		arr01[4].push("00:50:58.18	-	00:53:01.00");
+		arr01[0].push("0040");	arr01[1].push("DaShouYin_0000.mp4"	);							arr01[2].push("DaShouYin");					arr01[3].push("李洪志打大手印");							arr01[4].push("00:02:40.15	-	00:04:04.03");
+		//==========DIVISION==========
+	};
+	Audio_URL_STR_CLS.Video_ARR=arr01;
+	//==========DIVISION==========
+	arr02=[[]];
+	//==========DIVISION==========
+	{
+		//==========DIVISION==========
+		arr02[0].push("");
+		//==========DIVISION==========
+	};
+	Audio_URL_STR_CLS.Time_Info_ARR=arr02;
+	//==========DIVISION==========
+	//====================DIVISION====================
+	//==========DIVISION==========
+	//console.log(location.href);
+	Audio_URL_STR_CLS.Network_Type=0;//0:"OFF";1:"ON";
+	if ( location.href.replace(/^(ftp|http).+$/gm,"")=="" )		{Audio_URL_STR_CLS.Network_Type=1;}
+	else														{}
+	ele_Network_Type_CLS.value=["OFF","ON"][Audio_URL_STR_CLS.Network_Type];
+	ele_Network_Type_CLS.style.backgroundColor=["red","#1EB0E9"][Audio_URL_STR_CLS.Network_Type];
+	var Base_URL_DIR_VAL=Audio_URL_STR_CLS.Base_URL_DIR_VAL=Audio_URL_STR_CLS.Base_URL_DIR_ARR[Audio_URL_STR_CLS.Network_Type];
+	//==========DIVISION==========
+	var AID		=location.href.replace(/^(.+\?)(.*)(AID=)([^\?\&]*)(\&)(.*)$/gm,"$4");
+	var VID		=location.href.replace(/^(.+\?)(.*)(VID=)([^\?\&]*)(\&)(.*)$/gm,"$4");
+	if ( !isNaN(AID) )		{AID=parseInt(AID,10);}
+	else					{AID="-";}
+	if ( !isNaN(VID) )		{VID=parseInt(VID,10);}
+	else					{VID="-";}
+	//==========DIVISION==========
+	//====================DIVISION====================
+	ele_Audio_Setting_Use_CLS.style.backgroundColor="#1EB0E9";
+	//==========DIVISION==========
+	str00="";
+	str00+="<option>00 : Usage_Collection_0000_随机截断动作</option>";
+	ele_Usage_Collection_SEL.innerHTML=str00;
+	ele_Usage_Collection_SEL.selectedIndex=Audio_URL_STR_CLS.VAL.Usage_Collection=0;
+	//==========DIVISION==========
+	//====================DIVISION====================
+	//==========DIVISION==========
+	Audio_URL_STR_CLS.VAL.MultiPlier_EAB			=0;//0:false;1:true;
+	ele_MultiPlier_EAB.style.backgroundColor		=["red","#1EB0E9"][Audio_URL_STR_CLS.VAL.MultiPlier_EAB];
+	ele_MultiPlier_CLS.disabled						=[true,false][Audio_URL_STR_CLS.VAL.MultiPlier_EAB];
+	ele_MultiPlier_CLS.value						=Audio_URL_STR_CLS.VAL.MultiPlier				=3;
+	//==========DIVISION==========
+	//====================DIVISION====================
+	//==========DIVISION==========
+													Audio_URL_STR_CLS.VAL.IMG_ARGMS_EAB				=0;
+	ele_IMG_ARGMS_EAB.style.backgroundColor			=["red","#1EB0E9"][Audio_URL_STR_CLS.VAL.IMG_ARGMS_EAB];
+	ele_IMG_ARGMS_Opacity_CLS.disabled				=[true,false][Audio_URL_STR_CLS.VAL.IMG_ARGMS_EAB];
+	ele_IMG_ARGMS_Direction_Type_SEL.disabled		=[true,false][Audio_URL_STR_CLS.VAL.IMG_ARGMS_EAB];
+	ele_IMG_ARGMS_Opacity_CLS.value					=Audio_URL_STR_CLS.VAL.IMG_ARGMS_Opacity		=0.7;
+	//==========DIVISION==========
+	ele00=ele_IMG_ARGMS_Direction_Type_SEL;
+	str00="";
+	str00+="<option>IMG_00_00</option>";
+	str00+="<option>IMG_00_01</option>";
+	str00+="<option>IMG_01_00</option>";
+	str00+="<option>IMG_01_01</option>";
+	ele00.innerHTML=str00;
+	ele00.selectedIndex=Audio_URL_STR_CLS.VAL.IMG_ARGMS_Direction_Type=0;
+	//==========DIVISION==========
+	evt_target=ele_IMG_ARGMS_EAB				;	IMG_ARGMS_INI(evt_target);
+	evt_target=ele_IMG_ARGMS_Opacity_CLS		;	IMG_ARGMS_INI(evt_target);
+	evt_target=ele_IMG_ARGMS_Direction_Type_SEL	;	IMG_ARGMS_INI(evt_target);
+	//==========DIVISION==========
+	//====================DIVISION====================
+	//==========DIVISION==========
+	Audio_URL_STR_CLS.VAL.Multi_Video_EAB			=0;//0:false;1:true;
+	ele_Multi_Video_EAB.style.backgroundColor		=["red","#1EB0E9"][Audio_URL_STR_CLS.VAL.Multi_Video_EAB];
+	ele_Multi_Video_Fit_BTN.disabled				=[true,false][Audio_URL_STR_CLS.VAL.Multi_Video_EAB];
+	ele_Multi_Video_X_CLS.disabled					=[true,false][Audio_URL_STR_CLS.VAL.Multi_Video_EAB];
+	ele_Multi_Video_Y_CLS.disabled					=[true,false][Audio_URL_STR_CLS.VAL.Multi_Video_EAB];
+	ele_Multi_Video_VID_List_STR_CLS.disabled		=[true,false][Audio_URL_STR_CLS.VAL.Multi_Video_EAB];
+	ele_Multi_Video_VID_List_STR_SEL.disabled		=[true,false][Audio_URL_STR_CLS.VAL.Multi_Video_EAB];
+	ele_Multi_Video_VID_Type_SEL.disabled			=[true,false][Audio_URL_STR_CLS.VAL.Multi_Video_EAB];
+	ele_Multi_Video_Timer_Mode_SEL.disabled			=[true,false][Audio_URL_STR_CLS.VAL.Multi_Video_EAB];
+													;Audio_URL_STR_CLS.VAL.Multi_Video_Fit			=1;
+	ele_Multi_Video_Fit_BTN.style.backgroundColor	=["red","#1EB0E9"][Audio_URL_STR_CLS.VAL.Multi_Video_Fit];
+	ele_Multi_Video_X_CLS.value						=Audio_URL_STR_CLS.VAL.Multi_Video_X			=4;
+	ele_Multi_Video_Y_CLS.value						=Audio_URL_STR_CLS.VAL.Multi_Video_Y			=3;
+	ele_Multi_Video_VID_List_STR_CLS.value			=Audio_URL_STR_CLS.VAL.Multi_Video_VID_List_STR	="[2]";//"[2,3,4,5,6,7]";//"[2,8,9,10,11,12]";
+	eval("Audio_URL_STR_CLS.VAL.Multi_Video_VID_List_ARR=" + Audio_URL_STR_CLS.VAL.Multi_Video_VID_List_STR + ";");
+	//==========DIVISION==========
+	ele00=ele_Audio_DFLG_Audio_Content_Table;
+	arr00=Audio_URL_STR_CLS.Audio_ARR;
+	num00=1;
+	str00="";
+	str00+="\n";
+	for (i=0;i<arr00[0].length;i++)
+	{
+		AR_ID=i;
+		if ( i%num00==0 )		{str00+="<tr>" + "\n";}
+		//arr03[i].replace(/^[\x00-\xFF]*/gm,"");
+		str00+='	<td class="TD_AText"><span>' + arr00[3][i] + 
+				'</span><a href="' + Base_URL_DIR_VAL + arr00[1][i] + '" target=_blank download>' + '↓</a>' + 
+				'<a href="' + Base_URL_DIR_VAL + arr00[1][i] + '" target=_blank>' + '→</a></td>' + "\n";
+		str00+='	<td class="TD_Audio">' + '<div><video AR_ID="' + AR_ID + '" duration_ORI="" controls="" name="media" loop=true><source src="' + 
+				Base_URL_DIR_VAL + arr00[1][i] + '" type="audio/mpeg">		</video></div>' + '</td>' + "\n";
+		if ( i%num00==0 )		{str00+="</tr>" + "\n";}
+	}
+	//	if ( i%num00==0 )		{str00+="</tr>" + "\n";}
+	ele00.innerHTML=str00;
+	if ( !isNaN(AID) )
+	{
+		//	str00=ele00.getElementsByClassName("TD_Audio")[AID].getElementsByTagName("source")[0].src;
+		//	ele00.getElementsByClassName("TD_Audio")[AID].innerHTML="";
+		//	setTimeout(function(ele00,AID,str00)
+		//	{
+		//		//ele00.getElementsByTagName("video")[AID].play();
+		//		ele00.getElementsByClassName("TD_Audio")[AID].innerHTML=
+		//		'<div><video AR_ID="' + AR_ID + '" duration_ORI="" controls="" name="media" autoplay="autoplay" loop=true><source src="' + 
+		//		str00 + '" type="audio/mpeg"></video></div>';
+		//	},1000,ele00,AID,str00);
+	}
+	else		{}
+	//==========DIVISION==========
+	ele01=ele_DFLG_Video_SEL;
+	arr01=Audio_URL_STR_CLS.Video_ARR;
+	str01="";
+	for (i=0;i<arr01[0].length;i++)
+	{
+		str01+="<option value=\"" + "VID_" + ("0".repeat(2) + i.toString()).slice(-2) + "\">" + arr01[3][i] + "</option>";
+	}
+	ele01.innerHTML=str01;
+	//==========DIVISION==========
+	if ( !isNaN(VID) )	{ele_DFLG_Video_SEL.selectedIndex=VID;}
+	else				{ele_DFLG_Video_SEL.selectedIndex=VID=2;}
+	//==========DIVISION==========
+	//====================DIVISION====================
+	//==========DIVISION==========
+	Audio_URL_STR_CLS.VAL.ITime_EAB								=0;//0:false;1:true;
+	ele_ITime_EAB.style.backgroundColor							=["red","#1EB0E9"][Audio_URL_STR_CLS.VAL.ITime_EAB];
+	ele_ITime_CLS.disabled										=[true,false][Audio_URL_STR_CLS.VAL.ITime_EAB];
+	ele_ITime_CLS.value											=Audio_URL_STR_CLS.VAL.ITime		=1;
+	//==========DIVISION==========
+	str00="";
+	str00+="<option>0 : Normal ITime .</option>";
+	str00+="<option>1 : Begin to End Random ITime , speed will not be changed .</option>";
+	str00+="<option>2 : Begin to End Random ITime , change after BEITime_BTTI seconds .</option>";
+	str00+="<option>3 : Begin to End Random ITime , change after BEITime_BTTI to BEITime_ETTI random seconds .</option>";
+	str00+="<option>4 : Begin to End Random ITime , change after video duration seconds .</option>";
+	str00+="<option>5 : Begin to End Random ITime , change after video duration random seconds .</option>";
+	str00+="<option>6 : Begin to End Random ITime , eval : v=f(t) .</option>";
+	ele_ITime_Type_SEL.innerHTML=str00;
+	ele_ITime_Type_SEL.selectedIndex=Audio_URL_STR_CLS.VAL.ITime_Type=3;
+	ele_ITime_Type_SEL.disabled=[true,false][Audio_URL_STR_CLS.VAL.ITime_EAB];
+	//==========DIVISION==========
+	str00="";
+	str00+="<option>0 : Pre_Time + Interval_Time .</option>";
+	str00+="<option>1 : Current_Time + Interval_Time .</option>";
+	str00+="<option>2 : Current_Time .</option>";
+	ele_ICTime_Type_SEL.innerHTML=str00;
+	ele_ICTime_Type_SEL.selectedIndex=Audio_URL_STR_CLS.VAL.ICTime_Type=1;
+	ele_ICTime_Type_SEL.disabled=[true,false][Audio_URL_STR_CLS.VAL.ITime_EAB];
+	//==========DIVISION==========
+	Audio_URL_STR_CLS.VAL.AR_ID_Pre_Time_ARR=[[]];
+	//==========DIVISION==========
+	str00="";
+	str00+="<option>0 : End_Time .</option>";
+	str00+="<option>1 : End_2_Begin_Time .</option>";
+	ele_E_E2B_Time_Type_SEL.innerHTML=str00;
+	ele_E_E2B_Time_Type_SEL.selectedIndex=Audio_URL_STR_CLS.VAL.E_E2B_Time_Type=1;
+	ele_E_E2B_Time_Type_SEL.disabled=[true,false][Audio_URL_STR_CLS.VAL.ITime_EAB];
+	//==========DIVISION==========
+	ele_BITime_CLS.disabled=[true,false][Audio_URL_STR_CLS.VAL.ITime_EAB];
+	ele_EITime_CLS.disabled=[true,false][Audio_URL_STR_CLS.VAL.ITime_EAB];
+	ele_BEITime_BTTI_CLS.disabled=[true,false][Audio_URL_STR_CLS.VAL.ITime_EAB];
+	ele_BEITime_ETTI_CLS.disabled=[true,false][Audio_URL_STR_CLS.VAL.ITime_EAB];
+	ele_BITime_CLS.value=Audio_URL_STR_CLS.VAL.BITime=0.500;
+	ele_EITime_CLS.value=Audio_URL_STR_CLS.VAL.EITime=1.500;
+	ele_BEITime_BTTI_CLS.value=Audio_URL_STR_CLS.VAL.BEITime_BTTI=1500;//60000;
+	ele_BEITime_ETTI_CLS.value=Audio_URL_STR_CLS.VAL.BEITime_ETTI=2500;//180000;
+	//==========DIVISION==========
+	str00="";
+	str00+="<option>0 : sin/cos/tan .</option>";
+	str00+="<option>1 : sin/cos/tan .</option>";
+	str00+="<option>2 : e^x .</option>";
+	str00+="<option>3 : ????? .</option>";
+	ele_ITime_2_Time_Fun_Type_SEL.innerHTML						=str00;
+	ele_ITime_2_Time_Fun_Type_SEL.selectedIndex					=Audio_URL_STR_CLS.VAL.ITime_2_Time_Fun_Type	=0;
+	ele_ITime_2_Time_Fun_Type_SEL.disabled						=[true,false][Audio_URL_STR_CLS.VAL.ITime_EAB];
+	//==========DIVISION==========
+	ele_ITime_2_Time_Fun_TextArea_Resize.disabled				=[true,false][Audio_URL_STR_CLS.VAL.ITime_EAB];
+	Audio_URL_STR_CLS.VAL.ITime_2_Time_Fun_TextArea_Resize		=0;
+	ele_ITime_2_Time_Fun_TextArea_Resize.style.backgroundColor	=["yellow","orange"][Audio_URL_STR_CLS.VAL.ITime_2_Time_Fun_TextArea_Resize];
+	//==========DIVISION==========
+	ele_ITime_2_Time_Fun_EVAL_Code.disabled						=[true,false][Audio_URL_STR_CLS.VAL.ITime_EAB];
+	ele_ITime_2_Time_Fun_EVAL_Code.value						=Audio_URL_STR_CLS.VAL.ITime_2_Time_Fun_EVAL_Code=
+	Audio_URL_STR_CLS.FUN.Audio_VAR_2_Time_Fun_EVAL_Code(Audio_URL_STR_CLS.VAL.ITime_2_Time_Fun_Type);
+	Audio_URL_STR_CLS.VAL.ITime_2_Time_TTI_SD_ID_ARR			=[];
+	//==========DIVISION==========
+	//====================DIVISION====================
+	//==========DIVISION==========
+	Audio_URL_STR_CLS.VAL.Speed_EAB								=0;//0:false;1:true;
+	ele_Speed_EAB.style.backgroundColor							=["red","#1EB0E9"][Audio_URL_STR_CLS.VAL.Speed_EAB];
+	ele_Speed_Negative_Or_Positive_BTN.disabled					=[true,false][Audio_URL_STR_CLS.VAL.Speed_EAB];
+	Audio_URL_STR_CLS.VAL.Speed_Negative_Or_Positive			=1;//0:"Negative";1:"Positive";
+	ele_Speed_Negative_Or_Positive_BTN.style.backgroundColor	=["yellow","orange"][Audio_URL_STR_CLS.VAL.Speed_Negative_Or_Positive];
+	ele_Speed_CLS.disabled										=[true,false][Audio_URL_STR_CLS.VAL.Speed_EAB];
+	ele_Speed_CLS.value											=Audio_URL_STR_CLS.VAL.Speed		=1;
+	//==========DIVISION==========
+	str00="";
+	str00+="<option>0 : Normal Speed .</option>";
+	str00+="<option>1 : Begin to End Random Speed , speed will not be changed .</option>";
+	str00+="<option>2 : Begin to End Random Speed , change after BESpeed_BTTI seconds .</option>";
+	str00+="<option>3 : Begin to End Random Speed , change after BESpeed_BTTI to BESpeed_ETTI random seconds .</option>";
+	str00+="<option>4 : Begin to End Random Speed , change after video duration seconds .</option>";
+	str00+="<option>5 : Begin to End Random Speed , change after video duration random seconds .</option>";
+	str00+="<option>6 : Begin to End Random Speed , eval : v=f(t) .</option>";
+	ele_Speed_Type_SEL.innerHTML=str00;
+	ele_Speed_Type_SEL.selectedIndex=Audio_URL_STR_CLS.VAL.Speed_Type=3;
+	ele_Speed_Type_SEL.disabled=[true,false][Audio_URL_STR_CLS.VAL.Speed_EAB];
+	//==========DIVISION==========
+	ele_BSpeed_CLS.disabled=[true,false][Audio_URL_STR_CLS.VAL.Speed_EAB];
+	ele_ESpeed_CLS.disabled=[true,false][Audio_URL_STR_CLS.VAL.Speed_EAB];
+	ele_BESpeed_BTTI_CLS.disabled=[true,false][Audio_URL_STR_CLS.VAL.Speed_EAB];
+	ele_BESpeed_ETTI_CLS.disabled=[true,false][Audio_URL_STR_CLS.VAL.Speed_EAB];
+	ele_BSpeed_CLS.value=Audio_URL_STR_CLS.VAL.BSpeed=0.500;
+	ele_ESpeed_CLS.value=Audio_URL_STR_CLS.VAL.ESpeed=3.000;
+	ele_BESpeed_BTTI_CLS.value=Audio_URL_STR_CLS.VAL.BESpeed_BTTI=2000;//60000;
+	ele_BESpeed_ETTI_CLS.value=Audio_URL_STR_CLS.VAL.BESpeed_ETTI=3000;//180000;
+	//==========DIVISION==========
+	str00="";
+	str00+="<option>0 : sin/cos/tan .</option>";
+	str00+="<option>1 : sin/cos/tan .</option>";
+	str00+="<option>2 : e^x .</option>";
+	str00+="<option>3 : ????? .</option>";
+	ele_Speed_2_Time_Fun_Type_SEL.innerHTML						=str00;
+	ele_Speed_2_Time_Fun_Type_SEL.selectedIndex					=Audio_URL_STR_CLS.VAL.Speed_2_Time_Fun_Type	=0;
+	ele_Speed_2_Time_Fun_Type_SEL.disabled						=[true,false][Audio_URL_STR_CLS.VAL.Speed_EAB];
+	//==========DIVISION==========
+	ele_Speed_2_Time_Fun_TextArea_Resize.disabled				=[true,false][Audio_URL_STR_CLS.VAL.Speed_EAB];
+	Audio_URL_STR_CLS.VAL.Speed_2_Time_Fun_TextArea_Resize		=0;
+	ele_Speed_2_Time_Fun_TextArea_Resize.style.backgroundColor	=["yellow","orange"][Audio_URL_STR_CLS.VAL.Speed_2_Time_Fun_TextArea_Resize];
+	//==========DIVISION==========
+	ele_Speed_2_Time_Fun_EVAL_Code.disabled						=[true,false][Audio_URL_STR_CLS.VAL.Speed_EAB];
+	ele_Speed_2_Time_Fun_EVAL_Code.value						=Audio_URL_STR_CLS.VAL.Speed_2_Time_Fun_EVAL_Code=
+	Audio_URL_STR_CLS.FUN.Audio_VAR_2_Time_Fun_EVAL_Code(Audio_URL_STR_CLS.VAL.Speed_2_Time_Fun_Type);
+	Audio_URL_STR_CLS.VAL.Speed_2_Time_TTI_SD_ID_ARR			=[];
+	//==========DIVISION==========
+	//====================DIVISION====================
+	//==========DIVISION==========
+	BEXXXXX_BETTI_VAL_Set_INI();
+	//==========DIVISION==========
+	//====================DIVISION====================
+	//==========DIVISION==========
+	str00="";
+	str00+="<option>[2]</option>";
+	str00+="<option>[2,3,4,5,6,7]</option>";
+	str00+="<option>[2,8,9,10,11,12]</option>";
+	ele_Multi_Video_VID_List_STR_SEL.innerHTML=str00;
+	ele_Multi_Video_VID_List_STR_SEL.selectedIndex=0;
+	//==========DIVISION==========
+	str00="";
+	str00+="<option title=\"0.打横\">"						 + "0 : Transversal position ." + "</option>";
+	str00+="<option title=\"1.打竖\">"						 + "1 : Vertical position ." + "</option>";
+	str00+="<option title=\"2.随机\">"						 + "2 : Random position ." + "</option>";
+	str00+="<option title=\"3.随机+定时改变\">"				 + "3 : Random position and video time timing change . " + "</option>";
+	str00+="<option title=\"4.随机+不定时改变\">"			 + "4 : Random position and Random timing change . " + "</option>";
+	str00+="<option title=\"5.随机+定时改变+随即速度改变_00_Random_Gen\">" + 
+			"5 : Random position and video time and random speed timing change 00 Random_Gen . " + "</option>";
+	str00+="<option title=\"6.随机+定时改变+随即速度改变_01_Speed_EAB\">" + 
+			"6 : Random position and video time and random speed timing change 01 Speed_EAB . " + "</option>";
+	ele_Multi_Video_VID_Type_SEL.innerHTML=str00;
+	ele_Multi_Video_VID_Type_SEL.selectedIndex=Audio_URL_STR_CLS.VAL.Multi_Video_VID_Type=0;
+	Audio_URL_STR_CLS.VAL.Multi_Video_VID_Timer_ID_ARR=[];
+	//==========DIVISION==========
+	str00="";
+	str00+="<option>0 : Normal Start .</option>";
+	str00+="<option>1 : All Start in the same time adjustment .</option>";
+	str00+="<option>2 : Video play start in the random time .</option>";
+	str00+="<option>3 : Video play start in the random time , reset random after the video time .</option>";
+	ele_Multi_Video_Timer_Mode_SEL.innerHTML=str00;
+	ele_Multi_Video_Timer_Mode_SEL.selectedIndex=Audio_URL_STR_CLS.VAL.Multi_Video_Timer_Mode=1;
+	Audio_URL_STR_CLS.VAL.Multi_Video_Duration_Timer_ID_ARR=[];
+	//==========DIVISION==========
+	arr01=Audio_URL_STR_CLS.Video_ARR;
+	elel_MainV_TD_VText[0].getElementsByTagName("span")[0].innerHTML="李洪志做五套功法：" + arr01[4][VID] + 
+	'：<br>可<span style="color:red;font-weight:bold;">全屏近距离</span>观看：' + 
+	'<a href="' + Base_URL_DIR_VAL + arr01[1][VID] + '" target=_blank>' + arr01[3][VID] + "</a>" + "。";
+	//==========DIVISION==========
+	str00="";
+	str00+='<div><video duration_ORI="" controls="" name="media" autoplay="autoplay" loop=true muted><source src="' + 
+			Base_URL_DIR_VAL + arr01[1][VID] + '" type="audio/mpeg">		</video></div>';
+	elel_MainV_TD_Video[0].innerHTML=str00;
+	//==========DIVISION==========
+	Audio_URL_STR_CLS.VAL.Video_Control_Bar_SH_State=0;
+	Video_Control_Bar_INI(ele_Video_Control_Bar_BTN);
+	//==========DIVISION==========
+	//==============================ELE_Preset==============================
+	//==========DIVISION==========
+	var location_href=location.href;
+	var ele,evt,post_method;
+	//==========DIVISION==========
+	//	<td><input type="button" class="MultiPlier_EAB" title="MultiPlier_EAB" value="M" onclick=MultiPlier_EAB_Switch(this)></td>
+	//	<td><input type="text" class="MultiPlier_CLS" title="MultiPlier_CLS" value="3"></td>
+	//	<td><input type="button" class="Speed_EAB" title="Speed_EAB" value="S" onclick=Speed_EAB_Switch(this)></td>
+	//	<td><input type="text" class="Speed_CLS" title="Speed_CLS" value="1"></td>
+	//	<td><select class="Speed_Type_SEL" title="Speed_Type_SEL"></select></td>
+	//	<td><input type="text" class="BSpeed_CLS" title="BSpeed_CLS" value="0.500"></td>
+	//	<td><input type="text" class="ESpeed_CLS" title="ESpeed_CLS" value="3.000"></td>
+	//	<td><input type="text" class="BESpeed_BTTI_CLS" title="BESpeed_BTTI_CLS" value="60000"></td>
+	//	<td><input type="text" class="BESpeed_ETTI_CLS" title="BESpeed_ETTI_CLS" value="180000"></td>
+	//==========DIVISION==========
+	//	<td><input type="button" class="Multi_Video_EAB" title="Multi_Video_EAB" value="MV" onclick=Multi_Video_EAB_Switch(this)></td>
+	//	<td><input type="button" class="Multi_Video_Fit_BTN" title="Multi_Video_Fit_BTN" value="F" onclick=Multi_Video_Fit_Switch(this)></td>
+	//	<td><input type="text" class="Multi_Video_X_CLS" title="Multi_Video_X_CLS" value="4"></td>
+	//	<td><input type="text" class="Multi_Video_Y_CLS" title="Multi_Video_Y_CLS" value="3"></td>
+	//	<td><input type="text" class="Multi_Video_VID_List_STR_CLS" title="Multi_Video_VID_List_STR_CLS" value="[2,8,9,10,11,12]"></td>
+	//	<td><select class="Multi_Video_VID_List_STR_SEL" title="Multi_Video_VID_List_STR_SEL"></select></td>
+	//	<td><select class="Multi_Video_VID_Type_SEL" title="Multi_Video_VID_Type_SEL"></select></td>
+	//	<td><select class="Multi_Video_Timer_Mode_SEL" title="Multi_Video_Timer_Mode_SEL"></select></td>
+	//==========DIVISION==========
+	var VME		=location_href.replace(new RegExp("^(.+\\?)(.*)(" + "vme"		 + "=)([^\\?\\&]*)(\\&)(.*)$","gm"),"$4").replace(/^(ftp|http|file).*$/gm,"#####");//"MultiPlier_EAB";
+	var VMC		=location_href.replace(new RegExp("^(.+\\?)(.*)(" + "vmc"		 + "=)([^\\?\\&]*)(\\&)(.*)$","gm"),"$4").replace(/^(ftp|http|file).*$/gm,"#####");//"MultiPlier_CLS";
+	var VSE		=location_href.replace(new RegExp("^(.+\\?)(.*)(" + "vse"		 + "=)([^\\?\\&]*)(\\&)(.*)$","gm"),"$4").replace(/^(ftp|http|file).*$/gm,"#####");//"Speed_EAB";
+	var VSC		=location_href.replace(new RegExp("^(.+\\?)(.*)(" + "vsc"		 + "=)([^\\?\\&]*)(\\&)(.*)$","gm"),"$4").replace(/^(ftp|http|file).*$/gm,"#####");//"Speed_CLS";
+	var VSTS	=location_href.replace(new RegExp("^(.+\\?)(.*)(" + "vsts"		 + "=)([^\\?\\&]*)(\\&)(.*)$","gm"),"$4").replace(/^(ftp|http|file).*$/gm,"#####");//"Speed_Type_SEL";
+	var VBC		=location_href.replace(new RegExp("^(.+\\?)(.*)(" + "vbc"		 + "=)([^\\?\\&]*)(\\&)(.*)$","gm"),"$4").replace(/^(ftp|http|file).*$/gm,"#####");//"BSpeed_CLS";
+	var VEC		=location_href.replace(new RegExp("^(.+\\?)(.*)(" + "vec"		 + "=)([^\\?\\&]*)(\\&)(.*)$","gm"),"$4").replace(/^(ftp|http|file).*$/gm,"#####");//"ESpeed_CLS";
+	var VBBC	=location_href.replace(new RegExp("^(.+\\?)(.*)(" + "vbbc"		 + "=)([^\\?\\&]*)(\\&)(.*)$","gm"),"$4").replace(/^(ftp|http|file).*$/gm,"#####");//"BESpeed_BTTI_CLS";
+	var VBEC	=location_href.replace(new RegExp("^(.+\\?)(.*)(" + "vbec"		 + "=)([^\\?\\&]*)(\\&)(.*)$","gm"),"$4").replace(/^(ftp|http|file).*$/gm,"#####");//"BESpeed_ETTI_CLS";
+	//==========DIVISION==========
+	var VMVE	=location_href.replace(new RegExp("^(.+\\?)(.*)(" + "vmve"		 + "=)([^\\?\\&]*)(\\&)(.*)$","gm"),"$4").replace(/^(ftp|http|file).*$/gm,"#####");//"Multi_Video_EAB";
+	var VMVFB	=location_href.replace(new RegExp("^(.+\\?)(.*)(" + "vmvfb"		 + "=)([^\\?\\&]*)(\\&)(.*)$","gm"),"$4").replace(/^(ftp|http|file).*$/gm,"#####");//"Multi_Video_Fit_BTN";
+	var VMVXC	=location_href.replace(new RegExp("^(.+\\?)(.*)(" + "vmvxc"		 + "=)([^\\?\\&]*)(\\&)(.*)$","gm"),"$4").replace(/^(ftp|http|file).*$/gm,"#####");//"Multi_Video_X_CLS";
+	var VMVYC	=location_href.replace(new RegExp("^(.+\\?)(.*)(" + "vmvyc"		 + "=)([^\\?\\&]*)(\\&)(.*)$","gm"),"$4").replace(/^(ftp|http|file).*$/gm,"#####");//"Multi_Video_Y_CLS";
+	var VMVVLSC	=location_href.replace(new RegExp("^(.+\\?)(.*)(" + "vmvvlsc"	 + "=)([^\\?\\&]*)(\\&)(.*)$","gm"),"$4").replace(/^(ftp|http|file).*$/gm,"#####");//"Multi_Video_VID_List_STR_CLS";
+	var VMVVLSS	=location_href.replace(new RegExp("^(.+\\?)(.*)(" + "vmvvlss"	 + "=)([^\\?\\&]*)(\\&)(.*)$","gm"),"$4").replace(/^(ftp|http|file).*$/gm,"#####");//"Multi_Video_VID_List_STR_SEL";
+	var VMVVTS	=location_href.replace(new RegExp("^(.+\\?)(.*)(" + "vmvvts"	 + "=)([^\\?\\&]*)(\\&)(.*)$","gm"),"$4").replace(/^(ftp|http|file).*$/gm,"#####");//"Multi_Video_VID_Type_SEL";
+	var VMVTMS	=location_href.replace(new RegExp("^(.+\\?)(.*)(" + "vmvtms"	 + "=)([^\\?\\&]*)(\\&)(.*)$","gm"),"$4").replace(/^(ftp|http|file).*$/gm,"#####");//"Multi_Video_Timer_Mode_SEL";
+	//==========DIVISION==========
+	var EME		=ele_MultiPlier_EAB;
+	var EMC		=ele_MultiPlier_CLS;
+	var ESE		=ele_Speed_EAB;
+	var ESC		=ele_Speed_CLS;
+	var ESTS	=ele_Speed_Type_SEL;
+	var EBC		=ele_BSpeed_CLS;
+	var EEC		=ele_ESpeed_CLS;
+	var EBBC	=ele_BESpeed_BTTI_CLS;
+	var EBEC	=ele_BESpeed_ETTI_CLS;
+	//==========DIVISION==========
+	var EMVE	=ele_Multi_Video_EAB;
+	var EMVFB	=ele_Multi_Video_Fit_BTN;
+	var EMVXC	=ele_Multi_Video_X_CLS;
+	var EMVYC	=ele_Multi_Video_Y_CLS;
+	var EMVVLSC	=ele_Multi_Video_VID_List_STR_CLS;
+	var EMVVLSS	=ele_Multi_Video_VID_List_STR_SEL;
+	var EMVVTS	=ele_Multi_Video_VID_Type_SEL;
+	var EMVTMS	=ele_Multi_Video_Timer_Mode_SEL;
+	//==========DIVISION==========
+	if ( VME	!="#####" )	{	VME			=	parseInt	(VME	,10)	;	}//	:	0,//0:false;1:true;
+	if ( VSE	!="#####" )	{	VSE			=	parseInt	(VSE	,10)	;	}//	:	0,//0:false;1:true;
+	if ( VME	!="#####" )	{	if ( VME!=Audio_URL_STR_CLS.VAL.MultiPlier_EAB	)		{EME.click();}	}
+	if ( VSE	!="#####" )	{	if ( VSE!=Audio_URL_STR_CLS.VAL.Speed_EAB		)		{ESE.click();}	}
+	//==========DIVISION==========
+	if ( VMC	!="#####" )	{	Audio_URL_STR_CLS.VAL.MultiPlier					=	EMC		.value			=	VMC			=	parseFloat	(VMC		)	;	}//	:	1,
+	if ( VSC	!="#####" )	{	Audio_URL_STR_CLS.VAL.Speed							=	ESC		.value			=	VSC			=	parseFloat	(VSC		)	;	}//	:	1,
+	if ( VSTS	!="#####" )	{	Audio_URL_STR_CLS.VAL.Speed_Type					=	ESTS	.selectedIndex	=	VSTS		=	parseInt	(VSTS	,10)	;	}//	:	0,//0;1;2;3;4;5;6;
+	if ( VBC	!="#####" )	{	Audio_URL_STR_CLS.VAL.BSpeed						=	EBC		.value			=	VBC			=	parseFloat	(VBC		)	;	}//	:	0.500,
+	if ( VEC	!="#####" )	{	Audio_URL_STR_CLS.VAL.ESpeed						=	EEC		.value			=	VEC			=	parseFloat	(VEC		)	;	}//	:	3.000,
+	if ( VBBC	!="#####" )	{	Audio_URL_STR_CLS.VAL.BESpeed_BTTI					=	EBBC	.value			=	VBBC		=	parseInt	(VBBC	,10)	;	}//	:	60000,
+	if ( VBEC	!="#####" )	{	Audio_URL_STR_CLS.VAL.BESpeed_ETTI					=	EBEC	.value			=	VBEC		=	parseInt	(VBEC	,10)	;	}//	:	180000,
+	//==========DIVISION==========
+	if ( VMVE	!="#####" )	{	VMVE		=	parseInt	(VMVE	,10)	;	}//	:	1,
+	if ( VMVFB	!="#####" )	{	VMVFB		=	parseInt	(VMVFB	,10)	;	}//	:	1,
+	if ( VMVE	!="#####" )	{	if ( VMVE!=Audio_URL_STR_CLS.VAL.Multi_Video_EAB	)		{EMVE.click();}		}
+	if ( VMVFB	!="#####" )	{	if ( VMVFB!=Audio_URL_STR_CLS.VAL.Multi_Video_Fit	)		{EMVFB.click();}	}
+	//==========DIVISION==========
+	if ( VMVXC	!="#####" )	{	Audio_URL_STR_CLS.VAL.Multi_Video_X					=	EMVXC	.value			=	VMVXC		=	parseInt	(VMVXC	,10)	;	Multi_Video_CLS_INI(EMVXC);	}//	:	4,
+	if ( VMVYC	!="#####" )	{	Audio_URL_STR_CLS.VAL.Multi_Video_Y					=	EMVYC	.value			=	VMVYC		=	parseInt	(VMVYC	,10)	;	Multi_Video_CLS_INI(EMVYC);	}//	:	3,
+	if ( VMVVLSS!="#####" )
+	{
+																EMVVLSS.selectedIndex	=	VMVVLSS		=	parseInt	(VMVVLSS,10)			;//	:	"[2]",//"[2,8,9,10,11,12]",
+		Audio_URL_STR_CLS.VAL.Multi_Video_VID_List_STR		=	EMVVLSS.options[EMVVLSS.selectedIndex].innerHTML								;
+																EMVVLSC	.value			=	EMVVLSS.options[EMVVLSS.selectedIndex].innerHTML	;
+		eval("Audio_URL_STR_CLS.VAL.Multi_Video_VID_List_ARR=" + Audio_URL_STR_CLS.VAL.Multi_Video_VID_List_STR + ";");
+	}
+	if ( VMVVLSC!="#####" )	{	Audio_URL_STR_CLS.VAL.Multi_Video_VID_List_ARR		=	EMVVLSC	.value			=	VMVVLSC		;	eval("MVVLSC=" + decodeURIComponent(VMVVLSC) + ";");	}//	:	[2],//[2,8,9,10,11,12],
+	if ( VMVVTS	!="#####" )	{	Audio_URL_STR_CLS.VAL.Multi_Video_VID_Type			=	EMVVTS	.selectedIndex	=	VMVVTS		=	parseInt	(VMVVTS	,10)	;	}//	:	0,//0;1;2;3;4;
+	if ( VMVTMS	!="#####" )	{	Audio_URL_STR_CLS.VAL.Multi_Video_Timer_Mode		=	EMVTMS	.selectedIndex	=	VMVTMS		=	parseInt	(VMVTMS	,10)	;	}//	:	1,//0;1;2;3;
+	//==========DIVISION==========
+	//	<td><input type="button" class="DFLG_Audio" value="Audio" onclick=Audio_Switch(this) style="background-color:#1EB0E9;"></td>
+	//	<td><input type="button" class="DFLG_Video" value="Video" onclick=Video_Switch(this) style="background-color:#1EB0E9;"></td>
+	//	<td><a class="Multi_Video_TOP" title="Multi_Video_TOP" href="#Audio_DFLG_Multi_Video_Content_Table">↓</a></td>
+	//==========DIVISION==========
+	var VDA		=location_href.replace(new RegExp("^(.+\\?)(.*)(" + "vda"		 + "=)([^\\?\\&]*)(\\&)(.*)$","gm"),"$4").replace(/^(ftp|http|file).*$/gm,"#####");//"DFLG_Audio";
+	var VDV		=location_href.replace(new RegExp("^(.+\\?)(.*)(" + "vdv"		 + "=)([^\\?\\&]*)(\\&)(.*)$","gm"),"$4").replace(/^(ftp|http|file).*$/gm,"#####");//"DFLG_Video";
+	var VMVT	=location_href.replace(new RegExp("^(.+\\?)(.*)(" + "vmvt"		 + "=)([^\\?\\&]*)(\\&)(.*)$","gm"),"$4").replace(/^(ftp|http|file).*$/gm,"#####");//"Multi_Video_TOP";
+	//==========DIVISION==========
+	var EDA		=ele_DFLG_Audio;
+	var EDV		=ele_DFLG_Video;
+	var EMVT	=ele_Multi_Video_TOP;
+	//==========DIVISION==========
+	if ( VDA	!="#####" )	{	VDA			=	parseInt	(VDA	,10)	;	}//	:	0,//0:false;1:true;
+	if ( VDV	!="#####" )	{	VDV			=	parseInt	(VDV	,10)	;	}//	:	0,//0:false;1:true;
+	if ( VMVT	!="#####" )	{	VMVT		=	parseInt	(VMVT	,10)	;	}//	:	0,//0:false;1:true;
+	//==========DIVISION==========
+	if ( VDA	==1 )	{EDA	.click();}
+	//==========DIVISION==========
+	var VIASE	=location_href.replace(new RegExp("^(.+\\?)(.*)(" + "VIASE"		 + "=)([^\\?\\&]*)(\\&)(.*)$","gm"),"$4").replace(/^(ftp|http|file).*$/gm,"#####");//"IMG_ARGMS_EAB";
+	var VIASC	=location_href.replace(new RegExp("^(.+\\?)(.*)(" + "VIASC"		 + "=)([^\\?\\&]*)(\\&)(.*)$","gm"),"$4").replace(/^(ftp|http|file).*$/gm,"#####");//"IMG_ARGMS_Opacity_CLS";
+	var VIASDTS	=location_href.replace(new RegExp("^(.+\\?)(.*)(" + "VIASDTS"	 + "=)([^\\?\\&]*)(\\&)(.*)$","gm"),"$4").replace(/^(ftp|http|file).*$/gm,"#####");//"IMG_ARGMS_Direction_Type_SEL";
+	//==========DIVISION==========
+	var EIASE	=ele_IMG_ARGMS_EAB;
+	var EIASC	=ele_IMG_ARGMS_Opacity_CLS;
+	var EIASDTS	=ele_IMG_ARGMS_Direction_Type_SEL;
+	//==========DIVISION==========
+	ele=ele_Audio_IMG_ARGMS_Ctrl_Table;		evt={target:EIASE};				post_method=3;
+	if ( VIASE		!="#####" )	{	Audio_URL_STR_CLS.VAL.IMG_ARGMS_EAB											=	VIASE		=	parseInt	(VIASE - 1	,10)	;	Audio_IMG_ARGMS_Ctrl_Table_Action(ele,evt,post_method);	}//	:	0,
+	ele=ele_Audio_IMG_ARGMS_Ctrl_Table;		evt={target:EIASC};				post_method=2;
+	if ( VIASC		!="#####" )	{	Audio_URL_STR_CLS.VAL.IMG_ARGMS_Opacity			=	EIASC	.value			=	VIASC		=	parseFloat	(VIASC			)	;	Audio_IMG_ARGMS_Ctrl_Table_Action(ele,evt,post_method);	}//	:	0.7,
+	
+	ele=ele_Audio_IMG_ARGMS_Ctrl_Table;		evt={target:EIASDTS};			post_method=2;
+	if ( VIASDTS	!="#####" )	{	Audio_URL_STR_CLS.VAL.IMG_ARGMS_Direction_Type	=	EIASDTS	.selectedIndex	=	VIASDTS		=	parseInt	(VIASDTS	,10)	;
+		Audio_URL_STR_CLS.VAL.IMG_ARGMS_EAB=(Audio_URL_STR_CLS.VAL.IMG_ARGMS_EAB + 1)%2;
+		Audio_IMG_ARGMS_Ctrl_Table_Action(ele,evt,post_method);	}//	:	0,
+	//==========DIVISION==========
+	//	setTimeout(function()
+	//	{
+	//		if ( VDV	==1 )	{EDV	.click();}
+	//		if ( VMVT	==1 )	{EMVT	.click();}
+	//		document.documentElement.requestFullscreen();
+	//		if ( document.fullscreenElement || document.mozFullScreenElement || document.webkitFullscreenElement || document.msFullscreenElement )
+	//		{
+	//			if ( document.documentElement.requestFullscreen )			{document.documentElement.requestFullscreen();}
+	//			else if (document.documentElement.mozRequestFullScreen)		{document.documentElement.mozRequestFullScreen();}
+	//			else if (document.documentElement.webkitRequestFullscreen)	{document.documentElement.webkitRequestFullscreen();}
+	//			else if (document.documentElement.msRequestFullscreen)		{document.documentElement.msRequestFullscreen();}
+	//		}
+	//		else		{}
+	//	},1000);
+	//==========DIVISION==========
+	var this_step=0;
+	setTimeout(function (this_step,VDV,VMVT,EDV,EMVT)
+	{
+		//====================arguments.callee====================
+		var fun_ct_cache;
+		fun_ct_cache=arguments.callee;
+		//====================arguments.callee====================
+		//====================Variable_Predefinition====================
+		//==========DIVISION==========
+		eval(Parameter_Base_STR_ijk_XX(5));
+		var ID,LEN;
+		var STO=0;//0:Do_Not_Run_setTimeout;1:Run_setTimeout;2:Run_Function_Now;
+		//==========DIVISION==========
+		//====================Variable_Predefinition====================
+		//====================this_step====================
+		if ( this_step==0 )
+		{
+			//==========DIVISION==========
+			if ( VDV	==1 )	{EDV	.click();}
+			//==========DIVISION==========
+			if ( this_step==0 )			{this_step++;STO=1;}
+			//==========DIVISION==========
+		}
+		else if ( this_step==1 )
+		{
+			//==========DIVISION==========
+			var ALL_Ready_Or_Not=1;
+			var elel00=elel_MultiV_TD_Video;
+			for (i=0;i<elel00.length;i++)
+			{
+				if ( elel00[i].getElementsByTagName("video")[0]!=undefined && elel00[i].getElementsByTagName("video")[0].readyState==4 )	{}
+				else		{ALL_Ready_Or_Not=0;break;}
+			}
+			//==========DIVISION==========
+			if ( ALL_Ready_Or_Not==0 )
+			{
+				if ( this_step==1 )			{STO=1;}
+			}
+			else if ( ALL_Ready_Or_Not==1 )
+			{
+				console.log("i : " + i + ";\t" + 
+							"ALL_Ready_Or_Not : " + ALL_Ready_Or_Not + ";\t" + 
+							"");
+				if ( this_step==1 )			{this_step++;STO=1;}
+			}
+			else		{}
+			//==========DIVISION==========
+		}
+		else if ( this_step==2 )
+		{
+			//==========DIVISION==========
+			if ( VMVT	==1 )	{EMVT	.click();}
+			try
+			{
+				//document.documentElement.requestFullscreen();
+				//Uncaught (in promise) TypeError: Permissions check failed
+			}
+			catch (err)
+			{
+				console.log(err.message);
+			}
+			//==========DIVISION==========
+			if ( this_step==2 )			{this_step++;STO=1;}
+			//==========DIVISION==========
+		}
+		else if ( this_step==3 )
+		{
+			//==========DIVISION==========
+			//==========DIVISION==========
+			if ( this_step==3 )			{this_step++;STO=1;}
+			//==========DIVISION==========
+		}
+		else		{STO=0;}
+		//==========DIVISION==========
+		//====================this_step====================
+		//====================STO====================
+		if ( STO==0 )//0:Do_Not_Run_setTimeout;1:Run_setTimeout;2:Run_Function_Now;
+		{
+		}
+		else if ( STO==1 )//0:Do_Not_Run_setTimeout;1:Run_setTimeout;2:Run_Function_Now;
+		{
+			setTimeout(fun_ct_cache,TTI_IN_USE,this_step,VDV,VMVT,EDV,EMVT);
+		}
+		else if ( STO==2 )//0:Do_Not_Run_setTimeout;1:Run_setTimeout;2:Run_Function_Now;
+		{
+			fun_ct_cache(this_step,VDV,VMVT,EDV,EMVT);
+		}
+		else		{}
+		//====================STO====================
+	},TTI_IN_USE,this_step,VDV,VMVT,EDV,EMVT);
+	//==========DIVISION==========
+	//Ex.:
+	//DFLG_03.html?vid=2&vmve=1&vdv=1&vmvt=1&w=
+	//DFLG_03.html?vid=2&vmve=1&vmvxc=3&vmvyc=2&vdv=1&vmvt=1&vse=1&vsc=1.5&w=
+	//DFLG_03.html?vid=2&vmve=1&vmvxc=4&vmvyc=3&vdv=1&vmvt=1&vse=1&vsc=2&w=
+	//DFLG_03.html?vid=2&vmve=1&vmvxc=5&vmvyc=4&vdv=1&vmvt=1&w=
+	//==========DIVISION==========
+	//==============================ELE_Preset==============================
+}
+//Audio_URL_STR_CLS_INI();
+console.log(Audio_URL_STR_CLS.Video_ARR);
+console.log(Audio_URL_STR_CLS.Audio_ARR);
+console.log(Audio_URL_STR_CLS.Time_Info_ARR);
+
+function ELE_Hint_Do(ext_inner_cls)
+{
+	//====================arguments.callee====================
+	var fun_ct_cache;
+	fun_ct_cache=arguments.callee;
+	//====================arguments.callee====================
+	console.log("window.document.readyState : " + window.document.readyState);
+	if ( window.document.readyState=="complete" )
+	{
+		//==========DIVISION==========
+		eval(ELE_ELEL_STR_INI());
+		eval(Parameter_Base_STR_ijk_XX(5));
+		var ID,LEN,ID_LEN;
+		//==========DIVISION==========
+		var STO=0;//0:Do_Not_Run_setTimeout;1:Run_setTimeout;2:Run_Function_Now;
+		//==========DIVISION==========
+		var this_step					=ext_inner_cls.this_step;
+		var Hint_Do_Time				=ext_inner_cls.Hint_Do_Time;
+		var Hint_Do_MAX					=20;
+		//==========DIVISION==========
+		if ( this_step==0 )
+		{
+			//==========DIVISION==========
+			if ( Hint_Do_Time==undefined )			{Hint_Do_Time=0;}
+			//==========DIVISION==========
+			ele_Audio_Setting_Use_CLS.style.backgroundColor=["yellow","gold"][Hint_Do_Time%2];
+			ele_Usage_Collection_SEL.style.backgroundColor=["yellow","gold"][Hint_Do_Time%2];
+			//==========DIVISION==========
+			//	console.log("Hint_Do_Time : " + Hint_Do_Time + ";\t" + 
+			//				'["yellow","gold"][Hint_Do_Time%2] : ' + ["yellow","gold"][Hint_Do_Time%2] + ";\t" + 
+			//				"");
+			Hint_Do_Time++;
+			if ( Hint_Do_Time>=0 && Hint_Do_Time<Hint_Do_MAX )
+			{
+			}
+			else if ( Hint_Do_Time>=Hint_Do_MAX )
+			{
+				//==========DIVISION==========
+				ele_Audio_Setting_Use_CLS.style.backgroundColor="#1EB0E9";
+				ele_Usage_Collection_SEL.style.backgroundColor="";
+				//==========DIVISION==========
+				if ( this_step==0 )			{this_step++;STO=1;}
+				//==========DIVISION==========
+			}
+			else		{}
+			//==========DIVISION==========
+			if ( this_step==0 )			{STO=1;}
+			//==========DIVISION==========
+		}
+		else if ( this_step==1 )
+		{
+			//==========DIVISION==========
+			console.log("ELE_Hint_Do Over .");
+			//==========DIVISION==========
+			if ( this_step==1 )			{this_step++;STO=1;}
+			//==========DIVISION==========
+		}
+		else if ( this_step==2 )
+		{
+			//==========DIVISION==========
+			if ( this_step==2 )			{this_step++;STO=1;}
+			//==========DIVISION==========
+		}
+		else if ( this_step==3 )
+		{
+			//==========DIVISION==========
+			if ( this_step==3 )			{this_step++;STO=1;}
+			//==========DIVISION==========
+		}
+		else		{STO=0;}
+		//==========DIVISION==========
+		ext_inner_cls.this_step			=this_step;
+		ext_inner_cls.Hint_Do_Time		=Hint_Do_Time;
+		//==========DIVISION==========
+		//====================STO====================
+		if ( STO==0 )//0:Do_Not_Run_setTimeout;1:Run_setTimeout;2:Run_Function_Now;
+		{
+		}
+		else if ( STO==1 )//0:Do_Not_Run_setTimeout;1:Run_setTimeout;2:Run_Function_Now;
+		{
+			setTimeout(fun_ct_cache,TTI_IN_USE * 2,ext_inner_cls);
+		}
+		else if ( STO==2 )//0:Do_Not_Run_setTimeout;1:Run_setTimeout;2:Run_Function_Now;
+		{
+			fun_ct_cache(ext_inner_cls);
+		}
+		else		{}
+		//====================STO====================
+	}
+	else
+	{
+		setTimeout(fun_ct_cache,TTI_IN_USE * 2,ext_inner_cls);
+	}
+}
+//========================================Audio_URL_STR_CLS========================================
+//========================================Audio_Function========================================
+//==============================DIVISION==============================
+function ITime_BE_Random_Gen(i)
+{
+	//==========DIVISION==========
+	var rsv;//Result_Value;
+	rsv=Audio_URL_STR_CLS.VAL.BITime + (Audio_URL_STR_CLS.VAL.EITime - Audio_URL_STR_CLS.VAL.BITime) * Math.random();
+	console.log("audio_volume_info : " + 
+				"i : " + i + ";\t" + 
+				"rsv : " + rsv + ";\t" + 
+				"");
+	//==========DIVISION==========
+	return rsv;
+	//==========DIVISION==========
+}
+
+function ITime_BME_Random_Gen(i)
+{
+	//==========DIVISION==========
+	//	0   -0.5 -1
+	//	0.5 -1   -3
+	//
+	//	0	0.1	0.2	0.3	0.4	0.5	0.6	0.7	0.8	0.9	1.0
+	//	0.5	0.6	0.7	0.8	0.9	1	1.4	1.8	2.2	2.6	3.0
+	//==========DIVISION==========
+	var vb,vm,ve;//Value;Begin;Middle;End;
+	var rb,rm,re;//Math.random();Begin;Middle;End;
+	var mrv;//Math.random();Value;
+	var rsv;//Result_Value;
+	//==========DIVISION==========
+	vb=Audio_URL_STR_CLS.VAL.BITime;	vm=1;		ve=Audio_URL_STR_CLS.VAL.EITime;
+	rb=0;								rm=0.5;		re=1;
+	mrv=Math.random();
+	//==========DIVISION==========
+	rsv=vb + (ve - vb) * mrv;
+	if ( 0<=vb && vb<=ve && ve<=vm || vm<=vb && vb<=ve )	{rsv=vb + (ve - vb) * mrv;}
+	else if ( 0<=vb && vb<=vm && vm<=ve )
+	{
+		if ( rb<=mrv && mrv<=rm )			{rsv=vb + (vm - vb) * (mrv - rb) * re / (rm - rb);}
+		else if ( rm<=mrv && mrv<=re )		{rsv=vm + (ve - vm) * (mrv - rm) * re / (re - rm);}
+		else		{}
+	}
+	else		{}
+	//	console.log("audio_volume_info : " + 
+	//				"i : " + i + ";\t" + 
+	//				"rsv : " + rsv + ";\t" + 
+	//				"");
+	//==========DIVISION==========
+	return rsv;
+	//==========DIVISION==========
+}
+//==============================DIVISION==============================
+function Volume_BE_Random_Gen(i)
+{
+	//==========DIVISION==========
+	var rsv;//Result_Value;
+	rsv=Audio_URL_STR_CLS.VAL.BVolume + (Audio_URL_STR_CLS.VAL.EVolume - Audio_URL_STR_CLS.VAL.BVolume) * Math.random();
+	console.log("audio_volume_info : " + 
+				"i : " + i + ";\t" + 
+				"rsv : " + rsv + ";\t" + 
+				"");
+	//==========DIVISION==========
+	return rsv;
+	//==========DIVISION==========
+}
+
+function Volume_BME_Random_Gen(i)
+{
+	//==========DIVISION==========
+	//	0   -0.5 -1
+	//	0.5 -1   -3
+	//
+	//	0	0.1	0.2	0.3	0.4	0.5	0.6	0.7	0.8	0.9	1.0
+	//	0.5	0.6	0.7	0.8	0.9	1	1.4	1.8	2.2	2.6	3.0
+	//==========DIVISION==========
+	var vb,vm,ve;//Value;Begin;Middle;End;
+	var rb,rm,re;//Math.random();Begin;Middle;End;
+	var mrv;//Math.random();Value;
+	var rsv;//Result_Value;
+	//==========DIVISION==========
+	vb=Audio_URL_STR_CLS.VAL.BVolume;	vm=1;		ve=Audio_URL_STR_CLS.VAL.EVolume;
+	rb=0;								rm=0.5;		re=1;
+	mrv=Math.random();
+	//==========DIVISION==========
+	rsv=vb + (ve - vb) * mrv;
+	if ( 0<=vb && vb<=ve && ve<=vm || vm<=vb && vb<=ve )	{rsv=vb + (ve - vb) * mrv;}
+	else if ( 0<=vb && vb<=vm && vm<=ve )
+	{
+		if ( rb<=mrv && mrv<=rm )			{rsv=vb + (vm - vb) * (mrv - rb) * re / (rm - rb);}
+		else if ( rm<=mrv && mrv<=re )		{rsv=vm + (ve - vm) * (mrv - rm) * re / (re - rm);}
+		else		{}
+	}
+	else		{}
+	//	console.log("audio_volume_info : " + 
+	//				"i : " + i + ";\t" + 
+	//				"rsv : " + rsv + ";\t" + 
+	//				"");
+	//==========DIVISION==========
+	return rsv;
+	//==========DIVISION==========
+}
+//==============================DIVISION==============================
+function Speed_BE_Random_Gen(i,j)
+{
+	//==========DIVISION==========
+	var rsv;//Result_Value;
+	rsv=Audio_URL_STR_CLS.VAL.BSpeed + (Audio_URL_STR_CLS.VAL.ESpeed - Audio_URL_STR_CLS.VAL.BSpeed) * Math.random();
+	//	console.log("video_speed_info : " + 
+	//				"i : " + i + ";\t" + 
+	//				"j : " + j + ";\t" + 
+	//				"rsv : " + rsv + ";\t" + 
+	//				"");
+	//==========DIVISION==========
+	return rsv;
+	//==========DIVISION==========
+}
+
+function Speed_BME_Random_Gen(i,j)
+{
+	//==========DIVISION==========
+	//	0   -0.5 -1
+	//	0.5 -1   -3
+	//
+	//	0	0.1	0.2	0.3	0.4	0.5	0.6	0.7	0.8	0.9	1.0
+	//	0.5	0.6	0.7	0.8	0.9	1	1.4	1.8	2.2	2.6	3.0
+	//==========DIVISION==========
+	var vb,vm,ve;//Value;Begin;Middle;End;
+	var rb,rm,re;//Math.random();Begin;Middle;End;
+	var mrv;//Math.random();Value;
+	var rsv;//Result_Value;
+	//==========DIVISION==========
+	vb=Audio_URL_STR_CLS.VAL.BSpeed;	vm=1;		ve=Audio_URL_STR_CLS.VAL.ESpeed;
+	rb=0;								rm=0.5;		re=1;
+	mrv=Math.random();
+	//==========DIVISION==========
+	rsv=vb + (ve - vb) * mrv;
+	if ( 0<=vb && vb<=ve && ve<=vm || vm<=vb && vb<=ve )	{rsv=vb + (ve - vb) * mrv;}
+	else if ( 0<=vb && vb<=vm && vm<=ve )
+	{
+		if ( rb<=mrv && mrv<=rm )			{rsv=vb + (vm - vb) * (mrv - rb) * re / (rm - rb);}
+		else if ( rm<=mrv && mrv<=re )		{rsv=vm + (ve - vm) * (mrv - rm) * re / (re - rm);}
+		else		{}
+	}
+	else		{}
+	//	console.log("video_speed_info : " + 
+	//				"i : " + i + ";\t" + 
+	//				"j : " + j + ";\t" + 
+	//				"rsv : " + rsv + ";\t" + 
+	//				"");
+	//==========DIVISION==========
+	return rsv;
+	//==========DIVISION==========
+}
+//==============================DIVISION==============================
+function Video_Opacity_BE_Random_Gen(i,j)
+{
+	//==========DIVISION==========
+	var rsv;//Result_Value;
+	rsv=Audio_URL_STR_CLS.VAL.BVideo_Opacity + (Audio_URL_STR_CLS.VAL.EVideo_Opacity - Audio_URL_STR_CLS.VAL.BVideo_Opacity) * Math.random();
+	//	console.log("video_video_opacity_info : " + 
+	//				"i : " + i + ";\t" + 
+	//				"j : " + j + ";\t" + 
+	//				"rsv : " + rsv + ";\t" + 
+	//				"");
+	//==========DIVISION==========
+	return rsv;
+	//==========DIVISION==========
+}
+
+function Video_Opacity_BME_Random_Gen(i,j)
+{
+	//==========DIVISION==========
+	//	0   -0.5 -1
+	//	0.5 -1   -3
+	//
+	//	0	0.1	0.2	0.3	0.4	0.5	0.6	0.7	0.8	0.9	1.0
+	//	0.5	0.6	0.7	0.8	0.9	1	1.4	1.8	2.2	2.6	3.0
+	//==========DIVISION==========
+	var vb,vm,ve;//Value;Begin;Middle;End;
+	var rb,rm,re;//Math.random();Begin;Middle;End;
+	var mrv;//Math.random();Value;
+	var rsv;//Result_Value;
+	//==========DIVISION==========
+	vb=Audio_URL_STR_CLS.VAL.BVideo_Opacity;	vm=1;		ve=Audio_URL_STR_CLS.VAL.EVideo_Opacity;
+	rb=0;										rm=0.5;		re=1;
+	mrv=Math.random();
+	//==========DIVISION==========
+	rsv=vb + (ve - vb) * mrv;
+	if ( 0<=vb && vb<=ve && ve<=vm || vm<=vb && vb<=ve )	{rsv=vb + (ve - vb) * mrv;}
+	else if ( 0<=vb && vb<=vm && vm<=ve )
+	{
+		if ( rb<=mrv && mrv<=rm )			{rsv=vb + (vm - vb) * (mrv - rb) * re / (rm - rb);}
+		else if ( rm<=mrv && mrv<=re )		{rsv=vm + (ve - vm) * (mrv - rm) * re / (re - rm);}
+		else		{}
+	}
+	else		{}
+	//	console.log("video_video_opacity_info : " + 
+	//				"i : " + i + ";\t" + 
+	//				"j : " + j + ";\t" + 
+	//				"rsv : " + rsv + ";\t" + 
+	//				"");
+	//==========DIVISION==========
+	return rsv;
+	//==========DIVISION==========
+}
+//==============================DIVISION==============================
+function IMG_MTTI_BE_Random_Gen(i,j)
+{
+	//==========DIVISION==========
+	var rsv;//Result_Value;
+	rsv=Audio_URL_STR_CLS.VAL.BIMG_MTTI + (Audio_URL_STR_CLS.VAL.EIMG_MTTI - Audio_URL_STR_CLS.VAL.BIMG_MTTI) * Math.random();
+	//	console.log("video_img_opacity_info : " + 
+	//				"i : " + i + ";\t" + 
+	//				"j : " + j + ";\t" + 
+	//				"rsv : " + rsv + ";\t" + 
+	//				"");
+	//==========DIVISION==========
+	return rsv;
+	//==========DIVISION==========
+}
+
+function IMG_MTTI_BME_Random_Gen(i,j)
+{
+	//==========DIVISION==========
+	//	0   -0.5 -1
+	//	0.5 -1   -3
+	//
+	//	0	0.1	0.2	0.3	0.4	0.5	0.6	0.7	0.8	0.9	1.0
+	//	0.5	0.6	0.7	0.8	0.9	1	1.4	1.8	2.2	2.6	3.0
+	//==========DIVISION==========
+	var vb,vm,ve;//Value;Begin;Middle;End;
+	var rb,rm,re;//Math.random();Begin;Middle;End;
+	var mrv;//Math.random();Value;
+	var rsv;//Result_Value;
+	//==========DIVISION==========
+	vb=Audio_URL_STR_CLS.VAL.BIMG_MTTI;	vm=1;		ve=Audio_URL_STR_CLS.VAL.EIMG_MTTI;
+	rb=0;									rm=0.5;		re=1;
+	mrv=Math.random();
+	//==========DIVISION==========
+	rsv=vb + (ve - vb) * mrv;
+	if ( 0<=vb && vb<=ve && ve<=vm || vm<=vb && vb<=ve )	{rsv=vb + (ve - vb) * mrv;}
+	else if ( 0<=vb && vb<=vm && vm<=ve )
+	{
+		if ( rb<=mrv && mrv<=rm )			{rsv=vb + (vm - vb) * (mrv - rb) * re / (rm - rb);}
+		else if ( rm<=mrv && mrv<=re )		{rsv=vm + (ve - vm) * (mrv - rm) * re / (re - rm);}
+		else		{}
+	}
+	else		{}
+	//	console.log("video_img_opacity_info : " + 
+	//				"i : " + i + ";\t" + 
+	//				"j : " + j + ";\t" + 
+	//				"rsv : " + rsv + ";\t" + 
+	//				"");
+	//==========DIVISION==========
+	return rsv;
+	//==========DIVISION==========
+}
+//==============================DIVISION==============================
+function IMG_SizeI_BE_Random_Gen(i,j)
+{
+	//==========DIVISION==========
+	var rsv;//Result_Value;
+	rsv=Audio_URL_STR_CLS.VAL.BIMG_SizeI + (Audio_URL_STR_CLS.VAL.EIMG_SizeI - Audio_URL_STR_CLS.VAL.BIMG_SizeI) * Math.random();
+	//	console.log("video_img_opacity_info : " + 
+	//				"i : " + i + ";\t" + 
+	//				"j : " + j + ";\t" + 
+	//				"rsv : " + rsv + ";\t" + 
+	//				"");
+	//==========DIVISION==========
+	return rsv;
+	//==========DIVISION==========
+}
+
+function IMG_SizeI_BME_Random_Gen(i,j)
+{
+	//==========DIVISION==========
+	//	0   -0.5 -1
+	//	0.5 -1   -3
+	//
+	//	0	0.1	0.2	0.3	0.4	0.5	0.6	0.7	0.8	0.9	1.0
+	//	0.5	0.6	0.7	0.8	0.9	1	1.4	1.8	2.2	2.6	3.0
+	//==========DIVISION==========
+	var vb,vm,ve;//Value;Begin;Middle;End;
+	var rb,rm,re;//Math.random();Begin;Middle;End;
+	var mrv;//Math.random();Value;
+	var rsv;//Result_Value;
+	//==========DIVISION==========
+	vb=Audio_URL_STR_CLS.VAL.BIMG_SizeI;	vm=1;		ve=Audio_URL_STR_CLS.VAL.EIMG_SizeI;
+	rb=0;									rm=0.5;		re=1;
+	mrv=Math.random();
+	//==========DIVISION==========
+	rsv=vb + (ve - vb) * mrv;
+	if ( 0<=vb && vb<=ve && ve<=vm || vm<=vb && vb<=ve )	{rsv=vb + (ve - vb) * mrv;}
+	else if ( 0<=vb && vb<=vm && vm<=ve )
+	{
+		if ( rb<=mrv && mrv<=rm )			{rsv=vb + (vm - vb) * (mrv - rb) * re / (rm - rb);}
+		else if ( rm<=mrv && mrv<=re )		{rsv=vm + (ve - vm) * (mrv - rm) * re / (re - rm);}
+		else		{}
+	}
+	else		{}
+	//	console.log("video_img_opacity_info : " + 
+	//				"i : " + i + ";\t" + 
+	//				"j : " + j + ";\t" + 
+	//				"rsv : " + rsv + ";\t" + 
+	//				"");
+	//==========DIVISION==========
+	return rsv;
+	//==========DIVISION==========
+}
+//==============================DIVISION==============================
+function IMG_Opacity_BE_Random_Gen(i,j)
+{
+	//==========DIVISION==========
+	var rsv;//Result_Value;
+	rsv=Audio_URL_STR_CLS.VAL.BIMG_Opacity + (Audio_URL_STR_CLS.VAL.EIMG_Opacity - Audio_URL_STR_CLS.VAL.BIMG_Opacity) * Math.random();
+	//	console.log("video_img_opacity_info : " + 
+	//				"i : " + i + ";\t" + 
+	//				"j : " + j + ";\t" + 
+	//				"rsv : " + rsv + ";\t" + 
+	//				"");
+	//==========DIVISION==========
+	return rsv;
+	//==========DIVISION==========
+}
+
+function IMG_Opacity_BME_Random_Gen(i,j)
+{
+	//==========DIVISION==========
+	//	0   -0.5 -1
+	//	0.5 -1   -3
+	//
+	//	0	0.1	0.2	0.3	0.4	0.5	0.6	0.7	0.8	0.9	1.0
+	//	0.5	0.6	0.7	0.8	0.9	1	1.4	1.8	2.2	2.6	3.0
+	//==========DIVISION==========
+	var vb,vm,ve;//Value;Begin;Middle;End;
+	var rb,rm,re;//Math.random();Begin;Middle;End;
+	var mrv;//Math.random();Value;
+	var rsv;//Result_Value;
+	//==========DIVISION==========
+	vb=Audio_URL_STR_CLS.VAL.BIMG_Opacity;	vm=1;		ve=Audio_URL_STR_CLS.VAL.EIMG_Opacity;
+	rb=0;									rm=0.5;		re=1;
+	mrv=Math.random();
+	//==========DIVISION==========
+	rsv=vb + (ve - vb) * mrv;
+	if ( 0<=vb && vb<=ve && ve<=vm || vm<=vb && vb<=ve )	{rsv=vb + (ve - vb) * mrv;}
+	else if ( 0<=vb && vb<=vm && vm<=ve )
+	{
+		if ( rb<=mrv && mrv<=rm )			{rsv=vb + (vm - vb) * (mrv - rb) * re / (rm - rb);}
+		else if ( rm<=mrv && mrv<=re )		{rsv=vm + (ve - vm) * (mrv - rm) * re / (re - rm);}
+		else		{}
+	}
+	else		{}
+	//	console.log("video_img_opacity_info : " + 
+	//				"i : " + i + ";\t" + 
+	//				"j : " + j + ";\t" + 
+	//				"rsv : " + rsv + ";\t" + 
+	//				"");
+	//==========DIVISION==========
+	return rsv;
+	//==========DIVISION==========
+}
+//==============================DIVISION==============================
+function CT_LEN_BE_Random_Gen(i,j)
+{
+	//==========DIVISION==========
+	var rsv;//Result_Value;
+	rsv=Audio_URL_STR_CLS.VAL.BCT_LEN + (Audio_URL_STR_CLS.VAL.ECT_LEN - Audio_URL_STR_CLS.VAL.BCT_LEN) * Math.random();
+	//	console.log("video_CT_LEN_info : " + 
+	//				"i : " + i + ";\t" + 
+	//				"j : " + j + ";\t" + 
+	//				"rsv : " + rsv + ";\t" + 
+	//				"");
+	//==========DIVISION==========
+	return rsv;
+	//==========DIVISION==========
+}
+
+function CT_LEN_BME_Random_Gen(i,j)
+{
+	//==========DIVISION==========
+	//	0   -0.5 -1
+	//	0.5 -1   -3
+	//
+	//	0	0.1	0.2	0.3	0.4	0.5	0.6	0.7	0.8	0.9	1.0
+	//	0.5	0.6	0.7	0.8	0.9	1	1.4	1.8	2.2	2.6	3.0
+	//==========DIVISION==========
+	var vb,vm,ve;//Value;Begin;Middle;End;
+	var rb,rm,re;//Math.random();Begin;Middle;End;
+	var mrv;//Math.random();Value;
+	var rsv;//Result_Value;
+	//==========DIVISION==========
+	vb=Audio_URL_STR_CLS.VAL.BCT_LEN;	vm=1;		ve=Audio_URL_STR_CLS.VAL.ECT_LEN;
+	rb=0;								rm=0.5;		re=1;
+	mrv=Math.random();
+	//==========DIVISION==========
+	rsv=vb + (ve - vb) * mrv;
+	if ( 0<=vb && vb<=ve && ve<=vm || vm<=vb && vb<=ve )	{rsv=vb + (ve - vb) * mrv;}
+	else if ( 0<=vb && vb<=vm && vm<=ve )
+	{
+		if ( rb<=mrv && mrv<=rm )			{rsv=vb + (vm - vb) * (mrv - rb) * re / (rm - rb);}
+		else if ( rm<=mrv && mrv<=re )		{rsv=vm + (ve - vm) * (mrv - rm) * re / (re - rm);}
+		else		{}
+	}
+	else		{}
+	//	console.log("video_CT_LEN_info : " + 
+	//				"i : " + i + ";\t" + 
+	//				"j : " + j + ";\t" + 
+	//				"rsv : " + rsv + ";\t" + 
+	//				"");
+	//==========DIVISION==========
+	return rsv;
+	//==========DIVISION==========
+}
+//==============================DIVISION==============================
+function CT_TTI_BE_Random_Gen(i,j)
+{
+	//==========DIVISION==========
+	var rsv;//Result_Value;
+	rsv=Audio_URL_STR_CLS.VAL.BCT_TTI + (Audio_URL_STR_CLS.VAL.ECT_TTI - Audio_URL_STR_CLS.VAL.BCT_TTI) * Math.random();
+	//	console.log("video_CT_TTI_info : " + 
+	//				"i : " + i + ";\t" + 
+	//				"j : " + j + ";\t" + 
+	//				"rsv : " + rsv + ";\t" + 
+	//				"");
+	//==========DIVISION==========
+	return rsv;
+	//==========DIVISION==========
+}
+
+function CT_TTI_BME_Random_Gen(i,j)
+{
+	//==========DIVISION==========
+	//	0   -0.5 -1
+	//	0.5 -1   -3
+	//
+	//	0	0.1	0.2	0.3	0.4	0.5	0.6	0.7	0.8	0.9	1.0
+	//	0.5	0.6	0.7	0.8	0.9	1	1.4	1.8	2.2	2.6	3.0
+	//==========DIVISION==========
+	var vb,vm,ve;//Value;Begin;Middle;End;
+	var rb,rm,re;//Math.random();Begin;Middle;End;
+	var mrv;//Math.random();Value;
+	var rsv;//Result_Value;
+	//==========DIVISION==========
+	vb=Audio_URL_STR_CLS.VAL.BCT_TTI;	vm=1;		ve=Audio_URL_STR_CLS.VAL.ECT_TTI;
+	rb=0;								rm=0.5;		re=1;
+	mrv=Math.random();
+	//==========DIVISION==========
+	rsv=vb + (ve - vb) * mrv;
+	if ( 0<=vb && vb<=ve && ve<=vm || vm<=vb && vb<=ve )	{rsv=vb + (ve - vb) * mrv;}
+	else if ( 0<=vb && vb<=vm && vm<=ve )
+	{
+		if ( rb<=mrv && mrv<=rm )			{rsv=vb + (vm - vb) * (mrv - rb) * re / (rm - rb);}
+		else if ( rm<=mrv && mrv<=re )		{rsv=vm + (ve - vm) * (mrv - rm) * re / (re - rm);}
+		else		{}
+	}
+	else		{}
+	//	console.log("video_CT_TTI_info : " + 
+	//				"i : " + i + ";\t" + 
+	//				"j : " + j + ";\t" + 
+	//				"rsv : " + rsv + ";\t" + 
+	//				"");
+	//==========DIVISION==========
+	return rsv;
+	//==========DIVISION==========
+}
+//==============================DIVISION==============================
+function Audio_Setting_Use()
+{
+	//==========DIVISION==========
+	eval(ELE_ELEL_STR_INI());
+	eval(Parameter_Base_STR_ijk_XX(10));
+	var ID,LEN,ID_LEN;
+	var AR_ID;
+	var ele,evt;
+	//==========DIVISION==========
+	if ( ele_Usage_Collection_SEL.selectedIndex==0 )
+	{
+		//==========DIVISION==========
+		if ( navigator.userAgent.match(/Windows NT/gm)!=null )
+		{
+		}
+		else		{}
+		//==========DIVISION==========
+		ele_ITime_EAB.click();
+		ele_BEITime_BETTI_VAL_Set_SEL.selectedIndex=5;
+		ele=ele_Audio_DFLG_Table;		evt={target:ele_BEITime_BETTI_VAL_Set_SEL};		n=2;	TEXT_ATTRIBUTION(ele,evt,n);
+		//==========DIVISION==========
+		ele_Speed_EAB.click();
+		ele_BESpeed_BETTI_VAL_Set_SEL.selectedIndex=2;
+		ele=ele_Audio_DFLG_Table;		evt={target:ele_BESpeed_BETTI_VAL_Set_SEL};		n=2;	TEXT_ATTRIBUTION(ele,evt,n);
+		//==========DIVISION==========
+		ele_IMG_ARGMS_EAB.click();
+		ele_IMG_ARGMS_Direction_Type_SEL.selectedIndex=3;
+		ele=ele_Audio_DFLG_Table;		evt={target:ele_IMG_ARGMS_Direction_Type_SEL};	n=2;	TEXT_ATTRIBUTION(ele,evt,n);
+		//==========DIVISION==========
+		ele_Multi_Video_EAB.click();
+		ele_DFLG_Video.click();
+		ele_Multi_Video_TOP.click();
+		//==========DIVISION==========
+	}
+	else if ( ele_Usage_Collection_SEL.selectedIndex==1 )
+	{
+	}
+	else if ( ele_Usage_Collection_SEL.selectedIndex==2 )
+	{
+	}
+	else if ( ele_Usage_Collection_SEL.selectedIndex==3 )
+	{
+	}
+	else if ( ele_Usage_Collection_SEL.selectedIndex==4 )
+	{
+	}
+	else		{}
+	//==========DIVISION==========
+}
+//==============================DIVISION==============================
+function Audio_TOP_Ctrl_Table_Action(ele,evt,post_method)
+{
+	//==============================arguments.callee==============================
+	var fun_ct_cache;
+	fun_ct_cache=arguments.callee;
+	var STO=0;//0:Do_Not_Run_setTimeout;1:Run_setTimeout;2:Run_Function_Now;
+	//==============================arguments.callee==============================
+	//====================Pre_Definition====================
+	//==========DIVISION==========
+	eval(ELE_ELEL_STR_INI());
+	eval(Parameter_Base_STR_ijk_XX(5));
+	var ID,LEN,ID_LEN;
+	var AR_ID;
+	//==========DIVISION==========
+	var evt_target = evt.target ? evt.target : evt.srcElement;
+	//==========DIVISION==========
+	//====================Pre_Definition====================
+	//====================DIVISION====================
+	if ( post_method==2 && evt && evt.type=="change" )//onchange;
+	{
+		if ( ele.className=="Audio_TOP_Ctrl_Table" && evt_target.className=="DFLG_Video_SEL" )
+		{
+			Video_Switch(evt_target);
+		}
+		else		{}
+	}
+	else if ( post_method==3 && evt && evt.type=="click" )//onclick;
+	{
+		if ( ele.className=="Audio_TOP_Ctrl_Table" && evt_target.className=="DFLG_Audio" )
+		{
+			//==========DIVISION==========
+			arr00=[];arr01=[];arr02=[];arr03=[];
+			arr00=Audio_URL_STR_CLS.Audio_ARR;
+			//==========DIVISION==========
+			var Base_URL_DIR_VAL=Audio_URL_STR_CLS.Base_URL_DIR_VAL=Audio_URL_STR_CLS.Base_URL_DIR_ARR[Audio_URL_STR_CLS.Network_Type];
+			//==========DIVISION==========
+			num00=1;
+			str00="";
+			str00+="\n";
+			for (i=0;i<arr00[0].length;i++)
+			{
+				AR_ID=i;
+				if ( i%num00==0 )		{str00+="<tr>" + "\n";}
+				//arr03[i].replace(/^[\x00-\xFF]*/gm,"");
+				str00+='	<td class="TD_AText"><span>' + arr00[3][i] + 
+						'</span><a href="' + Base_URL_DIR_VAL + arr00[1][i] + '" target=_blank download>' + '↓</a></td>' + "\n";
+				str00+='	<td class="TD_Audio">' + '<div><video AR_ID="' + AR_ID + '" duration_ORI="" controls="" name="media" loop=true><source src="' + 
+						Base_URL_DIR_VAL + arr00[1][i] + '" type="audio/mpeg">		</video></div>' + '</td>' + "\n";
+				if ( i%num00==0 )		{str00+="</tr>" + "\n";}
+			}
+			//	if ( i%num00==0 )		{str00+="</tr>" + "\n";}
+			ele_Audio_DFLG_Audio_Content_Table.innerHTML=str00;
+			//==========DIVISION==========
+			if ( Initiation_Flag==0 )
+			{
+			}
+			else if ( Initiation_Flag==1 )
+			{
+				var multiplier=Audio_URL_STR_CLS.VAL.MultiPlier;
+				var speed=Audio_URL_STR_CLS.VAL.Speed;
+				for (i=0;i<arr00[0].length;i++)
+				{
+					//==========DIVISION==========
+					ele01=document.createElement("DIV");
+					ele01.innerHTML=elel_MainA_TD_Audio[i].innerHTML;
+					ele02=ele01.getElementsByTagName("video")[0];
+					if ( ele02==undefined )			{continue;}
+					//==========DIVISION==========
+					if ( Audio_URL_STR_CLS.VAL.MultiPlier_EAB==0 )			{}
+					else if ( Audio_URL_STR_CLS.VAL.MultiPlier_EAB==1 )
+					{
+						amplifyMedia(ele02,multiplier);
+					}
+					else		{}
+					//==========DIVISION==========
+					if ( Audio_URL_STR_CLS.VAL.Speed_EAB==0 )				{}
+					else if ( Audio_URL_STR_CLS.VAL.Speed_EAB==1 )
+					{
+						ele02.playbackRate=speed;
+					}
+					else		{}
+					//==========DIVISION==========
+					elel_MainA_TD_Audio[i].innerHTML="";
+					elel_MainA_TD_Audio[i].appendChild(ele01.getElementsByTagName("div")[0]);
+					//==========DIVISION==========
+				}
+			}
+			else		{}
+			//==========DIVISION==========
+		}
+		else if ( ele.className=="Audio_TOP_Ctrl_Table" && evt_target.className=="DFLG_Video" )
+		{
+			Video_Switch(evt_target);
+		}
+		else if ( ele.className=="Audio_TOP_Ctrl_Table" && evt_target.className=="Network_Type_CLS" )
+		{
+			Audio_URL_STR_CLS.Network_Type			=(Audio_URL_STR_CLS.Network_Type + 1)%2;
+			evt_target.value						=["OFF","ON"][Audio_URL_STR_CLS.Network_Type];
+			evt_target.style.backgroundColor		=["red","#1EB0E9"][Audio_URL_STR_CLS.Network_Type];
+			ele_DFLG_Audio.click();
+			ele_DFLG_Video.click();
+			var Base_URL_DIR_VAL					=Audio_URL_STR_CLS.Base_URL_DIR_VAL
+													=Audio_URL_STR_CLS.Base_URL_DIR_ARR[Audio_URL_STR_CLS.Network_Type];
+		}
+		else if ( ele.className=="Audio_TOP_Ctrl_Table" && evt_target.className=="MultiPlier_EAB" )
+		{
+			//==========DIVISION==========
+			Audio_URL_STR_CLS.VAL.MultiPlier_EAB	=(Audio_URL_STR_CLS.VAL.MultiPlier_EAB + 1)%2;
+			evt_target.style.backgroundColor		=["red","#1EB0E9"][Audio_URL_STR_CLS.VAL.MultiPlier_EAB];
+			ele_MultiPlier_CLS.disabled				=[true,false][Audio_URL_STR_CLS.VAL.MultiPlier_EAB];
+			//==========DIVISION==========
+			//var Main_And_Multi_Video_ARR=Main_And_Multi_Video_ARR_Get();
+			//MultiPlier_EAB_Core_Action(Main_And_Multi_Video_ARR);
+			//==========DIVISION==========
+		}
+		else		{}
+	}
+	else		{}
+	//====================DIVISION====================
+}
+
+function Video_Switch(ele)
+{
+	//==========DIVISION==========
+	eval(ELE_ELEL_STR_INI());
+	eval(Parameter_Base_STR_ijk_XX(5));
+	var ID,LEN,ID_LEN;
+	var AR_ID;
+	var VID,VID_LEN;
+	var Code_Area;
+	//==========DIVISION==========
+	var Base_URL_DIR_VAL=Audio_URL_STR_CLS.Base_URL_DIR_VAL=Audio_URL_STR_CLS.Base_URL_DIR_ARR[Audio_URL_STR_CLS.Network_Type];
+	//==========DIVISION==========
+	var VID=ele_DFLG_Video_SEL.selectedIndex;
+	if ( Audio_URL_STR_CLS.Network_Type==1 && ( VID==0 || VID==1 ) )
+	{
+		Base_URL_DIR_VAL="https://media.falundafa.org/media1/media/dafa/chigb/mp4/";
+	}
+	else		{}
+	//==========DIVISION==========
+	ele00=elel_MainV_TD_VText[0];
+	arr01=Audio_URL_STR_CLS.Video_ARR;
+	ele00.getElementsByTagName("span")[0].innerHTML="李洪志做五套功法：" + arr01[4][VID] + 
+	'：<br>可<span style="color:red;font-weight:bold;">全屏近距离</span>观看：' + 
+	'<a href="' + Base_URL_DIR_VAL + arr01[1][VID] + '" target=_blank>' + arr01[3][VID] + "</a>" + "。";
+	//==========DIVISION==========
+	var TD_Video_InnerHTML;
+	ele00=elel_MainV_TD_Video[0];
+	str00="";
+	str00+='<div><video duration_ORI="" controls="" name="media" autoplay="autoplay" loop=true muted><source src="' + 
+			Base_URL_DIR_VAL + arr01[1][VID] + '" type="audio/mpeg">		</video></div>';
+	ele00.innerHTML=TD_Video_InnerHTML=str00;
+	arr02=[[[ele00,TD_Video_InnerHTML]]];
+	//==========DIVISION==========
+	if ( Initiation_Flag==0 )
+	{
+	}
+	else if ( Initiation_Flag==1 || Initiation_Flag==2 )
+	{
+		//==========DIVISION==========
+		if ( Audio_URL_STR_CLS.VAL.Multi_Video_EAB==0 )			{}
+		else if ( Audio_URL_STR_CLS.VAL.Multi_Video_EAB==1 )
+		{
+			//==========DIVISION==========
+			elel03=elel_MultiV_TD_Video;
+			arr02.push([]);
+			for (j=0;j<elel03.length;j++)
+			{
+				arr02[1].push([null,null]);
+			}
+			//==========DIVISION==========
+			if ( Audio_URL_STR_CLS.VAL.Multi_Video_VID_Type>=3 && Audio_URL_STR_CLS.VAL.Multi_Video_VID_Type<=6 )
+			{
+				for (i=0;i<Audio_URL_STR_CLS.VAL.Multi_Video_VID_Timer_ID_ARR.length;i++)
+				{
+					for (j=0;j<Audio_URL_STR_CLS.VAL.Multi_Video_VID_Timer_ID_ARR[i].length;j++)
+					{
+						clearTimeout(Audio_URL_STR_CLS.VAL.Multi_Video_VID_Timer_ID_ARR[i][j]);
+					}
+				}
+				Audio_URL_STR_CLS.VAL.Multi_Video_VID_Timer_ID_ARR=JSON.parse(JSON.stringify(arr02));
+				for (i=0;i<arr02.length;i++)
+				{
+					for (j=0;j<arr02[i].length;j++)
+					{
+						Audio_URL_STR_CLS.VAL.Multi_Video_VID_Timer_ID_ARR[i][j]=null;
+					}
+				}
+			}
+			else		{}
+			//==========DIVISION==========
+			VID_LEN=Audio_URL_STR_CLS.VAL.Multi_Video_VID_List_ARR.length;
+			//arr02.push([]);
+			for (j=0;j<elel03.length;j++)
+			{
+				//==========DIVISION==========
+				AR_ID=j;
+				//==========DIVISION==========
+				if ( Audio_URL_STR_CLS.VAL.Multi_Video_VID_Type==0 )
+				{
+					k=j % VID_LEN;
+				}
+				else if ( Audio_URL_STR_CLS.VAL.Multi_Video_VID_Type==1 )
+				{
+					//[2,8,9,10,11,12];
+					//j array		k array
+					//0 1 2  3		0 3 6 9
+					//4 5 6  7		1 4 7 10
+					//8 9 10 11		2 5 8 11
+					var x0=Audio_URL_STR_CLS.VAL.Multi_Video_X;	//4;
+					var y0=Audio_URL_STR_CLS.VAL.Multi_Video_Y;	//3;
+					var x1=(j % x0);							//1;
+					var y1=parseInt(j / x0,10);					//2;
+					k=(x1 * y0 + y1) % VID_LEN;
+					//j==9		y1==2		x1==1
+				}
+				else if ( Audio_URL_STR_CLS.VAL.Multi_Video_VID_Type>=2 && Audio_URL_STR_CLS.VAL.Multi_Video_VID_Type<=6 )
+				{
+					k=parseInt(VID_LEN * Math.random(),10);		if ( k==VID_LEN )	{k--;}
+				}
+				else		{}
+				VID=Audio_URL_STR_CLS.VAL.Multi_Video_VID_List_ARR[k];
+				//==========DIVISION==========
+				str03="";
+				str03+='<div><video AR_ID="' + AR_ID + 
+						'" duration_ORI="" controls="" name="media" autoplay="autoplay" loop=true muted><source src="' + 
+						Base_URL_DIR_VAL + arr01[1][VID] + '" type="audio/mpeg">		</video></div>';
+				//arr02[1].push([null,null]);
+				arr02[1][j][0]=elel03[j];
+				arr02[1][j][1]=elel03[j].innerHTML=str03;
+				//==========DIVISION==========
+			}
+			//==========DIVISION==========
+			arr00=[elel_MainV_TD_Video,elel_MultiV_TD_Video];
+			Audio_URL_STR_CLS.VAL.AR_ID_Pre_Time_ARR=createArray(arr00.length);
+			for (i=0;i<arr00.length;i++)
+			{
+				Audio_URL_STR_CLS.VAL.AR_ID_Pre_Time_ARR[i]=createArray(arr00[i].length);
+				for (j=0;j<arr00[i].length;j++)
+				{
+					Audio_URL_STR_CLS.VAL.AR_ID_Pre_Time_ARR[i][j]=0;
+				}
+			}
+			//==========DIVISION==========
+			for (i=0;i<arr00.length;i++)
+			{
+				for (j=0;j<arr00[i].length;j++)
+				{
+					//==========DIVISION==========
+					if ( Audio_URL_STR_CLS.VAL.Multi_Video_VID_Type>=3 && Audio_URL_STR_CLS.VAL.Multi_Video_VID_Type<=6 )
+					{
+						setTimeout(function (i,j,arr02,arr01,VID_LEN)
+						{
+							//==========DIVISION==========
+							var fun_ct_cache_00;
+							fun_ct_cache_00=arguments.callee;
+							//==========DIVISION==========
+							var ele02;
+							var Code_Area;
+							//==========DIVISION==========
+							ele02=arr02[i][j][0].getElementsByTagName("video")[0];
+							//console.log("video readyState : ele02.readyState : " + ele02.readyState);
+							if ( ele02.readyState==4 )
+							{
+								//==========DIVISION==========
+								var TTI_SD;
+								var Multi_Video_Time_Offset=Audio_URL_STR_CLS.VAL.Multi_Video_Time_Offset;//ms;
+								var V05=Audio_URL_STR_CLS.VAL.Multi_Video_Time_Random_VAR_00;//0.3;0.5;
+								//==========DIVISION==========
+								if ( Audio_URL_STR_CLS.VAL.Multi_Video_VID_Type==3 )
+								{
+									TTI_SD=(ele02.duration * 1000 + Multi_Video_Time_Offset) / ele02.playbackRate;
+								}
+								else if ( Audio_URL_STR_CLS.VAL.Multi_Video_VID_Type==4 )
+								{
+									TTI_SD=(ele02.duration * 1000 * (V05 + Math.random()) + Multi_Video_Time_Offset) / ele02.playbackRate;
+								}
+								else if ( Audio_URL_STR_CLS.VAL.Multi_Video_VID_Type==5 )
+								{
+									//==========DIVISION==========
+									ele02.loop=false;
+									//==========DIVISION==========
+									Code_Area=1;
+									if ( Code_Area==0 )			{ele02.playbackRate=Speed_BE_Random_Gen(i,j);}
+									else if ( Code_Area==1 )	{ele02.playbackRate=Speed_BME_Random_Gen(i,j);}
+									else						{}
+									//==========DIVISION==========
+									TTI_SD=(ele02.duration * 1000 + Multi_Video_Time_Offset) / ele02.playbackRate;
+									//==========DIVISION==========
+								}
+								else if ( Audio_URL_STR_CLS.VAL.Multi_Video_VID_Type==6 )
+								{
+									//==========DIVISION==========
+									ele02.loop=false;
+									//==========DIVISION==========
+									TTI_SD=TTI_IN_USE;
+									//==========DIVISION==========
+								}
+								else		{}
+								//==========DIVISION==========
+								if ( Audio_URL_STR_CLS.VAL.Multi_Video_VID_Type==5 )		{TTI_SD+=Audio_URL_STR_CLS.VAL.TTI_IN_USE_Average_MOD();}
+								else		{}
+								//	console.log("Multi_Video_VID_Type Setting source src : " + 
+								//				"i : " + i + ";\t" + 
+								//				"j : " + j + ";\t" + 
+								//				"ele02.duration : " + ele02.duration + ";\t" + 
+								//				"ele02.playbackRate : " + ele02.playbackRate + ";\t" + 
+								//				"TTI_SD : " + TTI_SD + ";\t" + 
+								//				"");
+								//==========DIVISION==========
+								var this_step=2;
+								Audio_URL_STR_CLS.VAL.Multi_Video_VID_Timer_ID_ARR[i][j]=
+								setTimeout(function (this_step,TTI_SD,i,j,ele02,arr01,VID_LEN)
+								{
+									//==========DIVISION==========
+									clearTimeout(Audio_URL_STR_CLS.VAL.Multi_Video_VID_Timer_ID_ARR[i][j]);
+									//console.log("Audio_URL_STR_CLS.VAL.Multi_Video_EAB : " + Audio_URL_STR_CLS.VAL.Multi_Video_EAB);
+									if ( Audio_URL_STR_CLS.VAL.Multi_Video_EAB==0 )			{return;}
+									else if ( Audio_URL_STR_CLS.VAL.Multi_Video_EAB==1 )	{}
+									else		{}
+									//==========DIVISION==========
+									//====================arguments.callee====================
+									var fun_ct_cache_01;
+									fun_ct_cache_01=arguments.callee;
+									//====================arguments.callee====================
+									//====================Variable_Predefinition====================
+									//==========DIVISION==========
+									eval(Parameter_Base_STR_ijk_XX(5));
+									var ID,LEN;
+									var STO=0;//0:Do_Not_Run_setTimeout;1:Run_setTimeout;2:Run_Function_Now;
+									//==========DIVISION==========
+									var TTI_SD=TTI_IN_USE;
+									var Multi_Video_Time_Offset=Audio_URL_STR_CLS.VAL.Multi_Video_Time_Offset;//ms;
+									var V05=Audio_URL_STR_CLS.VAL.Multi_Video_Time_Random_VAR_00;//0.3;0.5;
+									//==========DIVISION==========
+									//====================Variable_Predefinition====================
+									//====================this_step====================
+									if ( this_step==0 )
+									{
+										//==========DIVISION==========
+										var k,VID;
+										k=parseInt(VID_LEN * Math.random(),10);		if ( k==VID_LEN )	{k--;}
+										VID=Audio_URL_STR_CLS.VAL.Multi_Video_VID_List_ARR[k];
+										ele02.getElementsByTagName("source")[0].src=Base_URL_DIR_VAL + arr01[1][VID];
+										ele02.load();
+										if ( Audio_URL_STR_CLS.VAL.Multi_Video_VID_Type==5 || Audio_URL_STR_CLS.VAL.Multi_Video_VID_Type==6 )
+										{ele02.loop=false;}
+										else		{}
+										//==========DIVISION==========
+										if ( this_step==0 )			{this_step++;STO=1;}
+										//==========DIVISION==========
+									}
+									else if ( this_step==1 )
+									{
+										//==========DIVISION==========
+										if ( ele02.readyState==4 )
+										{
+											//==========DIVISION==========
+											ele02.playbackRate=Audio_URL_STR_CLS.VAL.Speed;
+											//==========DIVISION==========
+											if ( Audio_URL_STR_CLS.VAL.Multi_Video_VID_Type==3 )
+											{
+												TTI_SD=(ele02.duration * 1000 + Multi_Video_Time_Offset) / ele02.playbackRate;
+											}
+											else if ( Audio_URL_STR_CLS.VAL.Multi_Video_VID_Type==4 )
+											{
+												TTI_SD=(ele02.duration * 1000 * (V05 + Math.random()) + Multi_Video_Time_Offset) / ele02.playbackRate;
+											}
+											else if ( Audio_URL_STR_CLS.VAL.Multi_Video_VID_Type==5 )
+											{
+												//==========DIVISION==========
+												ele02.loop=false;
+												//==========DIVISION==========
+												Code_Area=1;
+												if ( Code_Area==0 )			{ele02.playbackRate=Speed_BE_Random_Gen(i,j);}
+												else if ( Code_Area==1 )	{ele02.playbackRate=Speed_BME_Random_Gen(i,j);}
+												else						{}
+												//==========DIVISION==========
+												TTI_SD=(ele02.duration * 1000 + Multi_Video_Time_Offset) / ele02.playbackRate;
+												//==========DIVISION==========
+											}
+											else if ( Audio_URL_STR_CLS.VAL.Multi_Video_VID_Type==6 )
+											{
+												//==========DIVISION==========
+												ele02.loop=false;
+												//==========DIVISION==========
+												TTI_SD=TTI_IN_USE;
+												//==========DIVISION==========
+											}
+											else		{}
+											//==========DIVISION==========
+											//	console.log("Multi_Video_VID_Type Setting source src : " + 
+											//				"i : " + i + ";\t" + 
+											//				"j : " + j + ";\t" + 
+											//				"ele02.duration : " + ele02.duration + ";\t" + 
+											//				"ele02.playbackRate : " + ele02.playbackRate + ";\t" + 
+											//				"TTI_SD : " + TTI_SD + ";\t" + 
+											//				"");
+											//==========DIVISION==========
+											if ( this_step==1 )			{this_step++;STO=1;}
+											//==========DIVISION==========
+										}
+										else
+										{
+										}
+										//==========DIVISION==========
+										if ( this_step==1 )			{STO=1;}
+										//==========DIVISION==========
+									}
+									else if ( this_step==2 )
+									{
+										//==========DIVISION==========
+										if ( Audio_URL_STR_CLS.VAL.Multi_Video_VID_Type>=3 && Audio_URL_STR_CLS.VAL.Multi_Video_VID_Type<=4 )
+										{
+											if ( this_step==2 )			{this_step=0;STO=1;}
+										}
+										else if ( Audio_URL_STR_CLS.VAL.Multi_Video_VID_Type==5 || Audio_URL_STR_CLS.VAL.Multi_Video_VID_Type==6 )
+										{
+											//==========DIVISION==========
+											ele02.loop=false;
+											//console.log("ele02.ended : " + ele02.ended);
+											//==========DIVISION==========
+											if ( ele02.ended==true )
+											{
+												if ( this_step==2 )			{this_step=0;STO=1;}
+											}
+											else if ( ele02.ended==false )	{}
+											else		{}
+											//==========DIVISION==========
+										}
+										else		{}
+										//==========DIVISION==========
+										if ( this_step==2 )			{STO=1;}
+										//==========DIVISION==========
+									}
+									else if ( this_step==3 )
+									{
+										//==========DIVISION==========
+										if ( this_step==3 )			{this_step++;STO=1;}
+										//==========DIVISION==========
+									}
+									else		{STO=0;}
+									//==========DIVISION==========
+									//====================this_step====================
+									//====================STO====================
+									if ( STO==0 )//0:Do_Not_Run_setTimeout;1:Run_setTimeout;2:Run_Function_Now;
+									{
+									}
+									else if ( STO==1 )//0:Do_Not_Run_setTimeout;1:Run_setTimeout;2:Run_Function_Now;
+									{
+										Audio_URL_STR_CLS.VAL.Multi_Video_VID_Timer_ID_ARR[i][j]=
+										setTimeout(fun_ct_cache_01,TTI_SD,this_step,TTI_SD,i,j,ele02,arr01,VID_LEN);
+									}
+									else if ( STO==2 )//0:Do_Not_Run_setTimeout;1:Run_setTimeout;2:Run_Function_Now;
+									{
+										fun_ct_cache_01(this_step,TTI_SD,i,j,ele02,arr01,VID_LEN);
+									}
+									else		{}
+									//====================STO====================
+								},TTI_SD,this_step,TTI_SD,i,j,ele02,arr01,VID_LEN);
+								//==========DIVISION==========
+							}
+							else
+							{
+								setTimeout(fun_ct_cache_00,TTI_IN_USE,i,j,arr02,arr01,VID_LEN);
+							}
+							//==========DIVISION==========
+						},0,i,j,arr02,arr01,VID_LEN);
+						//==========DIVISION==========
+					}
+					else		{}
+					//==========DIVISION==========
+				}
+			}
+			//==========DIVISION==========
+		}
+		else		{}
+		//==========DIVISION==========
+		Video_Control_Bar_INI(ele_Video_Control_Bar_BTN);
+		//==========DIVISION==========
+		console.log(arr02);
+		var Main_And_Multi_Video_ARR=arr02;
+		MultiPlier_EAB_Core_Action(Main_And_Multi_Video_ARR);
+		ITime_EAB_Core_Action(Main_And_Multi_Video_ARR);
+		Speed_EAB_Core_Action(Main_And_Multi_Video_ARR);
+		Multi_Video_Timer_Mode_Core_Action(Main_And_Multi_Video_ARR);//No_EAB;
+		//==========DIVISION==========
+	}
+	else		{}
+	//==========DIVISION==========
+	if ( Initiation_Flag==1 )	{Initiation_Flag++;}
+	//==========DIVISION==========
+}
+
+function Video_Control_Bar_Switch(ele)
+{
+	Audio_URL_STR_CLS.VAL.Video_Control_Bar_SH_State=(Audio_URL_STR_CLS.VAL.Video_Control_Bar_SH_State + 1)%2;
+	Video_Control_Bar_INI(ele);
+}
+
+function Video_Control_Bar_INI(ele)
+{
+	//==========DIVISION==========
+	eval(ELE_ELEL_STR_INI());
+	eval(Parameter_Base_STR_ijk_XX(5));
+	var ID,LEN,ID_LEN;
+	//==========DIVISION==========
+	ele_Video_Control_Bar_BTN.style.backgroundColor=["red","#1EB0E9"][Audio_URL_STR_CLS.VAL.Video_Control_Bar_SH_State];
+	//==========DIVISION==========
+	arr00=[elel_MainV_TD_Video,elel_MultiV_TD_Video];
+	for (i=0;i<arr00.length;i++)
+	{
+		for (j=0;j<arr00[i].length;j++)
+		{
+			ele02=arr00[i][j].getElementsByTagName("video")[0];
+			if ( ele02!=undefined && ele02.readyState==4 )
+			{
+				if ( Audio_URL_STR_CLS.VAL.Video_Control_Bar_SH_State==0 )			{ele02.removeAttribute("controls");}
+				else if ( Audio_URL_STR_CLS.VAL.Video_Control_Bar_SH_State==1 )		{ele02.setAttribute("controls","");}
+				else		{}
+			}
+			else
+			{
+				setTimeout(function()
+				{
+					Video_Control_Bar_INI(ele);
+				},TTI_IN_USE);
+				break;return;
+			}
+		}
+	}
+	//==========DIVISION==========
+}
+//==============================DIVISION==============================
+function Audio_ITime_Ctrl_Table_Action(ele,evt,post_method)
+{
+	//==============================arguments.callee==============================
+	var fun_ct_cache;
+	fun_ct_cache=arguments.callee;
+	var STO=0;//0:Do_Not_Run_setTimeout;1:Run_setTimeout;2:Run_Function_Now;
+	//==============================arguments.callee==============================
+	//====================Pre_Definition====================
+	//==========DIVISION==========
+	eval(Parameter_Base_STR_ijk_XX(5));
+	eval(ELE_ELEL_STR_INI());
+	var ID,LEN,ID_LEN;
+	//==========DIVISION==========
+	var evt_target = evt.target ? evt.target : evt.srcElement;
+	//==========DIVISION==========
+	//====================Pre_Definition====================
+	//====================DIVISION====================
+	if ( post_method==2 && evt && evt.type=="change" )//onchange;
+	{
+	}
+	else if ( post_method==3 && evt && evt.type=="click" )//onclick;
+	{
+		//==========DIVISION==========
+		if ( ele.className=="Audio_ITime_Ctrl_Table" && evt_target.className=="ITime_EAB" )
+		{
+			//==========DIVISION==========
+			Audio_URL_STR_CLS.VAL.ITime_EAB							=	(Audio_URL_STR_CLS.VAL.ITime_EAB + 1)%2;
+			evt_target.style.backgroundColor						=	["red","#1EB0E9"][Audio_URL_STR_CLS.VAL.ITime_EAB];
+			ele_ITime_CLS.disabled									=	[true,false][Audio_URL_STR_CLS.VAL.ITime_EAB];
+			ele_ITime_Type_SEL.disabled								=	[true,false][Audio_URL_STR_CLS.VAL.ITime_EAB];
+			ele_ICTime_Type_SEL.disabled							=	[true,false][Audio_URL_STR_CLS.VAL.ITime_EAB];
+			ele_E_E2B_Time_Type_SEL.disabled						=	[true,false][Audio_URL_STR_CLS.VAL.ITime_EAB];
+			ele_BITime_CLS.disabled									=	[true,false][Audio_URL_STR_CLS.VAL.ITime_EAB];
+			ele_EITime_CLS.disabled									=	[true,false][Audio_URL_STR_CLS.VAL.ITime_EAB];
+			ele_BEITime_BTTI_CLS.disabled							=	[true,false][Audio_URL_STR_CLS.VAL.ITime_EAB];
+			ele_BEITime_ETTI_CLS.disabled							=	[true,false][Audio_URL_STR_CLS.VAL.ITime_EAB];
+			ele_BEITime_BETTI_VAL_Set_SEL.disabled					=	[true,false][Audio_URL_STR_CLS.VAL.ITime_EAB];
+			ele_ITime_2_Time_Fun_Type_SEL.disabled					=	[true,false][Audio_URL_STR_CLS.VAL.ITime_EAB];
+			ele_ITime_2_Time_Fun_TextArea_Resize.disabled			=	[true,false][Audio_URL_STR_CLS.VAL.ITime_EAB];
+			ele_ITime_2_Time_Fun_EVAL_Code.disabled					=	[true,false][Audio_URL_STR_CLS.VAL.ITime_EAB];
+			Audio_URL_STR_CLS.VAL.ITime_2_Time_TTI_SD_ID_ARR		=	[];
+			//==========DIVISION==========
+			var Main_And_Multi_Video_ARR=Main_And_Multi_Video_ARR_Get();
+			ITime_EAB_Core_Action(Main_And_Multi_Video_ARR);
+			//==========DIVISION==========
+		}
+		else if ( ele.className=="Audio_ITime_Ctrl_Table" && evt_target.className=="ITime_2_Time_Fun_TextArea_Resize" )
+		{
+			Audio_URL_STR_CLS.VAL.ITime_2_Time_Fun_TextArea_Resize	=	(Audio_URL_STR_CLS.VAL.ITime_2_Time_Fun_TextArea_Resize + 1)%2;
+			evt_target.style.backgroundColor						=	["yellow","orange"][Audio_URL_STR_CLS.VAL.ITime_2_Time_Fun_TextArea_Resize];
+			ele_ITime_2_Time_Fun_EVAL_Code.style.width				=	[75,400][Audio_URL_STR_CLS.VAL.ITime_2_Time_Fun_TextArea_Resize];
+			ele_ITime_2_Time_Fun_EVAL_Code.style.height				=	[25,200][Audio_URL_STR_CLS.VAL.ITime_2_Time_Fun_TextArea_Resize];
+		}
+		else		{}
+		//==========DIVISION==========
+	}
+	else		{}
+	//====================DIVISION====================
+}
+//==============================DIVISION==============================
+function Audio_Speed_Ctrl_Table_Action(ele,evt,post_method)
+{
+	//==============================arguments.callee==============================
+	var fun_ct_cache;
+	fun_ct_cache=arguments.callee;
+	var STO=0;//0:Do_Not_Run_setTimeout;1:Run_setTimeout;2:Run_Function_Now;
+	//==============================arguments.callee==============================
+	//====================Pre_Definition====================
+	//==========DIVISION==========
+	eval(Parameter_Base_STR_ijk_XX(5));
+	eval(ELE_ELEL_STR_INI());
+	var ID,LEN,ID_LEN;
+	//==========DIVISION==========
+	var evt_target = evt.target ? evt.target : evt.srcElement;
+	//==========DIVISION==========
+	//====================Pre_Definition====================
+	//====================DIVISION====================
+	if ( post_method==2 && evt && evt.type=="change" )//onchange;
+	{
+	}
+	else if ( post_method==3 && evt && evt.type=="click" )//onclick;
+	{
+		//==========DIVISION==========
+		if ( ele.className=="Audio_Speed_Ctrl_Table" && evt_target.className=="Speed_EAB" )
+		{
+			//==========DIVISION==========
+			Audio_URL_STR_CLS.VAL.Speed_EAB							=	(Audio_URL_STR_CLS.VAL.Speed_EAB + 1)%2;
+			evt_target.style.backgroundColor						=	["red","#1EB0E9"][Audio_URL_STR_CLS.VAL.Speed_EAB];
+			ele_Speed_Negative_Or_Positive_BTN.disabled				=	[true,false][Audio_URL_STR_CLS.VAL.Speed_EAB];
+			ele_Speed_CLS.disabled									=	[true,false][Audio_URL_STR_CLS.VAL.Speed_EAB];
+			ele_Speed_Type_SEL.disabled								=	[true,false][Audio_URL_STR_CLS.VAL.Speed_EAB];
+			ele_BSpeed_CLS.disabled									=	[true,false][Audio_URL_STR_CLS.VAL.Speed_EAB];
+			ele_ESpeed_CLS.disabled									=	[true,false][Audio_URL_STR_CLS.VAL.Speed_EAB];
+			ele_BESpeed_BTTI_CLS.disabled							=	[true,false][Audio_URL_STR_CLS.VAL.Speed_EAB];
+			ele_BESpeed_ETTI_CLS.disabled							=	[true,false][Audio_URL_STR_CLS.VAL.Speed_EAB];
+			ele_BESpeed_BETTI_VAL_Set_SEL.disabled					=	[true,false][Audio_URL_STR_CLS.VAL.Speed_EAB];
+			ele_Speed_2_Time_Fun_Type_SEL.disabled					=	[true,false][Audio_URL_STR_CLS.VAL.Speed_EAB];
+			ele_Speed_2_Time_Fun_TextArea_Resize.disabled			=	[true,false][Audio_URL_STR_CLS.VAL.Speed_EAB];
+			ele_Speed_2_Time_Fun_EVAL_Code.disabled					=	[true,false][Audio_URL_STR_CLS.VAL.Speed_EAB];
+			Audio_URL_STR_CLS.VAL.Speed_2_Time_TTI_SD_ID_ARR		=	[];
+			//==========DIVISION==========
+			var Main_And_Multi_Video_ARR=Main_And_Multi_Video_ARR_Get();
+			Speed_EAB_Core_Action(Main_And_Multi_Video_ARR);
+			//==========DIVISION==========
+		}
+		else if ( ele.className=="Audio_Speed_Ctrl_Table" && evt_target.className=="Speed_Negative_Or_Positive_BTN" )
+		{
+			//==========DIVISION==========
+			var Speed_Negative_Or_Positive							=
+			Audio_URL_STR_CLS.VAL.Speed_Negative_Or_Positive		=	(Audio_URL_STR_CLS.VAL.Speed_Negative_Or_Positive + 1)%2;
+			evt_target.style.backgroundColor						=	["yellow","orange"][Audio_URL_STR_CLS.VAL.Speed_Negative_Or_Positive];
+			//==========DIVISION==========
+			//Speed_Negative_Or_Positive_Action(ele,evt,post_method);
+			if ( Speed_Negative_Or_Positive==0 )
+			{
+			}
+			else if ( Speed_Negative_Or_Positive==1 )
+			{
+			}
+			else		{}
+			//==========DIVISION==========
+		}
+		else if ( ele.className=="Audio_Speed_Ctrl_Table" && evt_target.className=="Speed_2_Time_Fun_TextArea_Resize" )
+		{
+			Audio_URL_STR_CLS.VAL.Speed_2_Time_Fun_TextArea_Resize	=	(Audio_URL_STR_CLS.VAL.Speed_2_Time_Fun_TextArea_Resize + 1)%2;
+			evt_target.style.backgroundColor						=	["yellow","orange"][Audio_URL_STR_CLS.VAL.Speed_2_Time_Fun_TextArea_Resize];
+			ele_Speed_2_Time_Fun_EVAL_Code.style.width				=	[75,400][Audio_URL_STR_CLS.VAL.Speed_2_Time_Fun_TextArea_Resize];
+			ele_Speed_2_Time_Fun_EVAL_Code.style.height				=	[25,200][Audio_URL_STR_CLS.VAL.Speed_2_Time_Fun_TextArea_Resize];
+		}
+		else		{}
+		//==========DIVISION==========
+	}
+	else		{}
+	//====================DIVISION====================
+}
+//==============================DIVISION==============================
+function BEXXXXX_BETTI_VAL_Set_INI()
+{
+	//==========DIVISION==========
+	eval(Parameter_Base_STR_ijk_XX(5));
+	eval(ELE_ELEL_STR_INI());
+	var ID,LEN,ID_LEN;
+	var AR_ID;
+	//==========DIVISION==========
+	ele00=ele_BEITime_BETTI_VAL_Set_SEL;
+	str00="";
+	str00+="<option>00 : BEITime_BETTI_VAL_00</option>";
+	str00+="<option>01 : BEITime_BETTI_VAL_01</option>";
+	str00+="<option>02 : BEITime_BETTI_VAL_02</option>";
+	str00+="<option>03 : BEITime_BETTI_VAL_03</option>";
+	str00+="<option>10 : BEITime_BETTI_VAL_10</option>";
+	str00+="<option>11 : BEITime_BETTI_VAL_11</option>";
+	str00+="<option>12 : BEITime_BETTI_VAL_12</option>";
+	str00+="<option>13 : BEITime_BETTI_VAL_13</option>";
+	ele00.innerHTML=str00;
+	ele00.selectedIndex=Audio_URL_STR_CLS.VAL.BEITime_BETTI_VAL_Set=0;
+	ele00.disabled=[true,false][Audio_URL_STR_CLS.VAL.ITime_EAB];
+	//==========DIVISION==========
+	ele00=ele_BESpeed_BETTI_VAL_Set_SEL;
+	str00="";
+	str00+="<option>00 : BESpeed_BETTI_VAL_00</option>";
+	str00+="<option>01 : BESpeed_BETTI_VAL_01</option>";
+	str00+="<option>02 : BESpeed_BETTI_VAL_02</option>";
+	str00+="<option>03 : BESpeed_BETTI_VAL_03</option>";
+	ele00.innerHTML=str00;
+	ele00.selectedIndex=Audio_URL_STR_CLS.VAL.BESpeed_BETTI_VAL_Set=0;
+	ele00.disabled=[true,false][Audio_URL_STR_CLS.VAL.Speed_EAB];
+	//==========DIVISION==========
+}
+
+function BEXXXXX_BETTI_VAL_Set_Do(evt_target)
+{
+	//==========DIVISION==========
+	eval(Parameter_Base_STR_ijk_XX(5));
+	eval(ELE_ELEL_STR_INI());
+	var ID,LEN,ID_LEN;
+	var AR_ID;
+	//==========DIVISION==========
+	var ele=ele_Audio_DFLG_Table;
+	var evt={target:evt_target};
+	var n=2;
+	//==========DIVISION==========
+	str00="";
+	str00+="num00=Audio_URL_STR_CLS.VAL." + evt_target.className.replace(/_SEL$/gm,"") + "=" + evt_target.selectedIndex + ";";
+	eval(str00);
+	if ( evt_target.className=="BEITime_BETTI_VAL_Set_SEL" )
+	{
+		//	ele_ITime_CLS					.value				=Audio_URL_STR_CLS.VAL.ITime					=[1][num00%1];
+		//	ele_ITime_Type_SEL				.selectedIndex		=Audio_URL_STR_CLS.VAL.ITime_Type				=[3][num00%1];
+		ele_ICTime_Type_SEL				.selectedIndex		=Audio_URL_STR_CLS.VAL.ICTime_Type				=[0,1][parseInt(num00/4,10)];
+		ele_E_E2B_Time_Type_SEL			.selectedIndex		=Audio_URL_STR_CLS.VAL.E_E2B_Time_Type			=[1][num00%1];
+		ele_BITime_CLS					.value				=Audio_URL_STR_CLS.VAL.BITime					=[0   ,0   ,0   ,0.5 ]	[num00%4];
+		ele_EITime_CLS					.value				=Audio_URL_STR_CLS.VAL.EITime					=[0.5 ,1   ,1.5 ,1.5 ]	[num00%4];
+		ele_BEITime_BTTI_CLS			.value				=Audio_URL_STR_CLS.VAL.BEITime_BTTI				=[0   ,0   ,500 ,1500]	[num00%4];
+		ele_BEITime_ETTI_CLS			.value				=Audio_URL_STR_CLS.VAL.BEITime_ETTI				=[500 ,1000,1500,2500]	[num00%4];
+		//	ele_BEITime_BETTI_VAL_Set_SEL	.selectedIndex		=Audio_URL_STR_CLS.VAL.BEITime_BETTI_VAL_Set	=[0][num00];
+		//	ele_ITime_2_Time_Fun_Type_SEL	.selectedIndex		=Audio_URL_STR_CLS.VAL.ITime_2_Time_Fun_Type	=[0][num00];
+
+		//	evt={target:ele_ITime_CLS					};TEXT_ATTRIBUTION(ele,evt,n);
+		//	evt={target:ele_ITime_Type_SEL				};TEXT_ATTRIBUTION(ele,evt,n);
+		evt={target:ele_ICTime_Type_SEL				};TEXT_ATTRIBUTION(ele,evt,n);
+		evt={target:ele_E_E2B_Time_Type_SEL			};TEXT_ATTRIBUTION(ele,evt,n);
+		evt={target:ele_BITime_CLS					};TEXT_ATTRIBUTION(ele,evt,n);
+		evt={target:ele_EITime_CLS					};TEXT_ATTRIBUTION(ele,evt,n);
+		evt={target:ele_BEITime_BTTI_CLS			};TEXT_ATTRIBUTION(ele,evt,n);
+		evt={target:ele_BEITime_ETTI_CLS			};TEXT_ATTRIBUTION(ele,evt,n);
+		//	evt={target:ele_BEITime_BETTI_VAL_Set_SEL	};TEXT_ATTRIBUTION(ele,evt,n);
+		//	evt={target:ele_ITime_2_Time_Fun_Type_SEL	};TEXT_ATTRIBUTION(ele,evt,n);
+	}
+	else if ( evt_target.className=="BESpeed_BETTI_VAL_Set_SEL" )
+	{
+		//	ele_Speed_CLS					.value				=Audio_URL_STR_CLS.VAL.Speed					=[1][num00%1];
+		//	ele_Speed_Type_SEL				.selectedIndex		=Audio_URL_STR_CLS.VAL.Speed_Type				=[3][num00%1];
+		ele_BSpeed_CLS					.value				=Audio_URL_STR_CLS.VAL.BSpeed					=[0.5 ,0.5 ,0.5 ,0.8 ]	[num00%4];
+		ele_ESpeed_CLS					.value				=Audio_URL_STR_CLS.VAL.ESpeed					=[3   ,1.5 ,2   ,1.3 ]	[num00%4];
+		//	ele_BESpeed_BTTI_CLS			.value				=Audio_URL_STR_CLS.VAL.BESpeed_BTTI				=[0   ,0   ,1000,2000]	[num00%4];
+		//	ele_BESpeed_ETTI_CLS			.value				=Audio_URL_STR_CLS.VAL.BESpeed_ETTI				=[500 ,1000,2000,3000]	[num00%4];
+		//	ele_BESpeed_BETTI_VAL_Set_SEL	.selectedIndex		=Audio_URL_STR_CLS.VAL.BESpeed_BETTI_VAL_Set	=[0][num00];
+		//	ele_Speed_2_Time_Fun_Type_SEL	.selectedIndex		=Audio_URL_STR_CLS.VAL.Speed_2_Time_Fun_Type	=[0][num00];
+
+		//	evt={target:ele_Speed_CLS					};TEXT_ATTRIBUTION(ele,evt,n);
+		//	evt={target:ele_Speed_Type_SEL				};TEXT_ATTRIBUTION(ele,evt,n);
+		evt={target:ele_BSpeed_CLS					};TEXT_ATTRIBUTION(ele,evt,n);
+		evt={target:ele_ESpeed_CLS					};TEXT_ATTRIBUTION(ele,evt,n);
+		//	evt={target:ele_BESpeed_BTTI_CLS			};TEXT_ATTRIBUTION(ele,evt,n);
+		//	evt={target:ele_BESpeed_ETTI_CLS			};TEXT_ATTRIBUTION(ele,evt,n);
+		//	evt={target:ele_BESpeed_BETTI_VAL_Set_SEL	};TEXT_ATTRIBUTION(ele,evt,n);
+		//	evt={target:ele_Speed_2_Time_Fun_Type_SEL	};TEXT_ATTRIBUTION(ele,evt,n);
+	}
+	else		{}
+	//==========DIVISION==========
+}
+//==============================DIVISION==============================
+//==========DIVISION==========
+function Main_And_Multi_Video_ARR_Get()
+{
+	//==========DIVISION==========
+	eval(Parameter_Base_STR_ijk_XX(5));
+	eval(ELE_ELEL_STR_INI());
+	var ID,LEN,ID_LEN;
+	//==========DIVISION==========
+	var TD_Video_InnerHTML;
+	ele00					=elel_MainV_TD_Video[0];
+	TD_Video_InnerHTML		=elel_MainV_TD_Video[0].innerHTML;
+	arr02=[];
+	arr02.push([[ele00,TD_Video_InnerHTML]]);
+	//==========DIVISION==========
+	elel03=elel_MultiV_TD_Video;
+	arr02.push([]);
+	for (j=0;j<elel03.length;j++)
+	{
+		arr02[1].push([elel03[j],elel03[j].innerHTML]);
+	}
+	//==========DIVISION==========
+	return arr02;
+	//==========DIVISION==========
+}
+//==========DIVISION==========
+function MultiPlier_EAB_Core_Action(Main_And_Multi_Video_ARR)
+{
+	//==========DIVISION==========
+	eval(ELE_ELEL_STR_INI());
+	eval(Parameter_Base_STR_ijk_XX(10));
+	var ID,LEN,ID_LEN;
+	//==========DIVISION==========
+	arr02=Main_And_Multi_Video_ARR;
+	//==========DIVISION==========
+	if ( Initiation_Flag==0 )
+	{
+	}
+	else if ( Initiation_Flag==1 || Initiation_Flag==2 )
+	{
+		//==========DIVISION==========
+		var multiplier=Audio_URL_STR_CLS.VAL.MultiPlier;
+		//==========DIVISION==========
+		if ( Initiation_Flag==1 || ( Initiation_Flag==2 && Audio_URL_STR_CLS.VAL.MultiPlier_EAB==1 ) )
+		{
+			//==========DIVISION==========
+			//console.log(arr02);
+			for (i=0;i<arr02.length;i++)
+			{
+				for (j=0;j<arr02[i].length;j++)
+				{
+					//==========DIVISION==========
+					ele01=document.createElement("DIV");
+					ele01.innerHTML=arr02[i][j][1];
+					ele02=ele01.getElementsByTagName("video")[0];
+					if ( ele02==undefined )			{continue;}
+					//==========DIVISION==========
+					if ( Audio_URL_STR_CLS.VAL.MultiPlier_EAB==0 )			{}
+					else if ( Audio_URL_STR_CLS.VAL.MultiPlier_EAB==1 )
+					{
+						amplifyMedia(ele02,multiplier);
+					}
+					else		{}
+					//==========DIVISION==========
+					//	console.log(arr02[i][j][0]);
+					//	console.log("i : " + i + ";\t" + 
+					//				"j : " + j + ";\t" + 
+					//				"");
+					arr02[i][j][0].innerHTML="";
+					arr02[i][j][0].appendChild(ele01.getElementsByTagName("div")[0]);
+					//==========DIVISION==========
+				}
+			}
+			//==========DIVISION==========
+		}
+		else		{}
+		//==========DIVISION==========
+	}
+	else		{}
+	//==========DIVISION==========
+	if ( Initiation_Flag==1 )	{Initiation_Flag++;}
+	//==========DIVISION==========
+}
+//==========DIVISION==========
+function Current_Time_Calc(AR_ID_CLS,Interval_currentTime)
+{
+	//==========DIVISION==========
+	eval(ELE_ELEL_STR_INI());
+	eval(Parameter_Base_STR_ijk_XX(5));
+	var ID,LEN,ID_LEN;
+	//==========DIVISION==========
+	arr00=[elel_MainV_TD_Video,elel_MultiV_TD_Video];
+	//==========DIVISION==========
+	//0 : Pre_Time + Interval_Time .
+	//1 : Current_Time + Interval_Time .
+	//2 : Current_Time .
+	//Audio_URL_STR_CLS.VAL.ICTime_Type;
+	//==========DIVISION==========
+	//0 : End_Time .
+	//1 : End_2_Begin_Time .
+	//Audio_URL_STR_CLS.VAL.E_E2B_Time_Type;
+	//==========DIVISION==========
+	var AR_ID_Pre_Time_ARR	=Audio_URL_STR_CLS.VAL.AR_ID_Pre_Time_ARR;
+	var ICTime_Type			=Audio_URL_STR_CLS.VAL.ICTime_Type;
+	var E_E2B_Time_Type		=Audio_URL_STR_CLS.VAL.E_E2B_Time_Type;
+	//==========DIVISION==========
+	i=AR_ID_CLS.i;j=AR_ID_CLS.j;
+	var currentTime_ORI=AR_ID_Pre_Time_ARR[i][j];
+	var currentTime_MOD=0;
+	var duration_ORI;
+	//==========DIVISION==========
+	try
+	{
+		var ele02=arr00[i][j].getElementsByTagName("video")[0];
+	}
+	catch (err)
+	{
+		console.log(err.message);
+		return 0;
+	}
+	//==========DIVISION==========
+	if ( ele02.getAttribute("duration_ORI")=="" || ele02.getAttribute("duration_ORI")=="NaN" || 
+			ele02.getAttribute("duration_ORI")==undefined || ele02.getAttribute("duration_ORI")==null )
+													{duration_ORI=ele02.duration;ele02.setAttribute("duration_ORI",duration_ORI);}
+	else											{duration_ORI=parseFloat(ele02.getAttribute("duration_ORI"));}
+	//==========DIVISION==========
+	Interval_currentTime=Interval_currentTime * ele02.playbackRate;
+	//==========DIVISION==========
+	if ( currentTime_ORI>=0 && currentTime_ORI<duration_ORI )
+	{
+		//==========DIVISION==========
+		if ( ICTime_Type==0 )			{currentTime_MOD=currentTime_ORI + Interval_currentTime;}
+		else if ( ICTime_Type==1 )		{currentTime_MOD=ele02.currentTime + Interval_currentTime;}
+		//else if ( ICTime_Type==2 )		{currentTime_MOD=parseFloat(Interval_currentTime * Math.random()).toFixed(3);}
+		else if ( ICTime_Type==2 )		{currentTime_MOD=parseFloat(Interval_currentTime).toFixed(3);}
+		else		{}
+		//==========DIVISION==========
+		if ( E_E2B_Time_Type==0 )		{if ( currentTime_MOD>=duration_ORI )		{currentTime_MOD=duration_ORI;}}
+		else if ( E_E2B_Time_Type==1 )	{if ( currentTime_MOD>=duration_ORI )		{currentTime_MOD=currentTime_MOD % duration_ORI;}}
+		else		{}
+		//==========DIVISION==========
+		if ( currentTime_MOD>=duration_ORI )		{currentTime_MOD=0;}
+		else		{}
+		//==========DIVISION==========
+	}
+	else if ( currentTime_ORI>=duration_ORI )		{currentTime_ORI=0;currentTime_MOD=0;}
+	else		{}
+	//==========DIVISION==========
+	if ( i==0 && j==0 )
+	{
+		//	console.log("AR_ID : " + AR_ID + ";\t" + 
+		//				"ICTime_Type : " + ICTime_Type + ";\t" + 
+		//				"E_E2B_Time_Type : " + E_E2B_Time_Type + ";\t" + 
+		//				"duration_ORI : " + duration_ORI + ";\t" + 
+		//				"ele02.currentTime : " + ele02.currentTime + ";\t" + 
+		//				"currentTime_ORI : " + currentTime_ORI + ";\t" + 
+		//				"currentTime_MOD : " + currentTime_MOD + ";\t" + 
+		//				"Interval_currentTime : " + Interval_currentTime + ";\t" + 
+		//				"");
+	}
+	else		{}
+	//==========DIVISION==========
+	return currentTime_MOD;
+	//==========DIVISION==========
+}
+
+function ITime_EAB_Core_Action(Main_And_Multi_Video_ARR)
+{
+	//==========DIVISION==========
+	eval(ELE_ELEL_STR_INI());
+	eval(Parameter_Base_STR_ijk_XX(10));
+	var ID,LEN,ID_LEN;
+	var AR_ID,AR_ID_CLS;
+	//==========DIVISION==========
+	arr02=Main_And_Multi_Video_ARR;
+	//==========DIVISION==========
+	if ( Initiation_Flag==0 )
+	{
+	}
+	else if ( Initiation_Flag==1 || Initiation_Flag==2 )
+	{
+		//==========DIVISION==========
+		var Interval_currentTime=Audio_URL_STR_CLS.VAL.ITime;
+		if ( Audio_URL_STR_CLS.VAL.ITime_EAB==0 )				{}
+		else if ( Audio_URL_STR_CLS.VAL.ITime_EAB==1 )			{}
+		else		{}
+		//==========DIVISION==========
+		if ( Audio_URL_STR_CLS.VAL.ITime_Type>=0 && Audio_URL_STR_CLS.VAL.ITime_Type<=6 )
+		{
+			for (i=0;i<Audio_URL_STR_CLS.VAL.Multi_Video_ITime_Timer_ID_ARR.length;i++)
+			{
+				for (j=0;j<Audio_URL_STR_CLS.VAL.Multi_Video_ITime_Timer_ID_ARR[i].length;j++)
+				{
+					clearTimeout(Audio_URL_STR_CLS.VAL.Multi_Video_ITime_Timer_ID_ARR[i][j]);
+				}
+			}
+			Audio_URL_STR_CLS.VAL.Multi_Video_ITime_Timer_ID_ARR=JSON.parse(JSON.stringify(arr02));
+			for (i=0;i<arr02.length;i++)
+			{
+				for (j=0;j<arr02[i].length;j++)
+				{
+					Audio_URL_STR_CLS.VAL.Multi_Video_ITime_Timer_ID_ARR[i][j]=null;
+				}
+			}
+		}
+		else		{}
+		//==========DIVISION==========
+		if ( Audio_URL_STR_CLS.VAL.ITime_Type==6 )
+		{
+			Audio_URL_STR_CLS.VAL.ITime_2_Time_TTI_SD_ID_ARR=JSON.parse(JSON.stringify(arr02));
+			for (i=0;i<arr02.length;i++)
+			{
+				for (j=0;j<arr02[i].length;j++)
+				{
+					Audio_URL_STR_CLS.VAL.ITime_2_Time_TTI_SD_ID_ARR[i][j]=0;
+				}
+			}
+		}
+		else		{}
+		//==========DIVISION==========
+		//console.log(arr02);
+		for (i=0;i<arr02.length;i++)
+		{
+			for (j=0;j<arr02[i].length;j++)
+			{
+				//==========DIVISION==========
+				ele02=arr02[i][j][0].getElementsByTagName("video")[0];
+				if ( ele02==undefined )			{continue;}
+				//==========DIVISION==========
+				if ( Audio_URL_STR_CLS.VAL.ITime_EAB==0 )
+				{
+					AR_ID_CLS={i:i,j:j};ele02.currentTime=Current_Time_Calc(AR_ID_CLS,Interval_currentTime);
+				}
+				else if ( Audio_URL_STR_CLS.VAL.ITime_EAB==1 )			{}
+				else		{}
+				//==========DIVISION==========
+			}
+		}
+		//==========DIVISION==========
+		//console.log(arr02);
+		for (i=0;i<arr02.length;i++)
+		{
+			for (j=0;j<arr02[i].length;j++)
+			{
+				//==========DIVISION==========
+				ele02=arr02[i][j][0].getElementsByTagName("video")[0];
+				if ( ele02==undefined )			{continue;}
+				//==========DIVISION==========
+				if ( Audio_URL_STR_CLS.VAL.ITime_EAB==0 )				{}
+				else if ( Audio_URL_STR_CLS.VAL.ITime_EAB==1 )
+				{
+					//==========DIVISION==========
+					if ( Audio_URL_STR_CLS.VAL.ITime_Type==0 )
+					{
+						AR_ID_CLS={i:i,j:j};ele02.currentTime=Current_Time_Calc(AR_ID_CLS,Interval_currentTime);
+						console.log("ele02.currentTime : " + ele02.currentTime);
+						Audio_URL_STR_CLS.VAL.AR_ID_Pre_Time_ARR[i][j]=ele02.currentTime;
+					}
+					else if ( Audio_URL_STR_CLS.VAL.ITime_Type==1 )
+					{
+						Code_Area=1;
+						if ( Code_Area==0 )			{Interval_currentTime=ITime_BE_Random_Gen(i);}
+						else if ( Code_Area==1 )	{Interval_currentTime=ITime_BME_Random_Gen(i);}
+						else						{}
+						AR_ID_CLS={i:i,j:j};ele02.currentTime=Current_Time_Calc(AR_ID_CLS,Interval_currentTime);
+						console.log("ele02.currentTime : " + ele02.currentTime);
+						Audio_URL_STR_CLS.VAL.AR_ID_Pre_Time_ARR[i][j]=ele02.currentTime;
+					}
+					else if ( Audio_URL_STR_CLS.VAL.ITime_Type>=2 && Audio_URL_STR_CLS.VAL.ITime_Type<=6 )
+					{
+						//==========DIVISION==========
+						setTimeout(function (i,j,arr02)
+						{
+							//==========DIVISION==========
+							var fun_ct_cache_00;
+							fun_ct_cache_00=arguments.callee;
+							//==========DIVISION==========
+							ele02=arr02[i][j][0].getElementsByTagName("video")[0];
+							//==========DIVISION==========
+							if ( ele02.readyState==4 )
+							{
+								Audio_URL_STR_CLS.VAL.Multi_Video_ITime_Timer_ID_ARR[i][j]=setTimeout(function (i,j,ele02)
+								{
+									//==========DIVISION==========
+									clearTimeout(Audio_URL_STR_CLS.VAL.Multi_Video_ITime_Timer_ID_ARR[i][j]);
+									//console.log("Audio_URL_STR_CLS.VAL.ITime_EAB : " + Audio_URL_STR_CLS.VAL.ITime_EAB);
+									if ( Audio_URL_STR_CLS.VAL.ITime_EAB==0 )			{return;}
+									else if ( Audio_URL_STR_CLS.VAL.ITime_EAB==1 )		{}
+									else		{}
+									//==========DIVISION==========
+									var fun_ct_cache_01;
+									fun_ct_cache_01=arguments.callee;
+									//==========DIVISION==========
+									if ( Audio_URL_STR_CLS.VAL.ITime_Type>=2 && Audio_URL_STR_CLS.VAL.ITime_Type<=6 )		{}
+									else		{return;}
+									//==========DIVISION==========
+									Code_Area=1;
+									if ( Code_Area==0 )			{Interval_currentTime=ITime_BE_Random_Gen(i);}
+									else if ( Code_Area==1 )	{Interval_currentTime=ITime_BME_Random_Gen(i);}
+									else						{}
+									AR_ID_CLS={i:i,j:j};ele02.currentTime=Current_Time_Calc(AR_ID_CLS,Interval_currentTime);
+									//==========DIVISION==========
+									//	console.log("Setting currentTime : " + 
+									//				"i : " + i + ";\t" + 
+									//				"j : " + j + ";\t" + 
+									//				"TTI_SD : " + TTI_SD + ";\t" + 
+									//				"ele02.duration : " + ele02.duration + ";\t" + 
+									//				"ele02.currentTime : " + ele02.currentTime + ";\t" + 
+									//				"");
+									//==========DIVISION==========
+									var Multi_Video_Time_Offset=Audio_URL_STR_CLS.VAL.Multi_Video_Time_Offset;//ms;
+									var TTI_SD;
+									if ( Audio_URL_STR_CLS.VAL.ITime_Type==2 )
+									{
+										TTI_SD=Audio_URL_STR_CLS.VAL.BEITime_BTTI + Multi_Video_Time_Offset;
+									}
+									else if ( Audio_URL_STR_CLS.VAL.ITime_Type==3 )
+									{
+										TTI_SD=Audio_URL_STR_CLS.VAL.BEITime_BTTI + 
+												(Audio_URL_STR_CLS.VAL.BEITime_ETTI - Audio_URL_STR_CLS.VAL.BEITime_BTTI) * Math.random() + 
+												Multi_Video_Time_Offset;
+									}
+									else if ( Audio_URL_STR_CLS.VAL.ITime_Type==4 )
+									{
+										TTI_SD=(ele02.duration * 1000 + Multi_Video_Time_Offset) / ele02.playbackRate;
+									}
+									else if ( Audio_URL_STR_CLS.VAL.ITime_Type==5 )
+									{
+										TTI_SD=(ele02.duration * 1000 * Math.random() + Multi_Video_Time_Offset) / ele02.playbackRate;
+									}
+									else if ( Audio_URL_STR_CLS.VAL.ITime_Type==6 )
+									{
+										//==========DIVISION==========
+										var ele_Audio_DFLG_Table			=
+										document.getElementsByClassName("Audio_DFLG_Table")[0];
+										var elel_Audio_DFLG_Ctrl_Table		=
+										ele_Audio_DFLG_Table.getElementsByClassName("Audio_DFLG_Ctrl_Table");
+										var ele_Audio_ITime_Ctrl_Table		=
+										elel_Audio_DFLG_Ctrl_Table[0].getElementsByClassName("Audio_ITime_Ctrl_Table")[0];
+										var ele_ITime_2_Time_Fun_EVAL_Code	=
+										ele_Audio_ITime_Ctrl_Table.getElementsByClassName("ITime_2_Time_Fun_EVAL_Code")[0];
+										//==========DIVISION==========
+										var EVAL_Code_STR=ele_ITime_2_Time_Fun_EVAL_Code.value;
+										var TTI_SD_ID=Audio_URL_STR_CLS.VAL.ITime_2_Time_TTI_SD_ID_ARR[i][j];
+										var Evoke_By_OBJ="ITime";
+										eval(EVAL_Code_STR);
+										//console.log(Audio_VAR_CLS);
+										Interval_currentTime=Audio_VAR_CLS.v;
+										AR_ID_CLS={i:i,j:j};ele02.currentTime=Current_Time_Calc(AR_ID_CLS,Interval_currentTime);
+										Audio_URL_STR_CLS.VAL.ITime_2_Time_TTI_SD_ID_ARR[i][j]++;
+										TTI_SD=Audio_VAR_CLS.TTI_SD;TTI_SD=TTI_IN_USE * 10;
+										//==========DIVISION==========
+										//	console.log("TTI_SD : " + TTI_SD + ";\t" + 
+										//				"ITime_2_Time_TTI_SD_ID_ARR[i][j] : " + 
+										//				Audio_URL_STR_CLS.VAL.ITime_2_Time_TTI_SD_ID_ARR[i][j] + ";\t" + 
+										//				"ele02.currentTime : " + ele02.currentTime + ";\t" + 
+										//				"");
+										//==========DIVISION==========
+									}
+									else		{}
+									//==========DIVISION==========
+									Audio_URL_STR_CLS.VAL.AR_ID_Pre_Time_ARR[i][j]=ele02.currentTime;
+									//==========DIVISION==========
+									//	console.log("Setting currentTime : " + 
+									//				"i : " + i + ";\t" + 
+									//				"TTI_SD : " + TTI_SD + ";\t" + 
+									//				"ele02.duration : " + ele02.duration + ";\t" + 
+									//				"ele02.currentTime : " + ele02.currentTime + ";\t" + 
+									//				"");
+									//==========DIVISION==========
+									Audio_URL_STR_CLS.VAL.Multi_Video_ITime_Timer_ID_ARR[i][j]=
+									setTimeout(fun_ct_cache_01,TTI_SD,i,j,ele02);
+									//==========DIVISION==========
+								},0,i,j,ele02);
+								//==========DIVISION==========
+							}
+							else
+							{
+								setTimeout(fun_ct_cache_00,TTI_IN_USE,i,j,arr02);
+							}
+							//==========DIVISION==========
+						},0,i,j,arr02);
+						//==========DIVISION==========
+					}
+					else		{}
+					//==========DIVISION==========
+				}
+				else		{}
+				//==========DIVISION==========
+			}
+		}
+		//==========DIVISION==========
+	}
+	else		{}
+	//==========DIVISION==========
+	if ( Initiation_Flag==1 )	{Initiation_Flag++;}
+	//==========DIVISION==========
+}
+//==========DIVISION==========
+function Speed_EAB_Core_Action(Main_And_Multi_Video_ARR)
+{
+	//==========DIVISION==========
+	eval(ELE_ELEL_STR_INI());
+	eval(Parameter_Base_STR_ijk_XX(10));
+	var ID,LEN,ID_LEN;
+	var AR_ID;
+	//==========DIVISION==========
+	arr02=Main_And_Multi_Video_ARR;
+	//==========DIVISION==========
+	if ( Initiation_Flag==0 )
+	{
+	}
+	else if ( Initiation_Flag==1 || Initiation_Flag==2 )
+	{
+		//==========DIVISION==========
+		var speed=Audio_URL_STR_CLS.VAL.Speed;
+		if ( Audio_URL_STR_CLS.VAL.Speed_EAB==0 )				{}
+		else if ( Audio_URL_STR_CLS.VAL.Speed_EAB==1 )			{}
+		else		{}
+		//==========DIVISION==========
+		if ( Audio_URL_STR_CLS.VAL.Speed_Type>=0 && Audio_URL_STR_CLS.VAL.Speed_Type<=6 )
+		{
+			for (i=0;i<Audio_URL_STR_CLS.VAL.Multi_Video_Speed_Timer_ID_ARR.length;i++)
+			{
+				for (j=0;j<Audio_URL_STR_CLS.VAL.Multi_Video_Speed_Timer_ID_ARR[i].length;j++)
+				{
+					clearTimeout(Audio_URL_STR_CLS.VAL.Multi_Video_Speed_Timer_ID_ARR[i][j]);
+				}
+			}
+			Audio_URL_STR_CLS.VAL.Multi_Video_Speed_Timer_ID_ARR=JSON.parse(JSON.stringify(arr02));
+			for (i=0;i<arr02.length;i++)
+			{
+				for (j=0;j<arr02[i].length;j++)
+				{
+					Audio_URL_STR_CLS.VAL.Multi_Video_Speed_Timer_ID_ARR[i][j]=null;
+				}
+			}
+		}
+		else		{}
+		//==========DIVISION==========
+		if ( Audio_URL_STR_CLS.VAL.Speed_Type==6 )
+		{
+			Audio_URL_STR_CLS.VAL.Speed_2_Time_TTI_SD_ID_ARR=JSON.parse(JSON.stringify(arr02));
+			for (i=0;i<arr02.length;i++)
+			{
+				for (j=0;j<arr02[i].length;j++)
+				{
+					Audio_URL_STR_CLS.VAL.Speed_2_Time_TTI_SD_ID_ARR[i][j]=0;
+				}
+			}
+		}
+		else		{}
+		//==========DIVISION==========
+		//console.log(arr02);
+		for (i=0;i<arr02.length;i++)
+		{
+			for (j=0;j<arr02[i].length;j++)
+			{
+				//==========DIVISION==========
+				ele02=arr02[i][j][0].getElementsByTagName("video")[0];
+				if ( ele02==undefined )			{continue;}
+				//==========DIVISION==========
+				if ( Audio_URL_STR_CLS.VAL.Speed_EAB==0 )
+				{
+					ele02.playbackRate=speed;
+				}
+				else if ( Audio_URL_STR_CLS.VAL.Speed_EAB==1 )			{}
+				else		{}
+				//==========DIVISION==========
+			}
+		}
+		//==========DIVISION==========
+		//console.log(arr02);
+		for (i=0;i<arr02.length;i++)
+		{
+			for (j=0;j<arr02[i].length;j++)
+			{
+				//==========DIVISION==========
+				ele02=arr02[i][j][0].getElementsByTagName("video")[0];
+				if ( ele02==undefined )			{continue;}
+				//==========DIVISION==========
+				if ( Audio_URL_STR_CLS.VAL.Speed_EAB==0 )				{}
+				else if ( Audio_URL_STR_CLS.VAL.Speed_EAB==1 )
+				{
+					//==========DIVISION==========
+					if ( Audio_URL_STR_CLS.VAL.Speed_Type==0 )
+					{
+						ele02.playbackRate=speed;
+					}
+					else if ( Audio_URL_STR_CLS.VAL.Speed_Type==1 )
+					{
+						Code_Area=1;
+						if ( Code_Area==0 )			{ele02.playbackRate=Speed_BE_Random_Gen(i,j);}
+						else if ( Code_Area==1 )	{ele02.playbackRate=Speed_BME_Random_Gen(i,j);}
+						else						{}
+						console.log("ele02.playbackRate : " + ele02.playbackRate);
+					}
+					else if ( Audio_URL_STR_CLS.VAL.Speed_Type>=2 && Audio_URL_STR_CLS.VAL.Speed_Type<=6 )
+					{
+						//==========DIVISION==========
+						setTimeout(function (i,j,arr02)
+						{
+							//==========DIVISION==========
+							var fun_ct_cache_00;
+							fun_ct_cache_00=arguments.callee;
+							//==========DIVISION==========
+							ele02=arr02[i][j][0].getElementsByTagName("video")[0];
+							//==========DIVISION==========
+							if ( ele02.readyState==4 )
+							{
+								Audio_URL_STR_CLS.VAL.Multi_Video_Speed_Timer_ID_ARR[i][j]=setTimeout(function (i,j,ele02)
+								{
+									//==========DIVISION==========
+									clearTimeout(Audio_URL_STR_CLS.VAL.Multi_Video_Speed_Timer_ID_ARR[i][j]);
+									//console.log("Audio_URL_STR_CLS.VAL.Speed_EAB : " + Audio_URL_STR_CLS.VAL.Speed_EAB);
+									if ( Audio_URL_STR_CLS.VAL.Speed_EAB==0 )			{return;}
+									else if ( Audio_URL_STR_CLS.VAL.Speed_EAB==1 )		{}
+									else		{}
+									//==========DIVISION==========
+									var fun_ct_cache_01;
+									fun_ct_cache_01=arguments.callee;
+									//==========DIVISION==========
+									if ( Audio_URL_STR_CLS.VAL.Speed_Type>=2 && Audio_URL_STR_CLS.VAL.Speed_Type<=6 )		{}
+									else		{return;}
+									//==========DIVISION==========
+									Code_Area=1;
+									if ( Code_Area==0 )			{ele02.playbackRate=Speed_BE_Random_Gen(i,j);}
+									else if ( Code_Area==1 )	{ele02.playbackRate=Speed_BME_Random_Gen(i,j);}
+									else						{}
+									//==========DIVISION==========
+									//	console.log("Setting playbackRate : " + 
+									//				"i : " + i + ";\t" + 
+									//				"j : " + j + ";\t" + 
+									//				"TTI_SD : " + TTI_SD + ";\t" + 
+									//				"ele02.duration : " + ele02.duration + ";\t" + 
+									//				"ele02.playbackRate : " + ele02.playbackRate + ";\t" + 
+									//				"");
+									//==========DIVISION==========
+									var Multi_Video_Time_Offset=Audio_URL_STR_CLS.VAL.Multi_Video_Time_Offset;//ms;
+									var TTI_SD;
+									if ( Audio_URL_STR_CLS.VAL.Speed_Type==2 )
+									{
+										TTI_SD=Audio_URL_STR_CLS.VAL.BESpeed_BTTI + Multi_Video_Time_Offset;
+									}
+									else if ( Audio_URL_STR_CLS.VAL.Speed_Type==3 )
+									{
+										TTI_SD=Audio_URL_STR_CLS.VAL.BESpeed_BTTI + 
+												(Audio_URL_STR_CLS.VAL.BESpeed_ETTI - Audio_URL_STR_CLS.VAL.BESpeed_BTTI) * Math.random() + 
+												Multi_Video_Time_Offset;
+									}
+									else if ( Audio_URL_STR_CLS.VAL.Speed_Type==4 )
+									{
+										TTI_SD=(ele02.duration * 1000 + Multi_Video_Time_Offset) / ele02.playbackRate;
+									}
+									else if ( Audio_URL_STR_CLS.VAL.Speed_Type==5 )
+									{
+										TTI_SD=(ele02.duration * 1000 * Math.random() + Multi_Video_Time_Offset) / ele02.playbackRate;
+									}
+									else if ( Audio_URL_STR_CLS.VAL.Speed_Type==6 )
+									{
+										//==========DIVISION==========
+										var ele_Audio_DFLG_Table			=
+										document.getElementsByClassName("Audio_DFLG_Table")[0];
+										var elel_Audio_DFLG_Ctrl_Table		=
+										ele_Audio_DFLG_Table.getElementsByClassName("Audio_DFLG_Ctrl_Table");
+										var ele_Audio_Speed_Ctrl_Table		=
+										elel_Audio_DFLG_Ctrl_Table[0].getElementsByClassName("Audio_Speed_Ctrl_Table")[0];
+										var ele_Speed_2_Time_Fun_EVAL_Code	=
+										ele_Audio_Speed_Ctrl_Table.getElementsByClassName("Speed_2_Time_Fun_EVAL_Code")[0];
+										//==========DIVISION==========
+										var EVAL_Code_STR=ele_Speed_2_Time_Fun_EVAL_Code.value;
+										var TTI_SD_ID=Audio_URL_STR_CLS.VAL.Speed_2_Time_TTI_SD_ID_ARR[i][j];
+										var Evoke_By_OBJ="Speed";
+										eval(EVAL_Code_STR);
+										//console.log(Audio_VAR_CLS);
+										ele02.playbackRate=Audio_VAR_CLS.v;
+										Audio_URL_STR_CLS.VAL.Speed_2_Time_TTI_SD_ID_ARR[i][j]++;
+										TTI_SD=Audio_VAR_CLS.TTI_SD;TTI_SD=TTI_IN_USE * 10;
+										//==========DIVISION==========
+										//	console.log("TTI_SD : " + TTI_SD + ";\t" + 
+										//				"Speed_2_Time_TTI_SD_ID_ARR[i][j] : " + 
+										//				Audio_URL_STR_CLS.VAL.Speed_2_Time_TTI_SD_ID_ARR[i][j] + ";\t" + 
+										//				"ele02.playbackRate : " + ele02.playbackRate + ";\t" + 
+										//				"");
+										//==========DIVISION==========
+									}
+									else		{}
+									//console.log("video readyState : ele02.readyState : " + ele02.readyState);
+									//==========DIVISION==========
+									Audio_URL_STR_CLS.VAL.Multi_Video_Speed_Timer_ID_ARR[i][j]=
+									setTimeout(fun_ct_cache_01,TTI_SD,i,j,ele02);
+									//==========DIVISION==========
+								},0,i,j,ele02);
+								//==========DIVISION==========
+							}
+							else
+							{
+								setTimeout(fun_ct_cache_00,TTI_IN_USE,i,j,arr02);
+							}
+							//==========DIVISION==========
+						},0,i,j,arr02);
+						//==========DIVISION==========
+					}
+					else		{}
+					//==========DIVISION==========
+				}
+				else		{}
+				//==========DIVISION==========
+			}
+		}
+		//==========DIVISION==========
+	}
+	else		{}
+	//==========DIVISION==========
+	if ( Initiation_Flag==1 )	{Initiation_Flag++;}
+	//==========DIVISION==========
+}
+//==========DIVISION==========
+function Multi_Video_Timer_Mode_Core_Action(Main_And_Multi_Video_ARR)//No_EAB;
+{
+	//==========DIVISION==========
+	eval(Parameter_Base_STR_ijk_XX(5));
+	arr02=Main_And_Multi_Video_ARR;
+	//==========DIVISION==========
+	for (i=0;i<arr02.length;i++)
+	{
+		for (j=0;j<arr02[i].length;j++)
+		{
+			ele02=arr02[i][j][0].getElementsByTagName("video")[0];
+			if ( ele02==undefined )			{continue;}
+			ele02.pause();
+		}
+	}
+	//console.log("Audio_URL_STR_CLS.VAL.Multi_Video_Timer_Mode : " + Audio_URL_STR_CLS.VAL.Multi_Video_Timer_Mode);
+	if ( Audio_URL_STR_CLS.VAL.Multi_Video_Timer_Mode==0 )
+	{
+		for (i=0;i<arr02.length;i++)
+		{
+			for (j=0;j<arr02[i].length;j++)
+			{
+				ele02=arr02[i][j][0].getElementsByTagName("video")[0];
+				if ( ele02==undefined )			{continue;}
+				ele02.play();
+			}
+		}
+	}
+	else if ( Audio_URL_STR_CLS.VAL.Multi_Video_Timer_Mode==1 )
+	{
+		setTimeout(function (arr02)
+		{
+			var i,j,ele02;
+			for (i=0;i<arr02.length;i++)
+			{
+				for (j=0;j<arr02[i].length;j++)
+				{
+					ele02=arr02[i][j][0].getElementsByTagName("video")[0];
+					if ( ele02==undefined )			{continue;}
+					ele02.play();
+				}
+			}
+		},Audio_URL_STR_CLS.VAL.TTI_IN_USE_Average_MOD(),arr02);
+	}
+	else if ( Audio_URL_STR_CLS.VAL.Multi_Video_Timer_Mode==2 || Audio_URL_STR_CLS.VAL.Multi_Video_Timer_Mode==3 )
+	{
+		//==========DIVISION==========
+		if ( Audio_URL_STR_CLS.VAL.Multi_Video_Timer_Mode==3 )
+		{
+			for (i=0;i<Audio_URL_STR_CLS.VAL.Multi_Video_Duration_Timer_ID_ARR.length;i++)
+			{
+				for (j=0;j<Audio_URL_STR_CLS.VAL.Multi_Video_Duration_Timer_ID_ARR[i].length;j++)
+				{
+					clearTimeout(Audio_URL_STR_CLS.VAL.Multi_Video_Duration_Timer_ID_ARR[i][j]);
+				}
+			}
+			Audio_URL_STR_CLS.VAL.Multi_Video_Duration_Timer_ID_ARR=JSON.parse(JSON.stringify(arr02));
+			for (i=0;i<arr02.length;i++)
+			{
+				for (j=0;j<arr02[i].length;j++)
+				{
+					Audio_URL_STR_CLS.VAL.Multi_Video_Duration_Timer_ID_ARR[i][j]=null;
+				}
+			}
+		}
+		else		{}
+		//==========DIVISION==========
+		for (i=0;i<arr02.length;i++)
+		{
+			for (j=0;j<arr02[i].length;j++)
+			{
+				//==========DIVISION==========
+				ele02=arr02[i][j][0].getElementsByTagName("video")[0];
+				if ( ele02==undefined )			{continue;}
+				//==========DIVISION==========
+				setTimeout(function (i,j,arr02)
+				{
+					//==========DIVISION==========
+					var fun_ct_cache_00;
+					fun_ct_cache_00=arguments.callee;
+					//==========DIVISION==========
+					ele02=arr02[i][j][0].getElementsByTagName("video")[0];
+					//console.log("video readyState : ele02.readyState : " + ele02.readyState);
+					if ( ele02.readyState==4 )
+					{
+						ele02.currentTime=ele02.duration * Math.random();
+						ele02.play();
+						if ( Audio_URL_STR_CLS.VAL.Multi_Video_Timer_Mode==3 )
+						{
+							var Multi_Video_Time_Offset=Audio_URL_STR_CLS.VAL.Multi_Video_Time_Offset;//ms;
+							Audio_URL_STR_CLS.VAL.Multi_Video_Duration_Timer_ID_ARR[i][j]=setTimeout(function (i,j,ele02,Multi_Video_Time_Offset)
+							{
+								//==========DIVISION==========
+								clearTimeout(Audio_URL_STR_CLS.VAL.Multi_Video_Duration_Timer_ID_ARR[i][j]);
+								//console.log("Audio_URL_STR_CLS.VAL.Multi_Video_EAB : " + Audio_URL_STR_CLS.VAL.Multi_Video_EAB);
+								if ( Audio_URL_STR_CLS.VAL.Multi_Video_EAB==0 )			{return;}
+								else if ( Audio_URL_STR_CLS.VAL.Multi_Video_EAB==1 )	{}
+								else		{}
+								//==========DIVISION==========
+								var fun_ct_cache_01;
+								fun_ct_cache_01=arguments.callee;
+								//==========DIVISION==========
+								ele02.currentTime=ele02.duration * Math.random();
+								//	console.log("Setting currentTime : " + 
+								//				"i : " + i + ";\t" + 
+								//				"j : " + j + ";\t" + 
+								//				"ele02.duration : " + ele02.duration + ";\t" + 
+								//				"ele02.playbackRate : " + ele02.playbackRate + ";\t" + 
+								//				"");
+								//==========DIVISION==========
+								var Multi_Video_Time_Offset=Audio_URL_STR_CLS.VAL.Multi_Video_Time_Offset;//ms;
+								var TTI_SD;
+								TTI_SD=(ele02.duration * 1000 + Multi_Video_Time_Offset) / ele02.playbackRate;
+								//==========DIVISION==========
+								Audio_URL_STR_CLS.VAL.Multi_Video_Duration_Timer_ID_ARR[i][j]=
+								setTimeout(fun_ct_cache_01,TTI_SD,i,j,ele02,Multi_Video_Time_Offset);
+								//==========DIVISION==========
+							},(ele02.duration * 1000 + Multi_Video_Time_Offset) / ele02.playbackRate,i,j,ele02,Multi_Video_Time_Offset);
+						}
+						else		{}
+					}
+					else
+					{
+						setTimeout(fun_ct_cache_00,TTI_IN_USE,i,j,arr02);
+					}
+					//==========DIVISION==========
+				},0,i,j,arr02);
+				//==========DIVISION==========
+			}
+		}
+		//==========DIVISION==========
+	}
+	else		{}
+	//==========DIVISION==========
+}
+//==========DIVISION==========
+//==============================DIVISION==============================
+//==========DIVISION==========
+function Audio_Multi_Video_Ctrl_Table_Action(ele,evt,post_method)
+{
+	//==============================arguments.callee==============================
+	var fun_ct_cache;
+	fun_ct_cache=arguments.callee;
+	var STO=0;//0:Do_Not_Run_setTimeout;1:Run_setTimeout;2:Run_Function_Now;
+	//==============================arguments.callee==============================
+	//====================Pre_Definition====================
+	//==========DIVISION==========
+	eval(ELE_ELEL_STR_INI());
+	eval(Parameter_Base_STR_ijk_XX(5));
+	var ID,LEN,ID_LEN;
+	//==========DIVISION==========
+	var evt_target = evt.target ? evt.target : evt.srcElement;
+	//==========DIVISION==========
+	//====================Pre_Definition====================
+	//====================DIVISION====================
+	if ( post_method==2 && evt && evt.type=="change" )//onchange;
+	{
+	}
+	else if ( post_method==3 && evt && evt.type=="click" )//onclick;
+	{
+		//==========DIVISION==========
+		if ( ele.className=="Audio_Multi_Video_Ctrl_Table" && evt_target.className=="Multi_Video_EAB" )
+		{
+			//==========DIVISION==========
+			Audio_URL_STR_CLS.VAL.Multi_Video_EAB		=(Audio_URL_STR_CLS.VAL.Multi_Video_EAB + 1)%2;
+			evt_target.style.backgroundColor			=["red","#1EB0E9"][Audio_URL_STR_CLS.VAL.Multi_Video_EAB];
+			ele_Multi_Video_Fit_BTN.disabled			=[true,false][Audio_URL_STR_CLS.VAL.Multi_Video_EAB];
+			ele_Multi_Video_X_CLS.disabled				=[true,false][Audio_URL_STR_CLS.VAL.Multi_Video_EAB];
+			ele_Multi_Video_Y_CLS.disabled				=[true,false][Audio_URL_STR_CLS.VAL.Multi_Video_EAB];
+			ele_Multi_Video_VID_List_STR_CLS.disabled	=[true,false][Audio_URL_STR_CLS.VAL.Multi_Video_EAB];
+			ele_Multi_Video_VID_List_STR_SEL.disabled	=[true,false][Audio_URL_STR_CLS.VAL.Multi_Video_EAB];
+			ele_Multi_Video_VID_Type_SEL.disabled		=[true,false][Audio_URL_STR_CLS.VAL.Multi_Video_EAB];
+			ele_Multi_Video_Timer_Mode_SEL.disabled		=[true,false][Audio_URL_STR_CLS.VAL.Multi_Video_EAB];
+			Multi_Video_CLS_INI(evt_target);
+			//==========DIVISION==========
+			//var Main_And_Multi_Video_ARR=Main_And_Multi_Video_ARR_Get();
+			//Multi_Video_EAB_Core_Action(Main_And_Multi_Video_ARR);
+			//==========DIVISION==========
+		}
+		else if ( ele.className=="Audio_Multi_Video_Ctrl_Table" && evt_target.className=="Multi_Video_Fit_BTN" )
+		{
+			Audio_URL_STR_CLS.VAL.Multi_Video_Fit		=(Audio_URL_STR_CLS.VAL.Multi_Video_Fit + 1)%2;
+			evt_target.style.backgroundColor			=["red","#1EB0E9"][Audio_URL_STR_CLS.VAL.Multi_Video_Fit];
+			Multi_Video_CLS_INI(evt_target);
+		}
+		else		{}
+		//==========DIVISION==========
+	}
+	else		{}
+	//====================DIVISION====================
+}
+
+function Multi_Video_CLS_INI(ele)
+{
+	//==========DIVISION==========
+	eval(ELE_ELEL_STR_INI());
+	eval(Parameter_Base_STR_ijk_XX(5));
+	var ID,LEN,ID_LEN;
+	//==========DIVISION==========
+	ele03=ele_Audio_DFLG_Multi_Video_Content_Table.getElementsByTagName("tbody")[0];
+	str03=	"\n" + 
+			(("\t<tr>\n") + 
+			("\t\t<td class=\"TD_Video\"></td>\n").repeat(Audio_URL_STR_CLS.VAL.Multi_Video_X) + 
+			("\t</tr>\n")).repeat(Audio_URL_STR_CLS.VAL.Multi_Video_Y);
+	var Screen_Width	=window.screen.width;
+	var Screen_Height	=window.screen.height;
+	var Video_Width		=Screen_Width / Audio_URL_STR_CLS.VAL.Multi_Video_X;
+	var Video_Height	=Screen_Height / Audio_URL_STR_CLS.VAL.Multi_Video_Y;
+	ele03.innerHTML=str03;
+	//==========DIVISION==========
+	ele04=ele_CSS_SD_TD_Multi_Video;
+	str04="";
+	if ( Audio_URL_STR_CLS.VAL.Multi_Video_Fit==0 )			{ele04.innerHTML="";}
+	else if ( Audio_URL_STR_CLS.VAL.Multi_Video_Fit==1 )
+	{
+		str04="\n";
+		str04+="table.Audio_DFLG_Multi_Video_Content_Table td.TD_Video video	{width:" + 
+				Video_Width.toString() + "px;height:" + Video_Height.toString() + "px;}" + "\n";
+		str04+="table.Audio_DFLG_Multi_Video_Content_Table td.TD_Video source	{width:" + 
+				Video_Width.toString() + "px;height:" + Video_Height.toString() + "px;}" + "\n";
+	}
+	else		{}
+	ele04.innerHTML=str04;
+	//==========DIVISION==========
+}
+//==========DIVISION==========
+//==============================DIVISION==============================
+//==========DIVISION==========
+function Audio_IMG_ARGMS_Ctrl_Table_Action(ele,evt,post_method)
+{
+	//==============================arguments.callee==============================
+	var fun_ct_cache;
+	fun_ct_cache=arguments.callee;
+	var STO=0;//0:Do_Not_Run_setTimeout;1:Run_setTimeout;2:Run_Function_Now;
+	//==============================arguments.callee==============================
+	//====================Pre_Definition====================
+	//==========DIVISION==========
+	eval(ELE_ELEL_STR_INI());
+	eval(Parameter_Base_STR_ijk_XX(5));
+	var ID,LEN,ID_LEN;
+	//==========DIVISION==========
+	var evt_target = evt.target ? evt.target : evt.srcElement;
+	//==========DIVISION==========
+	//====================Pre_Definition====================
+	//====================DIVISION====================
+	if ( post_method==2 && evt && evt.type=="change" )//onchange;
+	{
+		if ( ele.className=="Audio_IMG_ARGMS_Ctrl_Table" && evt_target.className=="IMG_ARGMS_Opacity_CLS" )
+		{
+			IMG_ARGMS_INI(evt_target);
+		}
+		else if ( ele.className=="Audio_IMG_ARGMS_Ctrl_Table" && evt_target.className=="IMG_ARGMS_Direction_Type_SEL" )
+		{
+			IMG_ARGMS_INI(evt_target);
+		}
+		else		{}
+	}
+	else if ( post_method==3 && evt && evt.type=="click" )//onclick;
+	{
+		//==========DIVISION==========
+		if ( ele.className=="Audio_IMG_ARGMS_Ctrl_Table" && evt_target.className=="IMG_ARGMS_EAB" )
+		{
+			//==========DIVISION==========
+			Audio_URL_STR_CLS.VAL.IMG_ARGMS_EAB=(Audio_URL_STR_CLS.VAL.IMG_ARGMS_EAB + 1)%2;
+			evt_target.style.backgroundColor					=["red","#1EB0E9"][Audio_URL_STR_CLS.VAL.IMG_ARGMS_EAB];
+			ele_IMG_ARGMS_Opacity_CLS.disabled					=[true,false][Audio_URL_STR_CLS.VAL.IMG_ARGMS_EAB];
+			ele_IMG_ARGMS_Direction_Type_SEL.disabled			=[true,false][Audio_URL_STR_CLS.VAL.IMG_ARGMS_EAB];
+			IMG_ARGMS_INI(evt_target);
+			//==========DIVISION==========
+			//var Main_And_Multi_IMG_ARR=Main_And_Multi_IMG_ARR_Get();
+			//IMG_ARGMS_EAB_Core_Action(Main_And_Multi_IMG_ARR);
+			//==========DIVISION==========
+		}
+		else		{}
+		//==========DIVISION==========
+	}
+	else		{}
+	//====================DIVISION====================
+}
+
+function IMG_ARGMS_INI(evt_target)
+{
+	//==========DIVISION==========
+	eval(ELE_ELEL_STR_INI());
+	eval(Parameter_Base_STR_ijk_XX(5));
+	var ID,LEN,ID_LEN;
+	//==========DIVISION==========
+	ele00	=ele_IASD_CLS.ele_IMG_On_Show_DIV_Table		;
+	elel01	=ele_IASD_CLS.elel_IMG_On_Show_DIV_TR		;
+	elel02	=ele_IASD_CLS.elel_IMG_On_Show_DIV_TD		;
+	elel03	=ele_IASD_CLS.elel_TAG_IMG					;
+	//==========DIVISION==========
+	if ( evt_target.className=="IMG_ARGMS_EAB" )
+	{
+		ele00.style.display=["none",""][Audio_URL_STR_CLS.VAL.IMG_ARGMS_EAB];
+	}
+	else if ( evt_target.className=="IMG_ARGMS_Opacity_CLS" )
+	{
+		ele00.style.opacity=Audio_URL_STR_CLS.VAL.IMG_Opacity=parseFloat(evt_target.value);
+	}
+	else if ( evt_target.className=="IMG_ARGMS_Direction_Type_SEL" )
+	{
+		//==========DIVISION==========
+		var IMG_ARGMS_Direction_Type=Audio_URL_STR_CLS.VAL.IMG_ARGMS_Direction_Type=evt_target.selectedIndex;
+		//==========DIVISION==========
+		//	elel02[0].style.minWidth	=["100%","50%"][parseInt(IMG_ARGMS_Direction_Type / 2,10)];
+		//	elel02[1].style.minWidth	=["","50%"][parseInt(IMG_ARGMS_Direction_Type / 2,10)];
+		//	elel02[1].style.maxWidth	=["0%",""][parseInt(IMG_ARGMS_Direction_Type / 2,10)];
+		elel02[0].style.display										="table-cell";
+		elel02[1].style.display										=["none","table-cell"][parseInt(IMG_ARGMS_Direction_Type / 2,10)];
+		elel02[0].getElementsByTagName("img")[0].style.transform	=["","rotateY(180deg)"][IMG_ARGMS_Direction_Type % 2];
+		elel02[1].getElementsByTagName("img")[0].style.transform	=["","rotateY(180deg)"][(IMG_ARGMS_Direction_Type + 1) % 2];
+		elel02[0].getElementsByTagName("img")[0].style.marginLeft	=["-14%","-14%","-28%","-35%"][IMG_ARGMS_Direction_Type];
+		elel02[1].getElementsByTagName("img")[0].style.marginRight	=["-28%","-28%","-28%","-35%"][IMG_ARGMS_Direction_Type];
+		elel02[0].getElementsByTagName("img")[0].style.marginTop	=["-35%",""][parseInt(IMG_ARGMS_Direction_Type / 2,10)];
+		elel02[0].getElementsByTagName("img")[0].style.width		=["128%","128%","128%","135%"][IMG_ARGMS_Direction_Type];
+		elel02[1].getElementsByTagName("img")[0].style.width		=["128%","128%","128%","135%"][IMG_ARGMS_Direction_Type];
+		//==========DIVISION==========
+		if ( Audio_URL_STR_CLS.VAL.IMG_ARGMS_Direction_Type==0 )
+		{
+		}
+		else if ( Audio_URL_STR_CLS.VAL.IMG_ARGMS_Direction_Type==1 )
+		{
+		}
+		else if ( Audio_URL_STR_CLS.VAL.IMG_ARGMS_Direction_Type==2 )
+		{
+		}
+		else if ( Audio_URL_STR_CLS.VAL.IMG_ARGMS_Direction_Type==3 )
+		{
+		}
+		else		{}
+		//==========DIVISION==========
+	}
+	else		{}
+	//==========DIVISION==========
+}
+//==========DIVISION==========
+//==============================DIVISION==============================
+//========================================Audio_Function========================================
+//==================================================控件動作變化==================================================
+function TEXT_ATTRIBUTION(ele,evt,n)
+{
+	//==========DIVISION==========
+	eval(ELE_ELEL_STR_INI());
+	eval(Parameter_Base_STR_ijk_XX(5));
+	var ID,LEN,ID_LEN;
+	//==========DIVISION==========
+	//console___log("function now is : TEXT_ATTRIBUTION(ele,evt,n)");
+
+	//IE7 : evt.srcElement ;Other : evt.target;
+	var evt_target = evt.target ? evt.target : evt.srcElement;
+	//alert(evt_target.tagName);
+
+	var ele_disabled;
+	if ( n==0 )//鼠標移入。
+	{
+		if ( evt_target.tagName.toUpperCase()=="TEXTAREA" || evt_target.tagName.toUpperCase()=="INPUT" || evt_target.tagName.toUpperCase()=="SELECT" )
+		{
+			try
+			{
+				if ( evt_target.disabled==true )	{ele_disabled=true;evt_target.disabled=false;}
+				evt_target.focus();//設置焦點。
+				evt_target.select();//選中全文。
+				if ( ele_disabled==true )			{evt_target.disabled=true;}
+			}
+			catch (err)
+			{
+				console.log(err.message);
+			}
+		}
+		else		{}
+	}
+	else if ( n==1 )//鼠標移出。
+	{
+		//ele.blur();//失去焦點。
+	}
+	else if ( n==2 )//更改了文本框的內容。
+	{
+		//==========DIVISION==========
+		if ( ele.className=="Audio_DFLG_Table" && 
+				//==========DIVISION==========
+				( evt_target.className=="MultiPlier_CLS" || 
+				//==========DIVISION==========
+				evt_target.className=="ITime_CLS" || 
+				evt_target.className=="BITime_CLS" || evt_target.className=="EITime_CLS" || 
+				evt_target.className=="BEITime_BTTI_CLS" || evt_target.className=="BEITime_ETTI_CLS" || 
+				//==========DIVISION==========
+				evt_target.className=="Speed_CLS" || 
+				evt_target.className=="BSpeed_CLS" || evt_target.className=="ESpeed_CLS" || 
+				evt_target.className=="BESpeed_BTTI_CLS" || evt_target.className=="BESpeed_ETTI_CLS" || 
+				//==========DIVISION==========
+				evt_target.className=="Multi_Video_X_CLS" || evt_target.className=="Multi_Video_Y_CLS" || 
+				//==========DIVISION==========
+				0 ) )
+		{
+			//==========DIVISION==========
+			var parseType="",parseType_STR="",RegExp_STR="";
+			if ( evt_target.className=="MultiPlier_CLS" || 
+				//==========DIVISION==========
+				evt_target.className=="ITime_CLS" || 
+				evt_target.className=="BITime_CLS" || evt_target.className=="EITime_CLS" || 
+				//==========DIVISION==========
+				evt_target.className=="Speed_CLS" || 
+				evt_target.className=="BSpeed_CLS" || evt_target.className=="ESpeed_CLS" || 
+				//==========DIVISION==========
+				0 )
+			{parseType="parseFloat";	parseType_STR="parseFloat(evt_target.value)";	RegExp_STR="[0-9\.]+";}
+			else if ( evt_target.className=="BEITime_BTTI_CLS" || evt_target.className=="BEITime_ETTI_CLS" || 
+					//==========DIVISION==========
+					evt_target.className=="BESpeed_BTTI_CLS" || evt_target.className=="BESpeed_ETTI_CLS" || 
+					//==========DIVISION==========
+					evt_target.className=="Multi_Video_X_CLS" || evt_target.className=="Multi_Video_Y_CLS" || 
+					//==========DIVISION==========
+				0 )
+			{parseType="parseInt";		parseType_STR="parseInt(evt_target.value,10)";	RegExp_STR="[0-9]+";}
+			else		{}
+			//==========DIVISION==========
+			if ( evt_target.value!="" && !isNaN(evt_target.value) && ( evt_target.value.replace(/[0-9\.]+/gm,"")=="" ) )
+			{
+				//==========DIVISION==========
+				str00="Audio_URL_STR_CLS.VAL." + evt_target.className.replace(/_CLS$/gm,"") + "=" + parseType_STR + ";";
+				eval(str00);
+				//==========DIVISION==========
+			}
+			else
+			{
+				alert("Error , it must be setted to a number .");
+				evt_target.focus();
+				str00="evt_target.value=Audio_URL_STR_CLS.VAL." + evt_target.className.replace(/_CLS$/gm,"") + ";";
+				eval(str00);
+				evt_target.setAttribute("value",evt_target.value);
+			}
+			//==========DIVISION==========
+		}
+		else if ( ele.className=="Audio_DFLG_Table" && evt_target.className=="Multi_Video_VID_List_STR_CLS" )
+		{
+			if ( evt_target.value!="" && evt_target.value.replace(/^\[[0-9\,]+\]$/gm,"")=="" && 
+											evt_target.value.replace(/(\[\,|\,\,|\,\])/gm,"")==evt_target.value )
+			{
+				eval("Audio_URL_STR_CLS.VAL.Multi_Video_VID_List_STR=\"" + evt_target.value + "\"");
+				eval("Audio_URL_STR_CLS.VAL.Multi_Video_VID_List_ARR=" + Audio_URL_STR_CLS.VAL.Multi_Video_VID_List_STR + ";");
+			}
+			else
+			{
+				alert("Error , it must be setted to a array .");
+				evt_target.focus();
+				evt_target.value=Audio_URL_STR_CLS.VAL.Multi_Video_VID_List_STR.toString();
+				evt_target.setAttribute("value",evt_target.value);
+			}
+		}
+		else if ( ele.className=="Audio_DFLG_Table" && evt_target.className=="Multi_Video_VID_List_STR_SEL" )
+		{
+			ele00=ele_Multi_Video_VID_List_STR_CLS;
+			ele00.value=evt_target.options[evt_target.selectedIndex].value;
+			var evt={target:ele00};
+			TEXT_ATTRIBUTION(ele,evt,n);
+		}
+		else if ( ele.className=="Audio_DFLG_Table" && 
+				( //==========DIVISION==========
+					evt_target.className=="ITime_Type_SEL" || 
+					evt_target.className=="ICTime_Type_SEL" || evt_target.className=="E_E2B_Time_Type_SEL" || 
+					//==========DIVISION==========
+					evt_target.className=="Speed_Type_SEL" || 
+					//==========DIVISION==========
+					evt_target.className=="BEITime_BETTI_VAL_Set_SEL" || 
+					evt_target.className=="BESpeed_BETTI_VAL_Set_SEL" || 
+					//==========DIVISION==========
+					evt_target.className=="ITime_2_Time_Fun_Type_SEL" || 
+					evt_target.className=="Speed_2_Time_Fun_Type_SEL" || 
+					//==========DIVISION==========
+					evt_target.className=="Multi_Video_VID_Type_SEL" || evt_target.className=="Multi_Video_Timer_Mode_SEL" || 
+					//==========DIVISION==========
+					0 ) )
+		{
+			//==========DIVISION==========
+			parseType_STR="evt_target.selectedIndex";
+			str00="Audio_URL_STR_CLS.VAL." + evt_target.className.replace(/_SEL$/gm,"") + "=" + parseType_STR + ";";
+			eval(str00);
+			//==========DIVISION==========
+			if ( evt_target.className=="BEITime_BETTI_VAL_Set_SEL" || 
+					evt_target.className=="BESpeed_BETTI_VAL_Set_SEL" || 
+					0 )
+			{
+				//	str00="";
+				//	str00+="Audio_URL_STR_CLS.VAL." + evt_target.className.replace(/_SEL$/gm,"") + "=" + evt_target.selectedIndex + ";";
+				//	eval(str00);
+				//	"↓";
+				BEXXXXX_BETTI_VAL_Set_Do(evt_target);
+			}
+			else if ( evt_target.className=="ITime_2_Time_Fun_Type_SEL" || 
+					evt_target.className=="Speed_2_Time_Fun_Type_SEL" || 
+					0 )
+			{
+				//==========DIVISION==========
+				ele00=evt_target;
+				while ( ele00.tagName.toUpperCase()!="TABLE" )		{ele00=ele00.parentNode;}
+				str01=evt_target.className.replace(/^(.+)_2_Time_Fun_Type_SEL$/gm,"$1");
+				ele01=ele00.getElementsByClassName(evt_target.className.replace(/^(.+)_2_Time_Fun_Type_SEL$/gm,"$1_2_Time_Fun_EVAL_Code"))[0];
+				//==========DIVISION==========
+				str02="Audio_URL_STR_CLS.FUN.Audio_VAR_2_Time_Fun_EVAL_Code(Audio_URL_STR_CLS.VAL." + str01 + "_2_Time_Fun_Type);";
+				str02=eval(str02);
+				//==========DIVISION==========
+				str03="ele01.value=Audio_URL_STR_CLS.VAL." + str01 + "_2_Time_Fun_EVAL_Code=str02;";
+				eval(str03);
+				//==========DIVISION==========
+				//ele01.value=Audio_URL_STR_CLS.VAL.Volume_2_Time_Fun_EVAL_Code=
+				//Audio_URL_STR_CLS.FUN.Audio_VAR_2_Time_Fun_EVAL_Code(Audio_URL_STR_CLS.VAL.Volume_2_Time_Fun_Type);
+				//==========DIVISION==========
+			}
+			else		{}
+			//==========DIVISION==========
+		}
+		else if ( ele.className=="Audio_DFLG_Table" && evt_target.className=="IMG_ARGMS_Direction_Type_SEL" )
+		{
+			IMG_ARGMS_INI(evt_target);
+		}
+		else		{}
+		//==========DIVISION==========
+		if ( ele.className=="Audio_DFLG_Table" && 
+				( evt_target.className=="Multi_Video_X_CLS" || evt_target.className=="Multi_Video_Y_CLS" || 
+				evt_target.className=="Multi_Video_VID_List_STR_CLS" || 
+				0 ) )
+		{
+			Multi_Video_CLS_INI(evt_target);
+		}
+		else		{}
+		//==========DIVISION==========
+		//ele_DFLG_Video.click();
+		if ( ele.className=="Audio_DFLG_Table" && ( 
+				//==========DIVISION==========
+				( evt_target.className=="ITime_Type_SEL" || evt_target.className=="ITime_CLS" || 
+				evt_target.className=="BITime_CLS" || evt_target.className=="EITime_CLS" || 
+				0 ) && ( Audio_URL_STR_CLS.VAL.ITime_Type>=0 && Audio_URL_STR_CLS.VAL.ITime_Type<=6 ) || 
+				//==========DIVISION==========
+				0 ) )
+		{
+			var Main_And_Multi_Video_ARR=Main_And_Multi_Video_ARR_Get();
+			ITime_EAB_Core_Action(Main_And_Multi_Video_ARR);
+		}
+		else if ( ele.className=="Audio_DFLG_Table" && ( 
+				//==========DIVISION==========
+				( evt_target.className=="Speed_Type_SEL" || evt_target.className=="Speed_CLS" || 
+				evt_target.className=="BSpeed_CLS" || evt_target.className=="ESpeed_CLS" || 
+				0 ) && ( Audio_URL_STR_CLS.VAL.Speed_Type>=0 && Audio_URL_STR_CLS.VAL.Speed_Type<=6 ) || 
+				//==========DIVISION==========
+				0 ) )
+		{
+			var Main_And_Multi_Video_ARR=Main_And_Multi_Video_ARR_Get();
+			Speed_EAB_Core_Action(Main_And_Multi_Video_ARR);
+		}
+		else		{}
+		//==========DIVISION==========
+		console.log("Audio_URL_STR_CLS : ");
+		console.log(Audio_URL_STR_CLS);
+		//	console.log("Audio_URL_STR_CLS.VAL : " + JSON.stringify(Audio_URL_STR_CLS.VAL,null,"\t") + ";\t" + 
+		//				"");
+		//==========DIVISION==========
+	}
+	else if ( n==3 )//點擊了按鈕。
+	{
+	}
+	else
+	{
+	}
+}
+//==================================================控件動作變化==================================================
+//========================================Audio_DFLG_Hotkey_Mouse========================================
+function Audio_DFLG_Hotkey_Mouse(ele,evt,post_method)
+{
+	//==========DIVISION==========
+	eval(Parameter_Base_STR_ijk_XX(10));
+	//eval(ELE_ELEL_STR_INI());
+	var ID,LEN,ID_LEN;
+	//==========DIVISION==========
+	//console.log("function now is : TEXT_ATTRIBUTION(ele,evt,n)");
+
+	//IE7 : evt.srcElement ;Other : evt.target;
+	var evt_target = evt.target ? evt.target : evt.srcElement;
+	//alert(evt_target.outerHTML + "\n" + 
+	//	evt_target.tagName + "\n" + evt_target.className + "\n" + 
+	//	evt_target.tpye + "\n" + evt_target.getAttribute("type") + "\n" + 
+	//	evt_target.getAttribute("type_x_y"));
+
+	//evt.ctrlKey失效可能是其他函数的原因。
+	//console.log("evt _ evt.ctrlKey _ evt.altKey _ evt.shiftKey _ evt.which : " + evt + evt.ctrlKey + "_" + evt.altKey + "_" + evt.shiftKey + "_" + evt.which);
+	//						17				18			16
+	//==========DIVISION==========
+	var referenceNode;
+	if ( post_method==0 && evt && evt.type=="keydown" && evt.which==13 )//enter:13;
+	{
+		if ( ele.className=="Audio_DFLG_Table" && evt_target.className=="" )
+		{
+			ele01=evt_target.parentNode;
+			//	while ( ele01.className!="??????" )		{ele01=ele01.parentNode;}
+			//	ele01.getElementsByClassName("??????")[0].click();
+		}
+		else
+		{
+		}
+	}
+	else if ( post_method==0 && evt && evt.type=="keydown" && 
+				( ( evt.which == 33 || evt.which == 34 || evt.which == 38 || evt.which == 40 || evt.which == 36 || evt.which == 35 ) || 
+				( evt.which == 38 || evt.which == 40 ) || 
+				//( evt.which == 17 && evt.ctrlKey || evt.which == 18 && evt.altKey || evt.which == 16 && evt.shiftKey ) || 
+				0 ) )
+	{
+		//==========DIVISION==========
+		/*
+		up arrow	38
+		down arrow	40
+		page up		33
+		page down	34
+		home	36
+		end		35
+		*/
+		var i,j,str;
+		var NUM_10,NUM_X,NUM_MIN,NUM_MAX;
+		var number_system,NS,NUM_SYS_MAX;
+		var NS_00,NS_01;
+		var evt_sd;
+		NS_00=10;
+		//==========DIVISION==========
+		if ( ( evt.which == 33 || evt.which == 34 || evt.which == 38 || evt.which == 40 || evt.which == 36 || evt.which == 35 ) && 
+				ele.tagName.toUpperCase()=="TABLE" && 
+				//==========DIVISION==========
+				( evt_target.className=="MultiPlier_CLS" || 
+				//==========DIVISION==========
+				evt_target.className=="ITime_CLS" || 
+				evt_target.className=="BITime_CLS" || evt_target.className=="EITime_CLS" || 
+				evt_target.className=="BEITime_BTTI_CLS" || evt_target.className=="BEITime_ETTI_CLS" || 
+				//==========DIVISION==========
+				evt_target.className=="Speed_CLS" || 
+				evt_target.className=="BSpeed_CLS" || evt_target.className=="ESpeed_CLS" || 
+				evt_target.className=="BESpeed_BTTI_CLS" || evt_target.className=="BESpeed_ETTI_CLS" || 
+				//==========DIVISION==========
+				evt_target.className=="Multi_Video_X_CLS" || evt_target.className=="Multi_Video_Y_CLS" || 
+				//==========DIVISION==========
+				evt_target.className=="IMG_ARGMS_Opacity_CLS" || 
+				//==========DIVISION==========
+				0 ) )
+		{
+			//==========DIVISION==========
+			NUM_MAX=10000*10000;
+			//==========DIVISION==========
+			if ( evt_target.className=="MultiPlier_CLS" )					{NUM_MIN=0;NUM_MAX=100;}
+			//==========DIVISION==========
+			else if ( evt_target.className=="ITime_CLS" )					{NUM_MIN=0;NUM_MAX=10000*10000;}
+			else if ( evt_target.className=="BITime_CLS" )					{NUM_MIN=0;NUM_MAX=10000*10000;}
+			else if ( evt_target.className=="EITime_CLS" )					{NUM_MIN=0;NUM_MAX=10000*10000;}
+			else if ( evt_target.className=="BEITime_BTTI_CLS" )			{NUM_MIN=0;NUM_MAX=10000*10000;}
+			else if ( evt_target.className=="BEITime_ETTI_CLS" )			{NUM_MIN=0;NUM_MAX=10000*10000;}
+			//==========DIVISION==========
+			else if ( evt_target.className=="Speed_CLS" )					{NUM_MIN=0;NUM_MAX=100;}
+			else if ( evt_target.className=="BSpeed_CLS" )					{NUM_MIN=0;NUM_MAX=100;}
+			else if ( evt_target.className=="ESpeed_CLS" )					{NUM_MIN=0;NUM_MAX=100;}
+			else if ( evt_target.className=="BESpeed_BTTI_CLS" )			{NUM_MIN=0;NUM_MAX=10000*10000;}
+			else if ( evt_target.className=="BESpeed_ETTI_CLS" )			{NUM_MIN=0;NUM_MAX=10000*10000;}
+			//==========DIVISION==========
+			else if ( evt_target.className=="Multi_Video_X_CLS" )			{NUM_MIN=1;NUM_MAX=99;}
+			else if ( evt_target.className=="Multi_Video_Y_CLS" )			{NUM_MIN=1;NUM_MAX=99;}
+			//==========DIVISION==========
+			else if ( evt_target.className=="IMG_ARGMS_Opacity_CLS" )		{NUM_MIN=0;NUM_MAX=1;}
+			//==========DIVISION==========
+			else															{NUM_MIN=0;NUM_MAX=10000*10000;}
+			//==========DIVISION==========
+			//evt_target.value=("00" + evt_target.value).slice(-2);
+			if ( evt_target.className=="MultiPlier_CLS" )					{NUM_10=parseFloat(evt_target.value);}
+			//==========DIVISION==========
+			else if ( evt_target.className=="ITime_CLS" )					{NUM_10=parseFloat(evt_target.value);}
+			else if ( evt_target.className=="BITime_CLS" )					{NUM_10=parseFloat(evt_target.value);}
+			else if ( evt_target.className=="EITime_CLS" )					{NUM_10=parseFloat(evt_target.value);}
+			//==========DIVISION==========
+			else if ( evt_target.className=="Speed_CLS" )					{NUM_10=parseFloat(evt_target.value);}
+			else if ( evt_target.className=="BSpeed_CLS" )					{NUM_10=parseFloat(evt_target.value);}
+			else if ( evt_target.className=="ESpeed_CLS" )					{NUM_10=parseFloat(evt_target.value);}
+			//==========DIVISION==========
+			else if ( evt_target.className=="IMG_ARGMS_Opacity_CLS" )		{NUM_10=parseFloat(evt_target.value);}
+			//==========DIVISION==========
+			else															{NUM_10=parseInt(evt_target.value,10);}
+			//==========DIVISION==========
+			num00=0;
+			if		( evt.which == 38 )	{num00++;}		//up arrow		38
+			else if ( evt.which == 40 )	{num00--;}		//down arrow	40
+			else if ( evt.which == 33 )	{num00+=10;}	//page up		33
+			else if ( evt.which == 34 )	{num00-=10;}	//page down		34
+			else if ( evt.which == 36 )	{num00+=100;}	//home			36
+			else if ( evt.which == 35 )	{num00-=100;}	//end			35
+			else{}
+
+			if ( evt.ctrlKey || evt.altKey || evt.shiftKey )
+			{
+				if ( evt.ctrlKey )			{num00*=Math.pow(NS_00,1);}	//{num00*=Math.pow(10,1);}
+				else if ( evt.altKey )		{num00*=Math.pow(NS_00,2);}	//{num00*=Math.pow(10,2);}
+				else if ( evt.shiftKey )	{num00*=Math.pow(NS_00,3);}	//{num00*=Math.pow(10,3);}
+				else						{num00*=Math.pow(NS_00,0);}	//{num00*=Math.pow(10,0);}
+			}
+			else							{num00*=Math.pow(NS_00,0);}	//{num00*=Math.pow(10,0);}
+			//==========DIVISION==========
+			if ( evt_target.className=="MultiPlier_CLS" )					{NUM_10=(parseFloat(num00/1000) + NUM_10).toFixed(3);}
+			//==========DIVISION==========
+			else if ( evt_target.className=="ITime_CLS" )					{NUM_10=(parseFloat(num00/1000) + NUM_10).toFixed(3);}
+			else if ( evt_target.className=="BITime_CLS" )					{NUM_10=(parseFloat(num00/1000) + NUM_10).toFixed(3);}
+			else if ( evt_target.className=="EITime_CLS" )					{NUM_10=(parseFloat(num00/1000) + NUM_10).toFixed(3);}
+			//==========DIVISION==========
+			else if ( evt_target.className=="Speed_CLS" )					{NUM_10=(parseFloat(num00/1000) + NUM_10).toFixed(3);}
+			else if ( evt_target.className=="BSpeed_CLS" )					{NUM_10=(parseFloat(num00/1000) + NUM_10).toFixed(3);}
+			else if ( evt_target.className=="ESpeed_CLS" )					{NUM_10=(parseFloat(num00/1000) + NUM_10).toFixed(3);}
+			//==========DIVISION==========
+			else if ( evt_target.className=="IMG_ARGMS_Opacity_CLS" )		{NUM_10=(parseFloat(num00/1000) + NUM_10).toFixed(3);}
+			//==========DIVISION==========
+			else															{NUM_10=num00 + NUM_10;}
+			//==========DIVISION==========
+			if		( NUM_10<NUM_MIN )						{NUM_10=NUM_MIN;}
+			else if ( NUM_10>NUM_MAX )						{NUM_10=NUM_MAX;}
+			else{}
+
+			evt_target.value=NUM_10;
+			//==========DIVISION==========
+			if ( evt_target.className=="MultiPlier_CLS" )					{Audio_URL_STR_CLS.VAL.MultiPlier		=parseFloat(NUM_10);}
+			//==========DIVISION==========
+			else if ( evt_target.className=="ITime_CLS" )					{Audio_URL_STR_CLS.VAL.ITime			=parseFloat(NUM_10);}
+			else if ( evt_target.className=="BITime_CLS" )					{Audio_URL_STR_CLS.VAL.BITime			=parseFloat(NUM_10);}
+			else if ( evt_target.className=="EITime_CLS" )					{Audio_URL_STR_CLS.VAL.EITime			=parseFloat(NUM_10);}
+			else if ( evt_target.className=="BEITime_BTTI_CLS" )			{Audio_URL_STR_CLS.VAL.BEITime_BTTI					=NUM_10;}
+			else if ( evt_target.className=="BEITime_ETTI_CLS" )			{Audio_URL_STR_CLS.VAL.BEITime_ETTI					=NUM_10;}
+			//==========DIVISION==========
+			else if ( evt_target.className=="Speed_CLS" )					{Audio_URL_STR_CLS.VAL.Speed			=parseFloat(NUM_10);}
+			else if ( evt_target.className=="BSpeed_CLS" )					{Audio_URL_STR_CLS.VAL.BSpeed			=parseFloat(NUM_10);}
+			else if ( evt_target.className=="ESpeed_CLS" )					{Audio_URL_STR_CLS.VAL.ESpeed			=parseFloat(NUM_10);}
+			else if ( evt_target.className=="BESpeed_BTTI_CLS" )			{Audio_URL_STR_CLS.VAL.BESpeed_BTTI					=NUM_10;}
+			else if ( evt_target.className=="BESpeed_ETTI_CLS" )			{Audio_URL_STR_CLS.VAL.BESpeed_ETTI					=NUM_10;}
+			//==========DIVISION==========
+			else if ( evt_target.className=="Multi_Video_X_CLS" )			{Audio_URL_STR_CLS.VAL.Multi_Video_X				=NUM_10;}
+			else if ( evt_target.className=="Multi_Video_Y_CLS" )			{Audio_URL_STR_CLS.VAL.Multi_Video_Y				=NUM_10;}
+			//==========DIVISION==========
+			else if ( evt_target.className=="IMG_ARGMS_Opacity_CLS" )		{Audio_URL_STR_CLS.VAL.IMG_ARGMS_Opacity			=NUM_10;}
+			//==========DIVISION==========
+			else															{}
+			//==========DIVISION==========
+			if ( evt_target.className=="MultiPlier_CLS" || 
+					//==========DIVISION==========
+					evt_target.className=="ITime_CLS" || 
+					evt_target.className=="BITime_CLS" || evt_target.className=="EITime_CLS" || 
+					evt_target.className=="BEITime_BTTI_CLS" || evt_target.className=="BEITime_ETTI_CLS" || 
+					//==========DIVISION==========
+					evt_target.className=="Speed_CLS" || 
+					evt_target.className=="BSpeed_CLS" || evt_target.className=="ESpeed_CLS" || 
+					evt_target.className=="BESpeed_BTTI_CLS" || evt_target.className=="BESpeed_ETTI_CLS" || 
+					//==========DIVISION==========
+					0 )
+			{
+				//"↑";NUM_10=NUM_10;
+				//ele00=ele_DFLG_Audio;
+				//ele01=ele_DFLG_Video;
+				//ele00.click();
+				//ele01.click();
+			}
+			else if ( evt_target.className=="Multi_Video_X_CLS" || evt_target.className=="Multi_Video_Y_CLS" )
+			{
+				Multi_Video_CLS_INI(evt_target);
+			}
+			else if ( evt_target.className=="IMG_ARGMS_Opacity_CLS" )
+			{
+				IMG_ARGMS_INI(evt_target);
+			}
+			else															{}
+			//==========DIVISION==========
+			//ele_DFLG_Video.click();
+			//==========DIVISION==========
+			if ( ele.className=="Audio_DFLG_Table" && ( 
+					//==========DIVISION==========
+					( evt_target.className=="ITime_Type_SEL" || evt_target.className=="ITime_CLS" || 
+					evt_target.className=="BITime_CLS" || evt_target.className=="EITime_CLS" || 
+					0 ) && ( Audio_URL_STR_CLS.VAL.ITime_Type>=0 && Audio_URL_STR_CLS.VAL.ITime_Type<=6 ) || 
+					//==========DIVISION==========
+					0 ) )
+			{
+				var Main_And_Multi_Video_ARR=Main_And_Multi_Video_ARR_Get();
+				ITime_EAB_Core_Action(Main_And_Multi_Video_ARR);
+			}
+			else if ( ele.className=="Audio_DFLG_Table" && ( 
+					//==========DIVISION==========
+					( evt_target.className=="Speed_Type_SEL" || evt_target.className=="Speed_CLS" || 
+					evt_target.className=="BSpeed_CLS" || evt_target.className=="ESpeed_CLS" || 
+					0 ) && ( Audio_URL_STR_CLS.VAL.Speed_Type>=0 && Audio_URL_STR_CLS.VAL.Speed_Type<=6 ) || 
+					//==========DIVISION==========
+					0 ) )
+			{
+				var Main_And_Multi_Video_ARR=Main_And_Multi_Video_ARR_Get();
+				Speed_EAB_Core_Action(Main_And_Multi_Video_ARR);
+			}
+			else		{}
+			//==========DIVISION==========
+			console.log("Audio_URL_STR_CLS : ");
+			console.log(Audio_URL_STR_CLS);
+			//	console.log("Audio_URL_STR_CLS.VAL : " + JSON.stringify(Audio_URL_STR_CLS.VAL,null,"\t") + ";\t" + 
+			//				"");
+			//==========DIVISION==========
+		}
+		else
+		{
+		}
+		//==========DIVISION==========
+		//console.log(evt_target.className + "\n" + ele.className);
+		//==========DIVISION==========
+	}
+	else
+	{
+	}
+	//==========DIVISION==========
+}
+//========================================Audio_DFLG_Hotkey_Mouse========================================
+</script>
+<pre class="Text_CLS">
+================================================================================
+法轮大法五套功法官方网站：<a href="https://gb.falundafa.org/falun-dafa-video-audio.html" target=_blank>https://gb.falundafa.org/falun-dafa-video-audio.html</a>。
+以下的音频完整，视频是分段截取。
+================================================================================
+如果是<span style="color:red;font-weight:bold;">重复</span>很多次播放炼功视频，可以关掉背景声音，只看有李洪志本人映像的部分。
+或是用李洪志本人声音的炼功音乐。
+================================================================================
+「動作是修煉圓滿的輔助手段」
+「因为炼功能最好的消除疲劳，是使身体迅速恢复的最好办法。」
+「师：炼功能炼出法轮来，当你功力不断加深时，法轮就会越来越多，法轮都是一样的，只是在小腹部的法轮不到处动，那是根。」
+================================================================================
+1.「有人要我打大手印。（鼓掌）看来这些热烈的掌声都想要我打，是吧？好，我就给大家打一套大手印。」
+2.「打大手印，我告诉你，你千万不能做！」3.「有的人睡觉中还打大手印，打着各种手印，你都得放下，不能打。」
+================================================================================
+<table class="Audio_DFLG_Table" cellSpacing=0 cellPadding=0 border=1 onkeydown=Audio_DFLG_Hotkey_Mouse(this,event,0) onmouseover=TEXT_ATTRIBUTION(this,event,0) onmouseout=TEXT_ATTRIBUTION(this,event,1) onchange=TEXT_ATTRIBUTION(this,event,2)><tbody>
+
+<tr><td colspan=2><table class="Audio_DFLG_Ctrl_Table" cellSpacing=0 cellPadding=0 border=0><tbody>
+	<tr><td><table class="Audio_TOP_Ctrl_Table" cellSpacing=0 cellPadding=0 border=0 onchange=Audio_TOP_Ctrl_Table_Action(this,event,2) onclick=Audio_TOP_Ctrl_Table_Action(this,event,3)><tbody>
+		<tr>
+			<td><input type="button" class="DFLG_Audio" value="Audio" style="background-color:#1EB0E9;"></td>
+			<td><input type="button" class="DFLG_Video" value="Video" style="background-color:#1EB0E9;"></td>
+			<td><input type="button" class="Video_Control_Bar_BTN" value="B" onclick=Video_Control_Bar_Switch(this) style="background-color:#1EB0E9;"></td>
+			<td><select class="DFLG_Video_SEL"></select></td>
+			<td><input type="button" class="Network_Type_CLS" value="OFF" style="background-color:red;"></td>
+			<td><input type="button" class="Audio_Setting_Use_CLS" value="Use" onclick=Audio_Setting_Use() style="background-color:red;"></td>
+			<td><select class="Usage_Collection_SEL" title="Usage_Collection_SEL"></select></td>
+			<td><input type="button" class="MultiPlier_EAB" title="MultiPlier_EAB" value="M"></td>
+			<td><input type="text" class="MultiPlier_CLS" title="MultiPlier_CLS" value="3"></td>
+		</tr>
+	</tbody></table></td></tr>
+	<!--Audio_currentTime_TTI_Ctrl_Table-->
+	<tr><td><table class="Audio_ITime_Ctrl_Table" cellSpacing=0 cellPadding=0 border=0 onclick=Audio_ITime_Ctrl_Table_Action(this,event,3)><tbody>
+		<tr><!--==========Interval_Time==========-->
+			<td><input type="button" class="ITime_EAB" title="ITime_EAB(Interval_Time)" value="IT"></td>
+			<td><input type="text" class="ITime_CLS" title="ITime_CLS" value="1"></td>
+			<td><select class="ITime_Type_SEL" title="ITime_Type_SEL"></select></td>
+			<!--[Interval_Time][Current_Time]-->
+			<td><select class="ICTime_Type_SEL" title="ICTime_Type_SEL"></select></td>
+			<td><select class="E_E2B_Time_Type_SEL" title="E_E2B_Time_Type_SEL"></select></td>
+			<td><input type="text" class="BITime_CLS" title="BITime_CLS" value="0.500"></td>
+			<td><input type="text" class="EITime_CLS" title="EITime_CLS" value="1.500"></td>
+			<td><input type="text" class="BEITime_BTTI_CLS" title="BEITime_BTTI_CLS" value="1500"></td>
+			<td><input type="text" class="BEITime_ETTI_CLS" title="BEITime_ETTI_CLS" value="2500"></td>
+			<td><select class="BEITime_BETTI_VAL_Set_SEL" title="BEITime_BETTI_VAL_Set_SEL"></select></td>
+			<td><select class="ITime_2_Time_Fun_Type_SEL" title="ITime_2_Time_Fun_Type_SEL"></select></td>
+			<td><input type="button" class="ITime_2_Time_Fun_TextArea_Resize" title="ITime_2_Time_Fun_TextArea_Resize" value="RS"></td>
+			<td><textarea class="ITime_2_Time_Fun_EVAL_Code" title="ITime_2_Time_Fun_EVAL_Code"></textarea></td>
+		</tr>
+	</tbody></table></td></tr>
+	<tr><td><table class="Audio_Speed_Ctrl_Table" cellSpacing=0 cellPadding=0 border=0 onclick=Audio_Speed_Ctrl_Table_Action(this,event,3)><tbody>
+		<tr>
+			<td><input type="button" class="Speed_EAB" title="Speed_EAB" value="S"></td>
+			<td><input type="button" class="Speed_Negative_Or_Positive_BTN" title="Speed_Negative_Or_Positive_BTN" value="P"></td>
+			<td><input type="text" class="Speed_CLS" title="Speed_CLS" value="1"></td>
+			<td><select class="Speed_Type_SEL" title="Speed_Type_SEL"></select></td>
+			<td><input type="text" class="BSpeed_CLS" title="BSpeed_CLS" value="0.500"></td>
+			<td><input type="text" class="ESpeed_CLS" title="ESpeed_CLS" value="3.000"></td>
+			<td><input type="text" class="BESpeed_BTTI_CLS" title="BESpeed_BTTI_CLS" value="60000"></td>
+			<td><input type="text" class="BESpeed_ETTI_CLS" title="BESpeed_ETTI_CLS" value="180000"></td>
+			<td><select class="BESpeed_BETTI_VAL_Set_SEL" title="BESpeed_BETTI_VAL_Set_SEL"></select></td>
+			<td><select class="Speed_2_Time_Fun_Type_SEL" title="Speed_2_Time_Fun_Type_SEL"></select></td>
+			<td><input type="button" class="Speed_2_Time_Fun_TextArea_Resize" title="Speed_2_Time_Fun_TextArea_Resize" value="RS"></td>
+			<td><textarea class="Speed_2_Time_Fun_EVAL_Code" title="Speed_2_Time_Fun_EVAL_Code"></textarea></td>
+		</tr>
+	</tbody></table></td></tr>
+	<tr><td><table class="Audio_Multi_Video_Ctrl_Table" cellSpacing=0 cellPadding=0 border=0 onclick=Audio_Multi_Video_Ctrl_Table_Action(this,event,3)><tbody>
+		<tr>
+			<td><input type="button" class="Multi_Video_EAB" title="Multi_Video_EAB" value="MV"></td>
+			<td><input type="button" class="Multi_Video_Fit_BTN" title="Multi_Video_Fit_BTN" value="F"></td>
+			<td><input type="text" class="Multi_Video_X_CLS" title="Multi_Video_X_CLS" value="4"></td>
+			<td><input type="text" class="Multi_Video_Y_CLS" title="Multi_Video_Y_CLS" value="3"></td>
+			<td><input type="text" class="Multi_Video_VID_List_STR_CLS" title="Multi_Video_VID_List_STR_CLS" value="[2,8,9,10,11,12]"></td>
+			<td><select class="Multi_Video_VID_List_STR_SEL" title="Multi_Video_VID_List_STR_SEL"></select></td>
+			<td><select class="Multi_Video_VID_Type_SEL" title="Multi_Video_VID_Type_SEL"></select></td>
+			<td><select class="Multi_Video_Timer_Mode_SEL" title="Multi_Video_Timer_Mode_SEL"></select></td>
+			<td><a class="Multi_Video_TOP" title="Multi_Video_TOP" href="#Audio_DFLG_Multi_Video_Content_Table">↓</a></td>
+		</tr>
+	</tbody></table></td></tr>
+</tbody></table></td></tr>
+
+<tr>
+	<td style="width:550px;max-width:550px;"><table cellSpacing=0 cellPadding=0 border=0><tbody>
+		<tr><td><table class="Audio_DFLG_Video_Content_Table" cellSpacing=0 cellPadding=0 border=0><tbody>
+			<tr><td class="TD_VText"><span style="font-size:20px;">李洪志做五套功法：<br>可<span style="color:red;font-weight:bold;">全屏近距离</span>观看：</span></td></tr>
+			<tr><td class="TD_Video" style="width:550px;max-width:550px;"></td></tr>
+		</tbody></table></td></tr>
+	</tbody></table></td>
+
+	<td style="vertical-align:text-top;"><table cellSpacing=0 cellPadding=0 border=1><tbody>
+		<tr><td><span style="font-size:20px;">李洪志配音_五套功法</span></td></tr>
+		<tr><td><table class="Audio_DFLG_Audio_Content_Table" cellSpacing=0 cellPadding=0 border=1><tbody>
+			<tr>
+				<td class="TD_AText"></td>
+				<td class="TD_Audio"></td>
+				<td class="TD_AText"></td>
+				<td class="TD_Audio"></td>
+			</tr>
+		</tbody></table></td></tr>
+	</tbody></table></td>
+</tr>
+
+<!--<tr><td colspan=2>================================================================================</td></tr>-->
+
+<tr><td colspan=2><table class="Audio_DFLG_Ctrl_Table" cellSpacing=0 cellPadding=0 border=0><tbody>
+	<!--===================="ARGMS"_"Arrangement_Simple"====================-->
+	<tr><td><table class="Audio_IMG_ARGMS_Ctrl_Table" cellSpacing=0 cellPadding=0 border=0 onchange=Audio_IMG_ARGMS_Ctrl_Table_Action(this,event,2) onclick=Audio_IMG_ARGMS_Ctrl_Table_Action(this,event,3)><tbody>
+		<tr>
+			<td><input type="button" class="IMG_ARGMS_EAB" title="IMG_ARGMS_EAB" value="IAS"></td>
+			<td><input type="text" class="IMG_ARGMS_Opacity_CLS" title="IMG_ARGMS_Opacity_CLS" value="0.7"></td>
+			<td><select class="IMG_ARGMS_Direction_Type_SEL" title="IMG_ARGMS_Direction_Type_SEL"></select></td>
+		</tr>
+	</tbody></table></td></tr>
+	<!--===================="ARGMS"_"Arrangement_Simple"====================-->
+</tbody></table></td></tr>
+
+<tr><td colspan=2>
+<div class="IMG_ARGMS_DIV">
+	<div class="IMG_On_Show_DIV_Table" style="display:table;position:absolute;opacity:0.9;">
+		<div class="IMG_On_Show_DIV_TR" style="display:table-row;">
+			<div class="IMG_On_Show_DIV_TD" style="display:table-cell;overflow:hidden;min-width:50%;">
+				<img src="IMG\MLH_000_R_R000.jpg" style="width:128%;margin-left:-28%;">
+			</div>
+			<div class="IMG_On_Show_DIV_TD" style="display:table-cell;overflow:hidden;min-width:50%;">
+				<img src="IMG\MLH_000_R_R000.jpg" style="width:128%;margin-right:-28%;transform:rotateY(180deg);">
+			</div>
+		</div>
+	</div>
+</div>
+
+<!--<div class="Audio_DFLG_Multi_Video_Mask_DIV"></div>-->
+
+<div class="Audio_DFLG_Multi_Video_Content_DIV">
+<table class="Audio_DFLG_Multi_Video_Content_Table" id="Audio_DFLG_Multi_Video_Content_Table" cellSpacing=0 cellPadding=0 border=0><tbody>
+	<tr>
+		<td class="TD_Video"></td>
+		<td class="TD_Video"></td>
+	</tr>
+</tbody></table>
+</div>
+</td></tr>
+
+<!--<tr><td colspan=2>================================================================================</td></tr>-->
+
+</tbody></table>
+
+</pre>
+
+
+
+<script type="text/javascript">
+var Initiation_Flag=0;
+
+function Initiation()
+{
+	//==========DIVISION==========
+	//console___log("function now is : Initiation()");
+
+	if ( Initiation_Flag==1 )
+	{
+		document.getElementsByTagName("body")[0].setAttribute("onmouseover","");
+		return;
+	}
+	//==========DIVISION==========
+	Audio_URL_STR_CLS_INI();
+	ELE_Hint_Do({Hint_Do_Time:0,this_step:0});
+	//==========DIVISION==========
+	Initiation_Flag=1;
+	//==========DIVISION==========
+}
+Initiation();
+
+</script>
+
+</body>
+</html>
