@@ -801,6 +801,104 @@ function Audio_URL_STR_CLS_INI()
 console.log(Audio_URL_STR_CLS.Short_ARR);
 console.log(Audio_URL_STR_CLS.Long_ARR);
 console.log(Audio_URL_STR_CLS.Time_Info_ARR);
+
+function ELE_Hint_Do(ext_inner_cls)
+{
+	//====================arguments.callee====================
+	var fun_ct_cache;
+	fun_ct_cache=arguments.callee;
+	//====================arguments.callee====================
+	console.log("window.document.readyState : " + window.document.readyState);
+	if ( window.document.readyState=="complete" )
+	{
+		//==========DIVISION==========
+		//eval(ELE_ELEL_STR_INI());
+		eval(Parameter_Base_STR_ijk_XX(5));
+		var ID,LEN,ID_LEN;
+		//==========DIVISION==========
+		var STO=0;//0:Do_Not_Run_setTimeout;1:Run_setTimeout;2:Run_Function_Now;
+		//==========DIVISION==========
+		var ele_Audio_Setting_Use_CLS	=document.getElementsByClassName("Audio_Setting_Use_CLS")[0];
+		var ele_Usage_Collection_SEL	=document.getElementsByClassName("Usage_Collection_SEL")[0];
+		//==========DIVISION==========
+		var this_step					=ext_inner_cls.this_step;
+		var Hint_Do_Time				=ext_inner_cls.Hint_Do_Time;
+		var Hint_Do_MAX					=20;
+		//==========DIVISION==========
+		if ( this_step==0 )
+		{
+			//==========DIVISION==========
+			if ( Hint_Do_Time==undefined )			{Hint_Do_Time=0;}
+			//==========DIVISION==========
+			ele_Audio_Setting_Use_CLS.style.backgroundColor=["yellow","gold"][Hint_Do_Time%2];
+			ele_Usage_Collection_SEL.style.backgroundColor=["yellow","gold"][Hint_Do_Time%2];
+			//==========DIVISION==========
+			//	console.log("Hint_Do_Time : " + Hint_Do_Time + ";\t" + 
+			//				'["yellow","gold"][Hint_Do_Time%2] : ' + ["yellow","gold"][Hint_Do_Time%2] + ";\t" + 
+			//				"");
+			Hint_Do_Time++;
+			if ( Hint_Do_Time>=0 && Hint_Do_Time<Hint_Do_MAX )
+			{
+			}
+			else if ( Hint_Do_Time>=Hint_Do_MAX )
+			{
+				//==========DIVISION==========
+				ele_Audio_Setting_Use_CLS.style.backgroundColor="#1EB0E9";
+				ele_Usage_Collection_SEL.style.backgroundColor="";
+				//==========DIVISION==========
+				if ( this_step==0 )			{this_step++;STO=1;}
+				//==========DIVISION==========
+			}
+			else		{}
+			//==========DIVISION==========
+			if ( this_step==0 )			{STO=1;}
+			//==========DIVISION==========
+		}
+		else if ( this_step==1 )
+		{
+			//==========DIVISION==========
+			console.log("ELE_Hint_Do Over .");
+			//==========DIVISION==========
+			if ( this_step==1 )			{this_step++;STO=1;}
+			//==========DIVISION==========
+		}
+		else if ( this_step==2 )
+		{
+			//==========DIVISION==========
+			if ( this_step==2 )			{this_step++;STO=1;}
+			//==========DIVISION==========
+		}
+		else if ( this_step==3 )
+		{
+			//==========DIVISION==========
+			if ( this_step==3 )			{this_step++;STO=1;}
+			//==========DIVISION==========
+		}
+		else		{STO=0;}
+		//==========DIVISION==========
+		ext_inner_cls.this_step			=this_step;
+		ext_inner_cls.Hint_Do_Time		=Hint_Do_Time;
+		//==========DIVISION==========
+		//====================STO====================
+		if ( STO==0 )//0:Do_Not_Run_setTimeout;1:Run_setTimeout;2:Run_Function_Now;
+		{
+		}
+		else if ( STO==1 )//0:Do_Not_Run_setTimeout;1:Run_setTimeout;2:Run_Function_Now;
+		{
+			setTimeout(fun_ct_cache,TTI_IN_USE * 2,ext_inner_cls);
+		}
+		else if ( STO==2 )//0:Do_Not_Run_setTimeout;1:Run_setTimeout;2:Run_Function_Now;
+		{
+			fun_ct_cache(ext_inner_cls);
+		}
+		else		{}
+		//====================STO====================
+	}
+	else
+	{
+		setTimeout(fun_ct_cache,TTI_IN_USE * 2,ext_inner_cls);
+	}
+}
 //========================================Audio_URL_STR_CLS========================================
 //========================================Audio_Function========================================
 //==============================DIVISION==============================
@@ -3434,6 +3532,7 @@ function Initiation()
 	//==========DIVISION==========
 	Audio_URL_STR_CLS_INI();
 	document.getElementsByClassName("Audio_Short")[0].click();
+	ELE_Hint_Do({Hint_Do_Time:0,this_step:0});
 	//==========DIVISION==========
 	Initiation_Flag=1;
 	//==========DIVISION==========
