@@ -1,0 +1,3446 @@
+<html>
+<head>
+<title>ET_BGM_URL_ALL_01</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<style type="text/css">
+*
+{
+	margin:						0px;
+	padding:					0px;
+}
+
+table.Audio_ET_BGM_Content_Table tr							{height:30px;}
+table.Audio_ET_BGM_Content_Table td.TD_Audio video			{height:30px;width:350px;}
+table.Audio_ET_BGM_Content_Table td.TD_Audio source			{height:30px;width:350px;}
+
+table.Audio_ET_BGM_Content_Table input.RP_BTN				{height:30px;width:24px;}
+
+input.MultiPlier_EAB								{width:20px;}
+input.MultiPlier_CLS								{width:70px;}
+
+input.Audio_Setting_Use_CLS							{}
+select.Usage_Collection_SEL							{width:100px;}
+
+input.ITime_EAB										{width:20px;}
+input.ITime_CLS										{width:75px;}
+select.ITime_Type_SEL								{width:75px;}
+select.ICTime_Type_SEL								{width:75px;}
+select.E_E2B_Time_Type_SEL							{width:75px;}
+input.BITime_CLS									{width:75px;}
+input.EITime_CLS									{width:75px;}
+input.BEITime_BTTI_CLS								{width:75px;}
+input.BEITime_ETTI_CLS								{width:75px;}
+select.BEITime_BETTI_VAL_Set_SEL					{width:112px;}
+select.ITime_2_Time_Fun_Type_SEL					{width:75px;}
+textarea.ITime_2_Time_Fun_EVAL_Code					{height:19px;width:75px;}
+
+input.Volume_EAB									{width:20px;}
+input.Volume_CLS									{width:75px;}
+select.Volume_Type_SEL								{width:75px;}
+input.BVolume_CLS									{width:75px;}
+input.EVolume_CLS									{width:75px;}
+input.BEVolume_BTTI_CLS								{width:75px;}
+input.BEVolume_ETTI_CLS								{width:75px;}
+select.BEVolume_BETTI_VAL_Set_SEL					{width:112px;}
+select.Volume_2_Time_Fun_Type_SEL					{width:75px;}
+textarea.Volume_2_Time_Fun_EVAL_Code				{height:19px;width:75px;}
+
+input.Speed_EAB										{width:20px;}
+input.Speed_CLS										{width:75px;}
+select.Speed_Type_SEL								{width:75px;}
+input.BSpeed_CLS									{width:75px;}
+input.ESpeed_CLS									{width:75px;}
+input.BESpeed_BTTI_CLS								{width:75px;}
+input.BESpeed_ETTI_CLS								{width:75px;}
+select.BESpeed_BETTI_VAL_Set_SEL					{width:112px;}
+select.Speed_2_Time_Fun_Type_SEL					{width:75px;}
+textarea.Speed_2_Time_Fun_EVAL_Code					{height:19px;width:75px;}
+
+table.Audio_Random_Play_VID_Ctrl_Table input.Random_Play_VID_ALL_EAB				{}
+table.Audio_Random_Play_VID_Ctrl_Table input.Random_Play_Do_ST_NUM_CLS				{width:70px;}
+table.Audio_Random_Play_VID_Ctrl_Table input.Random_Play_Do_ST_Switch_CLS			{}
+table.Audio_Random_Play_VID_Ctrl_Table select.Random_Play_VID_Type_SEL				{width:70px;}
+table.Audio_Random_Play_VID_Ctrl_Table input.Random_Play_VID_ALL_Set_CLS			{}
+table.Audio_Random_Play_VID_Ctrl_Table input.Random_Play_VID_Random_Set_CLS			{}
+table.Audio_Random_Play_VID_Ctrl_Table input.Random_Play_VID_EAB_At_VID_ARR_CLS		{width:70px;}
+table.Audio_Random_Play_VID_Ctrl_Table input.Random_Play_VID_NUM_CLS				{width:70px;}
+table.Audio_Random_Play_VID_Ctrl_Table input.Random_Play_VID_BNUM_CLS				{width:70px;}
+table.Audio_Random_Play_VID_Ctrl_Table input.Random_Play_VID_ENUM_CLS				{width:70px;}
+table.Audio_Random_Play_VID_Ctrl_Table input.Random_Play_VID_BTTI_CLS				{width:75px;}
+table.Audio_Random_Play_VID_Ctrl_Table input.Random_Play_VID_ETTI_CLS				{width:75px;}
+table.Audio_Random_Play_VID_Ctrl_Table input.Random_Play_VID_Repeat_Time_ALL_CLS	{width:70px;}
+table.Audio_Random_Play_VID_Ctrl_Table input.Random_Play_VID_Repeat_Time_NOW_CLS	{width:70px;}
+
+</style>
+</head>
+
+<body bgcolor=#CCE8CF>
+<script type="text/javascript">
+//========================================Base_Function========================================
+function Parameter_Base_STR_ijk_XX(p_num)
+{
+	var i,j,str00,arr00;
+	str00="";
+	str00+="var i,j,k,m,n,p,q,r,s,t;" + "\n";
+	arr00=["num","ele","elel","str","arr","cls","fun","formData","file"];
+	//arr00=["num","ele","elel",,"str","arr","torf","flag"];
+
+	for (i=0;i<arr00.length;i++)
+	{
+		str00+="var ";
+		for (j=0;j<p_num;j++)
+		{
+			str00+=arr00[i] + ("00" + j.toString()).slice(-2);
+			if ( j<(p_num - 1) )			{str00+=",";}
+			else if ( j==(p_num - 1) )		{str00+=";" + "\n";}
+			else							{}
+		}
+	}
+
+	return str00;
+}
+
+function createArray(length)
+{
+	var arr=new Array(length||0),i=length;
+	if ( arguments.length>1 )
+	{
+		var args=Array.prototype.slice.call(arguments,1);
+		while(i--)
+		{
+			arr[length-1-i]=createArray.apply(this,args);
+		}
+	}
+	return arr;
+}
+
+String.prototype.repeat = function( num )
+{
+	return new Array( num + 1 ).join( this );
+};
+
+function amplifyMedia(mediaElem,multiplier)
+{
+	var context=new( window.AudioContext || window.webkitAudioContext );
+	var result			=
+	{
+		context			:	context,
+		source			:	context.createMediaElementSource(mediaElem),
+		gain			:	context.createGain(),
+		media			:	mediaElem,
+		amplify			:	function(multiplier)
+		{
+			result.gain.gain.value=multiplier;
+		},
+		getAmpLevel		:	function()
+		{
+			return result.gain.gain.value;
+		}
+	};
+	result.source.connect(result.gain);
+	result.gain.connect(context.destination);
+	result.amplify(multiplier);
+	return result;
+}
+
+var TTIS=100;
+var TTI_IN_USE=TTIS;
+//========================================Base_Function========================================
+//========================================Audio_URL_STR_CLS========================================
+var Audio_URL_STR_CLS						=
+{
+	//==========DIVISION==========
+	Network_Type							:	0,//0:"OFF";1:"ON";
+	Audio_Type								:	0,//0:"Audio_Short";1:"Audio_Long";
+	Base_URL_DIR							:	"https://cn-text.github.io/ET_BGM/",
+	Short_ARR								:	[[],[],[],[]],
+	Long_ARR								:	[[],[],[],[]],
+	Time_Info_ARR							:	[[]],
+	//==========DIVISION==========
+	VAL										:
+	{
+		//==========DIVISION==========
+		//Audio_Setting_Use					:	0,
+		Usage_Collection					:	0,
+		//==========DIVISION==========
+		MultiPlier_EAB						:	0,//0:false;1:true;
+		MultiPlier							:	3,
+		//==========DIVISION==========
+		ITime_EAB							:	0,//0:false;1:true;
+		ITime								:	1,
+		ITime_Type							:	0,//0;1;2;3;4;5;6;
+		//	0 : Normal ITime .
+		//	1 : Begin to End Random ITime , ITime will not be changed .
+		//	2 : Begin to End Random ITime , change after BEITime_BTTI seconds .
+		//	3 : Begin to End Random ITime , change after BEITime_BTTI to BEITime_ETTI random seconds .
+		//	4 : Begin to End Random ITime , change after video duration seconds .
+		//	5 : Begin to End Random ITime , change after video duration random seconds .
+		//	6 : Begin to End Random ITime , eval : v=f(t) .
+		AR_ID_Pre_Time_ARR					:	[],
+		ICTime_Type							:	0,//0;1;
+		//	0 : Pre_Time + Interval_Time .
+		//	1 : Current_Time + Interval_Time .
+		//	2 : Current_Time .
+		E_E2B_Time_Type						:	0,//0;1;
+		//	0 : End_Time .
+		//	1 : End_2_Begin_Time .
+		BITime								:	0.500,
+		EITime								:	3.500,
+		BEITime_BTTI						:	60000,
+		BEITime_ETTI						:	180000,
+		Multi_Video_ITime_Timer_ID_ARR		:	[],
+		BEITime_BETTI_VAL_Set				:	0,
+		ITime_2_Time_Fun_Type				:	0,
+		ITime_2_Time_Fun_TextArea_Resize	:	0,//0:{height:19px;width:75px;};1:{height:200px;width:400px;};
+		ITime_2_Time_Fun_EVAL_Code			:	"",
+		ITime_2_Time_TTI_SD_ID_ARR			:	[],
+		//==========DIVISION==========
+		Volume_EAB							:	0,//0:false;1:true;
+		Volume								:	1,
+		Volume_Type							:	0,//0;1;2;3;4;5;6;
+		//	0 : Normal Volume .
+		//	1 : Begin to End Random Volume , Volume will not be changed .
+		//	2 : Begin to End Random Volume , change after BEVolume_BTTI seconds .
+		//	3 : Begin to End Random Volume , change after BEVolume_BTTI to BEVolume_ETTI random seconds .
+		//	4 : Begin to End Random Volume , change after video duration seconds .
+		//	5 : Begin to End Random Volume , change after video duration random seconds .
+		//	6 : Begin to End Random Volume , eval : v=f(t) .
+		BVolume								:	0.900,
+		EVolume								:	1.000,
+		BEVolume_BTTI						:	60000,
+		BEVolume_ETTI						:	180000,
+		Multi_Video_Volume_Timer_ID_ARR		:	[],
+		BEVolume_BETTI_VAL_Set				:	0,
+		Volume_2_Time_Fun_Type				:	0,
+		Volume_2_Time_Fun_TextArea_Resize	:	0,//0:{height:19px;width:75px;};1:{height:200px;width:400px;};
+		Volume_2_Time_Fun_EVAL_Code			:	"",
+		Volume_2_Time_TTI_SD_ID_ARR			:	[],
+		//==========DIVISION==========
+		Speed_EAB							:	0,//0:false;1:true;
+		Speed								:	1,
+		Speed_Type							:	0,//0;1;2;3;4;5;6;
+		//	0 : Normal Speed .
+		//	1 : Begin to End Random Speed , Speed will not be changed .
+		//	2 : Begin to End Random Speed , change after BESpeed_BTTI seconds .
+		//	3 : Begin to End Random Speed , change after BESpeed_BTTI to BESpeed_ETTI random seconds .
+		//	4 : Begin to End Random Speed , change after video duration seconds .
+		//	5 : Begin to End Random Speed , change after video duration random seconds .
+		//	6 : Begin to End Random Speed , eval : v=f(t) .
+		BSpeed								:	0.300,
+		ESpeed								:	2.700,
+		BESpeed_BTTI						:	60000,
+		BESpeed_ETTI						:	180000,
+		Multi_Video_Speed_Timer_ID_ARR		:	[],
+		BESpeed_BETTI_VAL_Set				:	0,
+		Speed_2_Time_Fun_Type				:	0,
+		Speed_2_Time_Fun_TextArea_Resize	:	0,//0:{height:19px;width:75px;};1:{height:200px;width:400px;};
+		Speed_2_Time_Fun_EVAL_Code			:	"",
+		Speed_2_Time_TTI_SD_ID_ARR			:	[],
+		//==========DIVISION==========
+		Multi_Video_Time_Offset				:	300,//ms;
+		//==========DIVISION==========
+		Random_Play_VID_ALL_EAB				:	0,//0:false;1:true;
+		Random_Play_Do_ST_NUM				:	1,
+		Random_Play_Do_ST_Switch			:	0,//0:"OFF";1:"ON";
+		Random_Play_VID_Type				:	0,
+		//	0.Stability_VID_In_Order
+		//	1.Stability_VID_Random_Order
+		//	2.Random_VID_In_Order
+		//	3.Random_VID_Random_Order
+		Random_Play_VID_ALL_Set				:	0,//0:Disable_ALL;1:Enable_ALL;
+		Random_Play_VID_NUM					:	1,
+		Random_Play_VID_BNUM				:	1,
+		Random_Play_VID_ENUM				:	1,
+		Random_Play_VID_BTTI				:	60000,
+		Random_Play_VID_ETTI				:	180000,
+		Random_Play_VID_Repeat_Time_ALL		:	10,
+		Random_Play_VID_Repeat_Time_NOW		:	0,
+		Random_Play_VID_EAB_ALL_ARR			:	[],//0:false;1:true;
+		Random_Play_VID_EAB_Cache_ARR		:	[],//0:false;1:true;
+		Random_Play_VID_EAB_Inuse_ARR2		:	[[]],//0:false;1:true;
+		Random_Play_VID_EAB_At_VID_ARR		:	[0],
+		//==========DIVISION==========
+	},
+	//==========DIVISION==========
+	FUN										:
+	{
+		//Copy from "M:\Program Files\INITIATION HTML\WEB_UL\WEB_UL_Core_04_01_FUN_SD.js" .
+		Audio_VAR_2_Time_Fun_EVAL_Code		:	function (Speed_2_Time_Fun_Type)
+		{
+			//==========DIVISION==========
+			var fun_ct_cache;
+			fun_ct_cache=arguments.callee;
+			//==========DIVISION==========
+			eval(Parameter_Base_STR_ijk_XX(5));
+			var EVAL_Code_FUN,EVAL_Code_STR="";
+			var Evoke_By_OBJ,TTI_SD,TTI_SD_ID;
+			//==========DIVISION==========
+			//Audio_URL_STR_CLS.VAL.Speed_2_Time_Fun_Type;
+			if ( Speed_2_Time_Fun_Type==0 )
+			{
+				//==============================Fun_EVAL_Code_Area("00000000").Begin==============================
+				//"↑":ITime_2_Time_TTI_SD_ID_ARR;Volume_2_Time_TTI_SD_ID_ARR;Speed_2_Time_TTI_SD_ID_ARR;
+				//var TTI_SD_ID=30;
+				var Audio_VAR_CLS=(function(Evoke_By_OBJ,TTI_SD_ID)
+				{
+					var v,t;
+					t=TTI_SD_ID;
+					v=0;
+					if ( Evoke_By_OBJ=="ITime" )
+					{
+						var BITime=Audio_URL_STR_CLS.VAL.BITime;
+						var EITime=Audio_URL_STR_CLS.VAL.EITime;
+						v=(BITime + (EITime - BITime) / 2) + Math.sin(Math.PI / 2 / 90 * t) * (EITime - BITime) / (1 - (-1));//-1 - 1;
+					}
+					else if ( Evoke_By_OBJ=="Volume" )
+					{
+						var BVolume=Audio_URL_STR_CLS.VAL.BVolume;
+						var EVolume=Audio_URL_STR_CLS.VAL.EVolume;
+						v=(BVolume + (EVolume - BVolume) / 2) + Math.sin(Math.PI / 2 / 90 * t) * (EVolume - BVolume) / (1 - (-1));//-1 - 1;
+					}
+					else if ( Evoke_By_OBJ=="Speed" )
+					{
+						v=Math.sin(Math.PI / 2 / 90 * t) + 1.5;//0.5-2.5;
+					}
+					else		{}
+					var TTI_SD=TTI_IN_USE * 10;
+					return {v:v,t:t,TTI_SD:TTI_SD};
+				})(Evoke_By_OBJ,TTI_SD_ID);
+				//==============================Fun_EVAL_Code_Area("00000000").End==============================
+			}
+			else if ( Speed_2_Time_Fun_Type==1 )
+			{
+				//==============================Fun_EVAL_Code_Area("00000001").Begin==============================
+				//"↑":ITime_2_Time_TTI_SD_ID_ARR;Volume_2_Time_TTI_SD_ID_ARR;Speed_2_Time_TTI_SD_ID_ARR;
+				//var TTI_SD_ID=30;
+				var Audio_VAR_CLS=(function(Evoke_By_OBJ,TTI_SD_ID)
+				{
+					var v,t;
+					t=TTI_SD_ID;
+					v="?????00000001?????";
+					if ( Evoke_By_OBJ=="ITime" )
+					{
+						v="?????00000001?????";
+					}
+					else if ( Evoke_By_OBJ=="Volume" )
+					{
+						v="?????00000001?????";
+					}
+					else if ( Evoke_By_OBJ=="Speed" )
+					{
+						v="?????00000001?????";
+					}
+					else		{}
+					var TTI_SD=TTI_IN_USE * 10;
+					return {v:v,t:t,TTI_SD:TTI_SD};
+				})(Evoke_By_OBJ,TTI_SD_ID);
+				//==============================Fun_EVAL_Code_Area("00000001").End==============================
+			}
+			else if ( Speed_2_Time_Fun_Type==2 )
+			{
+				//==============================Fun_EVAL_Code_Area("00000002").Begin==============================
+				//"↑":ITime_2_Time_TTI_SD_ID_ARR;Volume_2_Time_TTI_SD_ID_ARR;Speed_2_Time_TTI_SD_ID_ARR;
+				//var TTI_SD_ID=30;
+				var Audio_VAR_CLS=(function(Evoke_By_OBJ,TTI_SD_ID)
+				{
+					var v,t;
+					t=TTI_SD_ID;
+					v="?????00000002?????";
+					if ( Evoke_By_OBJ=="ITime" )
+					{
+						v="?????00000002?????";
+					}
+					else if ( Evoke_By_OBJ=="Volume" )
+					{
+						v="?????00000002?????";
+					}
+					else if ( Evoke_By_OBJ=="Speed" )
+					{
+						v="?????00000002?????";
+					}
+					else		{}
+					var TTI_SD=TTI_IN_USE * 10;
+					return {v:v,t:t,TTI_SD:TTI_SD};
+				})(Evoke_By_OBJ,TTI_SD_ID);
+				//==============================Fun_EVAL_Code_Area("00000002").End==============================
+			}
+			else		{}
+			//==========DIVISION==========
+			EVAL_Code_STR=fun_ct_cache.toString()
+				//Use 0.104 s .//.replace(new RegExp("^[\\s\\S]+[\\r]*\\n\\t+(\\/\\/=+Fun_EVAL_Code_Area\\(\\\"" + 
+				//Use 0.003 s .//.replace(new RegExp("^function[ ]*[\\s\\S]+[\\r]*\\n\\t+(\\/\\/=+Fun_EVAL_Code_Area\\(\\\"" + 
+				//Use 0.001-0.002 s .//
+				.replace(new RegExp("^function[ ]*[\\s\\S]+[\\r]*\\n[\\t]+(\\/\\/=+Fun_EVAL_Code_Area\\(\\\"" + 
+										("0".repeat(8) + Speed_2_Time_Fun_Type.toString()).slice(-8) + "\\\"\\)\.Begin)","gm"),"$1")
+				.replace(new RegExp("(Fun_EVAL_Code_Area\\(\\\"" + 
+										("0".repeat(8) + Speed_2_Time_Fun_Type.toString()).slice(-8) + "\\\"\\)\.End=+[\\r]*\\n)[\\s\\S]+","gm"),"$1")
+				.replace(/(\r\n)[\t]{4}/gm,"$1")
+				.replace(/(\n)[\t]{4}/gm,"$1");
+			//console.log(EVAL_Code_STR);
+			//console.log(eval(EVAL_Code_STR));
+			//console.log(Audio_VAR_CLS);
+			return EVAL_Code_STR;
+			//==========DIVISION==========
+		},
+		//Audio_URL_STR_CLS.FUN.Audio_VAR_2_Time_Fun_EVAL_Code(0);
+	},
+	//==========DIVISION==========
+};
+
+function Audio_URL_STR_CLS_INI()
+{
+	//====================DIVISION====================
+	//==========DIVISION==========
+	eval(Parameter_Base_STR_ijk_XX(10));
+	//==========DIVISION==========
+	arr00=[[],[],[],[]];
+	//==========DIVISION==========
+	{
+		//==========DIVISION==========
+		arr00[0].push("0000");		arr00[1].push("X1");		arr00[2].push("ET_BGM_01/CB_01_04_ORI/CB_01_00_00_000_00_E_LHZ.mp3");			arr00[3].push("ET_BGM_01_00_李洪志_00");
+		arr00[0].push("0001");		arr00[1].push("X1");		arr00[2].push("ET_BGM_01/CB_01_04_ORI/CB_01_00_00_001_00_E_ZSR.mp3");			arr00[3].push("ET_BGM_01_00_真善忍_00");
+		arr00[0].push("0002");		arr00[1].push("X1");		arr00[2].push("ET_BGM_01/CB_01_04_ORI/CB_01_00_00_001_01_E_ZSR.mp3");			arr00[3].push("ET_BGM_01_00_真善忍_01");
+		arr00[0].push("0003");		arr00[1].push("X1");		arr00[2].push("ET_BGM_01/CB_01_04_ORI/CB_01_00_00_001_02_E_ZSR.mp3");			arr00[3].push("ET_BGM_01_00_真善忍_02");
+		arr00[0].push("0004");		arr00[1].push("X1");		arr00[2].push("ET_BGM_01/CB_01_04_ORI/CB_01_00_00_002_00_E_FLG.mp3");			arr00[3].push("ET_BGM_01_00_法輪功_00");
+		arr00[0].push("0005");		arr00[1].push("X1");		arr00[2].push("ET_BGM_01/CB_01_04_ORI/CB_01_00_00_002_01_E_FLG.mp3");			arr00[3].push("ET_BGM_01_00_法輪功_01");
+		arr00[0].push("0006");		arr00[1].push("X1");		arr00[2].push("ET_BGM_01/CB_01_04_ORI/CB_01_00_00_002_02_E_FLG.mp3");			arr00[3].push("ET_BGM_01_00_法輪功_02");
+		arr00[0].push("0007");		arr00[1].push("X1");		arr00[2].push("ET_BGM_01/CB_01_04_ORI/CB_01_00_00_003_00_E_FLDF.mp3");			arr00[3].push("ET_BGM_01_00_法輪大法_00");
+		//==========DIVISION==========
+		arr00[0].push("0100");		arr00[1].push("X1");		arr00[2].push("ET_BGM_02/ZSR_00_CB_01_02_ORI/CB_01_02_00_001_10_00_Z.mp3");		arr00[3].push("ET_BGM_02_00_真_00");
+		arr00[0].push("0101");		arr00[1].push("X1");		arr00[2].push("ET_BGM_02/ZSR_00_CB_01_02_ORI/CB_01_02_00_001_10_01_Z.mp3");		arr00[3].push("ET_BGM_02_00_真_01");
+		arr00[0].push("0102");		arr00[1].push("X1");		arr00[2].push("ET_BGM_02/ZSR_00_CB_01_02_ORI/CB_01_02_00_001_10_02_Z.mp3");		arr00[3].push("ET_BGM_02_00_真_02");
+		arr00[0].push("0103");		arr00[1].push("X1");		arr00[2].push("ET_BGM_02/ZSR_00_CB_01_02_ORI/CB_01_02_00_001_11_00_S.mp3");		arr00[3].push("ET_BGM_02_00_善_00");
+		arr00[0].push("0104");		arr00[1].push("X1");		arr00[2].push("ET_BGM_02/ZSR_00_CB_01_02_ORI/CB_01_02_00_001_11_01_S.mp3");		arr00[3].push("ET_BGM_02_00_善_01");
+		arr00[0].push("0105");		arr00[1].push("X1");		arr00[2].push("ET_BGM_02/ZSR_00_CB_01_02_ORI/CB_01_02_00_001_11_02_S.mp3");		arr00[3].push("ET_BGM_02_00_善_02");
+		arr00[0].push("0106");		arr00[1].push("X1");		arr00[2].push("ET_BGM_02/ZSR_00_CB_01_02_ORI/CB_01_02_00_001_12_00_R.mp3");		arr00[3].push("ET_BGM_02_00_忍_00");
+		arr00[0].push("0107");		arr00[1].push("X1");		arr00[2].push("ET_BGM_02/ZSR_00_CB_01_02_ORI/CB_01_02_00_001_12_01_R.mp3");		arr00[3].push("ET_BGM_02_00_忍_01");
+		arr00[0].push("0108");		arr00[1].push("X1");		arr00[2].push("ET_BGM_02/ZSR_00_CB_01_02_ORI/CB_01_02_00_001_12_02_R.mp3");		arr00[3].push("ET_BGM_02_00_忍_02");
+		arr00[0].push("0109");		arr00[1].push("X1");		arr00[2].push("ET_BGM_02/ZSR_00_CB_01_02_ORI/CB_01_02_00_001_12_03_R.mp3");		arr00[3].push("ET_BGM_02_00_忍_03");
+		arr00[0].push("0110");		arr00[1].push("X1");		arr00[2].push("ET_BGM_02/ZSR_00_CB_01_02_ORI/CB_01_02_00_001_12_10_R.mp3");		arr00[3].push("ET_BGM_02_00_忍_10");
+		arr00[0].push("0111");		arr00[1].push("X1");		arr00[2].push("ET_BGM_02/ZSR_00_CB_01_02_ORI/CB_01_02_00_001_12_11_R.mp3");		arr00[3].push("ET_BGM_02_00_忍_11");
+		arr00[0].push("0112");		arr00[1].push("X1");		arr00[2].push("ET_BGM_02/ZSR_00_CB_01_02_ORI/CB_01_02_00_001_12_12_R.mp3");		arr00[3].push("ET_BGM_02_00_忍_12");
+		arr00[0].push("0113");		arr00[1].push("X1");		arr00[2].push("ET_BGM_02/ZSR_00_CB_01_02_ORI/CB_01_02_00_001_12_13_R.mp3");		arr00[3].push("ET_BGM_02_00_忍_13");
+		arr00[0].push("0114");		arr00[1].push("X1");		arr00[2].push("ET_BGM_02/ZSR_00_CB_01_02_ORI/CB_01_02_00_001_12_14_R.mp3");		arr00[3].push("ET_BGM_02_00_忍_14");
+		//==========DIVISION==========
+		arr00[0].push("0200");		arr00[1].push("X1");		arr00[2].push("ET_BGM_03/CB_01_02_ORI/CB_01_02_00_001_20_00_Z.mp3");			arr00[3].push("ET_BGM_03_00_真_00");
+		arr00[0].push("0201");		arr00[1].push("X1");		arr00[2].push("ET_BGM_03/CB_01_02_ORI/CB_01_02_00_001_20_01_Z.mp3");			arr00[3].push("ET_BGM_03_00_真_01");
+		arr00[0].push("0202");		arr00[1].push("X1");		arr00[2].push("ET_BGM_03/CB_01_02_ORI/CB_01_02_00_001_20_02_Z.mp3");			arr00[3].push("ET_BGM_03_00_真_02");
+		arr00[0].push("0203");		arr00[1].push("X1");		arr00[2].push("ET_BGM_03/CB_01_02_ORI/CB_01_02_00_001_21_00_S.mp3");			arr00[3].push("ET_BGM_03_00_善_00");
+		arr00[0].push("0204");		arr00[1].push("X1");		arr00[2].push("ET_BGM_03/CB_01_02_ORI/CB_01_02_00_001_21_01_S.mp3");			arr00[3].push("ET_BGM_03_00_善_01");
+		arr00[0].push("0205");		arr00[1].push("X1");		arr00[2].push("ET_BGM_03/CB_01_02_ORI/CB_01_02_00_001_21_02_S.mp3");			arr00[3].push("ET_BGM_03_00_善_02");
+		arr00[0].push("0206");		arr00[1].push("X1");		arr00[2].push("ET_BGM_03/CB_01_02_ORI/CB_01_02_00_001_22_00_R.mp3");			arr00[3].push("ET_BGM_03_00_忍_00");
+		arr00[0].push("0207");		arr00[1].push("X1");		arr00[2].push("ET_BGM_03/CB_01_02_ORI/CB_01_02_00_001_22_01_R.mp3");			arr00[3].push("ET_BGM_03_00_忍_01");
+		arr00[0].push("0208");		arr00[1].push("X1");		arr00[2].push("ET_BGM_03/CB_01_02_ORI/CB_01_02_00_001_22_02_R.mp3");			arr00[3].push("ET_BGM_03_00_忍_02");
+		arr00[0].push("0209");		arr00[1].push("X1");		arr00[2].push("ET_BGM_03/CB_01_02_ORI/CB_01_02_00_001_22_03_R.mp3");			arr00[3].push("ET_BGM_03_00_忍_03");
+		arr00[0].push("0210");		arr00[1].push("X1");		arr00[2].push("ET_BGM_03/CB_01_02_ORI/CB_01_02_00_001_22_04_R.mp3");			arr00[3].push("ET_BGM_03_00_忍_04");
+		arr00[0].push("0211");		arr00[1].push("X1");		arr00[2].push("ET_BGM_03/CB_01_02_ORI/CB_01_02_00_001_22_05_R.mp3");			arr00[3].push("ET_BGM_03_00_忍_05");
+		arr00[0].push("0212");		arr00[1].push("X1");		arr00[2].push("ET_BGM_03/CB_01_02_ORI/CB_01_02_00_002_00_00_ZSR.mp3");			arr00[3].push("ET_BGM_03_00_真善忍_00");
+		//==========DIVISION==========
+	};
+	Audio_URL_STR_CLS.Short_ARR=arr00;
+	//==========DIVISION==========
+	arr01=[[],[],[],[]];
+	//==========DIVISION==========
+	{
+		//==========DIVISION==========
+		arr01[0].push("1000");		arr01[1].push("X2048");		arr01[2].push("ET_BGM_01/CB_01_14_ORI_X/CB_01_00_00_000_00_E_LHZ_X2048.mp3");			arr01[3].push("ET_BGM_01_01_李洪志_00_X2048");
+		arr01[0].push("1001");		arr01[1].push("X1024");		arr01[2].push("ET_BGM_01/CB_01_14_ORI_X/CB_01_00_00_001_00_E_ZSR_X1024.mp3");			arr01[3].push("ET_BGM_01_01_真善忍_00_X1024");
+		arr01[0].push("1002");		arr01[1].push("X1024");		arr01[2].push("ET_BGM_01/CB_01_14_ORI_X/CB_01_00_00_001_01_E_ZSR_X1024.mp3");			arr01[3].push("ET_BGM_01_01_真善忍_01_X1024");
+		arr01[0].push("1003");		arr01[1].push("X1024");		arr01[2].push("ET_BGM_01/CB_01_14_ORI_X/CB_01_00_00_001_02_E_ZSR_X1024.mp3");			arr01[3].push("ET_BGM_01_01_真善忍_02_X1024");
+		arr01[0].push("1004");		arr01[1].push("X1024");		arr01[2].push("ET_BGM_01/CB_01_14_ORI_X/CB_01_00_00_002_00_E_FLG_X1024.mp3");			arr01[3].push("ET_BGM_01_01_法輪功_00_X1024");
+		arr01[0].push("1005");		arr01[1].push("X1024");		arr01[2].push("ET_BGM_01/CB_01_14_ORI_X/CB_01_00_00_002_01_E_FLG_X1024.mp3");			arr01[3].push("ET_BGM_01_01_法輪功_01_X1024");
+		arr01[0].push("1006");		arr01[1].push("X1024");		arr01[2].push("ET_BGM_01/CB_01_14_ORI_X/CB_01_00_00_002_02_E_FLG_X1024.mp3");			arr01[3].push("ET_BGM_01_01_法輪功_02_X1024");
+		arr01[0].push("1007");		arr01[1].push("X2048");		arr01[2].push("ET_BGM_01/CB_01_14_ORI_X/CB_01_00_00_003_00_E_FLDF_X2048.mp3");			arr01[3].push("ET_BGM_01_01_法輪大法_00_X2048");
+		//==========DIVISION==========
+		arr01[0].push("1100");		arr01[1].push("X1024");		arr01[2].push("ET_BGM_02/ZSR_00_CB_01_12_ORI_X/CB_01_12_00_001_10_00_Z_X1024.mp3");		arr01[3].push("ET_BGM_02_01_真_00_X1024");
+		arr01[0].push("1101");		arr01[1].push("X2048");		arr01[2].push("ET_BGM_02/ZSR_00_CB_01_12_ORI_X/CB_01_12_00_001_10_01_Z_X2048.mp3");		arr01[3].push("ET_BGM_02_01_真_01_X2048");
+		arr01[0].push("1102");		arr01[1].push("X4096");		arr01[2].push("ET_BGM_02/ZSR_00_CB_01_12_ORI_X/CB_01_12_00_001_10_02_Z_X4096.mp3");		arr01[3].push("ET_BGM_02_01_真_02_X4096");
+		arr01[0].push("1103");		arr01[1].push("X1024");		arr01[2].push("ET_BGM_02/ZSR_00_CB_01_12_ORI_X/CB_01_12_00_001_11_00_S_X1024.mp3");		arr01[3].push("ET_BGM_02_01_善_00_X1024");
+		arr01[0].push("1104");		arr01[1].push("X2048");		arr01[2].push("ET_BGM_02/ZSR_00_CB_01_12_ORI_X/CB_01_12_00_001_11_01_S_X2048.mp3");		arr01[3].push("ET_BGM_02_01_善_01_X2048");
+		arr01[0].push("1105");		arr01[1].push("X4096");		arr01[2].push("ET_BGM_02/ZSR_00_CB_01_12_ORI_X/CB_01_12_00_001_11_02_S_X4096.mp3");		arr01[3].push("ET_BGM_02_01_善_02_X4096");
+		arr01[0].push("1106");		arr01[1].push("X1024");		arr01[2].push("ET_BGM_02/ZSR_00_CB_01_12_ORI_X/CB_01_12_00_001_12_00_R_X1024.mp3");		arr01[3].push("ET_BGM_02_01_忍_00_X1024");
+		arr01[0].push("1107");		arr01[1].push("X1024");		arr01[2].push("ET_BGM_02/ZSR_00_CB_01_12_ORI_X/CB_01_12_00_001_12_01_R_X1024.mp3");		arr01[3].push("ET_BGM_02_01_忍_01_X1024");
+		arr01[0].push("1108");		arr01[1].push("X2048");		arr01[2].push("ET_BGM_02/ZSR_00_CB_01_12_ORI_X/CB_01_12_00_001_12_02_R_X2048.mp3");		arr01[3].push("ET_BGM_02_01_忍_02_X2048");
+		arr01[0].push("1109");		arr01[1].push("X4096");		arr01[2].push("ET_BGM_02/ZSR_00_CB_01_12_ORI_X/CB_01_12_00_001_12_03_R_X4096.mp3");		arr01[3].push("ET_BGM_02_01_忍_03_X4096");
+		arr01[0].push("1110");		arr01[1].push("X1024");		arr01[2].push("ET_BGM_02/ZSR_00_CB_01_12_ORI_X/CB_01_12_00_001_12_10_R_X1024.mp3");		arr01[3].push("ET_BGM_02_01_忍_10_X1024");
+		arr01[0].push("1111");		arr01[1].push("X1024");		arr01[2].push("ET_BGM_02/ZSR_00_CB_01_12_ORI_X/CB_01_12_00_001_12_11_R_X1024.mp3");		arr01[3].push("ET_BGM_02_01_忍_11_X1024");
+		arr01[0].push("1112");		arr01[1].push("X1024");		arr01[2].push("ET_BGM_02/ZSR_00_CB_01_12_ORI_X/CB_01_12_00_001_12_12_R_X1024.mp3");		arr01[3].push("ET_BGM_02_01_忍_12_X1024");
+		arr01[0].push("1113");		arr01[1].push("X2048");		arr01[2].push("ET_BGM_02/ZSR_00_CB_01_12_ORI_X/CB_01_12_00_001_12_13_R_X2048.mp3");		arr01[3].push("ET_BGM_02_01_忍_13_X2048");
+		arr01[0].push("1114");		arr01[1].push("X4096");		arr01[2].push("ET_BGM_02/ZSR_00_CB_01_12_ORI_X/CB_01_12_00_001_12_14_R_X4096.mp3");		arr01[3].push("ET_BGM_02_01_忍_14_X4096");
+		//==========DIVISION==========
+		arr01[0].push("1200");		arr01[1].push("X4096");		arr01[2].push("ET_BGM_03/CB_01_12_ORI_X/CB_01_12_00_001_20_00_Z_X4096.mp3");			arr01[3].push("ET_BGM_03_01_真_00_X4096");
+		arr01[0].push("1201");		arr01[1].push("X4096");		arr01[2].push("ET_BGM_03/CB_01_12_ORI_X/CB_01_12_00_001_20_01_Z_X4096.mp3");			arr01[3].push("ET_BGM_03_01_真_01_X4096");
+		arr01[0].push("1202");		arr01[1].push("X4096");		arr01[2].push("ET_BGM_03/CB_01_12_ORI_X/CB_01_12_00_001_20_02_Z_X4096.mp3");			arr01[3].push("ET_BGM_03_01_真_02_X4096");
+		arr01[0].push("1203");		arr01[1].push("X4096");		arr01[2].push("ET_BGM_03/CB_01_12_ORI_X/CB_01_12_00_001_21_00_S_X4096.mp3");			arr01[3].push("ET_BGM_03_01_善_00_X4096");
+		arr01[0].push("1204");		arr01[1].push("X4096");		arr01[2].push("ET_BGM_03/CB_01_12_ORI_X/CB_01_12_00_001_21_01_S_X4096.mp3");			arr01[3].push("ET_BGM_03_01_善_01_X4096");
+		arr01[0].push("1205");		arr01[1].push("X4096");		arr01[2].push("ET_BGM_03/CB_01_12_ORI_X/CB_01_12_00_001_21_02_S_X4096.mp3");			arr01[3].push("ET_BGM_03_01_善_02_X4096");
+		arr01[0].push("1206");		arr01[1].push("X4096");		arr01[2].push("ET_BGM_03/CB_01_12_ORI_X/CB_01_12_00_001_22_00_R_X4096.mp3");			arr01[3].push("ET_BGM_03_01_忍_00_X4096");
+		arr01[0].push("1207");		arr01[1].push("X4096");		arr01[2].push("ET_BGM_03/CB_01_12_ORI_X/CB_01_12_00_001_22_01_R_X4096.mp3");			arr01[3].push("ET_BGM_03_01_忍_01_X4096");
+		arr01[0].push("1208");		arr01[1].push("X4096");		arr01[2].push("ET_BGM_03/CB_01_12_ORI_X/CB_01_12_00_001_22_02_R_X4096.mp3");			arr01[3].push("ET_BGM_03_01_忍_02_X4096");
+		arr01[0].push("1209");		arr01[1].push("X4096");		arr01[2].push("ET_BGM_03/CB_01_12_ORI_X/CB_01_12_00_001_22_03_R_X4096.mp3");			arr01[3].push("ET_BGM_03_01_忍_03_X4096");
+		arr01[0].push("1210");		arr01[1].push("X4096");		arr01[2].push("ET_BGM_03/CB_01_12_ORI_X/CB_01_12_00_001_22_04_R_X4096.mp3");			arr01[3].push("ET_BGM_03_01_忍_04_X4096");
+		arr01[0].push("1211");		arr01[1].push("X4096");		arr01[2].push("ET_BGM_03/CB_01_12_ORI_X/CB_01_12_00_001_22_05_R_X4096.mp3");			arr01[3].push("ET_BGM_03_01_忍_05_X4096");
+		arr01[0].push("1212");		arr01[1].push("X1024");		arr01[2].push("ET_BGM_03/CB_01_12_ORI_X/CB_01_12_00_002_00_00_ZSR_X1024.mp3");			arr01[3].push("ET_BGM_03_01_真善忍_00_X1024");
+		//==========DIVISION==========
+	};
+	Audio_URL_STR_CLS.Long_ARR=arr01;
+	//==========DIVISION==========
+	arr02=[[]];
+	//==========DIVISION==========
+	{
+		//==========DIVISION==========
+		arr02[0].push("0.210");
+		arr02[0].push("0.441");
+		arr02[0].push("0.400");
+		arr02[0].push("0.300");
+		arr02[0].push("0.767");
+		arr02[0].push("0.400");
+		arr02[0].push("0.300");
+		arr02[0].push("0.270");
+		//==========DIVISION==========
+		arr02[0].push("0.300");
+		arr02[0].push("0.200");
+		arr02[0].push("0.100");
+		arr02[0].push("0.300");
+		arr02[0].push("0.200");
+		arr02[0].push("0.100");
+		arr02[0].push("0.400");
+		arr02[0].push("0.300");
+		arr02[0].push("0.200");
+		arr02[0].push("0.100");
+		arr02[0].push("0.500");
+		arr02[0].push("0.400");
+		arr02[0].push("0.300");
+		arr02[0].push("0.200");
+		arr02[0].push("0.100");
+		//==========DIVISION==========
+		arr02[0].push("0.100");
+		arr02[0].push("0.100");
+		arr02[0].push("0.100");
+		arr02[0].push("0.100");
+		arr02[0].push("0.100");
+		arr02[0].push("0.100");
+		arr02[0].push("0.100");
+		arr02[0].push("0.100");
+		arr02[0].push("0.100");
+		arr02[0].push("0.100");
+		arr02[0].push("0.100");
+		arr02[0].push("0.100");
+		arr02[0].push("0.300");
+		//==========DIVISION==========
+	};
+	Audio_URL_STR_CLS.Time_Info_ARR=arr02;
+	//==========DIVISION==========
+	//====================DIVISION====================
+	//==========DIVISION==========
+	Audio_URL_STR_CLS.Network_Type=0;//0:"OFF";1:"ON";
+	document.getElementsByClassName("Network_Type_CLS")[0].value="OFF";
+	//==========DIVISION==========
+	ele00=document.getElementsByClassName("Audio_ET_BGM_Ctrl_Table")[0].getElementsByClassName("Audio_Setting_Use_CLS")[0];
+	ele00.style.backgroundColor="#1EB0E9";
+	//==========DIVISION==========
+	ele00=document.getElementsByClassName("Audio_ET_BGM_Ctrl_Table")[0].getElementsByClassName("Usage_Collection_SEL")[0];
+	str00="";
+	str00+="<option>00 : Usage_Collection_0000_李洪志</option>";
+	str00+="<option>01 : Usage_Collection_0001_真善忍</option>";
+	str00+="<option>02 : Usage_Collection_0002_法輪功</option>";
+	str00+="<option>03 : Usage_Collection_0003_法輪大法</option>";
+	str00+="<option>04 : Usage_Collection_0004_真</option>";
+	str00+="<option>05 : Usage_Collection_0005_善</option>";
+	str00+="<option>06 : Usage_Collection_0006_忍</option>";
+	str00+="<option>07 : Usage_Collection_0007_真善忍X3</option>";
+	str00+="<option>08 : Usage_Collection_0008_集合_00_00</option>";
+	str00+="<option>09 : Usage_Collection_0009_集合_01_00</option>";
+	str00+="<option>10 : Usage_Collection_0008_集合_00_01</option>";
+	str00+="<option>11 : Usage_Collection_0009_集合_01_01</option>";
+	ele00.innerHTML=str00;
+	ele00.selectedIndex=Audio_URL_STR_CLS.VAL.Usage_Collection=0;
+	//==========DIVISION==========
+	//====================DIVISION====================
+	//==========DIVISION==========
+	Audio_URL_STR_CLS.VAL.MultiPlier_EAB=0;//0:false;1:true;
+	document.getElementsByClassName("MultiPlier_EAB")[0].style.backgroundColor	=["red","#1EB0E9"][Audio_URL_STR_CLS.VAL.MultiPlier_EAB];
+	document.getElementsByClassName("MultiPlier_CLS")[0].disabled				=[true,false][Audio_URL_STR_CLS.VAL.MultiPlier_EAB];
+	document.getElementsByClassName("MultiPlier_CLS")[0].value					=Audio_URL_STR_CLS.VAL.MultiPlier		=3;
+	//==========DIVISION==========
+	//====================DIVISION====================
+	//==========DIVISION==========
+	Audio_URL_STR_CLS.VAL.ITime_EAB=0;//0:false;1:true;
+	document.getElementsByClassName("ITime_EAB")[0].style.backgroundColor		=["red","#1EB0E9"][Audio_URL_STR_CLS.VAL.ITime_EAB];
+	document.getElementsByClassName("ITime_CLS")[0].disabled					=[true,false][Audio_URL_STR_CLS.VAL.ITime_EAB];
+	document.getElementsByClassName("ITime_CLS")[0].value						=Audio_URL_STR_CLS.VAL.ITime			=1;
+	//==========DIVISION==========
+	ele00=document.getElementsByClassName("Audio_ET_BGM_Ctrl_Table")[0].getElementsByClassName("ITime_Type_SEL")[0];
+	str00="";
+	str00+="<option>0 : Normal ITime .</option>";
+	str00+="<option>1 : Begin to End Random ITime , ITime will not be changed .</option>";
+	str00+="<option>2 : Begin to End Random ITime , change after BEITime_BTTI seconds .</option>";
+	str00+="<option>3 : Begin to End Random ITime , change after BEITime_BTTI to BEITime_ETTI random seconds .</option>";
+	str00+="<option>4 : Begin to End Random ITime , change after video duration seconds .</option>";
+	str00+="<option>5 : Begin to End Random ITime , change after video duration random seconds .</option>";
+	str00+="<option>6 : Begin to End Random ITime , eval : v=f(t) .</option>";
+	ele00.innerHTML=str00;
+	ele00.selectedIndex=Audio_URL_STR_CLS.VAL.ITime_Type=3;
+	ele00.disabled=[true,false][Audio_URL_STR_CLS.VAL.ITime_EAB];
+	//==========DIVISION==========
+	ele00=document.getElementsByClassName("Audio_ET_BGM_Ctrl_Table")[0].getElementsByClassName("ICTime_Type_SEL")[0];
+	str00="";
+	str00+="<option>0 : Pre_Time + Interval_Time .</option>";
+	str00+="<option>1 : Current_Time + Interval_Time .</option>";
+	str00+="<option>2 : Current_Time .</option>";
+	ele00.innerHTML=str00;
+	ele00.selectedIndex=Audio_URL_STR_CLS.VAL.ICTime_Type=0;
+	ele00.disabled=[true,false][Audio_URL_STR_CLS.VAL.ITime_EAB];
+	//==========DIVISION==========
+	Audio_URL_STR_CLS.VAL.AR_ID_Pre_Time_ARR=[];
+	//==========DIVISION==========
+	ele00=document.getElementsByClassName("Audio_ET_BGM_Ctrl_Table")[0].getElementsByClassName("E_E2B_Time_Type_SEL")[0];
+	str00="";
+	str00+="<option>0 : End_Time .</option>";
+	str00+="<option>1 : End_2_Begin_Time .</option>";
+	ele00.innerHTML=str00;
+	ele00.selectedIndex=Audio_URL_STR_CLS.VAL.E_E2B_Time_Type=0;
+	ele00.disabled=[true,false][Audio_URL_STR_CLS.VAL.ITime_EAB];
+	//==========DIVISION==========
+	ele00=document.getElementsByClassName("Audio_ET_BGM_Ctrl_Table")[0].getElementsByClassName("BITime_CLS")[0];
+	ele00.disabled=[true,false][Audio_URL_STR_CLS.VAL.ITime_EAB];		ele00.value=Audio_URL_STR_CLS.VAL.BITime=0.500;
+	ele01=document.getElementsByClassName("Audio_ET_BGM_Ctrl_Table")[0].getElementsByClassName("EITime_CLS")[0];
+	ele01.disabled=[true,false][Audio_URL_STR_CLS.VAL.ITime_EAB];		ele01.value=Audio_URL_STR_CLS.VAL.EITime=3.500;
+	ele02=document.getElementsByClassName("Audio_ET_BGM_Ctrl_Table")[0].getElementsByClassName("BEITime_BTTI_CLS")[0];
+	ele02.disabled=[true,false][Audio_URL_STR_CLS.VAL.ITime_EAB];		ele02.value=Audio_URL_STR_CLS.VAL.BEITime_BTTI=2000;//60000;
+	ele03=document.getElementsByClassName("Audio_ET_BGM_Ctrl_Table")[0].getElementsByClassName("BEITime_ETTI_CLS")[0];
+	ele03.disabled=[true,false][Audio_URL_STR_CLS.VAL.ITime_EAB];		ele03.value=Audio_URL_STR_CLS.VAL.BEITime_ETTI=3000;//180000;
+	//==========DIVISION==========
+	ele00=document.getElementsByClassName("Audio_ET_BGM_Ctrl_Table")[0].getElementsByClassName("ITime_2_Time_Fun_Type_SEL")[0];
+	str00="";
+	str00+="<option>0 : sin/cos/tan .</option>";
+	str00+="<option>1 : e^x .</option>";
+	str00+="<option>2 : ????? .</option>";
+	ele00.innerHTML=str00;
+	ele00.selectedIndex=Audio_URL_STR_CLS.VAL.ITime_2_Time_Fun_Type=0;
+	ele00.disabled=[true,false][Audio_URL_STR_CLS.VAL.ITime_EAB];
+	//==========DIVISION==========
+	ele00=document.getElementsByClassName("Audio_ET_BGM_Ctrl_Table")[0].getElementsByClassName("ITime_2_Time_Fun_TextArea_Resize")[0];
+	ele00.disabled=[true,false][Audio_URL_STR_CLS.VAL.ITime_EAB];		Audio_URL_STR_CLS.VAL.ITime_2_Time_Fun_TextArea_Resize=0;
+	ele00.style.backgroundColor											=["yellow","orange"][Audio_URL_STR_CLS.VAL.ITime_2_Time_Fun_TextArea_Resize];
+	//==========DIVISION==========
+	ele00=document.getElementsByClassName("Audio_ET_BGM_Ctrl_Table")[0].getElementsByClassName("ITime_2_Time_Fun_EVAL_Code")[0];
+	ele00.disabled=[true,false][Audio_URL_STR_CLS.VAL.ITime_EAB];
+	ele00.value=Audio_URL_STR_CLS.VAL.ITime_2_Time_Fun_EVAL_Code=
+	Audio_URL_STR_CLS.FUN.Audio_VAR_2_Time_Fun_EVAL_Code(Audio_URL_STR_CLS.VAL.ITime_2_Time_Fun_Type);
+	Audio_URL_STR_CLS.VAL.ITime_2_Time_TTI_SD_ID_ARR=[];
+	//==========DIVISION==========
+	//====================DIVISION====================
+	//==========DIVISION==========
+	Audio_URL_STR_CLS.VAL.Volume_EAB=0;//0:false;1:true;
+	document.getElementsByClassName("Volume_EAB")[0].style.backgroundColor		=["red","#1EB0E9"][Audio_URL_STR_CLS.VAL.Volume_EAB];
+	document.getElementsByClassName("Volume_CLS")[0].disabled					=[true,false][Audio_URL_STR_CLS.VAL.Volume_EAB];
+	document.getElementsByClassName("Volume_CLS")[0].value						=Audio_URL_STR_CLS.VAL.Volume			=1;
+	//==========DIVISION==========
+	ele00=document.getElementsByClassName("Audio_ET_BGM_Ctrl_Table")[0].getElementsByClassName("Volume_Type_SEL")[0];
+	str00="";
+	str00+="<option>0 : Normal Volume .</option>";
+	str00+="<option>1 : Begin to End Random Volume , Volume will not be changed .</option>";
+	str00+="<option>2 : Begin to End Random Volume , change after BEVolume_BTTI seconds .</option>";
+	str00+="<option>3 : Begin to End Random Volume , change after BEVolume_BTTI to BEVolume_ETTI random seconds .</option>";
+	str00+="<option>4 : Begin to End Random Volume , change after video duration seconds .</option>";
+	str00+="<option>5 : Begin to End Random Volume , change after video duration random seconds .</option>";
+	str00+="<option>6 : Begin to End Random Volume , eval : v=f(t) .</option>";
+	ele00.innerHTML=str00;
+	ele00.selectedIndex=Audio_URL_STR_CLS.VAL.Volume_Type=3;
+	ele00.disabled=[true,false][Audio_URL_STR_CLS.VAL.Volume_EAB];
+	//==========DIVISION==========
+	ele00=document.getElementsByClassName("Audio_ET_BGM_Ctrl_Table")[0].getElementsByClassName("BVolume_CLS")[0];
+	ele00.disabled=[true,false][Audio_URL_STR_CLS.VAL.Volume_EAB];		ele00.value=Audio_URL_STR_CLS.VAL.BVolume=0.900;
+	ele01=document.getElementsByClassName("Audio_ET_BGM_Ctrl_Table")[0].getElementsByClassName("EVolume_CLS")[0];
+	ele01.disabled=[true,false][Audio_URL_STR_CLS.VAL.Volume_EAB];		ele01.value=Audio_URL_STR_CLS.VAL.EVolume=1.000;
+	ele02=document.getElementsByClassName("Audio_ET_BGM_Ctrl_Table")[0].getElementsByClassName("BEVolume_BTTI_CLS")[0];
+	ele02.disabled=[true,false][Audio_URL_STR_CLS.VAL.Volume_EAB];		ele02.value=Audio_URL_STR_CLS.VAL.BEVolume_BTTI=2000;//60000;
+	ele03=document.getElementsByClassName("Audio_ET_BGM_Ctrl_Table")[0].getElementsByClassName("BEVolume_ETTI_CLS")[0];
+	ele03.disabled=[true,false][Audio_URL_STR_CLS.VAL.Volume_EAB];		ele03.value=Audio_URL_STR_CLS.VAL.BEVolume_ETTI=3000;//180000;
+	//==========DIVISION==========
+	ele00=document.getElementsByClassName("Audio_ET_BGM_Ctrl_Table")[0].getElementsByClassName("Volume_2_Time_Fun_Type_SEL")[0];
+	str00="";
+	str00+="<option>0 : sin/cos/tan .</option>";
+	str00+="<option>1 : e^x .</option>";
+	str00+="<option>2 : ????? .</option>";
+	ele00.innerHTML=str00;
+	ele00.selectedIndex=Audio_URL_STR_CLS.VAL.Volume_2_Time_Fun_Type=0;
+	ele00.disabled=[true,false][Audio_URL_STR_CLS.VAL.Volume_EAB];
+	//==========DIVISION==========
+	ele00=document.getElementsByClassName("Audio_ET_BGM_Ctrl_Table")[0].getElementsByClassName("Volume_2_Time_Fun_TextArea_Resize")[0];
+	ele00.disabled=[true,false][Audio_URL_STR_CLS.VAL.Volume_EAB];		Audio_URL_STR_CLS.VAL.Volume_2_Time_Fun_TextArea_Resize=0;
+	ele00.style.backgroundColor											=["yellow","orange"][Audio_URL_STR_CLS.VAL.Volume_2_Time_Fun_TextArea_Resize];
+	//==========DIVISION==========
+	ele00=document.getElementsByClassName("Audio_ET_BGM_Ctrl_Table")[0].getElementsByClassName("Volume_2_Time_Fun_EVAL_Code")[0];
+	ele00.disabled=[true,false][Audio_URL_STR_CLS.VAL.Volume_EAB];
+	ele00.value=Audio_URL_STR_CLS.VAL.Volume_2_Time_Fun_EVAL_Code=
+	Audio_URL_STR_CLS.FUN.Audio_VAR_2_Time_Fun_EVAL_Code(Audio_URL_STR_CLS.VAL.Volume_2_Time_Fun_Type);
+	Audio_URL_STR_CLS.VAL.Volume_2_Time_TTI_SD_ID_ARR=[];
+	//==========DIVISION==========
+	//====================DIVISION====================
+	//==========DIVISION==========
+	Audio_URL_STR_CLS.VAL.Speed_EAB=0;//0:false;1:true;
+	document.getElementsByClassName("Speed_EAB")[0].style.backgroundColor		=["red","#1EB0E9"][Audio_URL_STR_CLS.VAL.Speed_EAB];
+	document.getElementsByClassName("Speed_CLS")[0].disabled					=[true,false][Audio_URL_STR_CLS.VAL.Speed_EAB];
+	document.getElementsByClassName("Speed_CLS")[0].value						=Audio_URL_STR_CLS.VAL.Speed			=1;
+	//==========DIVISION==========
+	ele00=document.getElementsByClassName("Audio_ET_BGM_Ctrl_Table")[0].getElementsByClassName("Speed_Type_SEL")[0];
+	str00="";
+	str00+="<option>0 : Normal Speed .</option>";
+	str00+="<option>1 : Begin to End Random Speed , Speed will not be changed .</option>";
+	str00+="<option>2 : Begin to End Random Speed , change after BESpeed_BTTI seconds .</option>";
+	str00+="<option>3 : Begin to End Random Speed , change after BESpeed_BTTI to BESpeed_ETTI random seconds .</option>";
+	str00+="<option>4 : Begin to End Random Speed , change after video duration seconds .</option>";
+	str00+="<option>5 : Begin to End Random Speed , change after video duration random seconds .</option>";
+	str00+="<option>6 : Begin to End Random Speed , eval : v=f(t) .</option>";
+	ele00.innerHTML=str00;
+	ele00.selectedIndex=Audio_URL_STR_CLS.VAL.Speed_Type=3;
+	ele00.disabled=[true,false][Audio_URL_STR_CLS.VAL.Speed_EAB];
+	//==========DIVISION==========
+	ele00=document.getElementsByClassName("Audio_ET_BGM_Ctrl_Table")[0].getElementsByClassName("BSpeed_CLS")[0];
+	ele00.disabled=[true,false][Audio_URL_STR_CLS.VAL.Speed_EAB];		ele00.value=Audio_URL_STR_CLS.VAL.BSpeed=0.300;
+	ele01=document.getElementsByClassName("Audio_ET_BGM_Ctrl_Table")[0].getElementsByClassName("ESpeed_CLS")[0];
+	ele01.disabled=[true,false][Audio_URL_STR_CLS.VAL.Speed_EAB];		ele01.value=Audio_URL_STR_CLS.VAL.ESpeed=2.700;
+	ele02=document.getElementsByClassName("Audio_ET_BGM_Ctrl_Table")[0].getElementsByClassName("BESpeed_BTTI_CLS")[0];
+	ele02.disabled=[true,false][Audio_URL_STR_CLS.VAL.Speed_EAB];		ele02.value=Audio_URL_STR_CLS.VAL.BESpeed_BTTI=2000;//60000;
+	ele03=document.getElementsByClassName("Audio_ET_BGM_Ctrl_Table")[0].getElementsByClassName("BESpeed_ETTI_CLS")[0];
+	ele03.disabled=[true,false][Audio_URL_STR_CLS.VAL.Speed_EAB];		ele03.value=Audio_URL_STR_CLS.VAL.BESpeed_ETTI=3000;//180000;
+	//==========DIVISION==========
+	ele00=document.getElementsByClassName("Audio_ET_BGM_Ctrl_Table")[0].getElementsByClassName("Speed_2_Time_Fun_Type_SEL")[0];
+	str00="";
+	str00+="<option>0 : sin/cos/tan .</option>";
+	str00+="<option>1 : e^x .</option>";
+	str00+="<option>2 : ????? .</option>";
+	ele00.innerHTML=str00;
+	ele00.selectedIndex=Audio_URL_STR_CLS.VAL.Speed_2_Time_Fun_Type=0;
+	ele00.disabled=[true,false][Audio_URL_STR_CLS.VAL.Speed_EAB];
+	//==========DIVISION==========
+	ele00=document.getElementsByClassName("Audio_ET_BGM_Ctrl_Table")[0].getElementsByClassName("Speed_2_Time_Fun_TextArea_Resize")[0];
+	ele00.disabled=[true,false][Audio_URL_STR_CLS.VAL.Speed_EAB];		Audio_URL_STR_CLS.VAL.Speed_2_Time_Fun_TextArea_Resize=0;
+	ele00.style.backgroundColor											=["yellow","orange"][Audio_URL_STR_CLS.VAL.Speed_2_Time_Fun_TextArea_Resize];
+	//==========DIVISION==========
+	ele00=document.getElementsByClassName("Audio_ET_BGM_Ctrl_Table")[0].getElementsByClassName("Speed_2_Time_Fun_EVAL_Code")[0];
+	ele00.disabled=[true,false][Audio_URL_STR_CLS.VAL.Speed_EAB];
+	ele00.value=Audio_URL_STR_CLS.VAL.Speed_2_Time_Fun_EVAL_Code=
+	Audio_URL_STR_CLS.FUN.Audio_VAR_2_Time_Fun_EVAL_Code(Audio_URL_STR_CLS.VAL.Speed_2_Time_Fun_Type);
+	Audio_URL_STR_CLS.VAL.Speed_2_Time_TTI_SD_ID_ARR=[];
+	//==========DIVISION==========
+	//====================DIVISION====================
+	//==========DIVISION==========
+	BEXXXXX_BETTI_VAL_Set_INI();
+	//==========DIVISION==========
+	//====================DIVISION====================
+	//==========DIVISION==========
+	Audio_URL_STR_CLS.VAL.Random_Play_VID_ALL_EAB=1;//0:false;1:true;
+	document.getElementsByClassName("Random_Play_VID_ALL_EAB")[0].style.backgroundColor	=["red","#1EB0E9"][Audio_URL_STR_CLS.VAL.Random_Play_VID_ALL_EAB];
+	document.getElementsByClassName("Random_Play_Do_ST_NUM_CLS")[0].disabled			=[true,false][Audio_URL_STR_CLS.VAL.Random_Play_VID_ALL_EAB];
+	document.getElementsByClassName("Random_Play_Do_ST_Switch_CLS")[0].disabled			=[true,false][Audio_URL_STR_CLS.VAL.Random_Play_VID_ALL_EAB];
+	document.getElementsByClassName("Random_Play_VID_Type_SEL")[0].disabled				=[true,false][Audio_URL_STR_CLS.VAL.Random_Play_VID_ALL_EAB];
+	document.getElementsByClassName("Random_Play_VID_ALL_Set_CLS")[0].disabled			=[true,false][Audio_URL_STR_CLS.VAL.Random_Play_VID_ALL_EAB];
+	document.getElementsByClassName("Random_Play_VID_Random_Set_CLS")[0].disabled		=[true,false][Audio_URL_STR_CLS.VAL.Random_Play_VID_ALL_EAB];
+	//document.getElementsByClassName("Random_Play_VID_EAB_At_VID_ARR_CLS")[0].disabled	=[true,false][Audio_URL_STR_CLS.VAL.Random_Play_VID_ALL_EAB];
+	document.getElementsByClassName("Random_Play_VID_NUM_CLS")[0].disabled				=[true,false][Audio_URL_STR_CLS.VAL.Random_Play_VID_ALL_EAB];
+	document.getElementsByClassName("Random_Play_VID_BNUM_CLS")[0].disabled				=[true,false][Audio_URL_STR_CLS.VAL.Random_Play_VID_ALL_EAB];
+	document.getElementsByClassName("Random_Play_VID_ENUM_CLS")[0].disabled				=[true,false][Audio_URL_STR_CLS.VAL.Random_Play_VID_ALL_EAB];
+	document.getElementsByClassName("Random_Play_VID_BTTI_CLS")[0].disabled				=[true,false][Audio_URL_STR_CLS.VAL.Random_Play_VID_ALL_EAB];
+	document.getElementsByClassName("Random_Play_VID_ETTI_CLS")[0].disabled				=[true,false][Audio_URL_STR_CLS.VAL.Random_Play_VID_ALL_EAB];
+	document.getElementsByClassName("Random_Play_VID_Repeat_Time_ALL_CLS")[0].disabled	=[true,false][Audio_URL_STR_CLS.VAL.Random_Play_VID_ALL_EAB];
+	//document.getElementsByClassName("Random_Play_VID_Repeat_Time_NOW_CLS")[0].disabled=[true,false][Audio_URL_STR_CLS.VAL.Random_Play_VID_ALL_EAB];
+	//==========DIVISION==========
+	ele00=document.getElementsByClassName("Audio_Random_Play_VID_Ctrl_Table")[0].getElementsByClassName("Random_Play_Do_ST_NUM_CLS")[0];
+	ele00.value=Audio_URL_STR_CLS.VAL.Random_Play_Do_ST_NUM=2;
+	//==========DIVISION==========
+	ele00=document.getElementsByClassName("Audio_Random_Play_VID_Ctrl_Table")[0].getElementsByClassName("Random_Play_Do_ST_Switch_CLS")[0];
+	Audio_URL_STR_CLS.VAL.Random_Play_Do_ST_Switch=0;
+	ele00.style.backgroundColor=["red","#1EB0E9"][Audio_URL_STR_CLS.VAL.Random_Play_Do_ST_Switch];
+	ele00.disabled=[true,false][Audio_URL_STR_CLS.VAL.Random_Play_VID_ALL_EAB];
+	//==========DIVISION==========
+	ele00=document.getElementsByClassName("Audio_Random_Play_VID_Ctrl_Table")[0].getElementsByClassName("Random_Play_VID_Type_SEL")[0];
+	str00="";
+	str00+="<option>" + "0.Stability_VID_In_Order"		 + "</option>";
+	str00+="<option>" + "1.Stability_VID_Random_Order"	 + "</option>";
+	str00+="<option>" + "2.Random_VID_In_Order"			 + "</option>";
+	str00+="<option>" + "3.Random_VID_Random_Order"		 + "</option>";
+	ele00.innerHTML=str00;
+	ele00.selectedIndex=Audio_URL_STR_CLS.VAL.Random_Play_VID_Type=0;
+	ele00.disabled=[true,false][Audio_URL_STR_CLS.VAL.Random_Play_VID_ALL_EAB];
+	//==========DIVISION==========
+	ele00=document.getElementsByClassName("Audio_Random_Play_VID_Ctrl_Table")[0].getElementsByClassName("Random_Play_VID_ALL_Set_CLS")[0];
+	Audio_URL_STR_CLS.VAL.Random_Play_VID_ALL_Set		=0;
+	ele00.style.backgroundColor							=["red","#1EB0E9"][Audio_URL_STR_CLS.VAL.Random_Play_VID_ALL_Set];
+	ele00.disabled										=[true,false][Audio_URL_STR_CLS.VAL.Random_Play_VID_ALL_EAB];
+	//==========DIVISION==========
+	ele00=document.getElementsByClassName("Audio_Random_Play_VID_Ctrl_Table")[0].getElementsByClassName("Random_Play_VID_Random_Set_CLS")[0];
+	ele00.style.backgroundColor="#1EB0E9";
+	//==========DIVISION==========
+	ele00=document.getElementsByClassName("Audio_Random_Play_VID_Ctrl_Table")[0].getElementsByClassName("Random_Play_VID_EAB_At_VID_ARR_CLS")[0];
+	Audio_URL_STR_CLS.VAL.Random_Play_VID_EAB_At_VID_ARR=[0];
+	ele00.value="[" + Audio_URL_STR_CLS.VAL.Random_Play_VID_EAB_At_VID_ARR.toString() + "]";
+	ele01=document.getElementsByClassName("Audio_Random_Play_VID_Ctrl_Table")[0].getElementsByClassName("Random_Play_VID_NUM_CLS")[0];
+	ele01.disabled=[true,false][Audio_URL_STR_CLS.VAL.Random_Play_VID_ALL_EAB];	ele01.value=Audio_URL_STR_CLS.VAL.Random_Play_VID_NUM=1;
+	ele02=document.getElementsByClassName("Audio_Random_Play_VID_Ctrl_Table")[0].getElementsByClassName("Random_Play_VID_BNUM_CLS")[0];
+	ele02.disabled=[true,false][Audio_URL_STR_CLS.VAL.Random_Play_VID_ALL_EAB];	ele02.value=Audio_URL_STR_CLS.VAL.Random_Play_VID_BNUM=6;
+	ele03=document.getElementsByClassName("Audio_Random_Play_VID_Ctrl_Table")[0].getElementsByClassName("Random_Play_VID_ENUM_CLS")[0];
+	ele03.disabled=[true,false][Audio_URL_STR_CLS.VAL.Random_Play_VID_ALL_EAB];	ele03.value=Audio_URL_STR_CLS.VAL.Random_Play_VID_ENUM=9;
+	ele04=document.getElementsByClassName("Audio_Random_Play_VID_Ctrl_Table")[0].getElementsByClassName("Random_Play_VID_BTTI_CLS")[0];
+	ele04.disabled=[true,false][Audio_URL_STR_CLS.VAL.Random_Play_VID_ALL_EAB];	ele04.value=Audio_URL_STR_CLS.VAL.Random_Play_VID_BTTI=5000;//60000;
+	ele05=document.getElementsByClassName("Audio_Random_Play_VID_Ctrl_Table")[0].getElementsByClassName("Random_Play_VID_ETTI_CLS")[0];
+	ele05.disabled=[true,false][Audio_URL_STR_CLS.VAL.Random_Play_VID_ALL_EAB];	ele05.value=Audio_URL_STR_CLS.VAL.Random_Play_VID_ETTI=10000;//180000;
+	ele06=document.getElementsByClassName("Audio_Random_Play_VID_Ctrl_Table")[0].getElementsByClassName("Random_Play_VID_Repeat_Time_ALL_CLS")[0];
+	ele06.disabled=[true,false][Audio_URL_STR_CLS.VAL.Random_Play_VID_ALL_EAB];	ele06.value=Audio_URL_STR_CLS.VAL.Random_Play_VID_Repeat_Time_ALL=10;
+	ele07=document.getElementsByClassName("Audio_Random_Play_VID_Ctrl_Table")[0].getElementsByClassName("Random_Play_VID_Repeat_Time_NOW_CLS")[0];
+																				ele07.value=Audio_URL_STR_CLS.VAL.Random_Play_VID_Repeat_Time_NOW=0;
+	Audio_URL_STR_CLS.VAL.Random_Play_VID_EAB_ALL_ARR=[];
+	Audio_URL_STR_CLS.VAL.Random_Play_VID_EAB_Cache_ARR=[];
+	Audio_URL_STR_CLS.VAL.Random_Play_VID_EAB_Inuse_ARR2=[[]];
+	//==========DIVISION==========
+	//====================DIVISION====================
+}
+//Audio_URL_STR_CLS_INI();
+console.log(Audio_URL_STR_CLS.Short_ARR);
+console.log(Audio_URL_STR_CLS.Long_ARR);
+console.log(Audio_URL_STR_CLS.Time_Info_ARR);
+//========================================Audio_URL_STR_CLS========================================
+//========================================Audio_Function========================================
+//==============================DIVISION==============================
+function ITime_BE_Random_Gen(i)
+{
+	//==========DIVISION==========
+	var rsv;//Result_Value;
+	rsv=Audio_URL_STR_CLS.VAL.BITime + (Audio_URL_STR_CLS.VAL.EITime - Audio_URL_STR_CLS.VAL.BITime) * Math.random();
+	console.log("audio_volume_info : " + 
+				"i : " + i + ";\t" + 
+				"rsv : " + rsv + ";\t" + 
+				"");
+	//==========DIVISION==========
+	return rsv;
+	//==========DIVISION==========
+}
+
+function ITime_BME_Random_Gen(i)
+{
+	//==========DIVISION==========
+	//	0   -0.5 -1
+	//	0.5 -1   -3
+	//
+	//	0	0.1	0.2	0.3	0.4	0.5	0.6	0.7	0.8	0.9	1.0
+	//	0.5	0.6	0.7	0.8	0.9	1	1.4	1.8	2.2	2.6	3.0
+	//==========DIVISION==========
+	var vb,vm,ve;//Value;Begin;Middle;End;
+	var rb,rm,re;//Math.random();Begin;Middle;End;
+	var mrv;//Math.random();Value;
+	var rsv;//Result_Value;
+	//==========DIVISION==========
+	vb=Audio_URL_STR_CLS.VAL.BITime;	vm=1;		ve=Audio_URL_STR_CLS.VAL.EITime;
+	rb=0;								rm=0.5;		re=1;
+	mrv=Math.random();
+	//==========DIVISION==========
+	rsv=vb + (ve - vb) * mrv;
+	if ( 0<=vb && vb<=ve && ve<=vm || vm<=vb && vb<=ve )	{rsv=vb + (ve - vb) * mrv;}
+	else if ( 0<=vb && vb<=vm && vm<=ve )
+	{
+		if ( rb<=mrv && mrv<=rm )			{rsv=vb + (vm - vb) * (mrv - rb) * re / (rm - rb);}
+		else if ( rm<=mrv && mrv<=re )		{rsv=vm + (ve - vm) * (mrv - rm) * re / (re - rm);}
+		else		{}
+	}
+	else		{}
+	//	console.log("audio_volume_info : " + 
+	//				"i : " + i + ";\t" + 
+	//				"rsv : " + rsv + ";\t" + 
+	//				"");
+	//==========DIVISION==========
+	return rsv;
+	//==========DIVISION==========
+}
+//==============================DIVISION==============================
+function Volume_BE_Random_Gen(i)
+{
+	//==========DIVISION==========
+	var rsv;//Result_Value;
+	rsv=Audio_URL_STR_CLS.VAL.BVolume + (Audio_URL_STR_CLS.VAL.EVolume - Audio_URL_STR_CLS.VAL.BVolume) * Math.random();
+	console.log("audio_volume_info : " + 
+				"i : " + i + ";\t" + 
+				"rsv : " + rsv + ";\t" + 
+				"");
+	//==========DIVISION==========
+	return rsv;
+	//==========DIVISION==========
+}
+
+function Volume_BME_Random_Gen(i)
+{
+	//==========DIVISION==========
+	//	0   -0.5 -1
+	//	0.5 -1   -3
+	//
+	//	0	0.1	0.2	0.3	0.4	0.5	0.6	0.7	0.8	0.9	1.0
+	//	0.5	0.6	0.7	0.8	0.9	1	1.4	1.8	2.2	2.6	3.0
+	//==========DIVISION==========
+	var vb,vm,ve;//Value;Begin;Middle;End;
+	var rb,rm,re;//Math.random();Begin;Middle;End;
+	var mrv;//Math.random();Value;
+	var rsv;//Result_Value;
+	//==========DIVISION==========
+	vb=Audio_URL_STR_CLS.VAL.BVolume;	vm=1;		ve=Audio_URL_STR_CLS.VAL.EVolume;
+	rb=0;								rm=0.5;		re=1;
+	mrv=Math.random();
+	//==========DIVISION==========
+	rsv=vb + (ve - vb) * mrv;
+	if ( 0<=vb && vb<=ve && ve<=vm || vm<=vb && vb<=ve )	{rsv=vb + (ve - vb) * mrv;}
+	else if ( 0<=vb && vb<=vm && vm<=ve )
+	{
+		if ( rb<=mrv && mrv<=rm )			{rsv=vb + (vm - vb) * (mrv - rb) * re / (rm - rb);}
+		else if ( rm<=mrv && mrv<=re )		{rsv=vm + (ve - vm) * (mrv - rm) * re / (re - rm);}
+		else		{}
+	}
+	else		{}
+	//	console.log("audio_volume_info : " + 
+	//				"i : " + i + ";\t" + 
+	//				"rsv : " + rsv + ";\t" + 
+	//				"");
+	//==========DIVISION==========
+	return rsv;
+	//==========DIVISION==========
+}
+//==============================DIVISION==============================
+function Speed_BE_Random_Gen(i)
+{
+	//==========DIVISION==========
+	var rsv;//Result_Value;
+	rsv=Audio_URL_STR_CLS.VAL.BSpeed + (Audio_URL_STR_CLS.VAL.ESpeed - Audio_URL_STR_CLS.VAL.BSpeed) * Math.random();
+	console.log("audio_speed_info : " + 
+				"i : " + i + ";\t" + 
+				"rsv : " + rsv + ";\t" + 
+				"");
+	//==========DIVISION==========
+	return rsv;
+	//==========DIVISION==========
+}
+
+function Speed_BME_Random_Gen(i)
+{
+	//==========DIVISION==========
+	//	0   -0.5 -1
+	//	0.5 -1   -3
+	//
+	//	0	0.1	0.2	0.3	0.4	0.5	0.6	0.7	0.8	0.9	1.0
+	//	0.5	0.6	0.7	0.8	0.9	1	1.4	1.8	2.2	2.6	3.0
+	//==========DIVISION==========
+	var vb,vm,ve;//Value;Begin;Middle;End;
+	var rb,rm,re;//Math.random();Begin;Middle;End;
+	var mrv;//Math.random();Value;
+	var rsv;//Result_Value;
+	//==========DIVISION==========
+	vb=Audio_URL_STR_CLS.VAL.BSpeed;	vm=1;		ve=Audio_URL_STR_CLS.VAL.ESpeed;
+	rb=0;								rm=0.5;		re=1;
+	mrv=Math.random();
+	//==========DIVISION==========
+	rsv=vb + (ve - vb) * mrv;
+	if ( 0<=vb && vb<=ve && ve<=vm || vm<=vb && vb<=ve )	{rsv=vb + (ve - vb) * mrv;}
+	else if ( 0<=vb && vb<=vm && vm<=ve )
+	{
+		if ( rb<=mrv && mrv<=rm )			{rsv=vb + (vm - vb) * (mrv - rb) * re / (rm - rb);}
+		else if ( rm<=mrv && mrv<=re )		{rsv=vm + (ve - vm) * (mrv - rm) * re / (re - rm);}
+		else		{}
+	}
+	else		{}
+	//	console.log("audio_speed_info : " + 
+	//				"i : " + i + ";\t" + 
+	//				"rsv : " + rsv + ";\t" + 
+	//				"");
+	//==========DIVISION==========
+	return rsv;
+	//==========DIVISION==========
+}
+//==============================DIVISION==============================
+function Audio_Switch(ele)
+{
+	//==========DIVISION==========
+	eval(Parameter_Base_STR_ijk_XX(5));
+	var ID,LEN,ID_LEN;
+	var AR_ID;
+	//==========DIVISION==========
+	ele00=document.getElementsByClassName("Audio_Short")[0];
+	ele01=document.getElementsByClassName("Audio_Long")[0];
+	ele00.style.backgroundColor="red";
+	ele01.style.backgroundColor="red";
+	ele.style.backgroundColor="#1EB0E9";
+	//==========DIVISION==========
+	ele00=document.getElementsByClassName("Audio_ET_BGM_Content_Table")[0].getElementsByTagName("tbody")[0];
+	arr00=[];arr01=[];arr02=[];arr03=[];
+	if ( Audio_URL_STR_CLS.Audio_Type!=ele.className )
+	{
+		Initiation_Flag=1;
+		Audio_URL_STR_CLS.Audio_Type=ele.className;
+	}
+	else		{}
+	if ( ele.className=="Audio_Short" )
+	{
+		arr00=Audio_URL_STR_CLS.Short_ARR[0];
+		arr01=Audio_URL_STR_CLS.Short_ARR[1];
+		arr02=Audio_URL_STR_CLS.Short_ARR[2];
+		arr03=Audio_URL_STR_CLS.Short_ARR[3];
+	}
+	else if ( ele.className=="Audio_Long" )
+	{
+		arr00=Audio_URL_STR_CLS.Long_ARR[0];
+		arr01=Audio_URL_STR_CLS.Long_ARR[1];
+		arr02=Audio_URL_STR_CLS.Long_ARR[2];
+		arr03=Audio_URL_STR_CLS.Long_ARR[3];
+	}
+	else		{}
+	//==========DIVISION==========
+	var Base_URL_DIR=["",Audio_URL_STR_CLS.Base_URL_DIR][Audio_URL_STR_CLS.Network_Type];
+	//==========DIVISION==========
+	if ( Initiation_Flag==0 || Initiation_Flag==1 || ( Initiation_Flag==2 && Audio_URL_STR_CLS.VAL.MultiPlier_EAB==1 ) )
+	{
+		//==========DIVISION==========
+		num00=2;
+		str00="";
+		str00+="\n";
+		for (i=0;i<arr00.length;i++)
+		{
+			AR_ID=i;
+			if ( i%num00==0 )		{str00+="<tr>" + "\n";}
+			//arr03[i].replace(/^[\x00-\xFF]*/gm,"");
+			str00+='	<td class="TD_Text"><span>' + arr03[i] + 
+					'</span><a href="' + Base_URL_DIR + arr02[i] + '" target=_blank download>' + '↓</a></td>' + "\n";
+			str00+='	<td class="TD_RP_BTN"><input type="button" class="RP_BTN" value="RP" title="RP_BTN : Audio_Random_Play_BTN ."></td>' + "\n";
+			str00+='	<td class="TD_Audio">' + '<video AR_ID="' + AR_ID + '" duration_ORI="" controls="" name="media" loop=true><source src="' + 
+					Base_URL_DIR + arr02[i] + '" type="audio/mpeg">		</video>' + '</td>' + "\n";
+			if ( i%num00==2 )		{str00+="</tr>" + "\n";}
+		}
+		if ( i%num00==0 )		{str00+="</tr>" + "\n";}
+		ele00.innerHTML=str00;
+		//==========DIVISION==========
+		LEN=ele00.getElementsByTagName("video").length;
+		Audio_URL_STR_CLS.VAL.AR_ID_Pre_Time_ARR=createArray(LEN);
+		for (ID=0;ID<LEN;ID++)
+		{
+			AR_ID=ID;
+			Audio_URL_STR_CLS.VAL.AR_ID_Pre_Time_ARR[AR_ID]=0;
+		}
+		//==========DIVISION==========
+	}
+	else		{}
+	//==========DIVISION==========
+	Audio_ET_BGM_Table_INI();
+	//==========DIVISION==========
+	MultiPlier_EAB_Core_Action();
+	ITime_EAB_Core_Action();
+	Volume_EAB_Core_Action();
+	Speed_EAB_Core_Action();
+	//==========DIVISION==========
+	//==========OLD_CODE_BEGIN==========
+	//	if ( Initiation_Flag==0 )
+	//	{
+	//	}
+	//	else if ( Initiation_Flag==1 || Initiation_Flag==2 )
+	//	{
+	//		//==========DIVISION==========
+	//		ele01=document.getElementsByClassName("MultiPlier_CLS")[0];
+	//		//var multiplier=10.0;
+	//		var multiplier=parseInt(ele01.value,10);
+	//		//==========DIVISION==========
+	//		ele01=document.getElementsByClassName("Speed_CLS")[0];
+	//		//var speed=10.0;
+	//		var speed=parseInt(ele01.value,10);
+	//		//==========DIVISION==========
+	//	}
+	//	else		{}
+	//==========OLD_CODE_END==========
+	//==========DIVISION==========
+	if ( Initiation_Flag==1 )	{Initiation_Flag++;}
+	//==========DIVISION==========
+}
+//==============================DIVISION==============================
+function Audio_Setting_Use()
+{
+	//==========DIVISION==========
+	eval(Parameter_Base_STR_ijk_XX(10));
+	var ID,LEN,ID_LEN;
+	var AR_ID;
+	//==========DIVISION==========
+	ele00=document.getElementsByClassName("Audio_ET_BGM_Table")[0];
+	ele01=ele00.getElementsByClassName("Usage_Collection_SEL")[0];
+	if ( ele01.selectedIndex>=0 && ele01.selectedIndex<=11 )
+	{
+		//==========DIVISION==========
+		if ( navigator.userAgent.match(/Windows NT/gm)!=null )
+		{
+			ele00.getElementsByClassName("MultiPlier_EAB")[0].click();
+			ele00.getElementsByClassName("MultiPlier_CLS")[0].value						=Audio_URL_STR_CLS.VAL.MultiPlier			=3;//500000000;
+		}
+		else		{}
+		ele00.getElementsByClassName("ITime_EAB")[0].click();
+		ele00.getElementsByClassName("Volume_EAB")[0].click();
+		ele00.getElementsByClassName("Speed_EAB")[0].click();
+		if ( ele01.selectedIndex>=0 && ele01.selectedIndex<=7 )
+		{
+			ele00.getElementsByClassName("ITime_Type_SEL")[0].selectedIndex				=Audio_URL_STR_CLS.VAL.ITime_Type				=3;
+			ele00.getElementsByClassName("Volume_Type_SEL")[0].selectedIndex			=Audio_URL_STR_CLS.VAL.Volume_Type				=3;
+			ele00.getElementsByClassName("Speed_Type_SEL")[0].selectedIndex				=Audio_URL_STR_CLS.VAL.Speed_Type				=3;
+			ele00.getElementsByClassName("Random_Play_VID_Type_SEL")[0].selectedIndex	=Audio_URL_STR_CLS.VAL.Random_Play_VID_Type		=0;
+		}
+		else if ( ele01.selectedIndex>=8 && ele01.selectedIndex<=11 )
+		{
+			num00=[3,6][parseInt((ele01.selectedIndex - 8)/2,10)];
+			num01=[1,3][(ele01.selectedIndex - 8)%2];
+			ele00.getElementsByClassName("ITime_Type_SEL")[0].selectedIndex				=Audio_URL_STR_CLS.VAL.ITime_Type				=num00;
+			ele00.getElementsByClassName("BEITime_BETTI_VAL_Set_SEL")[0].selectedIndex	=Audio_URL_STR_CLS.VAL.BEITime_BETTI_VAL_Set	=0;
+			ele00.getElementsByClassName("ITime_2_Time_Fun_Type_SEL")[0].selectedIndex	=Audio_URL_STR_CLS.VAL.ITime_2_Time_Fun_Type	=0;
+			ele00.getElementsByClassName("ITime_2_Time_Fun_EVAL_Code")[0].value			=
+			Audio_URL_STR_CLS.FUN.Audio_VAR_2_Time_Fun_EVAL_Code(Audio_URL_STR_CLS.VAL.ITime_2_Time_Fun_Type);
+			ele00.getElementsByClassName("Volume_Type_SEL")[0].selectedIndex			=Audio_URL_STR_CLS.VAL.Volume_Type				=num00;
+			ele00.getElementsByClassName("BEVolume_BETTI_VAL_Set_SEL")[0].selectedIndex	=Audio_URL_STR_CLS.VAL.BEVolume_BETTI_VAL_Set	=0;
+			ele00.getElementsByClassName("Volume_2_Time_Fun_Type_SEL")[0].selectedIndex	=Audio_URL_STR_CLS.VAL.Volume_2_Time_Fun_Type	=0;
+			ele00.getElementsByClassName("Volume_2_Time_Fun_EVAL_Code")[0].value		=
+			Audio_URL_STR_CLS.FUN.Audio_VAR_2_Time_Fun_EVAL_Code(Audio_URL_STR_CLS.VAL.Volume_2_Time_Fun_Type);
+			ele00.getElementsByClassName("Speed_Type_SEL")[0].selectedIndex				=Audio_URL_STR_CLS.VAL.Speed_Type				=num00;
+			ele00.getElementsByClassName("BESpeed_BETTI_VAL_Set_SEL")[0].selectedIndex	=Audio_URL_STR_CLS.VAL.BESpeed_BETTI_VAL_Set	=0;
+			ele00.getElementsByClassName("Speed_2_Time_Fun_Type_SEL")[0].selectedIndex	=Audio_URL_STR_CLS.VAL.Speed_2_Time_Fun_Type	=0;
+			ele00.getElementsByClassName("Speed_2_Time_Fun_EVAL_Code")[0].value			=
+			Audio_URL_STR_CLS.FUN.Audio_VAR_2_Time_Fun_EVAL_Code(Audio_URL_STR_CLS.VAL.Speed_2_Time_Fun_Type);
+			ele00.getElementsByClassName("Random_Play_VID_Type_SEL")[0].selectedIndex	=Audio_URL_STR_CLS.VAL.Random_Play_VID_Type		=num01;
+		}
+		else		{}
+		ele00.getElementsByClassName("Random_Play_Do_ST_NUM_CLS")[0].value				=Audio_URL_STR_CLS.VAL.Random_Play_Do_ST_NUM	=1;
+		//ele00.getElementsByClassName("Random_Play_VID_Type_SEL")[0].selectedIndex		=Audio_URL_STR_CLS.VAL.Random_Play_VID_Type		=1;
+		ele00.getElementsByClassName("Audio_Long")[0].click();
+		ele00.getElementsByClassName("Random_Play_Do_ST_Switch_CLS")[0].click();
+		//==========DIVISION==========
+		var elel_RP_BTN=ele00.getElementsByClassName("RP_BTN");
+		arr00=[[0],[1],[5],[7],[8],[11],[14],[35],
+				[0,5,7,8,11,35],[0,5,7,8,11,35],[0,5,7,8,11,35],[0,5,7,8,11,35]][ele01.selectedIndex];
+		for (i=0;i<arr00.length;i++)
+		{
+			AR_ID=arr00[i];elel_RP_BTN[AR_ID].click();
+		}
+		//==========DIVISION==========
+	}
+	else if ( ele01.selectedIndex==2 )
+	{
+	}
+	else if ( ele01.selectedIndex==3 )
+	{
+	}
+	else if ( ele01.selectedIndex==4 )
+	{
+	}
+	else		{}
+	//==========DIVISION==========
+}
+//==============================DIVISION==============================
+function Network_Type_Switch(ele)
+{
+	Audio_URL_STR_CLS.Network_Type=(Audio_URL_STR_CLS.Network_Type + 1)%2;
+	ele.value=["OFF","ON"][Audio_URL_STR_CLS.Network_Type];
+	ele.style.backgroundColor=["red","#1EB0E9"][Audio_URL_STR_CLS.Network_Type];
+	document.getElementsByClassName(Audio_URL_STR_CLS.Audio_Type)[0].click();
+}
+
+function MultiPlier_EAB_Switch(ele)
+{
+	//==========DIVISION==========
+	Audio_URL_STR_CLS.VAL.MultiPlier_EAB=(Audio_URL_STR_CLS.VAL.MultiPlier_EAB + 1)%2;
+	ele.style.backgroundColor=["red","#1EB0E9"][Audio_URL_STR_CLS.VAL.MultiPlier_EAB];
+	document.getElementsByClassName("MultiPlier_CLS")[0].disabled=[true,false][Audio_URL_STR_CLS.VAL.MultiPlier_EAB];
+	//==========DIVISION==========
+	//MultiPlier_EAB_Core_Action();
+	//==========DIVISION==========
+}
+
+function ITime_EAB_Switch(ele)
+{
+	//==========DIVISION==========
+	Audio_URL_STR_CLS.VAL.ITime_EAB=(Audio_URL_STR_CLS.VAL.ITime_EAB + 1)%2;
+	ele.style.backgroundColor=["red","#1EB0E9"][Audio_URL_STR_CLS.VAL.ITime_EAB];
+	document.getElementsByClassName("ITime_CLS")[0].disabled							=	[true,false][Audio_URL_STR_CLS.VAL.ITime_EAB];
+	document.getElementsByClassName("ITime_Type_SEL")[0].disabled						=	[true,false][Audio_URL_STR_CLS.VAL.ITime_EAB];
+	document.getElementsByClassName("ICTime_Type_SEL")[0].disabled						=	[true,false][Audio_URL_STR_CLS.VAL.ITime_EAB];
+	document.getElementsByClassName("E_E2B_Time_Type_SEL")[0].disabled					=	[true,false][Audio_URL_STR_CLS.VAL.ITime_EAB];
+	document.getElementsByClassName("BITime_CLS")[0].disabled							=	[true,false][Audio_URL_STR_CLS.VAL.ITime_EAB];
+	document.getElementsByClassName("EITime_CLS")[0].disabled							=	[true,false][Audio_URL_STR_CLS.VAL.ITime_EAB];
+	document.getElementsByClassName("BEITime_BTTI_CLS")[0].disabled						=	[true,false][Audio_URL_STR_CLS.VAL.ITime_EAB];
+	document.getElementsByClassName("BEITime_ETTI_CLS")[0].disabled						=	[true,false][Audio_URL_STR_CLS.VAL.ITime_EAB];
+	document.getElementsByClassName("BEITime_BETTI_VAL_Set_SEL")[0].disabled			=	[true,false][Audio_URL_STR_CLS.VAL.ITime_EAB];
+	document.getElementsByClassName("ITime_2_Time_Fun_Type_SEL")[0].disabled			=	[true,false][Audio_URL_STR_CLS.VAL.ITime_EAB];
+	document.getElementsByClassName("ITime_2_Time_Fun_TextArea_Resize")[0].disabled		=	[true,false][Audio_URL_STR_CLS.VAL.ITime_EAB];
+	document.getElementsByClassName("ITime_2_Time_Fun_EVAL_Code")[0].disabled			=	[true,false][Audio_URL_STR_CLS.VAL.ITime_EAB];
+	Audio_URL_STR_CLS.VAL.ITime_2_Time_TTI_SD_ID_ARR=[];
+	//==========DIVISION==========
+	ITime_EAB_Core_Action();
+	//==========DIVISION==========
+}
+
+function ITime_TextArea_Resize(ele)
+{
+	Audio_URL_STR_CLS.VAL.ITime_2_Time_Fun_TextArea_Resize=(Audio_URL_STR_CLS.VAL.ITime_2_Time_Fun_TextArea_Resize + 1)%2;
+
+	document.getElementsByClassName("ITime_2_Time_Fun_TextArea_Resize")[0].style.backgroundColor=
+	["yellow","orange"][Audio_URL_STR_CLS.VAL.ITime_2_Time_Fun_TextArea_Resize];
+	document.getElementsByClassName("ITime_2_Time_Fun_EVAL_Code")[0].style.width		=
+	[75,400][Audio_URL_STR_CLS.VAL.ITime_2_Time_Fun_TextArea_Resize];
+	document.getElementsByClassName("ITime_2_Time_Fun_EVAL_Code")[0].style.height		=
+	[19,200][Audio_URL_STR_CLS.VAL.ITime_2_Time_Fun_TextArea_Resize];
+}
+
+function Volume_EAB_Switch(ele)
+{
+	//==========DIVISION==========
+	Audio_URL_STR_CLS.VAL.Volume_EAB=(Audio_URL_STR_CLS.VAL.Volume_EAB + 1)%2;
+	ele.style.backgroundColor=["red","#1EB0E9"][Audio_URL_STR_CLS.VAL.Volume_EAB];
+	document.getElementsByClassName("Volume_CLS")[0].disabled							=	[true,false][Audio_URL_STR_CLS.VAL.Volume_EAB];
+	document.getElementsByClassName("Volume_Type_SEL")[0].disabled						=	[true,false][Audio_URL_STR_CLS.VAL.Volume_EAB];
+	document.getElementsByClassName("BVolume_CLS")[0].disabled							=	[true,false][Audio_URL_STR_CLS.VAL.Volume_EAB];
+	document.getElementsByClassName("EVolume_CLS")[0].disabled							=	[true,false][Audio_URL_STR_CLS.VAL.Volume_EAB];
+	document.getElementsByClassName("BEVolume_BTTI_CLS")[0].disabled					=	[true,false][Audio_URL_STR_CLS.VAL.Volume_EAB];
+	document.getElementsByClassName("BEVolume_ETTI_CLS")[0].disabled					=	[true,false][Audio_URL_STR_CLS.VAL.Volume_EAB];
+	document.getElementsByClassName("BEVolume_BETTI_VAL_Set_SEL")[0].disabled			=	[true,false][Audio_URL_STR_CLS.VAL.Volume_EAB];
+	document.getElementsByClassName("Volume_2_Time_Fun_Type_SEL")[0].disabled			=	[true,false][Audio_URL_STR_CLS.VAL.Volume_EAB];
+	document.getElementsByClassName("Volume_2_Time_Fun_TextArea_Resize")[0].disabled	=	[true,false][Audio_URL_STR_CLS.VAL.Volume_EAB];
+	document.getElementsByClassName("Volume_2_Time_Fun_EVAL_Code")[0].disabled			=	[true,false][Audio_URL_STR_CLS.VAL.Volume_EAB];
+	Audio_URL_STR_CLS.VAL.Volume_2_Time_TTI_SD_ID_ARR=[];
+	//==========DIVISION==========
+	Volume_EAB_Core_Action();
+	//==========DIVISION==========
+}
+
+function Volume_TextArea_Resize(ele)
+{
+	Audio_URL_STR_CLS.VAL.Volume_2_Time_Fun_TextArea_Resize=(Audio_URL_STR_CLS.VAL.Volume_2_Time_Fun_TextArea_Resize + 1)%2;
+
+	document.getElementsByClassName("Volume_2_Time_Fun_TextArea_Resize")[0].style.backgroundColor=
+	["yellow","orange"][Audio_URL_STR_CLS.VAL.Volume_2_Time_Fun_TextArea_Resize];
+	document.getElementsByClassName("Volume_2_Time_Fun_EVAL_Code")[0].style.width		=
+	[75,400][Audio_URL_STR_CLS.VAL.Volume_2_Time_Fun_TextArea_Resize];
+	document.getElementsByClassName("Volume_2_Time_Fun_EVAL_Code")[0].style.height		=
+	[19,200][Audio_URL_STR_CLS.VAL.Volume_2_Time_Fun_TextArea_Resize];
+}
+
+function Speed_EAB_Switch(ele)
+{
+	//==========DIVISION==========
+	Audio_URL_STR_CLS.VAL.Speed_EAB=(Audio_URL_STR_CLS.VAL.Speed_EAB + 1)%2;
+	ele.style.backgroundColor=["red","#1EB0E9"][Audio_URL_STR_CLS.VAL.Speed_EAB];
+	document.getElementsByClassName("Speed_CLS")[0].disabled							=	[true,false][Audio_URL_STR_CLS.VAL.Speed_EAB];
+	document.getElementsByClassName("Speed_Type_SEL")[0].disabled						=	[true,false][Audio_URL_STR_CLS.VAL.Speed_EAB];
+	document.getElementsByClassName("BSpeed_CLS")[0].disabled							=	[true,false][Audio_URL_STR_CLS.VAL.Speed_EAB];
+	document.getElementsByClassName("ESpeed_CLS")[0].disabled							=	[true,false][Audio_URL_STR_CLS.VAL.Speed_EAB];
+	document.getElementsByClassName("BESpeed_BTTI_CLS")[0].disabled						=	[true,false][Audio_URL_STR_CLS.VAL.Speed_EAB];
+	document.getElementsByClassName("BESpeed_ETTI_CLS")[0].disabled						=	[true,false][Audio_URL_STR_CLS.VAL.Speed_EAB];
+	document.getElementsByClassName("BESpeed_BETTI_VAL_Set_SEL")[0].disabled			=	[true,false][Audio_URL_STR_CLS.VAL.Speed_EAB];
+	document.getElementsByClassName("Speed_2_Time_Fun_Type_SEL")[0].disabled			=	[true,false][Audio_URL_STR_CLS.VAL.Speed_EAB];
+	document.getElementsByClassName("Speed_2_Time_Fun_TextArea_Resize")[0].disabled		=	[true,false][Audio_URL_STR_CLS.VAL.Speed_EAB];
+	document.getElementsByClassName("Speed_2_Time_Fun_EVAL_Code")[0].disabled			=	[true,false][Audio_URL_STR_CLS.VAL.Speed_EAB];
+	Audio_URL_STR_CLS.VAL.Speed_2_Time_TTI_SD_ID_ARR=[];
+	//==========DIVISION==========
+	Speed_EAB_Core_Action();
+	//==========DIVISION==========
+}
+
+function Speed_TextArea_Resize(ele)
+{
+	Audio_URL_STR_CLS.VAL.Speed_2_Time_Fun_TextArea_Resize=(Audio_URL_STR_CLS.VAL.Speed_2_Time_Fun_TextArea_Resize + 1)%2;
+
+	document.getElementsByClassName("Speed_2_Time_Fun_TextArea_Resize")[0].style.backgroundColor=
+	["yellow","orange"][Audio_URL_STR_CLS.VAL.Speed_2_Time_Fun_TextArea_Resize];
+	document.getElementsByClassName("Speed_2_Time_Fun_EVAL_Code")[0].style.width		=
+	[75,400][Audio_URL_STR_CLS.VAL.Speed_2_Time_Fun_TextArea_Resize];
+	document.getElementsByClassName("Speed_2_Time_Fun_EVAL_Code")[0].style.height		=
+	[19,200][Audio_URL_STR_CLS.VAL.Speed_2_Time_Fun_TextArea_Resize];
+}
+//==============================DIVISION==============================
+function BEXXXXX_BETTI_VAL_Set_INI()
+{
+	//==========DIVISION==========
+	eval(Parameter_Base_STR_ijk_XX(5));
+	//eval(ELE_ELEL_STR_INI());
+	var ID,LEN,ID_LEN;
+	var AR_ID;
+	//==========DIVISION==========
+	ele00=document.getElementsByClassName("Audio_ET_BGM_Table")[0].getElementsByClassName("BEITime_BETTI_VAL_Set_SEL")[0];
+	str00="";
+	str00+="<option>00 : BEITime_BETTI_VAL_00</option>";
+	str00+="<option>01 : BEITime_BETTI_VAL_01</option>";
+	str00+="<option>02 : BEITime_BETTI_VAL_02</option>";
+	str00+="<option>03 : BEITime_BETTI_VAL_03</option>";
+	str00+="<option>10 : BEITime_BETTI_VAL_10</option>";
+	str00+="<option>11 : BEITime_BETTI_VAL_11</option>";
+	str00+="<option>12 : BEITime_BETTI_VAL_12</option>";
+	str00+="<option>13 : BEITime_BETTI_VAL_13</option>";
+	ele00.innerHTML=str00;
+	ele00.selectedIndex=Audio_URL_STR_CLS.VAL.BEITime_BETTI_VAL_Set=0;
+	ele00.disabled=[true,false][Audio_URL_STR_CLS.VAL.ITime_EAB];
+	//==========DIVISION==========
+	ele00=document.getElementsByClassName("Audio_ET_BGM_Table")[0].getElementsByClassName("BEVolume_BETTI_VAL_Set_SEL")[0];
+	str00="";
+	str00+="<option>00 : BEVolume_BETTI_VAL_00</option>";
+	str00+="<option>01 : BEVolume_BETTI_VAL_01</option>";
+	str00+="<option>02 : BEVolume_BETTI_VAL_02</option>";
+	str00+="<option>03 : BEVolume_BETTI_VAL_03</option>";
+	ele00.innerHTML=str00;
+	ele00.selectedIndex=Audio_URL_STR_CLS.VAL.BEVolume_BETTI_VAL_Set=0;
+	ele00.disabled=[true,false][Audio_URL_STR_CLS.VAL.Volume_EAB];
+	//==========DIVISION==========
+	ele00=document.getElementsByClassName("Audio_ET_BGM_Table")[0].getElementsByClassName("BESpeed_BETTI_VAL_Set_SEL")[0];
+	str00="";
+	str00+="<option>00 : BESpeed_BETTI_VAL_00</option>";
+	str00+="<option>01 : BESpeed_BETTI_VAL_01</option>";
+	str00+="<option>02 : BESpeed_BETTI_VAL_02</option>";
+	str00+="<option>03 : BESpeed_BETTI_VAL_03</option>";
+	ele00.innerHTML=str00;
+	ele00.selectedIndex=Audio_URL_STR_CLS.VAL.BESpeed_BETTI_VAL_Set=0;
+	ele00.disabled=[true,false][Audio_URL_STR_CLS.VAL.Speed_EAB];
+	//==========DIVISION==========
+}
+
+function BEXXXXX_BETTI_VAL_Set_Do(evt_target)
+{
+	//==========DIVISION==========
+	eval(Parameter_Base_STR_ijk_XX(5));
+	//eval(ELE_ELEL_STR_INI());
+	var ID,LEN,ID_LEN;
+	var AR_ID;
+	//==========DIVISION==========
+	var ele_Audio_ET_BGM_Table=document.getElementsByClassName("Audio_ET_BGM_Table")[0];
+	//==========DIVISION==========
+	var ele_ITime_CLS								=ele_Audio_ET_BGM_Table.getElementsByClassName("ITime_CLS"						)[0];
+	var ele_ITime_Type_SEL							=ele_Audio_ET_BGM_Table.getElementsByClassName("ITime_Type_SEL"					)[0];
+	var ele_ICTime_Type_SEL							=ele_Audio_ET_BGM_Table.getElementsByClassName("ICTime_Type_SEL"				)[0];
+	var ele_E_E2B_Time_Type_SEL						=ele_Audio_ET_BGM_Table.getElementsByClassName("E_E2B_Time_Type_SEL"			)[0];
+	var ele_BITime_CLS								=ele_Audio_ET_BGM_Table.getElementsByClassName("BITime_CLS"						)[0];
+	var ele_EITime_CLS								=ele_Audio_ET_BGM_Table.getElementsByClassName("EITime_CLS"						)[0];
+	var ele_BEITime_BTTI_CLS						=ele_Audio_ET_BGM_Table.getElementsByClassName("BEITime_BTTI_CLS"				)[0];
+	var ele_BEITime_ETTI_CLS						=ele_Audio_ET_BGM_Table.getElementsByClassName("BEITime_ETTI_CLS"				)[0];
+	var ele_BEITime_BETTI_VAL_Set_SEL				=ele_Audio_ET_BGM_Table.getElementsByClassName("BEITime_BETTI_VAL_Set_SEL"		)[0];
+	var ele_ITime_2_Time_Fun_Type_SEL				=ele_Audio_ET_BGM_Table.getElementsByClassName("ITime_2_Time_Fun_Type_SEL"		)[0];
+	//==========DIVISION==========
+	var ele_Volume_EAB								=ele_Audio_ET_BGM_Table.getElementsByClassName("Volume_EAB"						)[0];
+	var ele_Volume_CLS								=ele_Audio_ET_BGM_Table.getElementsByClassName("Volume_CLS"						)[0];
+	var ele_Volume_Type_SEL							=ele_Audio_ET_BGM_Table.getElementsByClassName("Volume_Type_SEL"				)[0];
+	var ele_BVolume_CLS								=ele_Audio_ET_BGM_Table.getElementsByClassName("BVolume_CLS"					)[0];
+	var ele_EVolume_CLS								=ele_Audio_ET_BGM_Table.getElementsByClassName("EVolume_CLS"					)[0];
+	var ele_BEVolume_BTTI_CLS						=ele_Audio_ET_BGM_Table.getElementsByClassName("BEVolume_BTTI_CLS"				)[0];
+	var ele_BEVolume_ETTI_CLS						=ele_Audio_ET_BGM_Table.getElementsByClassName("BEVolume_ETTI_CLS"				)[0];
+	var ele_BEVolume_BETTI_VAL_Set_SEL				=ele_Audio_ET_BGM_Table.getElementsByClassName("BEVolume_BETTI_VAL_Set_SEL"		)[0];
+	var ele_Volume_2_Time_Fun_Type_SEL				=ele_Audio_ET_BGM_Table.getElementsByClassName("Volume_2_Time_Fun_Type_SEL"		)[0];
+	//==========DIVISION==========
+	var ele_Speed_EAB								=ele_Audio_ET_BGM_Table.getElementsByClassName("Speed_EAB"						)[0];
+	var ele_Speed_Negative_Or_Positive_BTN			=ele_Audio_ET_BGM_Table.getElementsByClassName("Speed_Negative_Or_Positive_BTN"	)[0];
+	var ele_Speed_CLS								=ele_Audio_ET_BGM_Table.getElementsByClassName("Speed_CLS"						)[0];
+	var ele_Speed_Type_SEL							=ele_Audio_ET_BGM_Table.getElementsByClassName("Speed_Type_SEL"					)[0];
+	var ele_BSpeed_CLS								=ele_Audio_ET_BGM_Table.getElementsByClassName("BSpeed_CLS"						)[0];
+	var ele_ESpeed_CLS								=ele_Audio_ET_BGM_Table.getElementsByClassName("ESpeed_CLS"						)[0];
+	var ele_BESpeed_BTTI_CLS						=ele_Audio_ET_BGM_Table.getElementsByClassName("BESpeed_BTTI_CLS"				)[0];
+	var ele_BESpeed_ETTI_CLS						=ele_Audio_ET_BGM_Table.getElementsByClassName("BESpeed_ETTI_CLS"				)[0];
+	var ele_BESpeed_BETTI_VAL_Set_SEL				=ele_Audio_ET_BGM_Table.getElementsByClassName("BESpeed_BETTI_VAL_Set_SEL"		)[0];
+	var ele_Speed_2_Time_Fun_Type_SEL				=ele_Audio_ET_BGM_Table.getElementsByClassName("Speed_2_Time_Fun_Type_SEL"		)[0];
+	//==========DIVISION==========
+	var ele=ele_Audio_ET_BGM_Table;
+	var evt={target:evt_target};
+	var n=2;
+	//==========DIVISION==========
+	str00="";
+	str00+="num00=Audio_URL_STR_CLS.VAL." + evt_target.className.replace(/_SEL$/gm,"") + "=" + evt_target.selectedIndex + ";";
+	eval(str00);
+	if ( evt_target.className=="BEITime_BETTI_VAL_Set_SEL" )
+	{
+		//	ele_ITime_CLS					.value				=Audio_URL_STR_CLS.VAL.ITime					=[1][num00%1];
+		//	ele_ITime_Type_SEL				.selectedIndex		=Audio_URL_STR_CLS.VAL.ITime_Type				=[3][num00%1];
+		ele_ICTime_Type_SEL				.selectedIndex		=Audio_URL_STR_CLS.VAL.ICTime_Type				=[0,1][parseInt(num00/4,10)];
+		ele_E_E2B_Time_Type_SEL			.selectedIndex		=Audio_URL_STR_CLS.VAL.E_E2B_Time_Type			=[1][num00%1];
+		ele_BITime_CLS					.value				=Audio_URL_STR_CLS.VAL.BITime					=[0   ,0   ,1   ,0.5 ]	[num00%4];
+		ele_EITime_CLS					.value				=Audio_URL_STR_CLS.VAL.EITime					=[0.5 ,1   ,2   ,3.5 ]	[num00%4];
+		ele_BEITime_BTTI_CLS			.value				=Audio_URL_STR_CLS.VAL.BEITime_BTTI				=[0   ,0   ,1000,2000]	[num00%4];
+		ele_BEITime_ETTI_CLS			.value				=Audio_URL_STR_CLS.VAL.BEITime_ETTI				=[500 ,1000,2000,3000]	[num00%4];
+		//	ele_BEITime_BETTI_VAL_Set_SEL	.selectedIndex		=Audio_URL_STR_CLS.VAL.BEITime_BETTI_VAL_Set	=[0][num00];
+		//	ele_ITime_2_Time_Fun_Type_SEL	.selectedIndex		=Audio_URL_STR_CLS.VAL.ITime_2_Time_Fun_Type	=[0][num00];
+
+		//	evt={target:ele_ITime_CLS					};TEXT_ATTRIBUTION(ele,evt,n);
+		//	evt={target:ele_ITime_Type_SEL				};TEXT_ATTRIBUTION(ele,evt,n);
+		evt={target:ele_ICTime_Type_SEL				};TEXT_ATTRIBUTION(ele,evt,n);
+		evt={target:ele_E_E2B_Time_Type_SEL			};TEXT_ATTRIBUTION(ele,evt,n);
+		evt={target:ele_BITime_CLS					};TEXT_ATTRIBUTION(ele,evt,n);
+		evt={target:ele_EITime_CLS					};TEXT_ATTRIBUTION(ele,evt,n);
+		evt={target:ele_BEITime_BTTI_CLS			};TEXT_ATTRIBUTION(ele,evt,n);
+		evt={target:ele_BEITime_ETTI_CLS			};TEXT_ATTRIBUTION(ele,evt,n);
+		//	evt={target:ele_BEITime_BETTI_VAL_Set_SEL	};TEXT_ATTRIBUTION(ele,evt,n);
+		//	evt={target:ele_ITime_2_Time_Fun_Type_SEL	};TEXT_ATTRIBUTION(ele,evt,n);
+	}
+	else if ( evt_target.className=="BEVolume_BETTI_VAL_Set_SEL" )
+	{
+		//	ele_Volume_CLS					.value				=Audio_URL_STR_CLS.VAL.Volume					=[1][num00%1];
+		//	ele_Volume_Type_SEL				.selectedIndex		=Audio_URL_STR_CLS.VAL.Volume_Type				=[3][num00%1];
+		ele_BVolume_CLS					.value				=Audio_URL_STR_CLS.VAL.BVolume					=[0.1 ,0.3 ,0.5 ,0.9 ]	[num00%4];
+		ele_EVolume_CLS					.value				=Audio_URL_STR_CLS.VAL.EVolume					=[0.4 ,0.7 ,0.8 ,1   ]	[num00%4];
+		//	ele_BEVolume_BTTI_CLS			.value				=Audio_URL_STR_CLS.VAL.BEVolume_BTTI			=[0   ,0   ,1000,2000]	[num00%4];
+		//	ele_BEVolume_ETTI_CLS			.value				=Audio_URL_STR_CLS.VAL.BEVolume_ETTI			=[500 ,1000,2000,3000]	[num00%4];
+		//	ele_BEVolume_BETTI_VAL_Set_SEL	.selectedIndex		=Audio_URL_STR_CLS.VAL.BEVolume_BETTI_VAL_Set	=[0][num00];
+		//	ele_Volume_2_Time_Fun_Type_SEL	.selectedIndex		=Audio_URL_STR_CLS.VAL.Volume_2_Time_Fun_Type	=[0][num00];
+
+		//	evt={target:ele_Volume_CLS					};TEXT_ATTRIBUTION(ele,evt,n);
+		//	evt={target:ele_Volume_Type_SEL				};TEXT_ATTRIBUTION(ele,evt,n);
+		evt={target:ele_BVolume_CLS					};TEXT_ATTRIBUTION(ele,evt,n);
+		evt={target:ele_EVolume_CLS					};TEXT_ATTRIBUTION(ele,evt,n);
+		//	evt={target:ele_BEVolume_BTTI_CLS			};TEXT_ATTRIBUTION(ele,evt,n);
+		//	evt={target:ele_BEVolume_ETTI_CLS			};TEXT_ATTRIBUTION(ele,evt,n);
+		//	evt={target:ele_BEVolume_BETTI_VAL_Set_SEL	};TEXT_ATTRIBUTION(ele,evt,n);
+		//	evt={target:ele_Volume_2_Time_Fun_Type_SEL	};TEXT_ATTRIBUTION(ele,evt,n);
+	}
+	else if ( evt_target.className=="BESpeed_BETTI_VAL_Set_SEL" )
+	{
+		//	ele_Speed_CLS					.value				=Audio_URL_STR_CLS.VAL.Speed					=[1][num00%1];
+		//	ele_Speed_Type_SEL				.selectedIndex		=Audio_URL_STR_CLS.VAL.Speed_Type				=[3][num00%1];
+		ele_BSpeed_CLS					.value				=Audio_URL_STR_CLS.VAL.BSpeed					=[0.3 ,0.5 ,0.5 ,0.8 ]	[num00%4];
+		ele_ESpeed_CLS					.value				=Audio_URL_STR_CLS.VAL.ESpeed					=[3   ,1.5 ,2   ,1.3 ]	[num00%4];
+		//	ele_BESpeed_BTTI_CLS			.value				=Audio_URL_STR_CLS.VAL.BESpeed_BTTI				=[0   ,0   ,1000,2000]	[num00%4];
+		//	ele_BESpeed_ETTI_CLS			.value				=Audio_URL_STR_CLS.VAL.BESpeed_ETTI				=[500 ,1000,2000,3000]	[num00%4];
+		//	ele_BESpeed_BETTI_VAL_Set_SEL	.selectedIndex		=Audio_URL_STR_CLS.VAL.BESpeed_BETTI_VAL_Set	=[0][num00];
+		//	ele_Speed_2_Time_Fun_Type_SEL	.selectedIndex		=Audio_URL_STR_CLS.VAL.Speed_2_Time_Fun_Type	=[0][num00];
+
+		//	evt={target:ele_Speed_CLS					};TEXT_ATTRIBUTION(ele,evt,n);
+		//	evt={target:ele_Speed_Type_SEL				};TEXT_ATTRIBUTION(ele,evt,n);
+		evt={target:ele_BSpeed_CLS					};TEXT_ATTRIBUTION(ele,evt,n);
+		evt={target:ele_ESpeed_CLS					};TEXT_ATTRIBUTION(ele,evt,n);
+		//	evt={target:ele_BESpeed_BTTI_CLS			};TEXT_ATTRIBUTION(ele,evt,n);
+		//	evt={target:ele_BESpeed_ETTI_CLS			};TEXT_ATTRIBUTION(ele,evt,n);
+		//	evt={target:ele_BESpeed_BETTI_VAL_Set_SEL	};TEXT_ATTRIBUTION(ele,evt,n);
+		//	evt={target:ele_Speed_2_Time_Fun_Type_SEL	};TEXT_ATTRIBUTION(ele,evt,n);
+	}
+	else		{}
+	//==========DIVISION==========
+}
+//==============================DIVISION==============================
+function MultiPlier_EAB_Core_Action()
+{
+	//==========DIVISION==========
+	eval(Parameter_Base_STR_ijk_XX(10));
+	//eval(ELE_ELEL_STR_INI());
+	var ID,LEN,ID_LEN;
+	var AR_ID;
+	//==========DIVISION==========
+	ele00=document.getElementsByClassName("Audio_ET_BGM_Content_Table")[0].getElementsByTagName("tbody")[0];
+	arr00=[];arr01=[];arr02=[];arr03=[];
+	if ( Audio_URL_STR_CLS.Audio_Type=="Audio_Short" )
+	{
+		arr00=Audio_URL_STR_CLS.Short_ARR[0];
+		arr01=Audio_URL_STR_CLS.Short_ARR[1];
+		arr02=Audio_URL_STR_CLS.Short_ARR[2];
+		arr03=Audio_URL_STR_CLS.Short_ARR[3];
+	}
+	else if ( Audio_URL_STR_CLS.Audio_Type=="Audio_Long" )
+	{
+		arr00=Audio_URL_STR_CLS.Long_ARR[0];
+		arr01=Audio_URL_STR_CLS.Long_ARR[1];
+		arr02=Audio_URL_STR_CLS.Long_ARR[2];
+		arr03=Audio_URL_STR_CLS.Long_ARR[3];
+	}
+	else		{}
+	//==========DIVISION==========
+	if ( Initiation_Flag==0 )
+	{
+	}
+	else if ( Initiation_Flag==1 || Initiation_Flag==2 )
+	{
+		//==========DIVISION==========
+		var multiplier=Audio_URL_STR_CLS.VAL.MultiPlier;
+		//==========DIVISION==========
+		if ( Initiation_Flag==1 || ( Initiation_Flag==2 && Audio_URL_STR_CLS.VAL.MultiPlier_EAB==1 ) )
+		{
+			//==========DIVISION==========
+			//	console.log("Initiation_Flag : " + Initiation_Flag + ";\t" + 
+			//				"Audio_URL_STR_CLS.VAL.MultiPlier_EAB : " + Audio_URL_STR_CLS.VAL.MultiPlier_EAB + ";\t" + 
+			//				"");
+			//==========DIVISION==========
+			for (i=0;i<arr00.length;i++)
+			{
+				//==========DIVISION==========
+				ele01=document.createElement("DIV");
+				ele01.innerHTML=ele00.getElementsByClassName("TD_Audio")[i].innerHTML;
+				ele02=ele01.getElementsByTagName("video")[0];
+				if ( ele02==undefined )			{continue;}
+				//==========DIVISION==========
+				if ( Audio_URL_STR_CLS.VAL.MultiPlier_EAB==0 )			{}
+				else if ( Audio_URL_STR_CLS.VAL.MultiPlier_EAB==1 )
+				{
+					amplifyMedia(ele02,multiplier);
+				}
+				else		{}
+				//==========DIVISION==========
+				ele00.getElementsByClassName("TD_Audio")[i].innerHTML="";
+				ele00.getElementsByClassName("TD_Audio")[i].appendChild(ele01);
+				//==========DIVISION==========
+			}
+			//==========DIVISION==========
+		}
+		else		{}
+		//==========DIVISION==========
+	}
+	else		{}
+	//==========DIVISION==========
+	if ( Initiation_Flag==1 )	{Initiation_Flag++;}
+	//==========DIVISION==========
+}
+
+function Current_Time_Calc(AR_ID,Interval_currentTime)
+{
+	//==========DIVISION==========
+	//0 : Pre_Time + Interval_Time .
+	//1 : Current_Time + Interval_Time .
+	//2 : Current_Time .
+	//Audio_URL_STR_CLS.VAL.ICTime_Type;
+	//==========DIVISION==========
+	//0 : End_Time .
+	//1 : End_2_Begin_Time .
+	//Audio_URL_STR_CLS.VAL.E_E2B_Time_Type;
+	//==========DIVISION==========
+	var AR_ID_Pre_Time_ARR	=Audio_URL_STR_CLS.VAL.AR_ID_Pre_Time_ARR;
+	var ICTime_Type			=Audio_URL_STR_CLS.VAL.ICTime_Type;
+	var E_E2B_Time_Type		=Audio_URL_STR_CLS.VAL.E_E2B_Time_Type;
+	//==========DIVISION==========
+	var currentTime_ORI=AR_ID_Pre_Time_ARR[AR_ID];
+	var currentTime_MOD=0;
+	var duration_ORI;
+	//==========DIVISION==========
+	var ele00=document.getElementsByClassName("Audio_ET_BGM_Content_Table")[0].getElementsByTagName("tbody")[0];
+	var ele02=ele00.getElementsByClassName("TD_Audio")[AR_ID].getElementsByTagName("video")[0];
+	if ( ele02.getAttribute("duration_ORI")=="" || ele02.getAttribute("duration_ORI")=="NaN" || 
+			ele02.getAttribute("duration_ORI")==undefined || ele02.getAttribute("duration_ORI")==null )
+													{duration_ORI=ele02.duration;ele02.setAttribute("duration_ORI",duration_ORI);}
+	else											{duration_ORI=parseFloat(ele02.getAttribute("duration_ORI"));}
+	//==========DIVISION==========
+	Interval_currentTime=Interval_currentTime * ele02.playbackRate;
+	//==========DIVISION==========
+	if ( currentTime_ORI>=0 && currentTime_ORI<duration_ORI )
+	{
+		//==========DIVISION==========
+		if ( ICTime_Type==0 )			{currentTime_MOD=currentTime_ORI + Interval_currentTime;}
+		else if ( ICTime_Type==1 )		{currentTime_MOD=ele02.currentTime + Interval_currentTime;}
+		//else if ( ICTime_Type==2 )		{currentTime_MOD=parseFloat(Interval_currentTime * Math.random()).toFixed(3);}
+		else if ( ICTime_Type==2 )		{currentTime_MOD=parseFloat(Interval_currentTime).toFixed(3);}
+		else		{}
+		//==========DIVISION==========
+		if ( E_E2B_Time_Type==0 )		{if ( currentTime_MOD>=duration_ORI )		{currentTime_MOD=duration_ORI;}}
+		else if ( E_E2B_Time_Type==1 )	{if ( currentTime_MOD>=duration_ORI )		{currentTime_MOD=currentTime_MOD % duration_ORI;}}
+		else		{}
+		//==========DIVISION==========
+		if ( currentTime_MOD>=duration_ORI )		{currentTime_MOD=0;}
+		else		{}
+		//==========DIVISION==========
+	}
+	else if ( currentTime_ORI>=duration_ORI )		{currentTime_ORI=0;currentTime_MOD=0;}
+	else		{}
+	//==========DIVISION==========
+	if ( AR_ID==0 )
+	{
+		//	console.log("AR_ID : " + AR_ID + ";\t" + 
+		//				"ICTime_Type : " + ICTime_Type + ";\t" + 
+		//				"E_E2B_Time_Type : " + E_E2B_Time_Type + ";\t" + 
+		//				"duration_ORI : " + duration_ORI + ";\t" + 
+		//				"ele02.currentTime : " + ele02.currentTime + ";\t" + 
+		//				"currentTime_ORI : " + currentTime_ORI + ";\t" + 
+		//				"currentTime_MOD : " + currentTime_MOD + ";\t" + 
+		//				"Interval_currentTime : " + Interval_currentTime + ";\t" + 
+		//				"");
+	}
+	else		{}
+	//==========DIVISION==========
+	return currentTime_MOD;
+	//==========DIVISION==========
+}
+
+function ITime_EAB_Core_Action()
+{
+	//==========DIVISION==========
+	eval(Parameter_Base_STR_ijk_XX(10));
+	//eval(ELE_ELEL_STR_INI());
+	var ID,LEN,ID_LEN;
+	var AR_ID;
+	//==========DIVISION==========
+	ele00=document.getElementsByClassName("Audio_ET_BGM_Content_Table")[0].getElementsByTagName("tbody")[0];
+	arr00=[];arr01=[];arr02=[];arr03=[];
+	if ( Audio_URL_STR_CLS.Audio_Type=="Audio_Short" )
+	{
+		arr00=Audio_URL_STR_CLS.Short_ARR[0];
+		arr01=Audio_URL_STR_CLS.Short_ARR[1];
+		arr02=Audio_URL_STR_CLS.Short_ARR[2];
+		arr03=Audio_URL_STR_CLS.Short_ARR[3];
+	}
+	else if ( Audio_URL_STR_CLS.Audio_Type=="Audio_Long" )
+	{
+		arr00=Audio_URL_STR_CLS.Long_ARR[0];
+		arr01=Audio_URL_STR_CLS.Long_ARR[1];
+		arr02=Audio_URL_STR_CLS.Long_ARR[2];
+		arr03=Audio_URL_STR_CLS.Long_ARR[3];
+	}
+	else		{}
+	//==========DIVISION==========
+	if ( Initiation_Flag==0 )
+	{
+	}
+	else if ( Initiation_Flag==1 || Initiation_Flag==2 )
+	{
+		//==========DIVISION==========
+		var Interval_currentTime=Audio_URL_STR_CLS.VAL.ITime;
+		if ( Audio_URL_STR_CLS.VAL.ITime_EAB==0 )				{}
+		else if ( Audio_URL_STR_CLS.VAL.ITime_EAB==1 )			{}
+		else		{}
+		//==========DIVISION==========
+		if ( Audio_URL_STR_CLS.VAL.ITime_Type>=0 && Audio_URL_STR_CLS.VAL.ITime_Type<=6 )
+		{
+			for (i=0;i<Audio_URL_STR_CLS.VAL.Multi_Video_ITime_Timer_ID_ARR.length;i++)
+			{
+				clearTimeout(Audio_URL_STR_CLS.VAL.Multi_Video_ITime_Timer_ID_ARR[i]);
+			}
+			Audio_URL_STR_CLS.VAL.Multi_Video_ITime_Timer_ID_ARR=JSON.parse(JSON.stringify(arr02));
+			for (i=0;i<arr02.length;i++)
+			{
+				Audio_URL_STR_CLS.VAL.Multi_Video_ITime_Timer_ID_ARR[i]=null;
+			}
+		}
+		else		{}
+		//==========DIVISION==========
+		if ( Audio_URL_STR_CLS.VAL.ITime_Type==6 )
+		{
+			var elel_RP_BTN=ele00.getElementsByClassName("RP_BTN");
+			LEN=elel_RP_BTN.length;
+			Audio_URL_STR_CLS.VAL.ITime_2_Time_TTI_SD_ID_ARR=createArray(LEN);
+			for (ID=0;ID<LEN;ID++)
+			{
+				Audio_URL_STR_CLS.VAL.ITime_2_Time_TTI_SD_ID_ARR[ID]=0;
+			}
+		}
+		else		{}
+		//==========DIVISION==========
+		//if ( Initiation_Flag==1 || ( Initiation_Flag==2 && Audio_URL_STR_CLS.VAL.MultiPlier_EAB==1 ) )
+		{
+			//==========DIVISION==========
+			//	console.log("Initiation_Flag : " + Initiation_Flag + ";\t" + 
+			//				"Audio_URL_STR_CLS.VAL.MultiPlier_EAB : " + Audio_URL_STR_CLS.VAL.MultiPlier_EAB + ";\t" + 
+			//				"");
+			//==========DIVISION==========
+			for (i=0;i<arr00.length;i++)
+			{
+				//==========DIVISION==========
+				ele02=ele00.getElementsByClassName("TD_Audio")[i].getElementsByTagName("video")[0];
+				if ( ele02==undefined )			{continue;}
+				//==========DIVISION==========
+				if ( Audio_URL_STR_CLS.VAL.ITime_EAB==0 )
+				{
+					AR_ID=i;ele02.currentTime=Current_Time_Calc(AR_ID,Interval_currentTime);
+				}
+				else if ( Audio_URL_STR_CLS.VAL.ITime_EAB==1 )			{}
+				else		{}
+				//==========DIVISION==========
+			}
+			//==========DIVISION==========
+		}
+		//else		{}
+		//==========DIVISION==========
+		elel03=ele00.getElementsByClassName("TD_Audio");
+		//console.log(elel03);
+		for (i=0;i<elel03.length;i++)
+		{
+			//==========DIVISION==========
+			if ( Audio_URL_STR_CLS.VAL.ITime_EAB==0 )				{}
+			else if ( Audio_URL_STR_CLS.VAL.ITime_EAB==1 )
+			{
+				//==========DIVISION==========
+				ele02=elel03[i].getElementsByTagName("video")[0];
+				if ( ele02==undefined )			{continue;}
+				//==========DIVISION==========
+				if ( Audio_URL_STR_CLS.VAL.ITime_Type==0 )
+				{
+					AR_ID=i;ele02.currentTime=Current_Time_Calc(AR_ID,Interval_currentTime);
+					console.log("ele02.currentTime : " + ele02.currentTime);
+					Audio_URL_STR_CLS.VAL.AR_ID_Pre_Time_ARR[AR_ID]=ele02.currentTime;
+				}
+				else if ( Audio_URL_STR_CLS.VAL.ITime_Type==1 )
+				{
+					Code_Area=1;
+					if ( Code_Area==0 )			{Interval_currentTime=ITime_BE_Random_Gen(i);}
+					else if ( Code_Area==1 )	{Interval_currentTime=ITime_BME_Random_Gen(i);}
+					else						{}
+					AR_ID=i;ele02.currentTime=Current_Time_Calc(AR_ID,Interval_currentTime);
+					console.log("ele02.currentTime : " + ele02.currentTime);
+					Audio_URL_STR_CLS.VAL.AR_ID_Pre_Time_ARR[AR_ID]=ele02.currentTime;
+				}
+				else if ( Audio_URL_STR_CLS.VAL.ITime_Type>=2 && Audio_URL_STR_CLS.VAL.ITime_Type<=6 )
+				{
+					//==========DIVISION==========
+					setTimeout(function (i,elel03)
+					{
+						//==========DIVISION==========
+						var fun_ct_cache_00;
+						fun_ct_cache_00=arguments.callee;
+						//==========DIVISION==========
+						var ele02=elel03[i].getElementsByTagName("video")[0];
+						//==========DIVISION==========
+						if ( ele02.readyState==4 )
+						{
+							Audio_URL_STR_CLS.VAL.Multi_Video_ITime_Timer_ID_ARR[i]=setTimeout(function (i,ele02)
+							{
+								//==========DIVISION==========
+								clearTimeout(Audio_URL_STR_CLS.VAL.Multi_Video_ITime_Timer_ID_ARR[i]);
+								//console.log("Audio_URL_STR_CLS.VAL.ITime_EAB : " + Audio_URL_STR_CLS.VAL.ITime_EAB);
+								if ( Audio_URL_STR_CLS.VAL.ITime_EAB==0 )			{return;}
+								else if ( Audio_URL_STR_CLS.VAL.ITime_EAB==1 )		{}
+								else		{}
+								//==========DIVISION==========
+								var fun_ct_cache_01;
+								fun_ct_cache_01=arguments.callee;
+								//==========DIVISION==========
+								var ID,LEN,ID_LEN;
+								var AR_ID=i;
+								//==========DIVISION==========
+								if ( Audio_URL_STR_CLS.VAL.ITime_Type>=2 && Audio_URL_STR_CLS.VAL.ITime_Type<=6 )		{}
+								else		{return;}
+								//==========DIVISION==========
+								Code_Area=1;
+								if ( Code_Area==0 )			{Interval_currentTime=ITime_BE_Random_Gen(i);}
+								else if ( Code_Area==1 )	{Interval_currentTime=ITime_BME_Random_Gen(i);}
+								else						{}
+								AR_ID=i;ele02.currentTime=Current_Time_Calc(AR_ID,Interval_currentTime);
+								//==========DIVISION==========
+								var Multi_Video_Time_Offset=Audio_URL_STR_CLS.VAL.Multi_Video_Time_Offset;//ms;
+								var TTI_SD;
+								if ( Audio_URL_STR_CLS.VAL.ITime_Type==2 )
+								{
+									TTI_SD=Audio_URL_STR_CLS.VAL.BEITime_BTTI + Multi_Video_Time_Offset;
+								}
+								else if ( Audio_URL_STR_CLS.VAL.ITime_Type==3 )
+								{
+									TTI_SD=Audio_URL_STR_CLS.VAL.BEITime_BTTI + 
+											(Audio_URL_STR_CLS.VAL.BEITime_ETTI - Audio_URL_STR_CLS.VAL.BEITime_BTTI) * Math.random() + 
+											Multi_Video_Time_Offset;
+								}
+								else if ( Audio_URL_STR_CLS.VAL.ITime_Type==4 )
+								{
+									TTI_SD=(ele02.duration * 1000 + Multi_Video_Time_Offset) / ele02.playbackRate;
+								}
+								else if ( Audio_URL_STR_CLS.VAL.ITime_Type==5 )
+								{
+									TTI_SD=(ele02.duration * 1000 * Math.random() + Multi_Video_Time_Offset) / ele02.playbackRate;
+								}
+								else if ( Audio_URL_STR_CLS.VAL.ITime_Type==6 )
+								{
+									//==========DIVISION==========
+									var ele00=document.getElementsByClassName("Audio_ET_BGM_Ctrl_Table")[0].getElementsByTagName("tbody")[0];
+									var EVAL_Code_STR=ele00.getElementsByClassName("ITime_2_Time_Fun_EVAL_Code")[0].value;
+									ID=i;var TTI_SD_ID=Audio_URL_STR_CLS.VAL.ITime_2_Time_TTI_SD_ID_ARR[ID];
+									var Evoke_By_OBJ="ITime";
+									eval(EVAL_Code_STR);
+									//console.log(Audio_VAR_CLS);
+									Interval_currentTime=Audio_VAR_CLS.v;
+									AR_ID=i;ele02.currentTime=Current_Time_Calc(AR_ID,Interval_currentTime);
+									Audio_URL_STR_CLS.VAL.ITime_2_Time_TTI_SD_ID_ARR[ID]++;
+									TTI_SD=Audio_VAR_CLS.TTI_SD;TTI_SD=TTI_IN_USE * 10;
+									//==========DIVISION==========
+									//	console.log("TTI_SD : " + TTI_SD + ";\t" + 
+									//				"ITime_2_Time_TTI_SD_ID_ARR[ID] : " + 
+									//				Audio_URL_STR_CLS.VAL.ITime_2_Time_TTI_SD_ID_ARR[ID] + ";\t" + 
+									//				"ele02.currentTime : " + ele02.currentTime + ";\t" + 
+									//				"");
+									//==========DIVISION==========
+								}
+								else		{}
+								//==========DIVISION==========
+								Audio_URL_STR_CLS.VAL.AR_ID_Pre_Time_ARR[AR_ID]=ele02.currentTime;
+								//==========DIVISION==========
+								//	console.log("Setting currentTime : " + 
+								//				"i : " + i + ";\t" + 
+								//				"TTI_SD : " + TTI_SD + ";\t" + 
+								//				"ele02.duration : " + ele02.duration + ";\t" + 
+								//				"ele02.currentTime : " + ele02.currentTime + ";\t" + 
+								//				"");
+								//==========DIVISION==========
+								Audio_URL_STR_CLS.VAL.Multi_Video_ITime_Timer_ID_ARR[i]=
+								setTimeout(fun_ct_cache_01,TTI_SD,i,ele02);
+								//==========DIVISION==========
+							},0,i,ele02);
+							//==========DIVISION==========
+						}
+						else
+						{
+							setTimeout(fun_ct_cache_00,TTI_IN_USE,i,elel03);
+						}
+						//==========DIVISION==========
+					},0,i,elel03);
+					//==========DIVISION==========
+				}
+				else		{}
+				//==========DIVISION==========
+			}
+			else		{}
+			//==========DIVISION==========
+		}
+		//==========DIVISION==========
+	}
+	else		{}
+	//==========DIVISION==========
+	if ( Initiation_Flag==1 )	{Initiation_Flag++;}
+	//==========DIVISION==========
+}
+
+function Volume_EAB_Core_Action()
+{
+	//==========DIVISION==========
+	eval(Parameter_Base_STR_ijk_XX(10));
+	//eval(ELE_ELEL_STR_INI());
+	var ID,LEN,ID_LEN;
+	var AR_ID;
+	//==========DIVISION==========
+	ele00=document.getElementsByClassName("Audio_ET_BGM_Content_Table")[0].getElementsByTagName("tbody")[0];
+	arr00=[];arr01=[];arr02=[];arr03=[];
+	if ( Audio_URL_STR_CLS.Audio_Type=="Audio_Short" )
+	{
+		arr00=Audio_URL_STR_CLS.Short_ARR[0];
+		arr01=Audio_URL_STR_CLS.Short_ARR[1];
+		arr02=Audio_URL_STR_CLS.Short_ARR[2];
+		arr03=Audio_URL_STR_CLS.Short_ARR[3];
+	}
+	else if ( Audio_URL_STR_CLS.Audio_Type=="Audio_Long" )
+	{
+		arr00=Audio_URL_STR_CLS.Long_ARR[0];
+		arr01=Audio_URL_STR_CLS.Long_ARR[1];
+		arr02=Audio_URL_STR_CLS.Long_ARR[2];
+		arr03=Audio_URL_STR_CLS.Long_ARR[3];
+	}
+	else		{}
+	//==========DIVISION==========
+	if ( Initiation_Flag==0 )
+	{
+	}
+	else if ( Initiation_Flag==1 || Initiation_Flag==2 )
+	{
+		//==========DIVISION==========
+		var volume=Audio_URL_STR_CLS.VAL.Volume;
+		if ( Audio_URL_STR_CLS.VAL.Volume_EAB==0 )				{}
+		else if ( Audio_URL_STR_CLS.VAL.Volume_EAB==1 )			{}
+		else		{}
+		//==========DIVISION==========
+		if ( Audio_URL_STR_CLS.VAL.Volume_Type>=0 && Audio_URL_STR_CLS.VAL.Volume_Type<=6 )
+		{
+			for (i=0;i<Audio_URL_STR_CLS.VAL.Multi_Video_Volume_Timer_ID_ARR.length;i++)
+			{
+				clearTimeout(Audio_URL_STR_CLS.VAL.Multi_Video_Volume_Timer_ID_ARR[i]);
+			}
+			Audio_URL_STR_CLS.VAL.Multi_Video_Volume_Timer_ID_ARR=JSON.parse(JSON.stringify(arr02));
+			for (i=0;i<arr02.length;i++)
+			{
+				Audio_URL_STR_CLS.VAL.Multi_Video_Volume_Timer_ID_ARR[i]=null;
+			}
+		}
+		else		{}
+		//==========DIVISION==========
+		if ( Audio_URL_STR_CLS.VAL.Volume_Type==6 )
+		{
+			var elel_RP_BTN=ele00.getElementsByClassName("RP_BTN");
+			LEN=elel_RP_BTN.length;
+			Audio_URL_STR_CLS.VAL.Volume_2_Time_TTI_SD_ID_ARR=createArray(LEN);
+			for (ID=0;ID<LEN;ID++)
+			{
+				Audio_URL_STR_CLS.VAL.Volume_2_Time_TTI_SD_ID_ARR[ID]=0;
+			}
+		}
+		else		{}
+		//==========DIVISION==========
+		//if ( Initiation_Flag==1 || ( Initiation_Flag==2 && Audio_URL_STR_CLS.VAL.MultiPlier_EAB==1 ) )
+		{
+			//==========DIVISION==========
+			//	console.log("Initiation_Flag : " + Initiation_Flag + ";\t" + 
+			//				"Audio_URL_STR_CLS.VAL.MultiPlier_EAB : " + Audio_URL_STR_CLS.VAL.MultiPlier_EAB + ";\t" + 
+			//				"");
+			//==========DIVISION==========
+			for (i=0;i<arr00.length;i++)
+			{
+				//==========DIVISION==========
+				ele02=ele00.getElementsByClassName("TD_Audio")[i].getElementsByTagName("video")[0];
+				if ( ele02==undefined )			{continue;}
+				//==========DIVISION==========
+				if ( Audio_URL_STR_CLS.VAL.Volume_EAB==0 )
+				{
+					ele02.volume=volume;
+				}
+				else if ( Audio_URL_STR_CLS.VAL.Volume_EAB==1 )			{}
+				else		{}
+				//==========DIVISION==========
+			}
+			//==========DIVISION==========
+		}
+		//else		{}
+		//==========DIVISION==========
+		elel03=ele00.getElementsByClassName("TD_Audio");
+		//console.log(elel03);
+		for (i=0;i<elel03.length;i++)
+		{
+			//==========DIVISION==========
+			if ( Audio_URL_STR_CLS.VAL.Volume_EAB==0 )				{}
+			else if ( Audio_URL_STR_CLS.VAL.Volume_EAB==1 )
+			{
+				//==========DIVISION==========
+				ele02=elel03[i].getElementsByTagName("video")[0];
+				if ( ele02==undefined )			{continue;}
+				//==========DIVISION==========
+				if ( Audio_URL_STR_CLS.VAL.Volume_Type==0 )
+				{
+					ele02.volume=volume;
+					console.log("ele02.volume : " + ele02.volume);
+				}
+				else if ( Audio_URL_STR_CLS.VAL.Volume_Type==1 )
+				{
+					Code_Area=1;
+					if ( Code_Area==0 )			{ele02.volume=Volume_BE_Random_Gen(i);}
+					else if ( Code_Area==1 )	{ele02.volume=Volume_BME_Random_Gen(i);}
+					else						{}
+					console.log("ele02.volume : " + ele02.volume);
+				}
+				else if ( Audio_URL_STR_CLS.VAL.Volume_Type>=2 && Audio_URL_STR_CLS.VAL.Volume_Type<=6 )
+				{
+					//==========DIVISION==========
+					setTimeout(function (i,elel03)
+					{
+						//==========DIVISION==========
+						var fun_ct_cache_00;
+						fun_ct_cache_00=arguments.callee;
+						//==========DIVISION==========
+						var ele02=elel03[i].getElementsByTagName("video")[0];
+						//==========DIVISION==========
+						if ( ele02.readyState==4 )
+						{
+							Audio_URL_STR_CLS.VAL.Multi_Video_Volume_Timer_ID_ARR[i]=setTimeout(function (i,ele02)
+							{
+								//==========DIVISION==========
+								clearTimeout(Audio_URL_STR_CLS.VAL.Multi_Video_Volume_Timer_ID_ARR[i]);
+								//console.log("Audio_URL_STR_CLS.VAL.Volume_EAB : " + Audio_URL_STR_CLS.VAL.Volume_EAB);
+								if ( Audio_URL_STR_CLS.VAL.Volume_EAB==0 )			{return;}
+								else if ( Audio_URL_STR_CLS.VAL.Volume_EAB==1 )		{}
+								else		{}
+								//==========DIVISION==========
+								var fun_ct_cache_01;
+								fun_ct_cache_01=arguments.callee;
+								//==========DIVISION==========
+								var ID,LEN,ID_LEN;
+								//==========DIVISION==========
+								if ( Audio_URL_STR_CLS.VAL.Volume_Type>=2 && Audio_URL_STR_CLS.VAL.Volume_Type<=6 )		{}
+								else		{return;}
+								//==========DIVISION==========
+								Code_Area=1;
+								if ( Code_Area==0 )			{ele02.volume=Volume_BE_Random_Gen(i);}
+								else if ( Code_Area==1 )	{ele02.volume=Volume_BME_Random_Gen(i);}
+								else						{}
+								//==========DIVISION==========
+								var Multi_Video_Time_Offset=Audio_URL_STR_CLS.VAL.Multi_Video_Time_Offset;//ms;
+								var TTI_SD;
+								if ( Audio_URL_STR_CLS.VAL.Volume_Type==2 )
+								{
+									TTI_SD=Audio_URL_STR_CLS.VAL.BEVolume_BTTI + Multi_Video_Time_Offset;
+								}
+								else if ( Audio_URL_STR_CLS.VAL.Volume_Type==3 )
+								{
+									TTI_SD=Audio_URL_STR_CLS.VAL.BEVolume_BTTI + 
+											(Audio_URL_STR_CLS.VAL.BEVolume_ETTI - Audio_URL_STR_CLS.VAL.BEVolume_BTTI) * Math.random() + 
+											Multi_Video_Time_Offset;
+								}
+								else if ( Audio_URL_STR_CLS.VAL.Volume_Type==4 )
+								{
+									TTI_SD=(ele02.duration * 1000 + Multi_Video_Time_Offset) / ele02.playbackRate;
+								}
+								else if ( Audio_URL_STR_CLS.VAL.Volume_Type==5 )
+								{
+									TTI_SD=(ele02.duration * 1000 * Math.random() + Multi_Video_Time_Offset) / ele02.playbackRate;
+								}
+								else if ( Audio_URL_STR_CLS.VAL.Volume_Type==6 )
+								{
+									//==========DIVISION==========
+									var ele00=document.getElementsByClassName("Audio_ET_BGM_Ctrl_Table")[0].getElementsByTagName("tbody")[0];
+									var EVAL_Code_STR=ele00.getElementsByClassName("Volume_2_Time_Fun_EVAL_Code")[0].value;
+									ID=i;var TTI_SD_ID=Audio_URL_STR_CLS.VAL.Volume_2_Time_TTI_SD_ID_ARR[ID];
+									var Evoke_By_OBJ="Volume";
+									eval(EVAL_Code_STR);
+									//console.log(Audio_VAR_CLS);
+									ele02.volume=Audio_VAR_CLS.v;
+									Audio_URL_STR_CLS.VAL.Volume_2_Time_TTI_SD_ID_ARR[ID]++;
+									TTI_SD=Audio_VAR_CLS.TTI_SD;TTI_SD=TTI_IN_USE * 10;
+									//==========DIVISION==========
+									//	console.log("TTI_SD : " + TTI_SD + ";\t" + 
+									//				"Volume_2_Time_TTI_SD_ID_ARR[ID] : " + 
+									//				Audio_URL_STR_CLS.VAL.Volume_2_Time_TTI_SD_ID_ARR[ID] + ";\t" + 
+									//				"ele02.volume : " + ele02.volume + ";\t" + 
+									//				"");
+									//==========DIVISION==========
+								}
+								else		{}
+								//==========DIVISION==========
+								//	console.log("Setting volume : " + 
+								//				"i : " + i + ";\t" + 
+								//				"TTI_SD : " + TTI_SD + ";\t" + 
+								//				"ele02.duration : " + ele02.duration + ";\t" + 
+								//				"ele02.volume : " + ele02.volume + ";\t" + 
+								//				"");
+								//==========DIVISION==========
+								Audio_URL_STR_CLS.VAL.Multi_Video_Volume_Timer_ID_ARR[i]=
+								setTimeout(fun_ct_cache_01,TTI_SD,i,ele02);
+								//==========DIVISION==========
+							},0,i,ele02);
+							//==========DIVISION==========
+						}
+						else
+						{
+							setTimeout(fun_ct_cache_00,TTI_IN_USE,i,elel03);
+						}
+						//==========DIVISION==========
+					},0,i,elel03);
+					//==========DIVISION==========
+				}
+				else		{}
+				//==========DIVISION==========
+			}
+			else		{}
+			//==========DIVISION==========
+		}
+		//==========DIVISION==========
+	}
+	else		{}
+	//==========DIVISION==========
+	if ( Initiation_Flag==1 )	{Initiation_Flag++;}
+	//==========DIVISION==========
+}
+
+function Speed_EAB_Core_Action()
+{
+	//==========DIVISION==========
+	eval(Parameter_Base_STR_ijk_XX(10));
+	//eval(ELE_ELEL_STR_INI());
+	var ID,LEN,ID_LEN;
+	var AR_ID;
+	//==========DIVISION==========
+	ele00=document.getElementsByClassName("Audio_ET_BGM_Content_Table")[0].getElementsByTagName("tbody")[0];
+	arr00=[];arr01=[];arr02=[];arr03=[];
+	if ( Audio_URL_STR_CLS.Audio_Type=="Audio_Short" )
+	{
+		arr00=Audio_URL_STR_CLS.Short_ARR[0];
+		arr01=Audio_URL_STR_CLS.Short_ARR[1];
+		arr02=Audio_URL_STR_CLS.Short_ARR[2];
+		arr03=Audio_URL_STR_CLS.Short_ARR[3];
+	}
+	else if ( Audio_URL_STR_CLS.Audio_Type=="Audio_Long" )
+	{
+		arr00=Audio_URL_STR_CLS.Long_ARR[0];
+		arr01=Audio_URL_STR_CLS.Long_ARR[1];
+		arr02=Audio_URL_STR_CLS.Long_ARR[2];
+		arr03=Audio_URL_STR_CLS.Long_ARR[3];
+	}
+	else		{}
+	//==========DIVISION==========
+	if ( Initiation_Flag==0 )
+	{
+	}
+	else if ( Initiation_Flag==1 || Initiation_Flag==2 )
+	{
+		//==========DIVISION==========
+		var speed=Audio_URL_STR_CLS.VAL.Speed;
+		if ( Audio_URL_STR_CLS.VAL.Speed_EAB==0 )				{}
+		else if ( Audio_URL_STR_CLS.VAL.Speed_EAB==1 )			{}
+		else		{}
+		//==========DIVISION==========
+		if ( Audio_URL_STR_CLS.VAL.Speed_Type>=0 && Audio_URL_STR_CLS.VAL.Speed_Type<=6 )
+		{
+			for (i=0;i<Audio_URL_STR_CLS.VAL.Multi_Video_Speed_Timer_ID_ARR.length;i++)
+			{
+				clearTimeout(Audio_URL_STR_CLS.VAL.Multi_Video_Speed_Timer_ID_ARR[i]);
+			}
+			Audio_URL_STR_CLS.VAL.Multi_Video_Speed_Timer_ID_ARR=JSON.parse(JSON.stringify(arr02));
+			for (i=0;i<arr02.length;i++)
+			{
+				Audio_URL_STR_CLS.VAL.Multi_Video_Speed_Timer_ID_ARR[i]=null;
+			}
+		}
+		else		{}
+		//==========DIVISION==========
+		if ( Audio_URL_STR_CLS.VAL.Speed_Type==6 )
+		{
+			var elel_RP_BTN=ele00.getElementsByClassName("RP_BTN");
+			LEN=elel_RP_BTN.length;
+			Audio_URL_STR_CLS.VAL.Speed_2_Time_TTI_SD_ID_ARR=createArray(LEN);
+			for (ID=0;ID<LEN;ID++)
+			{
+				Audio_URL_STR_CLS.VAL.Speed_2_Time_TTI_SD_ID_ARR[ID]=0;
+			}
+		}
+		else		{}
+		//==========DIVISION==========
+		//if ( Initiation_Flag==1 || ( Initiation_Flag==2 && Audio_URL_STR_CLS.VAL.MultiPlier_EAB==1 ) )
+		{
+			//==========DIVISION==========
+			//	console.log("Initiation_Flag : " + Initiation_Flag + ";\t" + 
+			//				"Audio_URL_STR_CLS.VAL.MultiPlier_EAB : " + Audio_URL_STR_CLS.VAL.MultiPlier_EAB + ";\t" + 
+			//				"");
+			//==========DIVISION==========
+			for (i=0;i<arr00.length;i++)
+			{
+				//==========DIVISION==========
+				ele02=ele00.getElementsByClassName("TD_Audio")[i].getElementsByTagName("video")[0];
+				if ( ele02==undefined )			{continue;}
+				//==========DIVISION==========
+				if ( Audio_URL_STR_CLS.VAL.Speed_EAB==0 )
+				{
+					ele02.playbackRate=speed;
+				}
+				else if ( Audio_URL_STR_CLS.VAL.Speed_EAB==1 )			{}
+				else		{}
+				//==========DIVISION==========
+			}
+			//==========DIVISION==========
+		}
+		//else		{}
+		//==========DIVISION==========
+		elel03=ele00.getElementsByClassName("TD_Audio");
+		//console.log(elel03);
+		for (i=0;i<elel03.length;i++)
+		{
+			//==========DIVISION==========
+			if ( Audio_URL_STR_CLS.VAL.Speed_EAB==0 )				{}
+			else if ( Audio_URL_STR_CLS.VAL.Speed_EAB==1 )
+			{
+				//==========DIVISION==========
+				ele02=elel03[i].getElementsByTagName("video")[0];
+				if ( ele02==undefined )			{continue;}
+				//==========DIVISION==========
+				if ( Audio_URL_STR_CLS.VAL.Speed_Type==0 )
+				{
+					ele02.playbackRate=speed;
+					console.log("ele02.playbackRate : " + ele02.playbackRate);
+				}
+				else if ( Audio_URL_STR_CLS.VAL.Speed_Type==1 )
+				{
+					Code_Area=1;
+					if ( Code_Area==0 )			{ele02.playbackRate=Speed_BE_Random_Gen(i);}
+					else if ( Code_Area==1 )	{ele02.playbackRate=Speed_BME_Random_Gen(i);}
+					else						{}
+					console.log("ele02.playbackRate : " + ele02.playbackRate);
+				}
+				else if ( Audio_URL_STR_CLS.VAL.Speed_Type>=2 && Audio_URL_STR_CLS.VAL.Speed_Type<=6 )
+				{
+					//==========DIVISION==========
+					setTimeout(function (i,elel03)
+					{
+						//==========DIVISION==========
+						var fun_ct_cache_00;
+						fun_ct_cache_00=arguments.callee;
+						//==========DIVISION==========
+						var ele02=elel03[i].getElementsByTagName("video")[0];
+						//==========DIVISION==========
+						if ( ele02.readyState==4 )
+						{
+							Audio_URL_STR_CLS.VAL.Multi_Video_Speed_Timer_ID_ARR[i]=setTimeout(function (i,ele02)
+							{
+								//==========DIVISION==========
+								clearTimeout(Audio_URL_STR_CLS.VAL.Multi_Video_Speed_Timer_ID_ARR[i]);
+								//console.log("Audio_URL_STR_CLS.VAL.Speed_EAB : " + Audio_URL_STR_CLS.VAL.Speed_EAB);
+								if ( Audio_URL_STR_CLS.VAL.Speed_EAB==0 )			{return;}
+								else if ( Audio_URL_STR_CLS.VAL.Speed_EAB==1 )		{}
+								else		{}
+								//==========DIVISION==========
+								var fun_ct_cache_01;
+								fun_ct_cache_01=arguments.callee;
+								//==========DIVISION==========
+								var ID,LEN,ID_LEN;
+								//==========DIVISION==========
+								if ( Audio_URL_STR_CLS.VAL.Speed_Type>=2 && Audio_URL_STR_CLS.VAL.Speed_Type<=6 )		{}
+								else		{return;}
+								//==========DIVISION==========
+								Code_Area=1;
+								if ( Code_Area==0 )			{ele02.playbackRate=Speed_BE_Random_Gen(i);}
+								else if ( Code_Area==1 )	{ele02.playbackRate=Speed_BME_Random_Gen(i);}
+								else						{}
+								//==========DIVISION==========
+								var Multi_Video_Time_Offset=Audio_URL_STR_CLS.VAL.Multi_Video_Time_Offset;//ms;
+								var TTI_SD;
+								if ( Audio_URL_STR_CLS.VAL.Speed_Type==2 )
+								{
+									TTI_SD=Audio_URL_STR_CLS.VAL.BESpeed_BTTI + Multi_Video_Time_Offset;
+								}
+								else if ( Audio_URL_STR_CLS.VAL.Speed_Type==3 )
+								{
+									TTI_SD=Audio_URL_STR_CLS.VAL.BESpeed_BTTI + 
+											(Audio_URL_STR_CLS.VAL.BESpeed_ETTI - Audio_URL_STR_CLS.VAL.BESpeed_BTTI) * Math.random() + 
+											Multi_Video_Time_Offset;
+								}
+								else if ( Audio_URL_STR_CLS.VAL.Speed_Type==4 )
+								{
+									TTI_SD=(ele02.duration * 1000 + Multi_Video_Time_Offset) / ele02.playbackRate;
+								}
+								else if ( Audio_URL_STR_CLS.VAL.Speed_Type==5 )
+								{
+									TTI_SD=(ele02.duration * 1000 * Math.random() + Multi_Video_Time_Offset) / ele02.playbackRate;
+								}
+								else if ( Audio_URL_STR_CLS.VAL.Speed_Type==6 )
+								{
+									//==========DIVISION==========
+									var ele00=document.getElementsByClassName("Audio_ET_BGM_Ctrl_Table")[0].getElementsByTagName("tbody")[0];
+									var EVAL_Code_STR=ele00.getElementsByClassName("Speed_2_Time_Fun_EVAL_Code")[0].value;
+									ID=i;var TTI_SD_ID=Audio_URL_STR_CLS.VAL.Speed_2_Time_TTI_SD_ID_ARR[ID];
+									var Evoke_By_OBJ="Speed";
+									eval(EVAL_Code_STR);
+									//console.log(Audio_VAR_CLS);
+									ele02.playbackRate=Audio_VAR_CLS.v;
+									Audio_URL_STR_CLS.VAL.Speed_2_Time_TTI_SD_ID_ARR[ID]++;
+									TTI_SD=Audio_VAR_CLS.TTI_SD;TTI_SD=TTI_IN_USE * 10;
+									//==========DIVISION==========
+									//	console.log("TTI_SD : " + TTI_SD + ";\t" + 
+									//				"Speed_2_Time_TTI_SD_ID_ARR[ID] : " + 
+									//				Audio_URL_STR_CLS.VAL.Speed_2_Time_TTI_SD_ID_ARR[ID] + ";\t" + 
+									//				"ele02.playbackRate : " + ele02.playbackRate + ";\t" + 
+									//				"");
+									//==========DIVISION==========
+								}
+								else		{}
+								//==========DIVISION==========
+								//	console.log("Setting playbackRate : " + 
+								//				"i : " + i + ";\t" + 
+								//				"TTI_SD : " + TTI_SD + ";\t" + 
+								//				"ele02.duration : " + ele02.duration + ";\t" + 
+								//				"ele02.playbackRate : " + ele02.playbackRate + ";\t" + 
+								//				"");
+								//==========DIVISION==========
+								Audio_URL_STR_CLS.VAL.Multi_Video_Speed_Timer_ID_ARR[i]=
+								setTimeout(fun_ct_cache_01,TTI_SD,i,ele02);
+								//==========DIVISION==========
+							},0,i,ele02);
+							//==========DIVISION==========
+						}
+						else
+						{
+							setTimeout(fun_ct_cache_00,TTI_IN_USE,i,elel03);
+						}
+						//==========DIVISION==========
+					},0,i,elel03);
+					//==========DIVISION==========
+				}
+				else		{}
+				//==========DIVISION==========
+			}
+			else		{}
+			//==========DIVISION==========
+		}
+		//==========DIVISION==========
+	}
+	else		{}
+	//==========DIVISION==========
+	if ( Initiation_Flag==1 )	{Initiation_Flag++;}
+	//==========DIVISION==========
+}
+//==============================DIVISION==============================
+function Audio_Random_Play_VID_Ctrl_Table_Action(ele,evt,post_method)
+{
+	//====================Pre_Definition====================
+	//==============================arguments.callee==============================
+	var fun_ct_cache;
+	fun_ct_cache=arguments.callee;
+	var STO=0;//0:Do_Not_Run_setTimeout;1:Run_setTimeout;2:Run_Function_Now;
+	//==============================arguments.callee==============================
+	//==========DIVISION==========
+	eval(Parameter_Base_STR_ijk_XX(5));
+	//eval(ELE_ELEL_STR_INI());
+	var ID,LEN,ID_LEN;
+	var AR_ID;
+	//==========DIVISION==========
+	var RPVAE	=Audio_URL_STR_CLS.VAL.Random_Play_VID_ALL_EAB			;	var Random_Play_VID_ALL_EAB			=RPVAE	;//	:	0,//0:false;1:true;
+	var RPDSN	=Audio_URL_STR_CLS.VAL.Random_Play_Do_ST_NUM			;	var Random_Play_Do_ST_NUM			=RPDSN	;//	:	1,
+	var RPDSI															;	var Random_Play_Do_ST_ID					;//	:	0,
+	var RPDSS	=Audio_URL_STR_CLS.VAL.Random_Play_Do_ST_Switch			;	var Random_Play_Do_ST_Switch		=RPDSS	;//	:	0,//0:"OFF";1:"ON";
+	var RPDSTA	=Audio_URL_STR_CLS.VAL.Random_Play_Do_ST_Timer_ARR		;	var Random_Play_Do_ST_Timer_ARR		=RPDSTA	;//	:	0,
+	var RPVT	=Audio_URL_STR_CLS.VAL.Random_Play_VID_Type				;	var Random_Play_VID_Type			=RPVT	;//	:	0,
+	var RPVN	=Audio_URL_STR_CLS.VAL.Random_Play_VID_NUM				;	var Random_Play_VID_NUM				=RPVN	;//	:	1,
+	var RPVBN	=Audio_URL_STR_CLS.VAL.Random_Play_VID_BNUM				;	var Random_Play_VID_BNUM			=RPVBN	;//	:	1,
+	var RPVEN	=Audio_URL_STR_CLS.VAL.Random_Play_VID_ENUM				;	var Random_Play_VID_ENUM			=RPVEN	;//	:	1,
+	var RPVBT	=Audio_URL_STR_CLS.VAL.Random_Play_VID_BTTI				;	var Random_Play_VID_BTTI			=RPVBT	;//	:	60000,
+	var RPVET	=Audio_URL_STR_CLS.VAL.Random_Play_VID_ETTI				;	var Random_Play_VID_ETTI			=RPVET	;//	:	180000,
+	var RPVEAA	=Audio_URL_STR_CLS.VAL.Random_Play_VID_EAB_ALL_ARR		;	var Random_Play_VID_EAB_ALL_ARR		=RPVEAA	;//	:	[],//0:false;1:true;
+	var RPVECA	=Audio_URL_STR_CLS.VAL.Random_Play_VID_EAB_Cache_ARR	;	var Random_Play_VID_EAB_Cache_ARR	=RPVECA	;//	:	[],//0:false;1:true;
+	var RPVEIA2	=Audio_URL_STR_CLS.VAL.Random_Play_VID_EAB_Inuse_ARR2	;	var Random_Play_VID_EAB_Inuse_ARR2	=RPVEIA2;//	:	[],//0:false;1:true;
+	var RPVEAVA	=Audio_URL_STR_CLS.VAL.Random_Play_VID_EAB_At_VID_ARR	;	var Random_Play_VID_EAB_At_VID_ARR	=RPVEAVA;//	:	[],//0:false;1:true;
+	var RPVRTA	=Audio_URL_STR_CLS.VAL.Random_Play_VID_Repeat_Time_ALL	;	var Random_Play_VID_Repeat_Time_ALL	=RPVRTA	;//	:	[],//0:false;1:true;
+	var RPVRTN	=Audio_URL_STR_CLS.VAL.Random_Play_VID_Repeat_Time_NOW	;	var Random_Play_VID_Repeat_Time_NOW	=RPVRTN	;//	:	[],//0:false;1:true;
+	var RPVEAO;var Random_Play_VID_EAB_ALL_One;
+	var RPVECO;var Random_Play_VID_EAB_Cache_One;
+	//==========DIVISION==========
+	ele00=document.getElementsByClassName("Audio_Random_Play_VID_Ctrl_Table")[0];
+	var ele_Random_Play_VID_ALL_EAB				=	ele00.getElementsByClassName("Random_Play_VID_ALL_EAB"				)[0];
+	var ele_Random_Play_Do_ST_NUM_CLS			=	ele00.getElementsByClassName("Random_Play_Do_ST_NUM_CLS"			)[0];
+	var ele_Random_Play_Do_ST_Switch_CLS		=	ele00.getElementsByClassName("Random_Play_Do_ST_Switch_CLS"			)[0];
+	var ele_Random_Play_VID_Type_SEL			=	ele00.getElementsByClassName("Random_Play_VID_Type_SEL"				)[0];
+	var ele_Random_Play_VID_ALL_Set_CLS			=	ele00.getElementsByClassName("Random_Play_VID_ALL_Set_CLS"			)[0];
+	var ele_Random_Play_VID_Random_Set_CLS		=	ele00.getElementsByClassName("Random_Play_VID_Random_Set_CLS"		)[0];
+	var ele_Random_Play_VID_EAB_At_VID_ARR_CLS	=	ele00.getElementsByClassName("Random_Play_VID_EAB_At_VID_ARR_CLS"	)[0];
+	var ele_Random_Play_VID_NUM_CLS				=	ele00.getElementsByClassName("Random_Play_VID_NUM_CLS"				)[0];
+	var ele_Random_Play_VID_BNUM_CLS			=	ele00.getElementsByClassName("Random_Play_VID_BNUM_CLS"				)[0];
+	var ele_Random_Play_VID_ENUM_CLS			=	ele00.getElementsByClassName("Random_Play_VID_ENUM_CLS"				)[0];
+	var ele_Random_Play_VID_BTTI_CLS			=	ele00.getElementsByClassName("Random_Play_VID_BTTI_CLS"				)[0];
+	var ele_Random_Play_VID_ETTI_CLS			=	ele00.getElementsByClassName("Random_Play_VID_ETTI_CLS"				)[0];
+	var ele_Random_Play_VID_Repeat_Time_ALL_CLS	=	ele00.getElementsByClassName("Random_Play_VID_Repeat_Time_ALL_CLS"	)[0];
+	var ele_Random_Play_VID_Repeat_Time_NOW_CLS	=	ele00.getElementsByClassName("Random_Play_VID_Repeat_Time_NOW_CLS"	)[0];
+	//==========DIVISION==========
+	var evt_target = evt.target ? evt.target : evt.srcElement;
+	//==========DIVISION==========
+	//====================Pre_Definition====================
+	//====================DIVISION====================
+	if ( post_method==0 && evt && evt.type=="keydown" )//onkeydown;
+	{
+	}
+	else if ( post_method==2 && evt && evt.type=="change" )//onchange;
+	{
+	}
+	else if ( post_method==3 && evt && evt.type=="click" )//onclick;
+	{
+		if ( ele.className=="Audio_Random_Play_VID_Ctrl_Table" && evt_target.className=="Random_Play_VID_ALL_EAB" )
+		{
+			//==========DIVISION==========
+			RPVAE=(RPVAE + 1)%2;
+			Audio_URL_STR_CLS.VAL.Random_Play_VID_ALL_EAB=RPVAE;
+			document.getElementsByClassName("Random_Play_VID_ALL_EAB")[0].style.backgroundColor	=["red","#1EB0E9"][RPVAE];
+			document.getElementsByClassName("Random_Play_Do_ST_NUM_CLS")[0].disabled			=[true,false][RPVAE];
+			document.getElementsByClassName("Random_Play_Do_ST_Switch_CLS")[0].disabled			=[true,false][RPVAE];
+			document.getElementsByClassName("Random_Play_VID_Type_SEL")[0].disabled				=[true,false][RPVAE];
+			document.getElementsByClassName("Random_Play_VID_ALL_Set_CLS")[0].disabled			=[true,false][RPVAE];
+			document.getElementsByClassName("Random_Play_VID_Random_Set_CLS")[0].disabled		=[true,false][RPVAE];
+			document.getElementsByClassName("Random_Play_VID_NUM_CLS")[0].disabled				=[true,false][RPVAE];
+			//document.getElementsByClassName("Random_Play_VID_EAB_At_VID_ARR_CLS")[0].disabled	=[true,false][RPVAE];
+			document.getElementsByClassName("Random_Play_VID_BNUM_CLS")[0].disabled				=[true,false][RPVAE];
+			document.getElementsByClassName("Random_Play_VID_ENUM_CLS")[0].disabled				=[true,false][RPVAE];
+			document.getElementsByClassName("Random_Play_VID_BTTI_CLS")[0].disabled				=[true,false][RPVAE];
+			document.getElementsByClassName("Random_Play_VID_ETTI_CLS")[0].disabled				=[true,false][RPVAE];
+			document.getElementsByClassName("Random_Play_VID_Repeat_Time_ALL_CLS")[0].disabled	=[true,false][RPVAE];
+			//document.getElementsByClassName("Random_Play_VID_Repeat_Time_NOW_CLS")[0].disabled=[true,false][RPVAE];
+			//==========DIVISION==========
+			ele00=document.getElementsByClassName("Audio_ET_BGM_Content_Table")[0].getElementsByTagName("tbody")[0];
+			elel00=ele00.getElementsByClassName("RP_BTN");
+			LEN=elel00.length;
+			for (ID=0;ID<LEN;ID++)
+			{
+				elel00[ID].disabled=[true,false][RPVAE];
+			}
+			//==========DIVISION==========
+		}
+		else if ( ele.className=="Audio_Random_Play_VID_Ctrl_Table" && evt_target.className=="Random_Play_Do_ST_Switch_CLS" )
+		{
+			//==========DIVISION==========
+			Random_Play_Do_ST_Switch=(Random_Play_Do_ST_Switch + 1)%2;//0:"OFF";1:"ON";
+			evt_target.style.backgroundColor						=["red","#1EB0E9"][Random_Play_Do_ST_Switch];
+			//==========DIVISION==========
+			if ( Random_Play_Do_ST_Switch==0 )//0:"OFF";
+			{
+				//==========DIVISION==========
+				ele00=document.getElementsByClassName("Audio_ET_BGM_Content_Table")[0].getElementsByTagName("tbody")[0];
+				var elel_RP_BTN=ele00.getElementsByClassName("RP_BTN");
+				var elel_TD_Audio=ele00.getElementsByClassName("TD_Audio");
+				//==========DIVISION==========
+				for (Random_Play_Do_ST_ID=0;Random_Play_Do_ST_ID<Random_Play_Do_ST_NUM;Random_Play_Do_ST_ID++)
+				{
+					try				{LEN=Random_Play_VID_EAB_Inuse_ARR2[Random_Play_Do_ST_ID].length;}
+					catch (err)		{console.log(err.message);LEN=0;}
+					for (ID=0;ID<LEN;ID++)
+					{
+						//elel_RP_BTN[Random_Play_VID_EAB_Inuse_ARR2[Random_Play_Do_ST_ID][ID]].click();
+						elel_RP_BTN[Random_Play_VID_EAB_Inuse_ARR2[Random_Play_Do_ST_ID][ID]].title="RP_BTN : Audio_Random_Play_BTN .";
+						elel_TD_Audio[Random_Play_VID_EAB_Inuse_ARR2[Random_Play_Do_ST_ID][ID]].getElementsByTagName("video")[0].pause();
+					}
+					clearTimeout(Random_Play_Do_ST_Timer_ARR[Random_Play_Do_ST_ID]);
+				}
+				//==========DIVISION==========
+				ele_Random_Play_VID_Repeat_Time_NOW_CLS.value=Audio_URL_STR_CLS.VAL.Random_Play_VID_Repeat_Time_NOW=0;
+				//==========DIVISION==========
+			}
+			else if ( Random_Play_Do_ST_Switch==1 )//1:"ON";
+			{
+				//==========DIVISION==========
+				var this_step=0;
+				var TTI_SD;
+				TTI_SD=Random_Play_VID_BTTI + (Random_Play_VID_ETTI - Random_Play_VID_BTTI) * Math.random();// + Multi_Video_Time_Offset;
+				//==========DIVISION==========
+				Audio_URL_STR_CLS.VAL.Random_Play_VID_EAB_At_VID_ARR	=createArray(Random_Play_Do_ST_NUM);
+				Audio_URL_STR_CLS.VAL.Random_Play_Do_ST_Timer_ARR		=createArray(Random_Play_Do_ST_NUM);
+				Audio_URL_STR_CLS.VAL.Random_Play_VID_EAB_Inuse_ARR2	=createArray(Random_Play_Do_ST_NUM);
+				for (Random_Play_Do_ST_ID=0;Random_Play_Do_ST_ID<Random_Play_Do_ST_NUM;Random_Play_Do_ST_ID++)
+				{
+					Audio_URL_STR_CLS.VAL.Random_Play_VID_EAB_At_VID_ARR[Random_Play_Do_ST_ID]=Random_Play_Do_ST_ID * Random_Play_VID_NUM;
+					Audio_URL_STR_CLS.VAL.Random_Play_VID_EAB_Inuse_ARR2[Random_Play_Do_ST_ID]=[];
+					Audio_URL_STR_CLS.VAL.Random_Play_Do_ST_Timer_ARR[Random_Play_Do_ST_ID]=
+					setTimeout(function(this_step,TTI_SD,Random_Play_Do_ST_ID)
+					{
+						//====================arguments.callee====================
+						var fun_ct_cache_00;
+						fun_ct_cache_00=arguments.callee;
+						//====================arguments.callee====================
+						//====================Variable_Predefinition====================
+						//==========DIVISION==========
+						eval(Parameter_Base_STR_ijk_XX(5));
+						var ID,LEN;
+						var ID0,LEN0,ID1,LEN1,ID2,LEN2,ID3,LEN3,ID4,LEN4;
+						var STO=0;//0:Do_Not_Run_setTimeout;1:Run_setTimeout;2:Run_Function_Now;
+						//==========DIVISION==========
+						var RPVAE	=	Audio_URL_STR_CLS.VAL.Random_Play_VID_ALL_EAB			;
+						var RPDSN	=	Audio_URL_STR_CLS.VAL.Random_Play_Do_ST_NUM				;
+						//var RPDSI																;
+						var RPDSS	=	Audio_URL_STR_CLS.VAL.Random_Play_Do_ST_Switch			;
+						var RPDSTA	=	Audio_URL_STR_CLS.VAL.Random_Play_Do_ST_Timer_ARR		;
+						var RPVT	=	Audio_URL_STR_CLS.VAL.Random_Play_VID_Type				;
+						var RPVN	=	Audio_URL_STR_CLS.VAL.Random_Play_VID_NUM				;
+						var RPVBN	=	Audio_URL_STR_CLS.VAL.Random_Play_VID_BNUM				;
+						var RPVEN	=	Audio_URL_STR_CLS.VAL.Random_Play_VID_ENUM				;
+						var RPVBT	=	Audio_URL_STR_CLS.VAL.Random_Play_VID_BTTI				;
+						var RPVET	=	Audio_URL_STR_CLS.VAL.Random_Play_VID_ETTI				;
+						var RPVEAA	=	Audio_URL_STR_CLS.VAL.Random_Play_VID_EAB_ALL_ARR		;
+						var RPVECA	=	Audio_URL_STR_CLS.VAL.Random_Play_VID_EAB_Cache_ARR		;
+						var RPVEIA2	=	Audio_URL_STR_CLS.VAL.Random_Play_VID_EAB_Inuse_ARR2	;
+						var RPVEAVA	=	Audio_URL_STR_CLS.VAL.Random_Play_VID_EAB_At_VID_ARR	;
+						var RPVRTA	=	Audio_URL_STR_CLS.VAL.Random_Play_VID_Repeat_Time_ALL	;
+						var RPVRTN	=	Audio_URL_STR_CLS.VAL.Random_Play_VID_Repeat_Time_NOW	;
+						//==========DIVISION==========
+						var Random_Play_VID_ALL_EAB			=	RPVAE	;//	:	0,//0:false;1:true;
+						var Random_Play_Do_ST_NUM			=	RPDSN	;//	:	1,
+						//var Random_Play_Do_ST_ID						;//	:	0,
+						var Random_Play_Do_ST_Switch		=	RPDSS	;//	:	0,//0:"OFF";1:"ON";
+						var Random_Play_Do_ST_Timer_ARR		=	RPDSTA	;//	:	0,
+						var Random_Play_VID_Type			=	RPVT	;//	:	0,
+						var Random_Play_VID_NUM				=	RPVN	;//	:	1,
+						var Random_Play_VID_BNUM			=	RPVBN	;//	:	1,
+						var Random_Play_VID_ENUM			=	RPVEN	;//	:	1,
+						var Random_Play_VID_BTTI			=	RPVBT	;//	:	60000,
+						var Random_Play_VID_ETTI			=	RPVET	;//	:	180000,
+						var Random_Play_VID_EAB_ALL_ARR		=	RPVEAA	;//	:	[],//0:false;1:true;
+						var Random_Play_VID_EAB_Cache_ARR	=	RPVECA	;//	:	[],//0:false;1:true;
+						var Random_Play_VID_EAB_Inuse_ARR2	=	RPVEIA2	;//	:	[],//0:false;1:true;
+						var Random_Play_VID_EAB_At_VID_ARR	=	RPVEAVA	;//	:	[],//0:false;1:true;
+						var Random_Play_VID_Repeat_Time_ALL	=	RPVRTA	;//	:	[],//0:false;1:true;
+						var Random_Play_VID_Repeat_Time_NOW	=	RPVRTN	;//	:	[],//0:false;1:true;
+						//==========DIVISION==========
+						var RPVEAO;var Random_Play_VID_EAB_ALL_One;
+						var RPVECO;var Random_Play_VID_EAB_Cache_One;
+						//==========DIVISION==========
+						ele00=document.getElementsByClassName("Audio_ET_BGM_Content_Table")[0].getElementsByTagName("tbody")[0];
+						var elel_RP_BTN=ele00.getElementsByClassName("RP_BTN");
+						var elel_TD_Audio=ele00.getElementsByClassName("TD_Audio");
+						//==========DIVISION==========
+						ele00=document.getElementsByClassName("Audio_Random_Play_VID_Ctrl_Table")[0];
+						var ele_Random_Play_VID_Random_Set_CLS		=	ele00.getElementsByClassName("Random_Play_VID_Random_Set_CLS"		)[0];
+						var ele_Random_Play_VID_EAB_At_VID_ARR_CLS	=	ele00.getElementsByClassName("Random_Play_VID_EAB_At_VID_ARR_CLS"	)[0];
+						var ele_Random_Play_VID_Repeat_Time_NOW_CLS	=	ele00.getElementsByClassName("Random_Play_VID_Repeat_Time_NOW_CLS"	)[0];
+						//==========DIVISION==========
+						//====================Variable_Predefinition====================
+						//====================this_step====================
+						if ( this_step==0 )
+						{
+							//==========DIVISION==========
+							var Random_Play_VID_Random_Set___Do_Or_Not=0;//0:"Not_Do";1:"Do";
+							if ( Random_Play_VID_EAB_Cache_ARR.length==0 )		{Random_Play_VID_Random_Set___Do_Or_Not=1;}
+							else		{}
+							if ( Random_Play_VID_Type>=2 && Random_Play_VID_Type<=3 )
+							{
+								if ( Random_Play_VID_Repeat_Time_NOW>=Random_Play_VID_Repeat_Time_ALL )
+								{
+									Random_Play_VID_Random_Set___Do_Or_Not=1;
+									Random_Play_VID_Repeat_Time_NOW=0;
+								}
+								else		{}
+								Random_Play_VID_Repeat_Time_NOW++;
+								ele_Random_Play_VID_Repeat_Time_NOW_CLS.value=Random_Play_VID_Repeat_Time_NOW;
+							}
+							else		{}
+							//==========DIVISION==========
+							if ( Random_Play_VID_Random_Set___Do_Or_Not==0 )		{}
+							else if ( Random_Play_VID_Random_Set___Do_Or_Not==1 )
+							{
+								ele_Random_Play_VID_Random_Set_CLS.click();
+								Random_Play_VID_EAB_Cache_ARR=Audio_URL_STR_CLS.VAL.Random_Play_VID_EAB_Cache_ARR;
+							}
+							else		{}
+							//==========DIVISION==========
+							try				{LEN=Random_Play_VID_EAB_Inuse_ARR2[Random_Play_Do_ST_ID].length;}
+							catch (err)		{console.log(err.message);LEN=0;}
+							for (ID=0;ID<LEN;ID++)
+							{
+								//elel_RP_BTN[Random_Play_VID_EAB_Inuse_ARR2[Random_Play_Do_ST_ID][ID]].click();
+								elel_RP_BTN[Random_Play_VID_EAB_Inuse_ARR2[Random_Play_Do_ST_ID][ID]].title="RP_BTN : Audio_Random_Play_BTN .";
+								elel_TD_Audio[Random_Play_VID_EAB_Inuse_ARR2[Random_Play_Do_ST_ID][ID]].getElementsByTagName("video")[0].pause();
+							}
+							//==========DIVISION==========
+							//	0.Stability_VID_In_Order
+							//	1.Stability_VID_Random_Order
+							//	2.Random_VID_In_Order
+							//	3.Random_VID_Random_Order
+							ID0=Random_Play_VID_EAB_At_VID_ARR[Random_Play_Do_ST_ID];	LEN0=Random_Play_VID_EAB_Cache_ARR.length;
+							arr01=createArray(LEN0);									LEN1=arr01.length;
+							for (ID1=0;ID1<LEN1;ID1++)									{arr01[ID1]=ID1;}
+							LEN=Random_Play_VID_NUM;									if ( LEN>LEN0 )		{LEN=LEN0;}
+							Random_Play_VID_EAB_Inuse_ARR2[Random_Play_Do_ST_ID]=createArray(LEN);
+							//	console.log("Random_Play_VID_EAB_At_VID_ARR[Random_Play_Do_ST_ID] : " + 
+							//							Random_Play_VID_EAB_At_VID_ARR[Random_Play_Do_ST_ID] + ";\t" + 
+							//				"ID0 : " + ID0 + ";\t" + 
+							//				"LEN0 : " + LEN0 + ";\t" + 
+							//				"LEN : " + LEN + ";\t" + 
+							//				"");
+							for (ID=0;ID<LEN;ID++)
+							{
+								//	console.log("LEN1 : " + LEN1 + ";\t" + 
+								//				"arr01 : " + arr01 + ";\t" + 
+								//				"");
+								if ( Random_Play_VID_Type==0 || Random_Play_VID_Type==2 )
+								{
+									ID1=(ID0 + ID) % LEN0;
+								}
+								else if ( Random_Play_VID_Type==1 || Random_Play_VID_Type==3 )
+								{
+									ID1=Math.round(LEN1 * Math.random());	if ( ID1==LEN1 )		{ID1--;}
+									num01=arr01[ID1];arr01.splice(ID1,1);LEN1--;ID1=num01;
+								}
+								else		{}
+								Random_Play_VID_EAB_Inuse_ARR2[Random_Play_Do_ST_ID][ID]=Random_Play_VID_EAB_Cache_ARR[ID1];
+								//	console.log("LEN1 : " + LEN1 + ";\t" + 
+								//				"arr01 : " + arr01 + ";\t" + 
+								//				"ID1 : " + ID1 + ";\t" + 
+								//				"");
+							}
+							Random_Play_VID_EAB_At_VID_ARR[Random_Play_Do_ST_ID]=ID0=(ID0 + Random_Play_Do_ST_NUM * LEN) % LEN0;
+							ele_Random_Play_VID_EAB_At_VID_ARR_CLS.value="[" + Random_Play_VID_EAB_At_VID_ARR.toString() + "]";
+							//==========DIVISION==========
+							try				{LEN=Random_Play_VID_EAB_Inuse_ARR2[Random_Play_Do_ST_ID].length;}
+							catch (err)		{console.log(err.message);LEN=0;}
+							for (ID=0;ID<LEN;ID++)
+							{
+								//==========DIVISION==========
+								//	console.log("Random_Play_VID_EAB_Inuse_ARR2[Random_Play_Do_ST_ID][ID] : " + 
+								//	Random_Play_VID_EAB_Inuse_ARR2[Random_Play_Do_ST_ID][ID]);
+								//elel_RP_BTN[Random_Play_VID_EAB_Inuse_ARR2[Random_Play_Do_ST_ID][ID]].click();
+								//==========DIVISION==========
+								str00=elel_RP_BTN[Random_Play_VID_EAB_Inuse_ARR2[Random_Play_Do_ST_ID][ID]].title
+										.replace(/^RP_BTN : Audio_Random_Play_BTN \.$/gm,"")
+										.replace(/^.*Random_Play_Do_ST_ID : \[(.+)\] \.$/gm,"$1");
+								//console.log("str00 : ===" + str00 + "===");
+								if ( str00=="" )	{arr00=[];}
+								else				{arr00=str00.split(",");}
+								//console.log("arr00.length : ===" + arr00.length + "===");
+								arr00.push(Random_Play_Do_ST_ID.toString());
+								//console.log("arr00 : ===" + arr00 + "===");
+								arr00.sort(function(a,b){return (a - b);});
+								//console.log("arr00 : ===" + arr00 + "===");
+								str00=arr00.join(",");
+								//console.log("str00 : ===" + str00 + "===");
+								elel_RP_BTN[Random_Play_VID_EAB_Inuse_ARR2[Random_Play_Do_ST_ID][ID]].title=
+								"RP_BTN : Audio_Random_Play_BTN . Random_Play_Do_ST_ID : [" + str00 + "] .";
+								//==========DIVISION==========
+								elel_TD_Audio[Random_Play_VID_EAB_Inuse_ARR2[Random_Play_Do_ST_ID][ID]].getElementsByTagName("video")[0].play();
+								//==========DIVISION==========
+							}
+							//==========DIVISION==========
+							TTI_SD=Random_Play_VID_BTTI + (Random_Play_VID_ETTI - Random_Play_VID_BTTI) * Math.random();// + Multi_Video_Time_Offset;
+							//==========DIVISION==========
+							if ( this_step==0 )			{STO=1;}
+							//==========DIVISION==========
+						}
+						else if ( this_step==1 )
+						{
+							//==========DIVISION==========
+							if ( this_step==1 )			{this_step++;STO=1;}
+							//==========DIVISION==========
+						}
+						else if ( this_step==2 )
+						{
+							//==========DIVISION==========
+							if ( this_step==2 )			{this_step++;STO=1;}
+							//==========DIVISION==========
+						}
+						else if ( this_step==3 )
+						{
+							//==========DIVISION==========
+							if ( this_step==3 )			{this_step++;STO=1;}
+							//==========DIVISION==========
+						}
+						else		{STO=0;}
+						//====================this_step====================
+						//==========DIVISION==========
+						Audio_URL_STR_CLS.VAL.Random_Play_VID_ALL_EAB			=	Random_Play_VID_ALL_EAB			;
+						Audio_URL_STR_CLS.VAL.Random_Play_Do_ST_NUM				=	Random_Play_Do_ST_NUM			;
+						Audio_URL_STR_CLS.VAL.Random_Play_Do_ST_Switch			=	Random_Play_Do_ST_Switch		;
+						Audio_URL_STR_CLS.VAL.Random_Play_Do_ST_Timer_ARR		=	Random_Play_Do_ST_Timer_ARR		;
+						Audio_URL_STR_CLS.VAL.Random_Play_VID_Type				=	Random_Play_VID_Type			;
+						Audio_URL_STR_CLS.VAL.Random_Play_VID_NUM				=	Random_Play_VID_NUM				;
+						Audio_URL_STR_CLS.VAL.Random_Play_VID_BNUM				=	Random_Play_VID_BNUM			;
+						Audio_URL_STR_CLS.VAL.Random_Play_VID_ENUM				=	Random_Play_VID_ENUM			;
+						Audio_URL_STR_CLS.VAL.Random_Play_VID_BTTI				=	Random_Play_VID_BTTI			;
+						Audio_URL_STR_CLS.VAL.Random_Play_VID_ETTI				=	Random_Play_VID_ETTI			;
+						Audio_URL_STR_CLS.VAL.Random_Play_VID_EAB_ALL_ARR		=	Random_Play_VID_EAB_ALL_ARR		;
+						Audio_URL_STR_CLS.VAL.Random_Play_VID_EAB_Cache_ARR		=	Random_Play_VID_EAB_Cache_ARR	;
+						Audio_URL_STR_CLS.VAL.Random_Play_VID_EAB_Inuse_ARR2	=	Random_Play_VID_EAB_Inuse_ARR2	;
+						Audio_URL_STR_CLS.VAL.Random_Play_VID_EAB_At_VID_ARR	=	Random_Play_VID_EAB_At_VID_ARR	;
+						Audio_URL_STR_CLS.VAL.Random_Play_VID_Repeat_Time_ALL	=	Random_Play_VID_Repeat_Time_ALL	;
+						Audio_URL_STR_CLS.VAL.Random_Play_VID_Repeat_Time_NOW	=	Random_Play_VID_Repeat_Time_NOW	;
+						//==========DIVISION==========
+						//====================STO====================
+						if ( STO==0 )//0:Do_Not_Run_setTimeout;1:Run_setTimeout;2:Run_Function_Now;
+						{
+						}
+						else if ( STO==1 )//0:Do_Not_Run_setTimeout;1:Run_setTimeout;2:Run_Function_Now;
+						{
+							Audio_URL_STR_CLS.VAL.Random_Play_Do_ST_Timer_ARR[Random_Play_Do_ST_ID]=
+							setTimeout(fun_ct_cache_00,TTI_SD,this_step,TTI_SD,Random_Play_Do_ST_ID);
+						}
+						else if ( STO==2 )//0:Do_Not_Run_setTimeout;1:Run_setTimeout;2:Run_Function_Now;
+						{
+							fun_ct_cache_00(this_step,TTI_SD,Random_Play_Do_ST_ID);
+						}
+						else		{}
+						//====================STO====================
+					},TTI_IN_USE,this_step,TTI_SD,Random_Play_Do_ST_ID);
+				}
+				//==========DIVISION==========
+			}
+			else		{}
+			//==========DIVISION==========
+			Audio_URL_STR_CLS.VAL.Random_Play_Do_ST_Switch			=Random_Play_Do_ST_Switch;
+			//==========DIVISION==========
+		}
+		else if ( ele.className=="Audio_Random_Play_VID_Ctrl_Table" && 
+				( evt_target.className=="Random_Play_VID_ALL_Set_CLS" || evt_target.className=="Random_Play_VID_Random_Set_CLS" ) )
+		{
+			//==========DIVISION==========
+			console.log("BEGIN : " + 
+						"num00 : " + num00 + ";\t" + 
+						"Random_Play_VID_NUM : " + Random_Play_VID_NUM + ";\t" + 
+						"Random_Play_VID_BNUM : " + Random_Play_VID_BNUM + ";\t" + 
+						"Random_Play_VID_ENUM : " + Random_Play_VID_ENUM + ";\t" + 
+						"Random_Play_VID_EAB_ALL_ARR : " + Random_Play_VID_EAB_ALL_ARR + ";\t" + 
+						"Random_Play_VID_EAB_Cache_ARR : " + Random_Play_VID_EAB_Cache_ARR + ";\t" + 
+						"");
+			//==========DIVISION==========
+			ele00=document.getElementsByClassName("Audio_ET_BGM_Content_Table")[0].getElementsByTagName("tbody")[0];
+			elel00=ele00.getElementsByClassName("RP_BTN");
+			var elel_TD_Audio=ele00.getElementsByClassName("TD_Audio");
+			if ( evt_target.className=="Random_Play_VID_ALL_Set_CLS" )
+			{
+				num00=elel00.length;
+			}
+			else if ( evt_target.className=="Random_Play_VID_Random_Set_CLS" )
+			{
+				num00=Random_Play_VID_BNUM + (Random_Play_VID_ENUM - Random_Play_VID_BNUM) * Math.round(Math.random());
+			}
+			else		{}
+			LEN=elel00.length;
+			arr00=createArray(elel00.length);
+			for (ID=0;ID<LEN;ID++)
+			{
+				AR_ID=ID;		arr00[ID]=elel00[AR_ID];
+			}
+			//==========DIVISION==========
+			//Disabled ALL Random_Play_VID_EAB_Cache_ARR .
+			for (i=0;i<Random_Play_VID_EAB_Cache_ARR.length;)
+			{
+				AR_ID=Random_Play_VID_EAB_Cache_ARR[i];
+				elel00[AR_ID].click();
+			}
+			//==========DIVISION==========
+			Random_Play_VID_EAB_Cache_ARR=[];
+			if ( evt_target.className=="Random_Play_VID_ALL_Set_CLS" )
+			{
+				Audio_URL_STR_CLS.VAL.Random_Play_VID_ALL_Set=(Audio_URL_STR_CLS.VAL.Random_Play_VID_ALL_Set + 1)%2;
+				ele_Random_Play_VID_ALL_Set_CLS.style.backgroundColor=["red","#1EB0E9"][Audio_URL_STR_CLS.VAL.Random_Play_VID_ALL_Set];
+				for (ID=0;ID<LEN;ID++)
+				{
+					AR_ID=ID;
+					num02=elel_TD_Audio[AR_ID].getElementsByTagName("video")[0].duration;
+					if ( num02>=0 )		{}
+					else				{continue;}
+					arr00[ID].style.backgroundColor								=["red","#1EB0E9"][Audio_URL_STR_CLS.VAL.Random_Play_VID_ALL_Set];
+					Audio_URL_STR_CLS.VAL.Random_Play_VID_EAB_ALL_ARR[AR_ID]	=[0,1][Audio_URL_STR_CLS.VAL.Random_Play_VID_ALL_Set];
+					if ( Audio_URL_STR_CLS.VAL.Random_Play_VID_ALL_Set==0 )			{}
+					else if ( Audio_URL_STR_CLS.VAL.Random_Play_VID_ALL_Set==1 )
+					{
+						Random_Play_VID_EAB_Cache_ARR.push(AR_ID);
+					}
+					else		{}
+				}
+			}
+			else if ( evt_target.className=="Random_Play_VID_Random_Set_CLS" )
+			{
+				for (num01=0;num01<num00 && LEN>0;)
+				{
+					ID=Math.floor(LEN * Math.random());		if ( ID==LEN )		{ID=LEN - 1;}
+					AR_ID=parseInt(arr00[ID].getAttribute("AR_ID"),10);
+					num02=elel_TD_Audio[AR_ID].getElementsByTagName("video")[0].duration;
+					if ( num02>=0 )		{arr00[ID].click();}
+					arr00.splice(ID,1);
+					LEN=arr00.length;
+					if ( num02>=0 )		{Random_Play_VID_EAB_Cache_ARR.push(AR_ID);num01++;}
+				}
+			}
+			else		{}
+			//==========DIVISION==========
+			Random_Play_VID_EAB_Cache_ARR.sort(function(a,b)
+			{
+				//	console.log("a : " + a + ";\t" + 
+				//				"b : " + b + ";\t" + 
+				//				"");
+
+				return (a - b);
+
+				if ( a>b )		{return 1;}
+				else			{return -1;}
+			});
+			//==========DIVISION==========
+			Audio_URL_STR_CLS.VAL.Random_Play_VID_EAB_ALL_ARR			=Random_Play_VID_EAB_ALL_ARR;
+			Audio_URL_STR_CLS.VAL.Random_Play_VID_EAB_Cache_ARR			=Random_Play_VID_EAB_Cache_ARR;
+			//==========DIVISION==========
+			console.log("END : " + 
+						"num00 : " + num00 + ";\t" + 
+						"Random_Play_VID_NUM : " + Random_Play_VID_NUM + ";\t" + 
+						"Random_Play_VID_BNUM : " + Random_Play_VID_BNUM + ";\t" + 
+						"Random_Play_VID_ENUM : " + Random_Play_VID_ENUM + ";\t" + 
+						"Random_Play_VID_EAB_ALL_ARR : " + Random_Play_VID_EAB_ALL_ARR + ";\t" + 
+						"Random_Play_VID_EAB_Cache_ARR : " + Random_Play_VID_EAB_Cache_ARR + ";\t" + 
+						"");
+			//==========DIVISION==========
+		}
+		else		{}
+	}
+	else		{}
+	//====================DIVISION====================
+}
+//==============================DIVISION==============================
+//========================================Audio_Function========================================
+//========================================Audio_ET_BGM_Content_Table========================================
+function Audio_ET_BGM_Content_Table_Action(ele,evt,post_method)
+{
+	//====================Pre_Definition====================
+	//==============================arguments.callee==============================
+	var fun_ct_cache;
+	fun_ct_cache=arguments.callee;
+	var STO=0;//0:Do_Not_Run_setTimeout;1:Run_setTimeout;2:Run_Function_Now;
+	//==============================arguments.callee==============================
+	//==========DIVISION==========
+	eval(Parameter_Base_STR_ijk_XX(5));
+	var ID,LEN,ID_LEN;
+	var AR_ID;
+	//==========DIVISION==========
+	var evt_target = evt.target ? evt.target : evt.srcElement;
+	//==========DIVISION==========
+	//====================Pre_Definition====================
+	//====================DIVISION====================
+	if ( post_method==2 && evt && evt.type=="change" )//onchange;
+	{
+	}
+	else if ( post_method==3 && evt && evt.type=="click" )//onclick;
+	{
+		//==========DIVISION==========
+		if ( ele.className=="Audio_ET_BGM_Content_Table" && evt_target.className=="RP_BTN" )
+		{
+			//==========DIVISION==========
+			AR_ID=parseInt(evt_target.getAttribute("AR_ID"),10);
+			var Random_Play_VID_EAB_ALL_One;
+			Random_Play_VID_EAB_ALL_One=Audio_URL_STR_CLS.VAL.Random_Play_VID_EAB_ALL_ARR[AR_ID];//0:false;1:true;
+			Random_Play_VID_EAB_ALL_One=(Random_Play_VID_EAB_ALL_One + 1)%2;
+			Audio_URL_STR_CLS.VAL.Random_Play_VID_EAB_ALL_ARR[AR_ID]=Random_Play_VID_EAB_ALL_One;
+			evt_target.style.backgroundColor=["red","#1EB0E9"][Random_Play_VID_EAB_ALL_One];
+			//==========DIVISION==========
+			if ( Random_Play_VID_EAB_ALL_One==0 )
+			{
+				LEN=Audio_URL_STR_CLS.VAL.Random_Play_VID_EAB_Cache_ARR.length;
+				for (ID=0;ID<LEN;ID++)
+				{
+					if ( Audio_URL_STR_CLS.VAL.Random_Play_VID_EAB_Cache_ARR[ID]==AR_ID )
+					{
+						Audio_URL_STR_CLS.VAL.Random_Play_VID_EAB_Cache_ARR.splice(ID,1);
+						break;
+					}
+					else		{}
+				}
+			}
+			else if ( Random_Play_VID_EAB_ALL_One==1 )
+			{
+				Audio_URL_STR_CLS.VAL.Random_Play_VID_EAB_Cache_ARR.push(AR_ID);
+			}
+			else		{}
+			Audio_URL_STR_CLS.VAL.Random_Play_VID_EAB_Cache_ARR.sort(function(a,b){return (a - b);});
+			//==========DIVISION==========
+		}
+		else		{}
+		//==========DIVISION==========
+	}
+	else		{}
+	//====================DIVISION====================
+}
+//========================================Audio_ET_BGM_Content_Table========================================
+//========================================Audio_ET_BGM_Table========================================
+function Audio_ET_BGM_Table_INI()
+{
+	//==========DIVISION==========
+	eval(Parameter_Base_STR_ijk_XX(5));
+	var ID,LEN;
+	//==========DIVISION==========
+	ele00=document.getElementsByClassName("Audio_ET_BGM_Content_Table")[0].getElementsByTagName("tbody")[0];
+	elel00=ele00.getElementsByClassName("RP_BTN");
+	Audio_URL_STR_CLS.VAL.Random_Play_VID_EAB_ALL_ARR=createArray(elel00.length);
+	LEN=elel00.length;
+	for (ID=0;ID<LEN;ID++)
+	{
+		Audio_URL_STR_CLS.VAL.Random_Play_VID_EAB_ALL_ARR[ID]=0;//0:false;1:true;
+		elel00[ID].style.backgroundColor=["red","#1EB0E9"][Audio_URL_STR_CLS.VAL.Random_Play_VID_EAB_ALL_ARR[ID]];
+		elel00[ID].setAttribute("AR_ID",ID);
+	}
+	//==========DIVISION==========
+	Audio_URL_STR_CLS.VAL.Random_Play_VID_EAB_Cache_ARR=[];
+	Audio_URL_STR_CLS.VAL.Random_Play_VID_EAB_Inuse_ARR2=[[]];
+	//==========DIVISION==========
+}
+//========================================Audio_ET_BGM_Table========================================
+//==================================================控件動作變化==================================================
+function TEXT_ATTRIBUTION(ele,evt,n)
+{
+	eval(Parameter_Base_STR_ijk_XX(5));
+	//eval(ELE_ELEL_STR_INI());
+
+	//console___log("function now is : TEXT_ATTRIBUTION(ele,evt,n)");
+
+	//IE7 : evt.srcElement ;Other : evt.target;
+	var evt_target = evt.target ? evt.target : evt.srcElement;
+	//alert(evt_target.tagName);
+
+	var ele_disabled;
+	if ( n==0 )//鼠標移入。
+	{
+		if ( evt_target.tagName.toUpperCase()=="TEXTAREA" || evt_target.tagName.toUpperCase()=="INPUT" || evt_target.tagName.toUpperCase()=="SELECT" )
+		{
+			try
+			{
+				if ( evt_target.disabled==true )	{ele_disabled=true;evt_target.disabled=false;}
+				evt_target.focus();//設置焦點。
+				evt_target.select();//選中全文。
+				if ( ele_disabled==true )			{evt_target.disabled=true;}
+			}
+			catch (err)
+			{
+				console___log(err.message);
+			}
+		}
+		else		{}
+	}
+	else if ( n==1 )//鼠標移出。
+	{
+		//ele.blur();//失去焦點。
+	}
+	else if ( n==2 )//更改了文本框的內容。
+	{
+		//==========DIVISION==========
+		var parseType="",parseType_STR="",RegExp_STR="";
+		//==========DIVISION==========
+		if ( ele.className=="Audio_ET_BGM_Table" && 
+				( evt_target.className=="MultiPlier_CLS" || 
+				//==========DIVISION==========
+				evt_target.className=="ITime_CLS" || 
+				evt_target.className=="BITime_CLS" || evt_target.className=="EITime_CLS" || 
+				evt_target.className=="BEITime_BTTI_CLS" || evt_target.className=="BEITime_ETTI_CLS" || 
+				//==========DIVISION==========
+				evt_target.className=="Volume_CLS" || 
+				evt_target.className=="BVolume_CLS" || evt_target.className=="EVolume_CLS" || 
+				evt_target.className=="BEVolume_BTTI_CLS" || evt_target.className=="BEVolume_ETTI_CLS" || 
+				//==========DIVISION==========
+				evt_target.className=="Speed_CLS" || 
+				evt_target.className=="BSpeed_CLS" || evt_target.className=="ESpeed_CLS" || 
+				evt_target.className=="BESpeed_BTTI_CLS" || evt_target.className=="BESpeed_ETTI_CLS" || 
+				//==========DIVISION==========
+				evt_target.className=="Random_Play_Do_ST_NUM_CLS" || //evt_target.className=="Random_Play_VID_EAB_At_VID_ARR_CLS" || 
+				evt_target.className=="Random_Play_VID_NUM_CLS" || 
+				evt_target.className=="Random_Play_VID_BNUM_CLS" || evt_target.className=="Random_Play_VID_ENUM_CLS" || 
+				evt_target.className=="Random_Play_VID_BTTI_CLS" || evt_target.className=="Random_Play_VID_ETTI_CLS" || 
+				evt_target.className=="Random_Play_VID_Repeat_Time_ALL_CLS" || evt_target.className=="Random_Play_VID_Repeat_Time_NOW_CLS" || 
+				//==========DIVISION==========
+				0 ) )
+		{
+			//==========DIVISION==========
+			if ( evt_target.className=="MultiPlier_CLS" || 
+				//==========DIVISION==========
+				evt_target.className=="ITime_CLS" || 
+				evt_target.className=="BITime_CLS" || evt_target.className=="EITime_CLS" || 
+				//==========DIVISION==========
+				evt_target.className=="Volume_CLS" || 
+				evt_target.className=="BVolume_CLS" || evt_target.className=="EVolume_CLS" || 
+				//==========DIVISION==========
+				evt_target.className=="Speed_CLS" || 
+				evt_target.className=="BSpeed_CLS" || evt_target.className=="ESpeed_CLS" || 
+				0 )
+				//==========DIVISION==========
+			{parseType="parseFloat";	parseType_STR="parseFloat(evt_target.value)";	RegExp_STR="[0-9\.]+";}
+			else if ( evt_target.className=="BEITime_BTTI_CLS" || evt_target.className=="BEITime_ETTI_CLS" || 
+				//==========DIVISION==========
+				evt_target.className=="BEVolume_BTTI_CLS" || evt_target.className=="BEVolume_ETTI_CLS" || 
+				//==========DIVISION==========
+				evt_target.className=="BESpeed_BTTI_CLS" || evt_target.className=="BESpeed_ETTI_CLS" || 
+				//==========DIVISION==========
+				evt_target.className=="Random_Play_Do_ST_NUM_CLS" || //evt_target.className=="Random_Play_VID_EAB_At_VID_ARR_CLS" || 
+				evt_target.className=="Random_Play_VID_NUM_CLS" || 
+				evt_target.className=="Random_Play_VID_BNUM_CLS" || evt_target.className=="Random_Play_VID_ENUM_CLS" || 
+				evt_target.className=="Random_Play_VID_BTTI_CLS" || evt_target.className=="Random_Play_VID_ETTI_CLS" || 
+				evt_target.className=="Random_Play_VID_Repeat_Time_ALL_CLS" || evt_target.className=="Random_Play_VID_Repeat_Time_NOW_CLS" || 
+				//==========DIVISION==========
+				0 )
+			{parseType="parseInt";		parseType_STR="parseInt(evt_target.value,10)";	RegExp_STR="[0-9]+";}
+			else		{}
+			//==========DIVISION==========
+			if ( evt_target.value!="" && !isNaN(evt_target.value) && ( evt_target.value.replace(/[0-9\.]+/gm,"")=="" ) )
+			{
+				//==========DIVISION==========
+				str00="Audio_URL_STR_CLS.VAL." + evt_target.className.replace(/_CLS$/gm,"") + "=" + parseType_STR + ";";
+				eval(str00);
+				//==========DIVISION==========
+			}
+			else
+			{
+				alert("Error , it must be setted to a number .");
+				evt_target.focus();
+				str00="evt_target.value=Audio_URL_STR_CLS.VAL." + evt_target.className.replace(/_CLS$/gm,"") + ";";
+				eval(str00);
+				evt_target.setAttribute("value",evt_target.value);
+			}
+			//==========DIVISION==========
+		}
+		else if ( ele.className=="Audio_ET_BGM_Table" && 
+					( evt_target.className=="ITime_Type_SEL" || 
+					evt_target.className=="ICTime_Type_SEL" || evt_target.className=="E_E2B_Time_Type_SEL" || 
+					evt_target.className=="Volume_Type_SEL" || evt_target.className=="Speed_Type_SEL" || 
+					evt_target.className=="BEITime_BETTI_VAL_Set_SEL" || evt_target.className=="BEVolume_BETTI_VAL_Set_SEL" || 
+					evt_target.className=="BESpeed_BETTI_VAL_Set_SEL" || 
+					evt_target.className=="ITime_2_Time_Fun_Type_SEL" || evt_target.className=="Volume_2_Time_Fun_Type_SEL" || 
+					evt_target.className=="Speed_2_Time_Fun_Type_SEL" || 
+					evt_target.className=="Random_Play_VID_Type_SEL" ) )
+		{
+			//==========DIVISION==========
+			parseType_STR="evt_target.selectedIndex";
+			str00="Audio_URL_STR_CLS.VAL." + evt_target.className.replace(/_SEL$/gm,"") + "=" + parseType_STR + ";";
+			eval(str00);
+			//==========DIVISION==========
+			if ( evt_target.className=="BEITime_BETTI_VAL_Set_SEL" || evt_target.className=="BEVolume_BETTI_VAL_Set_SEL" || 
+					evt_target.className=="BESpeed_BETTI_VAL_Set_SEL" )
+			{
+				//	str00="";
+				//	str00+="Audio_URL_STR_CLS.VAL." + evt_target.className.replace(/_SEL$/gm,"") + "=" + evt_target.selectedIndex + ";";
+				//	eval(str00);
+				//	"↓";
+				BEXXXXX_BETTI_VAL_Set_Do(evt_target);
+			}
+			else if ( evt_target.className=="ITime_2_Time_Fun_Type_SEL" || evt_target.className=="Volume_2_Time_Fun_Type_SEL" || 
+					evt_target.className=="Speed_2_Time_Fun_Type_SEL" )
+			{
+				//==========DIVISION==========
+				ele00=evt_target;
+				while ( ele00.tagName.toUpperCase()!="TABLE" )		{ele00=ele00.parentNode;}
+				str01=evt_target.className.replace(/^(.+)_2_Time_Fun_Type_SEL$/gm,"$1");
+				ele01=ele00.getElementsByClassName(evt_target.className.replace(/^(.+)_2_Time_Fun_Type_SEL$/gm,"$1_2_Time_Fun_EVAL_Code"))[0];
+				//==========DIVISION==========
+				str02="Audio_URL_STR_CLS.FUN.Audio_VAR_2_Time_Fun_EVAL_Code(Audio_URL_STR_CLS.VAL." + str01 + "_2_Time_Fun_Type);";
+				str02=eval(str02);
+				//==========DIVISION==========
+				str03="ele01.value=Audio_URL_STR_CLS.VAL." + str01 + "_2_Time_Fun_EVAL_Code=str02;";
+				eval(str03);
+				//==========DIVISION==========
+				//ele01.value=Audio_URL_STR_CLS.VAL.Volume_2_Time_Fun_EVAL_Code=
+				//Audio_URL_STR_CLS.FUN.Audio_VAR_2_Time_Fun_EVAL_Code(Audio_URL_STR_CLS.VAL.Volume_2_Time_Fun_Type);
+				//==========DIVISION==========
+			}
+			else		{}
+			//==========DIVISION==========
+		}
+		else		{}
+		//==========DIVISION==========
+		//ele00=document.getElementsByClassName("Audio_ET_BGM_Ctrl_Table")[0].getElementsByClassName(Audio_URL_STR_CLS.Audio_Type)[0];
+		//Audio_Switch(ele00);
+		if ( ele.className=="Audio_ET_BGM_Table" && ( 
+				//==========DIVISION==========
+				( evt_target.className=="ITime_Type_SEL" || evt_target.className=="ITime_CLS" || 
+				evt_target.className=="BITime_CLS" || evt_target.className=="EITime_CLS" || 
+				0 ) && ( Audio_URL_STR_CLS.VAL.ITime_Type>=0 && Audio_URL_STR_CLS.VAL.ITime_Type<=6 ) || 
+				//==========DIVISION==========
+				0 ) )
+		{
+			ITime_EAB_Core_Action();
+		}
+		else if ( ele.className=="Audio_ET_BGM_Table" && ( 
+				//==========DIVISION==========
+				( evt_target.className=="Volume_Type_SEL" || evt_target.className=="Volume_CLS" || 
+				evt_target.className=="BVolume_CLS" || evt_target.className=="EVolume_CLS" || 
+				0 ) && ( Audio_URL_STR_CLS.VAL.Volume_Type>=0 && Audio_URL_STR_CLS.VAL.Volume_Type<=6 ) || 
+				//==========DIVISION==========
+				0 ) )
+		{
+			Volume_EAB_Core_Action();
+		}
+		else if ( ele.className=="Audio_ET_BGM_Table" && ( 
+				//==========DIVISION==========
+				( evt_target.className=="Speed_Type_SEL" || evt_target.className=="Speed_CLS" || 
+				evt_target.className=="BSpeed_CLS" || evt_target.className=="ESpeed_CLS" || 
+				0 ) && ( Audio_URL_STR_CLS.VAL.Speed_Type>=0 && Audio_URL_STR_CLS.VAL.Speed_Type<=6 ) || 
+				//==========DIVISION==========
+				0 ) )
+		{
+			Speed_EAB_Core_Action();
+		}
+		else		{}
+		//==========DIVISION==========
+		console.log("Audio_URL_STR_CLS : ");
+		console.log(Audio_URL_STR_CLS);
+		//	console.log("Audio_URL_STR_CLS.VAL : " + JSON.stringify(Audio_URL_STR_CLS.VAL,null,"\t") + ";\t" + 
+		//				"");
+		//==========DIVISION==========
+	}
+	else if ( n==3 )//點擊了按鈕。
+	{
+	}
+	else
+	{
+	}
+}
+//==================================================控件動作變化==================================================
+//========================================Audio_ET_BGM_Hotkey_Mouse========================================
+function Audio_ET_BGM_Hotkey_Mouse(ele,evt,post_method)
+{
+	//==========DIVISION==========
+	eval(Parameter_Base_STR_ijk_XX(10));
+	//eval(ELE_ELEL_STR_INI());
+	var ID,LEN,ID_LEN;
+	//==========DIVISION==========
+	//console.log("function now is : TEXT_ATTRIBUTION(ele,evt,n)");
+
+	//IE7 : evt.srcElement ;Other : evt.target;
+	var evt_target = evt.target ? evt.target : evt.srcElement;
+	//alert(evt_target.outerHTML + "\n" + 
+	//	evt_target.tagName + "\n" + evt_target.className + "\n" + 
+	//	evt_target.tpye + "\n" + evt_target.getAttribute("type") + "\n" + 
+	//	evt_target.getAttribute("type_x_y"));
+
+	//evt.ctrlKey失效可能是其他函数的原因。
+	//console.log("evt _ evt.ctrlKey _ evt.altKey _ evt.shiftKey _ evt.which : " + evt + evt.ctrlKey + "_" + evt.altKey + "_" + evt.shiftKey + "_" + evt.which);
+	//						17				18			16
+	//==========DIVISION==========
+	var referenceNode;
+	if ( post_method==0 && evt && evt.type=="keydown" && evt.which==13 )//enter:13;
+	{
+		if ( ele.className=="Audio_ET_BGM_Table" && evt_target.className=="" )
+		{
+			ele01=evt_target.parentNode;
+			//	while ( ele01.className!="??????" )		{ele01=ele01.parentNode;}
+			//	ele01.getElementsByClassName("??????")[0].click();
+		}
+		else
+		{
+		}
+	}
+	else if ( post_method==0 && evt && evt.type=="keydown" && 
+				( ( evt.which == 33 || evt.which == 34 || evt.which == 38 || evt.which == 40 || evt.which == 36 || evt.which == 35 ) || 
+				( evt.which == 38 || evt.which == 40 ) || 
+				//( evt.which == 17 && evt.ctrlKey || evt.which == 18 && evt.altKey || evt.which == 16 && evt.shiftKey ) || 
+				0 ) )
+	{
+		/*
+		up arrow	38
+		down arrow	40
+		page up		33
+		page down	34
+		home	36
+		end		35
+		*/
+		var i,j,str;
+		var NUM_10,NUM_X,NUM_MIN,NUM_MAX;
+		var number_system,NS,NUM_SYS_MAX;
+		var NS_00,NS_01;
+		var evt_sd;
+		NS_00=10;
+
+		if ( ( evt.which == 33 || evt.which == 34 || evt.which == 38 || evt.which == 40 || evt.which == 36 || evt.which == 35 ) && 
+				ele.tagName.toUpperCase()=="TABLE" && 
+				( evt_target.className=="MultiPlier_CLS" || 
+				//==========DIVISION==========
+				evt_target.className=="ITime_CLS" || 
+				evt_target.className=="BITime_CLS" || evt_target.className=="EITime_CLS" || 
+				evt_target.className=="BEITime_BTTI_CLS" || evt_target.className=="BEITime_ETTI_CLS" || 
+				//==========DIVISION==========
+				evt_target.className=="Volume_CLS" || 
+				evt_target.className=="BVolume_CLS" || evt_target.className=="EVolume_CLS" || 
+				evt_target.className=="BEVolume_BTTI_CLS" || evt_target.className=="BEVolume_ETTI_CLS" || 
+				//==========DIVISION==========
+				evt_target.className=="Speed_CLS" || 
+				evt_target.className=="BSpeed_CLS" || evt_target.className=="ESpeed_CLS" || 
+				evt_target.className=="BESpeed_BTTI_CLS" || evt_target.className=="BESpeed_ETTI_CLS" || 
+				//==========DIVISION==========
+				evt_target.className=="Random_Play_Do_ST_NUM_CLS" || //evt_target.className=="Random_Play_VID_EAB_At_VID_ARR_CLS" || 
+				evt_target.className=="Random_Play_VID_NUM_CLS" || 
+				evt_target.className=="Random_Play_VID_BNUM_CLS" || evt_target.className=="Random_Play_VID_ENUM_CLS" || 
+				evt_target.className=="Random_Play_VID_BTTI_CLS" || evt_target.className=="Random_Play_VID_ETTI_CLS" || 
+				evt_target.className=="Random_Play_VID_Repeat_Time_ALL_CLS" || evt_target.className=="Random_Play_VID_Repeat_Time_NOW_CLS" || 
+				//==========DIVISION==========
+				0 ) )
+		{
+			//==========DIVISION==========
+			NUM_MAX=10000*10000;
+			//==========DIVISION==========
+			if ( evt_target.className=="MultiPlier_CLS" )							{NUM_MIN=0;NUM_MAX=100;}
+			//==========DIVISION==========
+			else if ( evt_target.className=="ITime_CLS" )							{NUM_MIN=0;NUM_MAX=10000*10000;}
+			else if ( evt_target.className=="BITime_CLS" )							{NUM_MIN=0;NUM_MAX=10000*10000;}
+			else if ( evt_target.className=="EITime_CLS" )							{NUM_MIN=0;NUM_MAX=10000*10000;}
+			else if ( evt_target.className=="BEITime_BTTI_CLS" )					{NUM_MIN=0;NUM_MAX=10000*10000;}
+			else if ( evt_target.className=="BEITime_ETTI_CLS" )					{NUM_MIN=0;NUM_MAX=10000*10000;}
+			//==========DIVISION==========
+			else if ( evt_target.className=="Volume_CLS" )							{NUM_MIN=0;NUM_MAX=1;}
+			else if ( evt_target.className=="BVolume_CLS" )							{NUM_MIN=0;NUM_MAX=1;}
+			else if ( evt_target.className=="EVolume_CLS" )							{NUM_MIN=0;NUM_MAX=1;}
+			else if ( evt_target.className=="BEVolume_BTTI_CLS" )					{NUM_MIN=0;NUM_MAX=10000*10000;}
+			else if ( evt_target.className=="BEVolume_ETTI_CLS" )					{NUM_MIN=0;NUM_MAX=10000*10000;}
+			//==========DIVISION==========
+			else if ( evt_target.className=="Speed_CLS" )							{NUM_MIN=0;NUM_MAX=100;}
+			else if ( evt_target.className=="BSpeed_CLS" )							{NUM_MIN=0;NUM_MAX=100;}
+			else if ( evt_target.className=="ESpeed_CLS" )							{NUM_MIN=0;NUM_MAX=100;}
+			else if ( evt_target.className=="BESpeed_BTTI_CLS" )					{NUM_MIN=0;NUM_MAX=10000*10000;}
+			else if ( evt_target.className=="BESpeed_ETTI_CLS" )					{NUM_MIN=0;NUM_MAX=10000*10000;}
+			//==========DIVISION==========
+			else if ( evt_target.className=="Random_Play_Do_ST_NUM_CLS" )			{NUM_MIN=0;NUM_MAX=10000*10000;}
+			//else if ( evt_target.className=="Random_Play_VID_EAB_At_VID_ARR_CLS" )	{NUM_MIN=0;NUM_MAX=10000*10000;}
+			else if ( evt_target.className=="Random_Play_VID_NUM_CLS" )				{NUM_MIN=0;NUM_MAX=10000*10000;}
+			else if ( evt_target.className=="Random_Play_VID_BNUM_CLS" )			{NUM_MIN=0;NUM_MAX=10000*10000;}
+			else if ( evt_target.className=="Random_Play_VID_ENUM_CLS" )			{NUM_MIN=0;NUM_MAX=10000*10000;}
+			else if ( evt_target.className=="Random_Play_VID_BTTI_CLS" )			{NUM_MIN=0;NUM_MAX=10000*10000;}
+			else if ( evt_target.className=="Random_Play_VID_ETTI_CLS" )			{NUM_MIN=0;NUM_MAX=10000*10000;}
+			else if ( evt_target.className=="Random_Play_VID_Repeat_Time_ALL_CLS" )	{NUM_MIN=0;NUM_MAX=10000*10000;}
+			else if ( evt_target.className=="Random_Play_VID_Repeat_Time_NOW_CLS" )	{NUM_MIN=0;NUM_MAX=10000*10000;}
+			//==========DIVISION==========
+			else																	{NUM_MIN=0;NUM_MAX=10000*10000;}
+			//==========DIVISION==========
+			//evt_target.value=("00" + evt_target.value).slice(-2);
+			if ( evt_target.className=="MultiPlier_CLS" )							{NUM_10=parseFloat(evt_target.value);}
+			//==========DIVISION==========
+			else if ( evt_target.className=="ITime_CLS" )							{NUM_10=parseFloat(evt_target.value);}
+			else if ( evt_target.className=="BITime_CLS" )							{NUM_10=parseFloat(evt_target.value);}
+			else if ( evt_target.className=="EITime_CLS" )							{NUM_10=parseFloat(evt_target.value);}
+			//==========DIVISION==========
+			else if ( evt_target.className=="Volume_CLS" )							{NUM_10=parseFloat(evt_target.value);}
+			else if ( evt_target.className=="BVolume_CLS" )							{NUM_10=parseFloat(evt_target.value);}
+			else if ( evt_target.className=="EVolume_CLS" )							{NUM_10=parseFloat(evt_target.value);}
+			//==========DIVISION==========
+			else if ( evt_target.className=="Speed_CLS" )							{NUM_10=parseFloat(evt_target.value);}
+			else if ( evt_target.className=="BSpeed_CLS" )							{NUM_10=parseFloat(evt_target.value);}
+			else if ( evt_target.className=="ESpeed_CLS" )							{NUM_10=parseFloat(evt_target.value);}
+			//==========DIVISION==========
+			else																	{NUM_10=parseInt(evt_target.value,10);}
+			//==========DIVISION==========
+			num00=0;
+			if		( evt.which == 38 )	{num00++;}		//up arrow		38
+			else if ( evt.which == 40 )	{num00--;}		//down arrow	40
+			else if ( evt.which == 33 )	{num00+=10;}	//page up		33
+			else if ( evt.which == 34 )	{num00-=10;}	//page down		34
+			else if ( evt.which == 36 )	{num00+=100;}	//home			36
+			else if ( evt.which == 35 )	{num00-=100;}	//end			35
+			else{}
+
+			if ( evt.ctrlKey || evt.altKey || evt.shiftKey )
+			{
+				if ( evt.ctrlKey )			{num00*=Math.pow(NS_00,1);}	//{num00*=Math.pow(10,1);}
+				else if ( evt.altKey )		{num00*=Math.pow(NS_00,2);}	//{num00*=Math.pow(10,2);}
+				else if ( evt.shiftKey )	{num00*=Math.pow(NS_00,3);}	//{num00*=Math.pow(10,3);}
+				else						{num00*=Math.pow(NS_00,0);}	//{num00*=Math.pow(10,0);}
+			}
+			else							{num00*=Math.pow(NS_00,0);}	//{num00*=Math.pow(10,0);}
+			//==========DIVISION==========
+			if ( evt_target.className=="MultiPlier_CLS" )							{NUM_10=(parseFloat(num00/1000) + NUM_10).toFixed(3);}
+			//==========DIVISION==========
+			else if ( evt_target.className=="ITime_CLS" )							{NUM_10=(parseFloat(num00/1000) + NUM_10).toFixed(3);}
+			else if ( evt_target.className=="BITime_CLS" )							{NUM_10=(parseFloat(num00/1000) + NUM_10).toFixed(3);}
+			else if ( evt_target.className=="EITime_CLS" )							{NUM_10=(parseFloat(num00/1000) + NUM_10).toFixed(3);}
+			//==========DIVISION==========
+			else if ( evt_target.className=="Volume_CLS" )							{NUM_10=(parseFloat(num00/1000) + NUM_10).toFixed(3);}
+			else if ( evt_target.className=="BVolume_CLS" )							{NUM_10=(parseFloat(num00/1000) + NUM_10).toFixed(3);}
+			else if ( evt_target.className=="EVolume_CLS" )							{NUM_10=(parseFloat(num00/1000) + NUM_10).toFixed(3);}
+			//==========DIVISION==========
+			else if ( evt_target.className=="Speed_CLS" )							{NUM_10=(parseFloat(num00/1000) + NUM_10).toFixed(3);}
+			else if ( evt_target.className=="BSpeed_CLS" )							{NUM_10=(parseFloat(num00/1000) + NUM_10).toFixed(3);}
+			else if ( evt_target.className=="ESpeed_CLS" )							{NUM_10=(parseFloat(num00/1000) + NUM_10).toFixed(3);}
+			//==========DIVISION==========
+			else																	{NUM_10=num00 + NUM_10;}
+			//==========DIVISION==========
+			if		( NUM_10<NUM_MIN )						{NUM_10=NUM_MIN;}
+			else if ( NUM_10>NUM_MAX )						{NUM_10=NUM_MAX;}
+			else{}
+
+			evt_target.value=NUM_10;
+			//==========DIVISION==========
+			if ( evt_target.className=="MultiPlier_CLS" )							{Audio_URL_STR_CLS.VAL.MultiPlier			=parseFloat(NUM_10);}
+			//==========DIVISION==========
+			else if ( evt_target.className=="ITime_CLS" )							{Audio_URL_STR_CLS.VAL.ITime				=parseFloat(NUM_10);}
+			else if ( evt_target.className=="BITime_CLS" )							{Audio_URL_STR_CLS.VAL.BITime				=parseFloat(NUM_10);}
+			else if ( evt_target.className=="EITime_CLS" )							{Audio_URL_STR_CLS.VAL.EITime				=parseFloat(NUM_10);}
+			else if ( evt_target.className=="BEITime_BTTI_CLS" )					{Audio_URL_STR_CLS.VAL.BEITime_BTTI						=NUM_10;}
+			else if ( evt_target.className=="BEITime_ETTI_CLS" )					{Audio_URL_STR_CLS.VAL.BEITime_ETTI						=NUM_10;}
+			//==========DIVISION==========
+			else if ( evt_target.className=="Volume_CLS" )							{Audio_URL_STR_CLS.VAL.Volume				=parseFloat(NUM_10);}
+			else if ( evt_target.className=="BVolume_CLS" )							{Audio_URL_STR_CLS.VAL.BVolume				=parseFloat(NUM_10);}
+			else if ( evt_target.className=="EVolume_CLS" )							{Audio_URL_STR_CLS.VAL.EVolume				=parseFloat(NUM_10);}
+			else if ( evt_target.className=="BEVolume_BTTI_CLS" )					{Audio_URL_STR_CLS.VAL.BEVolume_BTTI					=NUM_10;}
+			else if ( evt_target.className=="BEVolume_ETTI_CLS" )					{Audio_URL_STR_CLS.VAL.BEVolume_ETTI					=NUM_10;}
+			//==========DIVISION==========
+			else if ( evt_target.className=="Speed_CLS" )							{Audio_URL_STR_CLS.VAL.Speed				=parseFloat(NUM_10);}
+			else if ( evt_target.className=="BSpeed_CLS" )							{Audio_URL_STR_CLS.VAL.BSpeed				=parseFloat(NUM_10);}
+			else if ( evt_target.className=="ESpeed_CLS" )							{Audio_URL_STR_CLS.VAL.ESpeed				=parseFloat(NUM_10);}
+			else if ( evt_target.className=="BESpeed_BTTI_CLS" )					{Audio_URL_STR_CLS.VAL.BESpeed_BTTI						=NUM_10;}
+			else if ( evt_target.className=="BESpeed_ETTI_CLS" )					{Audio_URL_STR_CLS.VAL.BESpeed_ETTI						=NUM_10;}
+			//==========DIVISION==========
+			else if ( evt_target.className=="Random_Play_Do_ST_NUM_CLS" )			{Audio_URL_STR_CLS.VAL.Random_Play_Do_ST_NUM			=NUM_10;}
+			//else if ( evt_target.className=="Random_Play_VID_EAB_At_VID_ARR_CLS" )	{Audio_URL_STR_CLS.VAL.Random_Play_VID_EAB_At_VID_ARR	=NUM_10;}
+			else if ( evt_target.className=="Random_Play_VID_NUM_CLS" )				{Audio_URL_STR_CLS.VAL.Random_Play_VID_NUM				=NUM_10;}
+			else if ( evt_target.className=="Random_Play_VID_BNUM_CLS" )			{Audio_URL_STR_CLS.VAL.Random_Play_VID_BNUM				=NUM_10;}
+			else if ( evt_target.className=="Random_Play_VID_ENUM_CLS" )			{Audio_URL_STR_CLS.VAL.Random_Play_VID_ENUM				=NUM_10;}
+			else if ( evt_target.className=="Random_Play_VID_BTTI_CLS" )			{Audio_URL_STR_CLS.VAL.Random_Play_VID_BTTI				=NUM_10;}
+			else if ( evt_target.className=="Random_Play_VID_ETTI_CLS" )			{Audio_URL_STR_CLS.VAL.Random_Play_VID_ETTI				=NUM_10;}
+			else if ( evt_target.className=="Random_Play_VID_Repeat_Time_ALL_CLS" )	{Audio_URL_STR_CLS.VAL.Random_Play_VID_Repeat_Time_ALL	=NUM_10;}
+			else if ( evt_target.className=="Random_Play_VID_Repeat_Time_NOW_CLS" )	{Audio_URL_STR_CLS.VAL.Random_Play_VID_Repeat_Time_NOW	=NUM_10;}
+			//==========DIVISION==========
+			else																	{}
+			//==========DIVISION==========
+			if ( evt_target.className=="MultiPlier_CLS" || 
+					//==========DIVISION==========
+					evt_target.className=="ITime_CLS" || 
+					evt_target.className=="BITime_CLS" || evt_target.className=="EITime_CLS" || 
+					evt_target.className=="BEITime_BTTI_CLS" || evt_target.className=="BEITime_ETTI_CLS" || 
+					//==========DIVISION==========
+					evt_target.className=="Volume_CLS" || 
+					evt_target.className=="BVolume_CLS" || evt_target.className=="EVolume_CLS" || 
+					evt_target.className=="BEVolume_BTTI_CLS" || evt_target.className=="BEVolume_ETTI_CLS" || 
+					//==========DIVISION==========
+					evt_target.className=="Speed_CLS" || 
+					evt_target.className=="BSpeed_CLS" || evt_target.className=="ESpeed_CLS" || 
+					evt_target.className=="BESpeed_BTTI_CLS" || evt_target.className=="BESpeed_ETTI_CLS" || 
+					//==========DIVISION==========
+					0 )
+			{
+				//"↑";NUM_10=NUM_10;
+				//ele_Audio_ET_BGM_Ctrl_Table.getElementsByClassName(Audio_URL_STR_CLS.Audio_Type)[0].click();
+			}
+			else																	{}
+			//==========DIVISION==========
+			//ele00=document.getElementsByClassName("Audio_ET_BGM_Ctrl_Table")[0].getElementsByClassName(Audio_URL_STR_CLS.Audio_Type)[0];
+			//Audio_Switch(ele00);
+			if ( ele.className=="Audio_ET_BGM_Table" && ( 
+					//==========DIVISION==========
+					( evt_target.className=="ITime_Type_SEL" || evt_target.className=="ITime_CLS" || 
+					evt_target.className=="BITime_CLS" || evt_target.className=="EITime_CLS" || 
+					0 ) && ( Audio_URL_STR_CLS.VAL.ITime_Type>=0 && Audio_URL_STR_CLS.VAL.ITime_Type<=6 ) || 
+					//==========DIVISION==========
+					0 ) )
+			{
+				ITime_EAB_Core_Action();
+			}
+			else if ( ele.className=="Audio_ET_BGM_Table" && ( 
+					//==========DIVISION==========
+					( evt_target.className=="Volume_Type_SEL" || evt_target.className=="Volume_CLS" || 
+					evt_target.className=="BVolume_CLS" || evt_target.className=="EVolume_CLS" || 
+					0 ) && ( Audio_URL_STR_CLS.VAL.Volume_Type>=0 && Audio_URL_STR_CLS.VAL.Volume_Type<=6 ) || 
+					//==========DIVISION==========
+					0 ) )
+			{
+				Volume_EAB_Core_Action();
+			}
+			else if ( ele.className=="Audio_ET_BGM_Table" && ( 
+					//==========DIVISION==========
+					( evt_target.className=="Speed_Type_SEL" || evt_target.className=="Speed_CLS" || 
+					evt_target.className=="BSpeed_CLS" || evt_target.className=="ESpeed_CLS" || 
+					0 ) && ( Audio_URL_STR_CLS.VAL.Speed_Type>=0 && Audio_URL_STR_CLS.VAL.Speed_Type<=6 ) || 
+					//==========DIVISION==========
+					0 ) )
+			{
+				Speed_EAB_Core_Action();
+			}
+			else		{}
+			//==========DIVISION==========
+			console.log("Audio_URL_STR_CLS : ");
+			console.log(Audio_URL_STR_CLS);
+			//	console.log("Audio_URL_STR_CLS.VAL : " + JSON.stringify(Audio_URL_STR_CLS.VAL,null,"\t") + ";\t" + 
+			//				"");
+			//==========DIVISION==========
+		}
+		else
+		{
+		}
+
+		//console.log(evt_target.className + "\n" + ele.className);
+	}
+	else
+	{
+	}
+	//==========DIVISION==========
+}
+//========================================Audio_ET_BGM_Hotkey_Mouse========================================
+</script>
+<pre class="Text_CLS">
+================================================================================
+============================================================
+音频编辑合成软件：
+https://github.com/cn-text/cn-text.github.io/releases/tag/Audacity_Software
+<!--
+https://github.com/cn-text/cn-text.github.io/releases/download/Audacity_Software/Lame_v3.99.3_for_Windows.exe
+https://github.com/cn-text/cn-text.github.io/releases/download/Audacity_Software/audacity-win-2.0.5.zip
+https://github.com/cn-text/cn-text.github.io/releases/download/Audacity_Software/libmp3lame-win-3.99.3.zip
+-->
+Audacity编辑快捷键提示：
+到音轨起始点(j)、到音轨结束点(k)、Shift+Home、Ctrl+C、Ctrl+V...
+编辑－剪辑边界－连接(Ctrl+J)
+
+合成音频示例：
+https://github.com/cn-text/cn-text.github.io/releases/tag/ET_BGM
+<!--
+https://github.com/cn-text/cn-text.github.io/releases/download/ET_BGM/ET_BGM_01_Audacity_01_UL_Project_00__X1024_X16.7z
+https://github.com/cn-text/cn-text.github.io/releases/download/ET_BGM/ET_BGM_01_Audacity_01_UL_Result_Inuse.7z
+https://github.com/cn-text/cn-text.github.io/releases/download/ET_BGM/ET_BGM_02_ZSR_00_Project_00__X1024_X16.7z
+https://github.com/cn-text/cn-text.github.io/releases/download/ET_BGM/ET_BGM_02_ZSR_Audacity_UL_Inuse.7z
+https://github.com/cn-text/cn-text.github.io/releases/download/ET_BGM/ET_BGM_03_ZSR_00_Project_00__X4096_X16.7z
+https://github.com/cn-text/cn-text.github.io/releases/download/ET_BGM/ET_BGM_03_ZSR_01_Project_00__X1024_X16.7z
+https://github.com/cn-text/cn-text.github.io/releases/download/ET_BGM/ET_BGM_03_ZSR_Audacity_UL_Inuse.7z
+-->
+============================================================
+此处是带有[李洪志能量]的[无文字声音]，短时间的音频,重复合成:长时间的音频：
+分别是原声讲法录音中的："李洪志","真善忍","法輪功","法輪大法",["真、善、忍"中的"真","善","忍"]的音频的末尾[无文字声音]。
+
+此处的[无文字声音]用无人机用大喇叭，24小时不停地：在天空上超大声播放，只是有点敲锣打鼓的声音，没人知道这[无文字声音]是什么意思。也没人察觉。
+PC台式机电脑的两个音箱开最大声，让人听到了[李洪志能量]的[无文字声音]，其实很舒服。[无文字声音]让所有人感觉非常安全，零危险。
+<b style="color:red;">PC台式机电脑</b>的两个<b style="color:red;">音箱</b>开最大声，放在自己耳朵旁边，彻底让自己的心灵世界和联系的另外空间：接受[李洪志声音能量]的震动贯通。
+<b style="color:red;">(最大声)手机声音孔：贴耳／贴心(贴紧身体中间)</b>，效果很明显。
+
+单纯用于传播[李洪志声音能量]使用。但没人知道。
+
+<b style="color:red;">[李洪志声音能量]让人意识清醒。
+人类、和另外空间的灵魂们，赶快听[李洪志能量]的[无文字声音]，获得：
+1.[真善忍李洪志声音能量]给人安排的将来。
+2.或是：「还有一些个幻听的。只能叫你幻听，其实你是真听到了，可是你听到的不是师父。它们会冒充师父的声音哪，连形像都会冒充的，利用你的执著骗你。」</b>
+============================================================
+================================================================================
+============================================================
+<table class="Audio_ET_BGM_Table" cellSpacing=0 cellPadding=0 border=1 onkeydown=Audio_ET_BGM_Hotkey_Mouse(this,event,0) onmouseover=TEXT_ATTRIBUTION(this,event,0) onmouseout=TEXT_ATTRIBUTION(this,event,1) onchange=TEXT_ATTRIBUTION(this,event,2)><tbody>
+<tr><td><table class="Audio_ET_BGM_Ctrl_Table" cellSpacing=0 cellPadding=0 border=1><tbody>
+	<tr>
+		<td colspan=10><span>【从李洪志师父的真人讲法录音中】【用<a href="https://github.com/audacity/audacity/" target=_blank>Audacity</a>截取+合并的：】</span></td>
+	</tr><tr>
+		<td><table cellSpacing=0 cellPadding=0 border=0><tbody><tr>
+			<td><span>「李洪志」「真善忍」「法輪功」「法輪大法」【无文字音频】：<a href="https://github.com/cn-text/cn-text.github.io/releases/tag/ET_BGM" target=_blank>全部下载</a>。</span></td>
+			<td><input type="button" class="Audio_Short" value="Short" onclick=Audio_Switch(this) style="background-color:#1EB0E9;"></td>
+			<td><input type="button" class="Audio_Long" value="Long" onclick=Audio_Switch(this) style="background-color:red;"></td>
+			<td><input type="button" class="Network_Type_CLS" value="OFF" onclick=Network_Type_Switch(this) style="background-color:red;"></td>
+			<td><input type="button" class="Audio_Setting_Use_CLS" value="Use" onclick=Audio_Setting_Use() style="background-color:red;"></td>
+			<td><select class="Usage_Collection_SEL" title="Usage_Collection_SEL"></select></td>
+			<td><input type="button" class="MultiPlier_EAB" title="MultiPlier_EAB" value="M" onclick=MultiPlier_EAB_Switch(this)></td>
+			<td><input type="text" class="MultiPlier_CLS" title="MultiPlier_CLS" value="3"></td>
+		</tr></tbody></table></td>
+	</tr><tr><!--==========Interval_Time==========-->
+		<td><table cellSpacing=0 cellPadding=0 border=0><tbody><tr>
+			<td><input type="button" class="ITime_EAB" title="ITime_EAB(Interval_Time)" value="IT" onclick=ITime_EAB_Switch(this)></td>
+			<td><input type="text" class="ITime_CLS" title="ITime_CLS" value="1"></td>
+			<td><select class="ITime_Type_SEL" title="ITime_Type_SEL"></select></td>
+			<!--[Interval_Time][Current_Time]-->
+			<td><select class="ICTime_Type_SEL" title="ICTime_Type_SEL"></select></td>
+			<td><select class="E_E2B_Time_Type_SEL" title="E_E2B_Time_Type_SEL"></select></td>
+			<td><input type="text" class="BITime_CLS" title="BITime_CLS" value="0.500"></td>
+			<td><input type="text" class="EITime_CLS" title="EITime_CLS" value="1.000"></td>
+			<td><input type="text" class="BEITime_BTTI_CLS" title="BEITime_BTTI_CLS" value="60000"></td>
+			<td><input type="text" class="BEITime_ETTI_CLS" title="BEITime_ETTI_CLS" value="180000"></td>
+			<td><select class="BEITime_BETTI_VAL_Set_SEL" title="BEITime_BETTI_VAL_Set_SEL"></select></td>
+			<td><select class="ITime_2_Time_Fun_Type_SEL" title="ITime_2_Time_Fun_Type_SEL"></select></td>
+			<td><input type="button" class="ITime_2_Time_Fun_TextArea_Resize" title="ITime_2_Time_Fun_TextArea_Resize" value="RS" onclick=ITime_TextArea_Resize(this)></td>
+			<td><textarea class="ITime_2_Time_Fun_EVAL_Code" title="ITime_2_Time_Fun_EVAL_Code"></textarea></td>
+		</tr></tbody></table></td>
+	</tr><tr>
+		<td><table cellSpacing=0 cellPadding=0 border=0><tbody><tr>
+			<td><input type="button" class="Volume_EAB" title="Volume_EAB" value="V" onclick=Volume_EAB_Switch(this)></td>
+			<td><input type="text" class="Volume_CLS" title="Volume_CLS" value="1"></td>
+			<td><select class="Volume_Type_SEL" title="Volume_Type_SEL"></select></td>
+			<td><input type="text" class="BVolume_CLS" title="BVolume_CLS" value="0.500"></td>
+			<td><input type="text" class="EVolume_CLS" title="EVolume_CLS" value="1.000"></td>
+			<td><input type="text" class="BEVolume_BTTI_CLS" title="BEVolume_BTTI_CLS" value="60000"></td>
+			<td><input type="text" class="BEVolume_ETTI_CLS" title="BEVolume_ETTI_CLS" value="180000"></td>
+			<td><select class="BEVolume_BETTI_VAL_Set_SEL" title="BEVolume_BETTI_VAL_Set_SEL"></select></td>
+			<td><select class="Volume_2_Time_Fun_Type_SEL" title="Volume_2_Time_Fun_Type_SEL"></select></td>
+			<td><input type="button" class="Volume_2_Time_Fun_TextArea_Resize" title="Volume_2_Time_Fun_TextArea_Resize" value="RS" onclick=Volume_TextArea_Resize(this)></td>
+			<td><textarea class="Volume_2_Time_Fun_EVAL_Code" title="Volume_2_Time_Fun_EVAL_Code"></textarea></td>
+		</tr></tbody></table></td>
+	</tr><tr>
+		<td><table cellSpacing=0 cellPadding=0 border=0><tbody><tr>
+			<td><input type="button" class="Speed_EAB" title="Speed_EAB" value="S" onclick=Speed_EAB_Switch(this)></td>
+			<td><input type="text" class="Speed_CLS" title="Speed_CLS" value="1"></td>
+			<td><select class="Speed_Type_SEL" title="Speed_Type_SEL"></select></td>
+			<td><input type="text" class="BSpeed_CLS" title="BSpeed_CLS" value="0.300"></td>
+			<td><input type="text" class="ESpeed_CLS" title="ESpeed_CLS" value="2.700"></td>
+			<td><input type="text" class="BESpeed_BTTI_CLS" title="BESpeed_BTTI_CLS" value="60000"></td>
+			<td><input type="text" class="BESpeed_ETTI_CLS" title="BESpeed_ETTI_CLS" value="180000"></td>
+			<td><select class="BESpeed_BETTI_VAL_Set_SEL" title="BESpeed_BETTI_VAL_Set_SEL"></select></td>
+			<td><select class="Speed_2_Time_Fun_Type_SEL" title="Speed_2_Time_Fun_Type_SEL"></select></td>
+			<td><input type="button" class="Speed_2_Time_Fun_TextArea_Resize" title="Speed_2_Time_Fun_TextArea_Resize" value="RS" onclick=Speed_TextArea_Resize(this)></td>
+			<td><textarea class="Speed_2_Time_Fun_EVAL_Code" title="Speed_2_Time_Fun_EVAL_Code"></textarea></td>
+		</tr></tbody></table></td>
+	</tr><tr>
+		<td><table class="Audio_Random_Play_VID_Ctrl_Table" cellSpacing=0 cellPadding=0 border=0 onclick=Audio_Random_Play_VID_Ctrl_Table_Action(this,event,3)><tbody><tr>
+			<td><input type="button" class="Random_Play_VID_ALL_EAB" title="Random_Play_VID_ALL_EAB" value="RPE"></td>
+			<td><input type="text" class="Random_Play_Do_ST_NUM_CLS" title="Random_Play_Do_ST_NUM_CLS" value="1"></td>
+			<td><input type="button" class="Random_Play_Do_ST_Switch_CLS" title="Random_Play_Do_ST_Switch_CLS" value="RPD"></td>
+			<td><select class="Random_Play_VID_Type_SEL" title="Random_Play_VID_Type_SEL"></select></td>
+			<td><input type="button" class="Random_Play_VID_ALL_Set_CLS" title="Random_Play_VID_ALL_Set_CLS" value="AS"></td>
+			<td><input type="button" class="Random_Play_VID_Random_Set_CLS" title="Random_Play_VID_Random_Set_CLS" value="RS"></td>
+			<td><input type="text" class="Random_Play_VID_EAB_At_VID_ARR_CLS" title="Random_Play_VID_EAB_At_VID_ARR_CLS" value="[0]" disabled></td>
+			<td><input type="text" class="Random_Play_VID_NUM_CLS" title="Random_Play_VID_NUM_CLS" value="1"></td>
+			<td><input type="text" class="Random_Play_VID_BNUM_CLS" title="Random_Play_VID_BNUM_CLS" value="1"></td>
+			<td><input type="text" class="Random_Play_VID_ENUM_CLS" title="Random_Play_VID_ENUM_CLS" value="1"></td>
+			<td><input type="text" class="Random_Play_VID_BTTI_CLS" title="Random_Play_VID_BTTI_CLS" value="60000"></td>
+			<td><input type="text" class="Random_Play_VID_ETTI_CLS" title="Random_Play_VID_ETTI_CLS" value="180000"></td>
+			<td><input type="text" class="Random_Play_VID_Repeat_Time_ALL_CLS" title="Random_Play_VID_Repeat_Time_ALL_CLS" value="10"></td>
+			<td><input type="text" class="Random_Play_VID_Repeat_Time_NOW_CLS" title="Random_Play_VID_Repeat_Time_NOW_CLS" value="0" disabled></td>
+		</tr></tbody></table></td>
+	</tr>
+</tbody></table></tr>
+<tr><td><table class="Audio_ET_BGM_Content_Table" cellSpacing=0 cellPadding=0 border=1 onchange=Audio_ET_BGM_Content_Table_Action(this,event,2) onclick=Audio_ET_BGM_Content_Table_Action(this,event,3)><tbody>
+	<tr>
+		<td class="TD_Text"></td>
+		<td class="TD_Audio"></td>
+		<td class="TD_Text"></td>
+		<td class="TD_Audio"></td>
+	</tr>
+</tbody></table></td></tr>
+</tbody></table>
+</pre>
+============================================================
+================================================================================
+<pre>
+</pre>
+
+
+
+<script type="text/javascript">
+var console___log=function(){};
+var Initiation_Flag=0;
+
+function Initiation()
+{
+	//==========DIVISION==========
+	//console___log("function now is : Initiation()");
+
+	if ( Initiation_Flag==1 )
+	{
+		document.getElementsByTagName("body")[0].setAttribute("onmouseover","");
+		return;
+	}
+	//==========DIVISION==========
+	Audio_URL_STR_CLS_INI();
+	document.getElementsByClassName("Audio_Short")[0].click();
+	//==========DIVISION==========
+	Initiation_Flag=1;
+	//==========DIVISION==========
+}
+Initiation();
+
+</script>
+
+</body>
+</html>
