@@ -36,6 +36,17 @@ table.Audio_ITime_Ctrl_Table select.BEITime_BETTI_VAL_Set_SEL			{width:150px;}
 table.Audio_ITime_Ctrl_Table select.ITime_2_Time_Fun_Type_SEL			{height:25px;width:75px;}
 table.Audio_ITime_Ctrl_Table textarea.ITime_2_Time_Fun_EVAL_Code		{height:25px;width:75px;}
 /*==========DIVISION==========*/
+table.Audio_Volume_Ctrl_Table input.Volume_EAB							{width:20px;}
+table.Audio_Volume_Ctrl_Table input.Volume_CLS							{width:75px;}
+table.Audio_Volume_Ctrl_Table select.Volume_Type_SEL					{height:25px;width:75px;}
+table.Audio_Volume_Ctrl_Table input.BVolume_CLS							{width:75px;}
+table.Audio_Volume_Ctrl_Table input.EVolume_CLS							{width:75px;}
+table.Audio_Volume_Ctrl_Table input.BEVolume_BTTI_CLS					{width:75px;}
+table.Audio_Volume_Ctrl_Table input.BEVolume_ETTI_CLS					{width:75px;}
+table.Audio_Volume_Ctrl_Table select.BEVolume_BETTI_VAL_Set_SEL			{width:150px;}
+table.Audio_Volume_Ctrl_Table select.Volume_2_Time_Fun_Type_SEL			{height:25px;width:75px;}
+table.Audio_Volume_Ctrl_Table textarea.Volume_2_Time_Fun_EVAL_Code		{height:25px;width:75px;}
+/*==========DIVISION==========*/
 table.Audio_Speed_Ctrl_Table input.Speed_EAB							{width:20px;}
 table.Audio_Speed_Ctrl_Table input.Speed_Negative_Or_Positive_BTN		{width:20px;}
 table.Audio_Speed_Ctrl_Table input.Speed_CLS							{width:75px;}
@@ -176,6 +187,7 @@ function ELE_ELEL_STR_INI()
 	var elel_Audio_DFLG_Ctrl_Table					=ele_Audio_DFLG_Table.getElementsByClassName("Audio_DFLG_Ctrl_Table");
 	var ele_Audio_TOP_Ctrl_Table					=elel_Audio_DFLG_Ctrl_Table[0].getElementsByClassName("Audio_TOP_Ctrl_Table")[0];
 	var ele_Audio_ITime_Ctrl_Table					=elel_Audio_DFLG_Ctrl_Table[0].getElementsByClassName("Audio_ITime_Ctrl_Table")[0];
+	var ele_Audio_Volume_Ctrl_Table					=elel_Audio_DFLG_Ctrl_Table[0].getElementsByClassName("Audio_Volume_Ctrl_Table")[0];
 	var ele_Audio_Speed_Ctrl_Table					=elel_Audio_DFLG_Ctrl_Table[0].getElementsByClassName("Audio_Speed_Ctrl_Table")[0];
 	var ele_Audio_Multi_Video_Ctrl_Table			=elel_Audio_DFLG_Ctrl_Table[0].getElementsByClassName("Audio_Multi_Video_Ctrl_Table")[0];
 	//==========DIVISION==========
@@ -208,6 +220,18 @@ function ELE_ELEL_STR_INI()
 	var ele_ITime_2_Time_Fun_Type_SEL				=ele_Audio_ITime_Ctrl_Table.getElementsByClassName("ITime_2_Time_Fun_Type_SEL"			)[0];
 	var ele_ITime_2_Time_Fun_TextArea_Resize		=ele_Audio_ITime_Ctrl_Table.getElementsByClassName("ITime_2_Time_Fun_TextArea_Resize"	)[0];
 	var ele_ITime_2_Time_Fun_EVAL_Code				=ele_Audio_ITime_Ctrl_Table.getElementsByClassName("ITime_2_Time_Fun_EVAL_Code"			)[0];
+	//==========DIVISION==========
+	var ele_Volume_EAB								=ele_Audio_Volume_Ctrl_Table.getElementsByClassName("Volume_EAB"						)[0];
+	var ele_Volume_CLS								=ele_Audio_Volume_Ctrl_Table.getElementsByClassName("Volume_CLS"						)[0];
+	var ele_Volume_Type_SEL							=ele_Audio_Volume_Ctrl_Table.getElementsByClassName("Volume_Type_SEL"					)[0];
+	var ele_BVolume_CLS								=ele_Audio_Volume_Ctrl_Table.getElementsByClassName("BVolume_CLS"						)[0];
+	var ele_EVolume_CLS								=ele_Audio_Volume_Ctrl_Table.getElementsByClassName("EVolume_CLS"						)[0];
+	var ele_BEVolume_BTTI_CLS						=ele_Audio_Volume_Ctrl_Table.getElementsByClassName("BEVolume_BTTI_CLS"					)[0];
+	var ele_BEVolume_ETTI_CLS						=ele_Audio_Volume_Ctrl_Table.getElementsByClassName("BEVolume_ETTI_CLS"					)[0];
+	var ele_BEVolume_BETTI_VAL_Set_SEL				=ele_Audio_Volume_Ctrl_Table.getElementsByClassName("BEVolume_BETTI_VAL_Set_SEL"		)[0];
+	var ele_Volume_2_Time_Fun_Type_SEL				=ele_Audio_Volume_Ctrl_Table.getElementsByClassName("Volume_2_Time_Fun_Type_SEL"		)[0];
+	var ele_Volume_2_Time_Fun_TextArea_Resize		=ele_Audio_Volume_Ctrl_Table.getElementsByClassName("Volume_2_Time_Fun_TextArea_Resize"	)[0];
+	var ele_Volume_2_Time_Fun_EVAL_Code				=ele_Audio_Volume_Ctrl_Table.getElementsByClassName("Volume_2_Time_Fun_EVAL_Code"		)[0];
 	//==========DIVISION==========
 	var ele_Speed_EAB								=ele_Audio_Speed_Ctrl_Table.getElementsByClassName("Speed_EAB"							)[0];
 	var ele_Speed_Negative_Or_Positive_BTN			=ele_Audio_Speed_Ctrl_Table.getElementsByClassName("Speed_Negative_Or_Positive_BTN"		)[0];
@@ -333,6 +357,27 @@ var Audio_URL_STR_CLS						=
 		ITime_2_Time_Fun_TextArea_Resize	:	0,//0:{height:19px;width:75px;};1:{height:200px;width:400px;};
 		ITime_2_Time_Fun_EVAL_Code			:	"",
 		ITime_2_Time_TTI_SD_ID_ARR			:	[],
+		//==========DIVISION==========
+		Volume_EAB							:	0,//0:false;1:true;
+		Volume								:	1,
+		Volume_Type							:	0,//0;1;2;3;4;5;6;
+		//	0 : Normal Volume .
+		//	1 : Begin to End Random Volume , Volume will not be changed .
+		//	2 : Begin to End Random Volume , change after BEVolume_BTTI seconds .
+		//	3 : Begin to End Random Volume , change after BEVolume_BTTI to BEVolume_ETTI random seconds .
+		//	4 : Begin to End Random Volume , change after video duration seconds .
+		//	5 : Begin to End Random Volume , change after video duration random seconds .
+		//	6 : Begin to End Random Volume , eval : v=f(t) .
+		BVolume								:	0.900,
+		EVolume								:	1.000,
+		BEVolume_BTTI						:	60000,
+		BEVolume_ETTI						:	180000,
+		Multi_Video_Volume_Timer_ID_ARR		:	[],
+		BEVolume_BETTI_VAL_Set				:	0,
+		Volume_2_Time_Fun_Type				:	0,
+		Volume_2_Time_Fun_TextArea_Resize	:	0,//0:{height:19px;width:75px;};1:{height:200px;width:400px;};
+		Volume_2_Time_Fun_EVAL_Code			:	"",
+		Volume_2_Time_TTI_SD_ID_ARR			:	[],
 		//==========DIVISION==========
 		Speed_EAB							:	0,//0:false;1:true;
 		Speed_Negative_Or_Positive			:	1,//0:"Negative";1:"Positive";
@@ -775,6 +820,52 @@ function Audio_URL_STR_CLS_INI()
 	ele_ITime_2_Time_Fun_EVAL_Code.value						=Audio_URL_STR_CLS.VAL.ITime_2_Time_Fun_EVAL_Code=
 	Audio_URL_STR_CLS.FUN.Audio_VAR_2_Time_Fun_EVAL_Code(Audio_URL_STR_CLS.VAL.ITime_2_Time_Fun_Type);
 	Audio_URL_STR_CLS.VAL.ITime_2_Time_TTI_SD_ID_ARR			=[];
+	//==========DIVISION==========
+	//====================DIVISION====================
+	//==========DIVISION==========
+	Audio_URL_STR_CLS.VAL.Volume_EAB							=0;//0:false;1:true;
+	ele_Volume_EAB.style.backgroundColor						=["red","#1EB0E9"][Audio_URL_STR_CLS.VAL.Volume_EAB];
+	ele_Volume_CLS.disabled										=[true,false][Audio_URL_STR_CLS.VAL.Volume_EAB];
+	ele_Volume_CLS.value										=Audio_URL_STR_CLS.VAL.Volume		=1;
+	//==========DIVISION==========
+	str00="";
+	str00+="<option>0 : Normal Volume .</option>";
+	str00+="<option>1 : Begin to End Random Volume , speed will not be changed .</option>";
+	str00+="<option>2 : Begin to End Random Volume , change after BEVolume_BTTI seconds .</option>";
+	str00+="<option>3 : Begin to End Random Volume , change after BEVolume_BTTI to BEVolume_ETTI random seconds .</option>";
+	str00+="<option>4 : Begin to End Random Volume , change after video duration seconds .</option>";
+	str00+="<option>5 : Begin to End Random Volume , change after video duration random seconds .</option>";
+	str00+="<option>6 : Begin to End Random Volume , eval : v=f(t) .</option>";
+	ele_Volume_Type_SEL.innerHTML=str00;
+	ele_Volume_Type_SEL.selectedIndex=Audio_URL_STR_CLS.VAL.Volume_Type=3;
+	ele_Volume_Type_SEL.disabled=[true,false][Audio_URL_STR_CLS.VAL.Volume_EAB];
+	//==========DIVISION==========
+	ele_BVolume_CLS.disabled=[true,false][Audio_URL_STR_CLS.VAL.Volume_EAB];
+	ele_EVolume_CLS.disabled=[true,false][Audio_URL_STR_CLS.VAL.Volume_EAB];
+	ele_BEVolume_BTTI_CLS.disabled=[true,false][Audio_URL_STR_CLS.VAL.Volume_EAB];
+	ele_BEVolume_ETTI_CLS.disabled=[true,false][Audio_URL_STR_CLS.VAL.Volume_EAB];
+	ele_BVolume_CLS.value=Audio_URL_STR_CLS.VAL.BVolume=0.900;
+	ele_EVolume_CLS.value=Audio_URL_STR_CLS.VAL.EVolume=1.000;
+	ele_BEVolume_BTTI_CLS.value=Audio_URL_STR_CLS.VAL.BEVolume_BTTI=2000;//60000;
+	ele_BEVolume_ETTI_CLS.value=Audio_URL_STR_CLS.VAL.BEVolume_ETTI=3000;//180000;
+	//==========DIVISION==========
+	str00="";
+	str00+="<option>0 : sin/cos/tan .</option>";
+	str00+="<option>1 : sin/cos/tan .</option>";
+	str00+="<option>2 : e^x .</option>";
+	str00+="<option>3 : ????? .</option>";
+	ele_Volume_2_Time_Fun_Type_SEL.innerHTML					=str00;
+	ele_Volume_2_Time_Fun_Type_SEL.selectedIndex				=Audio_URL_STR_CLS.VAL.Volume_2_Time_Fun_Type	=0;
+	ele_Volume_2_Time_Fun_Type_SEL.disabled						=[true,false][Audio_URL_STR_CLS.VAL.Volume_EAB];
+	//==========DIVISION==========
+	ele_Volume_2_Time_Fun_TextArea_Resize.disabled				=[true,false][Audio_URL_STR_CLS.VAL.Volume_EAB];
+	Audio_URL_STR_CLS.VAL.Volume_2_Time_Fun_TextArea_Resize		=0;
+	ele_Volume_2_Time_Fun_TextArea_Resize.style.backgroundColor	=["yellow","orange"][Audio_URL_STR_CLS.VAL.Volume_2_Time_Fun_TextArea_Resize];
+	//==========DIVISION==========
+	ele_Volume_2_Time_Fun_EVAL_Code.disabled					=[true,false][Audio_URL_STR_CLS.VAL.Volume_EAB];
+	ele_Volume_2_Time_Fun_EVAL_Code.value						=Audio_URL_STR_CLS.VAL.Volume_2_Time_Fun_EVAL_Code=
+	Audio_URL_STR_CLS.FUN.Audio_VAR_2_Time_Fun_EVAL_Code(Audio_URL_STR_CLS.VAL.Volume_2_Time_Fun_Type);
+	Audio_URL_STR_CLS.VAL.Volume_2_Time_TTI_SD_ID_ARR			=[];
 	//==========DIVISION==========
 	//====================DIVISION====================
 	//==========DIVISION==========
@@ -1738,6 +1829,10 @@ function Audio_Setting_Use(ext_inner_cls)
 			else if ( Audio_URL_STR_CLS.VAL.ITime_EAB==1 )		{ele_ITime_EAB.click();}
 			else		{}
 			//==========DIVISION==========
+			if ( Audio_URL_STR_CLS.VAL.Volume_EAB==0 )			{}
+			else if ( Audio_URL_STR_CLS.VAL.Volume_EAB==1 )		{ele_Volume_EAB.click();}
+			else		{}
+			//==========DIVISION==========
 			if ( Audio_URL_STR_CLS.VAL.Speed_EAB==0 )			{}
 			else if ( Audio_URL_STR_CLS.VAL.Speed_EAB==1 )		{ele_Speed_EAB.click();}
 			else		{}
@@ -1836,6 +1931,13 @@ function Audio_Setting_Use(ext_inner_cls)
 				ele_BEITime_BETTI_VAL_Set_SEL.selectedIndex=
 				Audio_URL_STR_CLS.VAL.BEITime_BETTI_VAL_Set=[1,5][parseInt(UID/2,10)];
 				ele=ele_Audio_DFLG_Table;		evt={target:ele_BEITime_BETTI_VAL_Set_SEL};		n=2;	TEXT_ATTRIBUTION(ele,evt,n);
+				//==========DIVISION==========
+				if ( Audio_URL_STR_CLS.VAL.Volume_EAB==0 )			{ele_Volume_EAB.click();}
+				else		{}
+				ele_BEVolume_BETTI_VAL_Set_SEL.selectedIndex=
+				Audio_URL_STR_CLS.VAL.BEVolume_BETTI_VAL_Set=//[0,2][parseInt(UID/2,10)];
+				parseInt(4 * Math.random(),10);
+				ele=ele_Audio_DFLG_Table;		evt={target:ele_BEVolume_BETTI_VAL_Set_SEL};	n=2;	TEXT_ATTRIBUTION(ele,evt,n);
 				//==========DIVISION==========
 				if ( Audio_URL_STR_CLS.VAL.Speed_EAB==0 )			{ele_Speed_EAB.click();}
 				else		{}
@@ -2411,6 +2513,7 @@ function Video_Switch(ele)
 		var Main_And_Multi_Video_ARR=arr02;
 		MultiPlier_EAB_Core_Action(Main_And_Multi_Video_ARR);
 		ITime_EAB_Core_Action(Main_And_Multi_Video_ARR);
+		Volume_EAB_Core_Action(Main_And_Multi_Video_ARR);
 		Speed_EAB_Core_Action(Main_And_Multi_Video_ARR);
 		Multi_Video_Timer_Mode_Core_Action(Main_And_Multi_Video_ARR);//No_EAB;
 		//==========DIVISION==========
@@ -2523,6 +2626,64 @@ function Audio_ITime_Ctrl_Table_Action(ele,evt,post_method)
 	//====================DIVISION====================
 }
 //==============================DIVISION==============================
+function Audio_Volume_Ctrl_Table_Action(ele,evt,post_method)
+{
+	//==============================arguments.callee==============================
+	var fun_ct_cache;
+	fun_ct_cache=arguments.callee;
+	var STO=0;//0:Do_Not_Run_setTimeout;1:Run_setTimeout;2:Run_Function_Now;
+	//==============================arguments.callee==============================
+	//====================Pre_Definition====================
+	//==========DIVISION==========
+	eval(Parameter_Base_STR_ijk_XX(5));
+	eval(ELE_ELEL_STR_INI());
+	var ID,LEN,ID_LEN;
+	//==========DIVISION==========
+	var evt_target = evt.target ? evt.target : evt.srcElement;
+	//==========DIVISION==========
+	//====================Pre_Definition====================
+	//====================DIVISION====================
+	if ( post_method==2 && evt && evt.type=="change" )//onchange;
+	{
+	}
+	else if ( post_method==3 && evt && evt.type=="click" )//onclick;
+	{
+		//==========DIVISION==========
+		if ( ele.className=="Audio_Volume_Ctrl_Table" && evt_target.className=="Volume_EAB" )
+		{
+			//==========DIVISION==========
+			Audio_URL_STR_CLS.VAL.Volume_EAB						=	(Audio_URL_STR_CLS.VAL.Volume_EAB + 1)%2;
+			evt_target.style.backgroundColor						=	["red","#1EB0E9"][Audio_URL_STR_CLS.VAL.Volume_EAB];
+			ele_Volume_CLS.disabled									=	[true,false][Audio_URL_STR_CLS.VAL.Volume_EAB];
+			ele_Volume_Type_SEL.disabled							=	[true,false][Audio_URL_STR_CLS.VAL.Volume_EAB];
+			ele_BVolume_CLS.disabled								=	[true,false][Audio_URL_STR_CLS.VAL.Volume_EAB];
+			ele_EVolume_CLS.disabled								=	[true,false][Audio_URL_STR_CLS.VAL.Volume_EAB];
+			ele_BEVolume_BTTI_CLS.disabled							=	[true,false][Audio_URL_STR_CLS.VAL.Volume_EAB];
+			ele_BEVolume_ETTI_CLS.disabled							=	[true,false][Audio_URL_STR_CLS.VAL.Volume_EAB];
+			ele_BEVolume_BETTI_VAL_Set_SEL.disabled					=	[true,false][Audio_URL_STR_CLS.VAL.Volume_EAB];
+			ele_Volume_2_Time_Fun_Type_SEL.disabled					=	[true,false][Audio_URL_STR_CLS.VAL.Volume_EAB];
+			ele_Volume_2_Time_Fun_TextArea_Resize.disabled			=	[true,false][Audio_URL_STR_CLS.VAL.Volume_EAB];
+			ele_Volume_2_Time_Fun_EVAL_Code.disabled				=	[true,false][Audio_URL_STR_CLS.VAL.Volume_EAB];
+			Audio_URL_STR_CLS.VAL.Volume_2_Time_TTI_SD_ID_ARR		=	[];
+			//==========DIVISION==========
+			var Main_And_Multi_Video_ARR=Main_And_Multi_Video_ARR_Get();
+			Volume_EAB_Core_Action(Main_And_Multi_Video_ARR);
+			//==========DIVISION==========
+		}
+		else if ( ele.className=="Audio_Volume_Ctrl_Table" && evt_target.className=="Volume_2_Time_Fun_TextArea_Resize" )
+		{
+			Audio_URL_STR_CLS.VAL.Volume_2_Time_Fun_TextArea_Resize	=	(Audio_URL_STR_CLS.VAL.Volume_2_Time_Fun_TextArea_Resize + 1)%2;
+			evt_target.style.backgroundColor						=	["yellow","orange"][Audio_URL_STR_CLS.VAL.Volume_2_Time_Fun_TextArea_Resize];
+			ele_Volume_2_Time_Fun_EVAL_Code.style.width				=	[75,400][Audio_URL_STR_CLS.VAL.Volume_2_Time_Fun_TextArea_Resize];
+			ele_Volume_2_Time_Fun_EVAL_Code.style.height			=	[25,200][Audio_URL_STR_CLS.VAL.Volume_2_Time_Fun_TextArea_Resize];
+		}
+		else		{}
+		//==========DIVISION==========
+	}
+	else		{}
+	//====================DIVISION====================
+}
+//==============================DIVISION==============================
 function Audio_Speed_Ctrl_Table_Action(ele,evt,post_method)
 {
 	//==============================arguments.callee==============================
@@ -2621,6 +2782,16 @@ function BEXXXXX_BETTI_VAL_Set_INI()
 	ele00.selectedIndex=Audio_URL_STR_CLS.VAL.BEITime_BETTI_VAL_Set=0;
 	ele00.disabled=[true,false][Audio_URL_STR_CLS.VAL.ITime_EAB];
 	//==========DIVISION==========
+	ele00=ele_BEVolume_BETTI_VAL_Set_SEL;
+	str00="";
+	str00+="<option>00 : BEVolume_BETTI_VAL_00</option>";
+	str00+="<option>01 : BEVolume_BETTI_VAL_01</option>";
+	str00+="<option>02 : BEVolume_BETTI_VAL_02</option>";
+	str00+="<option>03 : BEVolume_BETTI_VAL_03</option>";
+	ele00.innerHTML=str00;
+	ele00.selectedIndex=Audio_URL_STR_CLS.VAL.BEVolume_BETTI_VAL_Set=0;
+	ele00.disabled=[true,false][Audio_URL_STR_CLS.VAL.Volume_EAB];
+	//==========DIVISION==========
 	ele00=ele_BESpeed_BETTI_VAL_Set_SEL;
 	str00="";
 	str00+="<option>00 : BESpeed_BETTI_VAL_00</option>";
@@ -2671,6 +2842,26 @@ function BEXXXXX_BETTI_VAL_Set_Do(evt_target)
 		evt={target:ele_BEITime_ETTI_CLS			};TEXT_ATTRIBUTION(ele,evt,n);
 		//	evt={target:ele_BEITime_BETTI_VAL_Set_SEL	};TEXT_ATTRIBUTION(ele,evt,n);
 		//	evt={target:ele_ITime_2_Time_Fun_Type_SEL	};TEXT_ATTRIBUTION(ele,evt,n);
+	}
+	else if ( evt_target.className=="BEVolume_BETTI_VAL_Set_SEL" )
+	{
+		//	ele_Volume_CLS					.value				=Audio_URL_STR_CLS.VAL.Volume					=[1][num00%1];
+		//	ele_Volume_Type_SEL				.selectedIndex		=Audio_URL_STR_CLS.VAL.Volume_Type				=[3][num00%1];
+		ele_BVolume_CLS					.value				=Audio_URL_STR_CLS.VAL.BVolume					=[0.1 ,0.3 ,0.5 ,0.9 ]	[num00%4];
+		ele_EVolume_CLS					.value				=Audio_URL_STR_CLS.VAL.EVolume					=[0.4 ,0.7 ,0.8 ,1   ]	[num00%4];
+		//	ele_BEVolume_BTTI_CLS			.value				=Audio_URL_STR_CLS.VAL.BEVolume_BTTI			=[0   ,0   ,1000,2000]	[num00%4];
+		//	ele_BEVolume_ETTI_CLS			.value				=Audio_URL_STR_CLS.VAL.BEVolume_ETTI			=[500 ,1000,2000,3000]	[num00%4];
+		//	ele_BEVolume_BETTI_VAL_Set_SEL	.selectedIndex		=Audio_URL_STR_CLS.VAL.BEVolume_BETTI_VAL_Set	=[0][num00];
+		//	ele_Volume_2_Time_Fun_Type_SEL	.selectedIndex		=Audio_URL_STR_CLS.VAL.Volume_2_Time_Fun_Type	=[0][num00];
+
+		//	evt={target:ele_Volume_CLS					};TEXT_ATTRIBUTION(ele,evt,n);
+		//	evt={target:ele_Volume_Type_SEL				};TEXT_ATTRIBUTION(ele,evt,n);
+		evt={target:ele_BVolume_CLS					};TEXT_ATTRIBUTION(ele,evt,n);
+		evt={target:ele_EVolume_CLS					};TEXT_ATTRIBUTION(ele,evt,n);
+		//	evt={target:ele_BEVolume_BTTI_CLS			};TEXT_ATTRIBUTION(ele,evt,n);
+		//	evt={target:ele_BEVolume_ETTI_CLS			};TEXT_ATTRIBUTION(ele,evt,n);
+		//	evt={target:ele_BEVolume_BETTI_VAL_Set_SEL	};TEXT_ATTRIBUTION(ele,evt,n);
+		//	evt={target:ele_Volume_2_Time_Fun_Type_SEL	};TEXT_ATTRIBUTION(ele,evt,n);
 	}
 	else if ( evt_target.className=="BESpeed_BETTI_VAL_Set_SEL" )
 	{
@@ -3066,6 +3257,225 @@ function ITime_EAB_Core_Action(Main_And_Multi_Video_ARR)
 									//				"");
 									//==========DIVISION==========
 									Audio_URL_STR_CLS.VAL.Multi_Video_ITime_Timer_ID_ARR[i][j]=
+									setTimeout(fun_ct_cache_01,TTI_SD,i,j,ele02);
+									//==========DIVISION==========
+								},0,i,j,ele02);
+								//==========DIVISION==========
+							}
+							else
+							{
+								setTimeout(fun_ct_cache_00,TTI_IN_USE,i,j,arr02);
+							}
+							//==========DIVISION==========
+						},0,i,j,arr02);
+						//==========DIVISION==========
+					}
+					else		{}
+					//==========DIVISION==========
+				}
+				else		{}
+				//==========DIVISION==========
+			}
+		}
+		//==========DIVISION==========
+	}
+	else		{}
+	//==========DIVISION==========
+	if ( Initiation_Flag==1 )	{Initiation_Flag++;}
+	//==========DIVISION==========
+}
+//==========DIVISION==========
+function Volume_EAB_Core_Action(Main_And_Multi_Video_ARR)
+{
+	//==========DIVISION==========
+	eval(ELE_ELEL_STR_INI());
+	eval(Parameter_Base_STR_ijk_XX(10));
+	var ID,LEN,ID_LEN;
+	var AR_ID;
+	//==========DIVISION==========
+	arr02=Main_And_Multi_Video_ARR;
+	//==========DIVISION==========
+	if ( Initiation_Flag==0 )
+	{
+	}
+	else if ( Initiation_Flag==1 || Initiation_Flag==2 )
+	{
+		//==========DIVISION==========
+		var volume=Audio_URL_STR_CLS.VAL.Volume;
+		if ( Audio_URL_STR_CLS.VAL.Volume_EAB==0 )				{}
+		else if ( Audio_URL_STR_CLS.VAL.Volume_EAB==1 )			{}
+		else		{}
+		//==========DIVISION==========
+		if ( Audio_URL_STR_CLS.VAL.Volume_Type>=0 && Audio_URL_STR_CLS.VAL.Volume_Type<=6 )
+		{
+			for (i=0;i<Audio_URL_STR_CLS.VAL.Multi_Video_Volume_Timer_ID_ARR.length;i++)
+			{
+				for (j=0;j<Audio_URL_STR_CLS.VAL.Multi_Video_Volume_Timer_ID_ARR[i].length;j++)
+				{
+					clearTimeout(Audio_URL_STR_CLS.VAL.Multi_Video_Volume_Timer_ID_ARR[i][j]);
+				}
+			}
+			Audio_URL_STR_CLS.VAL.Multi_Video_Volume_Timer_ID_ARR=JSON.parse(JSON.stringify(arr02));
+			for (i=0;i<arr02.length;i++)
+			{
+				for (j=0;j<arr02[i].length;j++)
+				{
+					Audio_URL_STR_CLS.VAL.Multi_Video_Volume_Timer_ID_ARR[i][j]=null;
+				}
+			}
+		}
+		else		{}
+		//==========DIVISION==========
+		if ( Audio_URL_STR_CLS.VAL.Volume_Type==6 )
+		{
+			Audio_URL_STR_CLS.VAL.Volume_2_Time_TTI_SD_ID_ARR=JSON.parse(JSON.stringify(arr02));
+			for (i=0;i<arr02.length;i++)
+			{
+				for (j=0;j<arr02[i].length;j++)
+				{
+					Audio_URL_STR_CLS.VAL.Volume_2_Time_TTI_SD_ID_ARR[i][j]=0;
+				}
+			}
+		}
+		else		{}
+		//==========DIVISION==========
+		//console.log(arr02);
+		for (i=0;i<arr02.length;i++)
+		{
+			for (j=0;j<arr02[i].length;j++)
+			{
+				//==========DIVISION==========
+				ele02=arr02[i][j][0].getElementsByTagName("video")[0];
+				if ( ele02==undefined )			{continue;}
+				//==========DIVISION==========
+				if ( Audio_URL_STR_CLS.VAL.Volume_EAB==0 )
+				{
+					ele02.volume=volume;
+				}
+				else if ( Audio_URL_STR_CLS.VAL.Volume_EAB==1 )			{}
+				else		{}
+				//==========DIVISION==========
+			}
+		}
+		//==========DIVISION==========
+		//console.log(arr02);
+		for (i=0;i<arr02.length;i++)
+		{
+			for (j=0;j<arr02[i].length;j++)
+			{
+				//==========DIVISION==========
+				ele02=arr02[i][j][0].getElementsByTagName("video")[0];
+				if ( ele02==undefined )			{continue;}
+				//==========DIVISION==========
+				if ( Audio_URL_STR_CLS.VAL.Volume_EAB==0 )				{}
+				else if ( Audio_URL_STR_CLS.VAL.Volume_EAB==1 )
+				{
+					//==========DIVISION==========
+					if ( Audio_URL_STR_CLS.VAL.Volume_Type==0 )
+					{
+						ele02.volume=volume;
+					}
+					else if ( Audio_URL_STR_CLS.VAL.Volume_Type==1 )
+					{
+						Code_Area=1;
+						if ( Code_Area==0 )			{ele02.volume=Volume_BE_Random_Gen(i,j);}
+						else if ( Code_Area==1 )	{ele02.volume=Volume_BME_Random_Gen(i,j);}
+						else						{}
+						console.log("ele02.volume : " + ele02.volume);
+					}
+					else if ( Audio_URL_STR_CLS.VAL.Volume_Type>=2 && Audio_URL_STR_CLS.VAL.Volume_Type<=6 )
+					{
+						//==========DIVISION==========
+						setTimeout(function (i,j,arr02)
+						{
+							//==========DIVISION==========
+							var fun_ct_cache_00;
+							fun_ct_cache_00=arguments.callee;
+							//==========DIVISION==========
+							ele02=arr02[i][j][0].getElementsByTagName("video")[0];
+							//==========DIVISION==========
+							if ( ele02.readyState==4 )
+							{
+								Audio_URL_STR_CLS.VAL.Multi_Video_Volume_Timer_ID_ARR[i][j]=setTimeout(function (i,j,ele02)
+								{
+									//==========DIVISION==========
+									clearTimeout(Audio_URL_STR_CLS.VAL.Multi_Video_Volume_Timer_ID_ARR[i][j]);
+									//console.log("Audio_URL_STR_CLS.VAL.Volume_EAB : " + Audio_URL_STR_CLS.VAL.Volume_EAB);
+									if ( Audio_URL_STR_CLS.VAL.Volume_EAB==0 )			{return;}
+									else if ( Audio_URL_STR_CLS.VAL.Volume_EAB==1 )		{}
+									else		{}
+									//==========DIVISION==========
+									var fun_ct_cache_01;
+									fun_ct_cache_01=arguments.callee;
+									//==========DIVISION==========
+									if ( Audio_URL_STR_CLS.VAL.Volume_Type>=2 && Audio_URL_STR_CLS.VAL.Volume_Type<=6 )		{}
+									else		{return;}
+									//==========DIVISION==========
+									Code_Area=1;
+									if ( Code_Area==0 )			{ele02.volume=Volume_BE_Random_Gen(i,j);}
+									else if ( Code_Area==1 )	{ele02.volume=Volume_BME_Random_Gen(i,j);}
+									else						{}
+									//==========DIVISION==========
+									//	console.log("Setting volume : " + 
+									//				"i : " + i + ";\t" + 
+									//				"j : " + j + ";\t" + 
+									//				"TTI_SD : " + TTI_SD + ";\t" + 
+									//				"ele02.duration : " + ele02.duration + ";\t" + 
+									//				"ele02.volume : " + ele02.volume + ";\t" + 
+									//				"");
+									//==========DIVISION==========
+									var Multi_Video_Time_Offset=Audio_URL_STR_CLS.VAL.Multi_Video_Time_Offset;//ms;
+									var TTI_SD;
+									if ( Audio_URL_STR_CLS.VAL.Volume_Type==2 )
+									{
+										TTI_SD=Audio_URL_STR_CLS.VAL.BEVolume_BTTI + Multi_Video_Time_Offset;
+									}
+									else if ( Audio_URL_STR_CLS.VAL.Volume_Type==3 )
+									{
+										TTI_SD=Audio_URL_STR_CLS.VAL.BEVolume_BTTI + 
+												(Audio_URL_STR_CLS.VAL.BEVolume_ETTI - Audio_URL_STR_CLS.VAL.BEVolume_BTTI) * Math.random() + 
+												Multi_Video_Time_Offset;
+									}
+									else if ( Audio_URL_STR_CLS.VAL.Volume_Type==4 )
+									{
+										TTI_SD=(ele02.duration * 1000 + Multi_Video_Time_Offset) / ele02.playbackRate;
+									}
+									else if ( Audio_URL_STR_CLS.VAL.Volume_Type==5 )
+									{
+										TTI_SD=(ele02.duration * 1000 * Math.random() + Multi_Video_Time_Offset) / ele02.playbackRate;
+									}
+									else if ( Audio_URL_STR_CLS.VAL.Volume_Type==6 )
+									{
+										//==========DIVISION==========
+										var ele_Audio_DFLG_Table			=
+										document.getElementsByClassName("Audio_DFLG_Table")[0];
+										var elel_Audio_DFLG_Ctrl_Table		=
+										ele_Audio_DFLG_Table.getElementsByClassName("Audio_DFLG_Ctrl_Table");
+										var ele_Audio_Volume_Ctrl_Table		=
+										elel_Audio_DFLG_Ctrl_Table[0].getElementsByClassName("Audio_Volume_Ctrl_Table")[0];
+										var ele_Volume_2_Time_Fun_EVAL_Code	=
+										ele_Audio_Volume_Ctrl_Table.getElementsByClassName("Volume_2_Time_Fun_EVAL_Code")[0];
+										//==========DIVISION==========
+										var EVAL_Code_STR=ele_Volume_2_Time_Fun_EVAL_Code.value;
+										var TTI_SD_ID=Audio_URL_STR_CLS.VAL.Volume_2_Time_TTI_SD_ID_ARR[i][j];
+										var Evoke_By_OBJ="Volume";
+										eval(EVAL_Code_STR);
+										//console.log(Audio_VAR_CLS);
+										ele02.volume=Audio_VAR_CLS.v;
+										Audio_URL_STR_CLS.VAL.Volume_2_Time_TTI_SD_ID_ARR[i][j]++;
+										TTI_SD=Audio_VAR_CLS.TTI_SD;TTI_SD=TTI_IN_USE * 10;
+										//==========DIVISION==========
+										//	console.log("TTI_SD : " + TTI_SD + ";\t" + 
+										//				"Volume_2_Time_TTI_SD_ID_ARR[i][j] : " + 
+										//				Audio_URL_STR_CLS.VAL.Volume_2_Time_TTI_SD_ID_ARR[i][j] + ";\t" + 
+										//				"ele02.volume : " + ele02.volume + ";\t" + 
+										//				"");
+										//==========DIVISION==========
+									}
+									else		{}
+									//console.log("video readyState : ele02.readyState : " + ele02.readyState);
+									//==========DIVISION==========
+									Audio_URL_STR_CLS.VAL.Multi_Video_Volume_Timer_ID_ARR[i][j]=
 									setTimeout(fun_ct_cache_01,TTI_SD,i,j,ele02);
 									//==========DIVISION==========
 								},0,i,j,ele02);
@@ -3702,6 +4112,10 @@ function TEXT_ATTRIBUTION(ele,evt,n)
 				evt_target.className=="BITime_CLS" || evt_target.className=="EITime_CLS" || 
 				evt_target.className=="BEITime_BTTI_CLS" || evt_target.className=="BEITime_ETTI_CLS" || 
 				//==========DIVISION==========
+				evt_target.className=="Volume_CLS" || 
+				evt_target.className=="BVolume_CLS" || evt_target.className=="EVolume_CLS" || 
+				evt_target.className=="BEVolume_BTTI_CLS" || evt_target.className=="BEVolume_ETTI_CLS" || 
+				//==========DIVISION==========
 				evt_target.className=="Speed_CLS" || 
 				evt_target.className=="BSpeed_CLS" || evt_target.className=="ESpeed_CLS" || 
 				evt_target.className=="BESpeed_BTTI_CLS" || evt_target.className=="BESpeed_ETTI_CLS" || 
@@ -3717,12 +4131,17 @@ function TEXT_ATTRIBUTION(ele,evt,n)
 				evt_target.className=="ITime_CLS" || 
 				evt_target.className=="BITime_CLS" || evt_target.className=="EITime_CLS" || 
 				//==========DIVISION==========
+				evt_target.className=="Volume_CLS" || 
+				evt_target.className=="BVolume_CLS" || evt_target.className=="EVolume_CLS" || 
+				//==========DIVISION==========
 				evt_target.className=="Speed_CLS" || 
 				evt_target.className=="BSpeed_CLS" || evt_target.className=="ESpeed_CLS" || 
 				//==========DIVISION==========
 				0 )
 			{parseType="parseFloat";	parseType_STR="parseFloat(evt_target.value)";	RegExp_STR="[0-9\.]+";}
 			else if ( evt_target.className=="BEITime_BTTI_CLS" || evt_target.className=="BEITime_ETTI_CLS" || 
+					//==========DIVISION==========
+					evt_target.className=="BEVolume_BTTI_CLS" || evt_target.className=="BEVolume_ETTI_CLS" || 
 					//==========DIVISION==========
 					evt_target.className=="BESpeed_BTTI_CLS" || evt_target.className=="BESpeed_ETTI_CLS" || 
 					//==========DIVISION==========
@@ -3777,12 +4196,12 @@ function TEXT_ATTRIBUTION(ele,evt,n)
 					evt_target.className=="ITime_Type_SEL" || 
 					evt_target.className=="ICTime_Type_SEL" || evt_target.className=="E_E2B_Time_Type_SEL" || 
 					//==========DIVISION==========
-					evt_target.className=="Speed_Type_SEL" || 
+					evt_target.className=="Volume_Type_SEL" || evt_target.className=="Speed_Type_SEL" || 
 					//==========DIVISION==========
-					evt_target.className=="BEITime_BETTI_VAL_Set_SEL" || 
+					evt_target.className=="BEITime_BETTI_VAL_Set_SEL" || evt_target.className=="BEVolume_BETTI_VAL_Set_SEL" || 
 					evt_target.className=="BESpeed_BETTI_VAL_Set_SEL" || 
 					//==========DIVISION==========
-					evt_target.className=="ITime_2_Time_Fun_Type_SEL" || 
+					evt_target.className=="ITime_2_Time_Fun_Type_SEL" || evt_target.className=="Volume_2_Time_Fun_Type_SEL" || 
 					evt_target.className=="Speed_2_Time_Fun_Type_SEL" || 
 					//==========DIVISION==========
 					evt_target.className=="Multi_Video_VID_Type_SEL" || evt_target.className=="Multi_Video_Timer_Mode_SEL" || 
@@ -3794,7 +4213,7 @@ function TEXT_ATTRIBUTION(ele,evt,n)
 			str00="Audio_URL_STR_CLS.VAL." + evt_target.className.replace(/_SEL$/gm,"") + "=" + parseType_STR + ";";
 			eval(str00);
 			//==========DIVISION==========
-			if ( evt_target.className=="BEITime_BETTI_VAL_Set_SEL" || 
+			if ( evt_target.className=="BEITime_BETTI_VAL_Set_SEL" || evt_target.className=="BEVolume_BETTI_VAL_Set_SEL" || 
 					evt_target.className=="BESpeed_BETTI_VAL_Set_SEL" || 
 					0 )
 			{
@@ -3804,7 +4223,7 @@ function TEXT_ATTRIBUTION(ele,evt,n)
 				//	"↓";
 				BEXXXXX_BETTI_VAL_Set_Do(evt_target);
 			}
-			else if ( evt_target.className=="ITime_2_Time_Fun_Type_SEL" || 
+			else if ( evt_target.className=="ITime_2_Time_Fun_Type_SEL" || evt_target.className=="Volume_2_Time_Fun_Type_SEL" || 
 					evt_target.className=="Speed_2_Time_Fun_Type_SEL" || 
 					0 )
 			{
@@ -3853,6 +4272,17 @@ function TEXT_ATTRIBUTION(ele,evt,n)
 		{
 			var Main_And_Multi_Video_ARR=Main_And_Multi_Video_ARR_Get();
 			ITime_EAB_Core_Action(Main_And_Multi_Video_ARR);
+		}
+		else if ( ele.className=="Audio_DFLG_Table" && ( 
+				//==========DIVISION==========
+				( evt_target.className=="Volume_Type_SEL" || evt_target.className=="Volume_CLS" || 
+				evt_target.className=="BVolume_CLS" || evt_target.className=="EVolume_CLS" || 
+				0 ) && ( Audio_URL_STR_CLS.VAL.Volume_Type>=0 && Audio_URL_STR_CLS.VAL.Volume_Type<=6 ) || 
+				//==========DIVISION==========
+				0 ) )
+		{
+			var Main_And_Multi_Video_ARR=Main_And_Multi_Video_ARR_Get();
+			Volume_EAB_Core_Action(Main_And_Multi_Video_ARR);
 		}
 		else if ( ele.className=="Audio_DFLG_Table" && ( 
 				//==========DIVISION==========
@@ -3946,6 +4376,10 @@ function Audio_DFLG_Hotkey_Mouse(ele,evt,post_method)
 				evt_target.className=="BITime_CLS" || evt_target.className=="EITime_CLS" || 
 				evt_target.className=="BEITime_BTTI_CLS" || evt_target.className=="BEITime_ETTI_CLS" || 
 				//==========DIVISION==========
+				evt_target.className=="Volume_CLS" || 
+				evt_target.className=="BVolume_CLS" || evt_target.className=="EVolume_CLS" || 
+				evt_target.className=="BEVolume_BTTI_CLS" || evt_target.className=="BEVolume_ETTI_CLS" || 
+				//==========DIVISION==========
 				evt_target.className=="Speed_CLS" || 
 				evt_target.className=="BSpeed_CLS" || evt_target.className=="ESpeed_CLS" || 
 				evt_target.className=="BESpeed_BTTI_CLS" || evt_target.className=="BESpeed_ETTI_CLS" || 
@@ -3967,6 +4401,12 @@ function Audio_DFLG_Hotkey_Mouse(ele,evt,post_method)
 			else if ( evt_target.className=="BEITime_BTTI_CLS" )			{NUM_MIN=0;NUM_MAX=10000*10000;}
 			else if ( evt_target.className=="BEITime_ETTI_CLS" )			{NUM_MIN=0;NUM_MAX=10000*10000;}
 			//==========DIVISION==========
+			else if ( evt_target.className=="Volume_CLS" )					{NUM_MIN=0;NUM_MAX=1;}
+			else if ( evt_target.className=="BVolume_CLS" )					{NUM_MIN=0;NUM_MAX=1;}
+			else if ( evt_target.className=="EVolume_CLS" )					{NUM_MIN=0;NUM_MAX=1;}
+			else if ( evt_target.className=="BEVolume_BTTI_CLS" )			{NUM_MIN=0;NUM_MAX=10000*10000;}
+			else if ( evt_target.className=="BEVolume_ETTI_CLS" )			{NUM_MIN=0;NUM_MAX=10000*10000;}
+			//==========DIVISION==========
 			else if ( evt_target.className=="Speed_CLS" )					{NUM_MIN=0;NUM_MAX=100;}
 			else if ( evt_target.className=="BSpeed_CLS" )					{NUM_MIN=0;NUM_MAX=100;}
 			else if ( evt_target.className=="ESpeed_CLS" )					{NUM_MIN=0;NUM_MAX=100;}
@@ -3986,6 +4426,10 @@ function Audio_DFLG_Hotkey_Mouse(ele,evt,post_method)
 			else if ( evt_target.className=="ITime_CLS" )					{NUM_10=parseFloat(evt_target.value);}
 			else if ( evt_target.className=="BITime_CLS" )					{NUM_10=parseFloat(evt_target.value);}
 			else if ( evt_target.className=="EITime_CLS" )					{NUM_10=parseFloat(evt_target.value);}
+			//==========DIVISION==========
+			else if ( evt_target.className=="Volume_CLS" )					{NUM_10=parseFloat(evt_target.value);}
+			else if ( evt_target.className=="BVolume_CLS" )					{NUM_10=parseFloat(evt_target.value);}
+			else if ( evt_target.className=="EVolume_CLS" )					{NUM_10=parseFloat(evt_target.value);}
 			//==========DIVISION==========
 			else if ( evt_target.className=="Speed_CLS" )					{NUM_10=parseFloat(evt_target.value);}
 			else if ( evt_target.className=="BSpeed_CLS" )					{NUM_10=parseFloat(evt_target.value);}
@@ -4019,6 +4463,10 @@ function Audio_DFLG_Hotkey_Mouse(ele,evt,post_method)
 			else if ( evt_target.className=="BITime_CLS" )					{NUM_10=(parseFloat(num00/1000) + NUM_10).toFixed(3);}
 			else if ( evt_target.className=="EITime_CLS" )					{NUM_10=(parseFloat(num00/1000) + NUM_10).toFixed(3);}
 			//==========DIVISION==========
+			else if ( evt_target.className=="Volume_CLS" )					{NUM_10=(parseFloat(num00/1000) + NUM_10).toFixed(3);}
+			else if ( evt_target.className=="BVolume_CLS" )					{NUM_10=(parseFloat(num00/1000) + NUM_10).toFixed(3);}
+			else if ( evt_target.className=="EVolume_CLS" )					{NUM_10=(parseFloat(num00/1000) + NUM_10).toFixed(3);}
+			//==========DIVISION==========
 			else if ( evt_target.className=="Speed_CLS" )					{NUM_10=(parseFloat(num00/1000) + NUM_10).toFixed(3);}
 			else if ( evt_target.className=="BSpeed_CLS" )					{NUM_10=(parseFloat(num00/1000) + NUM_10).toFixed(3);}
 			else if ( evt_target.className=="ESpeed_CLS" )					{NUM_10=(parseFloat(num00/1000) + NUM_10).toFixed(3);}
@@ -4041,6 +4489,12 @@ function Audio_DFLG_Hotkey_Mouse(ele,evt,post_method)
 			else if ( evt_target.className=="BEITime_BTTI_CLS" )			{Audio_URL_STR_CLS.VAL.BEITime_BTTI					=NUM_10;}
 			else if ( evt_target.className=="BEITime_ETTI_CLS" )			{Audio_URL_STR_CLS.VAL.BEITime_ETTI					=NUM_10;}
 			//==========DIVISION==========
+			else if ( evt_target.className=="Volume_CLS" )					{Audio_URL_STR_CLS.VAL.Volume			=parseFloat(NUM_10);}
+			else if ( evt_target.className=="BVolume_CLS" )					{Audio_URL_STR_CLS.VAL.BVolume			=parseFloat(NUM_10);}
+			else if ( evt_target.className=="EVolume_CLS" )					{Audio_URL_STR_CLS.VAL.EVolume			=parseFloat(NUM_10);}
+			else if ( evt_target.className=="BEVolume_BTTI_CLS" )			{Audio_URL_STR_CLS.VAL.BEVolume_BTTI				=NUM_10;}
+			else if ( evt_target.className=="BEVolume_ETTI_CLS" )			{Audio_URL_STR_CLS.VAL.BEVolume_ETTI				=NUM_10;}
+			//==========DIVISION==========
 			else if ( evt_target.className=="Speed_CLS" )					{Audio_URL_STR_CLS.VAL.Speed			=parseFloat(NUM_10);}
 			else if ( evt_target.className=="BSpeed_CLS" )					{Audio_URL_STR_CLS.VAL.BSpeed			=parseFloat(NUM_10);}
 			else if ( evt_target.className=="ESpeed_CLS" )					{Audio_URL_STR_CLS.VAL.ESpeed			=parseFloat(NUM_10);}
@@ -4059,6 +4513,10 @@ function Audio_DFLG_Hotkey_Mouse(ele,evt,post_method)
 					evt_target.className=="ITime_CLS" || 
 					evt_target.className=="BITime_CLS" || evt_target.className=="EITime_CLS" || 
 					evt_target.className=="BEITime_BTTI_CLS" || evt_target.className=="BEITime_ETTI_CLS" || 
+					//==========DIVISION==========
+					evt_target.className=="Volume_CLS" || 
+					evt_target.className=="BVolume_CLS" || evt_target.className=="EVolume_CLS" || 
+					evt_target.className=="BEVolume_BTTI_CLS" || evt_target.className=="BEVolume_ETTI_CLS" || 
 					//==========DIVISION==========
 					evt_target.className=="Speed_CLS" || 
 					evt_target.className=="BSpeed_CLS" || evt_target.className=="ESpeed_CLS" || 
@@ -4094,6 +4552,17 @@ function Audio_DFLG_Hotkey_Mouse(ele,evt,post_method)
 			{
 				var Main_And_Multi_Video_ARR=Main_And_Multi_Video_ARR_Get();
 				ITime_EAB_Core_Action(Main_And_Multi_Video_ARR);
+			}
+			else if ( ele.className=="Audio_DFLG_Table" && ( 
+					//==========DIVISION==========
+					( evt_target.className=="Volume_Type_SEL" || evt_target.className=="Volume_CLS" || 
+					evt_target.className=="BVolume_CLS" || evt_target.className=="EVolume_CLS" || 
+					0 ) && ( Audio_URL_STR_CLS.VAL.Volume_Type>=0 && Audio_URL_STR_CLS.VAL.Volume_Type<=6 ) || 
+					//==========DIVISION==========
+					0 ) )
+			{
+				var Main_And_Multi_Video_ARR=Main_And_Multi_Video_ARR_Get();
+				Volume_EAB_Core_Action(Main_And_Multi_Video_ARR);
 			}
 			else if ( ele.className=="Audio_DFLG_Table" && ( 
 					//==========DIVISION==========
@@ -4176,6 +4645,21 @@ function Audio_DFLG_Hotkey_Mouse(ele,evt,post_method)
 			<td><select class="ITime_2_Time_Fun_Type_SEL" title="ITime_2_Time_Fun_Type_SEL"></select></td>
 			<td><input type="button" class="ITime_2_Time_Fun_TextArea_Resize" title="ITime_2_Time_Fun_TextArea_Resize" value="RS"></td>
 			<td><textarea class="ITime_2_Time_Fun_EVAL_Code" title="ITime_2_Time_Fun_EVAL_Code"></textarea></td>
+		</tr>
+	</tbody></table></td></tr>
+	<tr><td><table class="Audio_Volume_Ctrl_Table" cellSpacing=0 cellPadding=0 border=0 onclick=Audio_Volume_Ctrl_Table_Action(this,event,3)><tbody>
+		<tr>
+			<td><input type="button" class="Volume_EAB" title="Volume_EAB" value="V"></td>
+			<td><input type="text" class="Volume_CLS" title="Volume_CLS" value="1"></td>
+			<td><select class="Volume_Type_SEL" title="Volume_Type_SEL"></select></td>
+			<td><input type="text" class="BVolume_CLS" title="BVolume_CLS" value="0.500"></td>
+			<td><input type="text" class="EVolume_CLS" title="EVolume_CLS" value="3.000"></td>
+			<td><input type="text" class="BEVolume_BTTI_CLS" title="BEVolume_BTTI_CLS" value="60000"></td>
+			<td><input type="text" class="BEVolume_ETTI_CLS" title="BEVolume_ETTI_CLS" value="180000"></td>
+			<td><select class="BEVolume_BETTI_VAL_Set_SEL" title="BEVolume_BETTI_VAL_Set_SEL"></select></td>
+			<td><select class="Volume_2_Time_Fun_Type_SEL" title="Volume_2_Time_Fun_Type_SEL"></select></td>
+			<td><input type="button" class="Volume_2_Time_Fun_TextArea_Resize" title="Volume_2_Time_Fun_TextArea_Resize" value="RS"></td>
+			<td><textarea class="Volume_2_Time_Fun_EVAL_Code" title="Volume_2_Time_Fun_EVAL_Code"></textarea></td>
 		</tr>
 	</tbody></table></td></tr>
 	<tr><td><table class="Audio_Speed_Ctrl_Table" cellSpacing=0 cellPadding=0 border=0 onclick=Audio_Speed_Ctrl_Table_Action(this,event,3)><tbody>
