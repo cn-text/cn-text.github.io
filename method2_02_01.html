@@ -1248,6 +1248,9 @@ function Audio_Setting_Use()
 	var ID,LEN,ID_LEN;
 	var AR_ID;
 	//==========DIVISION==========
+	var Random_Play_VID_EAB_ALL_ARR		=Audio_URL_STR_CLS.VAL.Random_Play_VID_EAB_ALL_ARR		;
+	var Random_Play_VID_EAB_Cache_ARR	=Audio_URL_STR_CLS.VAL.Random_Play_VID_EAB_Cache_ARR	;
+	//==========DIVISION==========
 	ele00=document.getElementsByClassName("Audio_Table")[0];
 	ele01=ele00.getElementsByClassName("Usage_Collection_SEL")[0];
 	if ( ele01.selectedIndex>=0 && ele01.selectedIndex<=13 )
@@ -1259,9 +1262,14 @@ function Audio_Setting_Use()
 			//	ele00.getElementsByClassName("MultiPlier_CLS")[0].value					=Audio_URL_STR_CLS.VAL.MultiPlier			=3;//500000000;
 		}
 		else		{}
-		ele00.getElementsByClassName("ITime_EAB")[0].click();
-		ele00.getElementsByClassName("Volume_EAB")[0].click();
-		ele00.getElementsByClassName("Speed_EAB")[0].click();
+		//==========DIVISION==========
+		if ( Audio_URL_STR_CLS.VAL.ITime_EAB==0 )					{ele00.getElementsByClassName("ITime_EAB")[0].click();	}
+		if ( Audio_URL_STR_CLS.VAL.Volume_EAB==0 )					{ele00.getElementsByClassName("Volume_EAB")[0].click();	}
+		if ( Audio_URL_STR_CLS.VAL.Speed_EAB==0 )					{ele00.getElementsByClassName("Speed_EAB")[0].click();	}
+		//==========DIVISION==========
+		ele00.getElementsByClassName("ICTime_Type_SEL")[0].selectedIndex				=Audio_URL_STR_CLS.VAL.ICTime_Type				=1;
+		ele00.getElementsByClassName("E_E2B_Time_Type_SEL")[0].selectedIndex			=Audio_URL_STR_CLS.VAL.E_E2B_Time_Type			=1;
+		//==========DIVISION==========
 		if ( ele01.selectedIndex>=0 && ele01.selectedIndex<=9 )
 		{
 			ele00.getElementsByClassName("ITime_Type_SEL")[0].selectedIndex				=Audio_URL_STR_CLS.VAL.ITime_Type				=3;
@@ -1291,17 +1299,33 @@ function Audio_Setting_Use()
 			ele00.getElementsByClassName("Random_Play_VID_Type_SEL")[0].selectedIndex	=Audio_URL_STR_CLS.VAL.Random_Play_VID_Type		=num01;
 		}
 		else		{}
+		//==========DIVISION==========
+		var elel_RP_BTN=ele00.getElementsByClassName("RP_BTN");
+		var elel_TD_Audio=ele00.getElementsByClassName("TD_Audio");
+		for (i=0;i<Random_Play_VID_EAB_Cache_ARR.length;)
+		{
+			AR_ID=Random_Play_VID_EAB_Cache_ARR[i];
+			elel_RP_BTN[AR_ID].click();
+			elel_TD_Audio[AR_ID].getElementsByTagName("video")[0].pause();
+		}
+		//==========DIVISION==========
 		ele00.getElementsByClassName("Random_Play_Do_ST_NUM_CLS")[0].value				=Audio_URL_STR_CLS.VAL.Random_Play_Do_ST_NUM	=1;
 		//ele00.getElementsByClassName("Random_Play_VID_Type_SEL")[0].selectedIndex		=Audio_URL_STR_CLS.VAL.Random_Play_VID_Type		=1;
 		ele00.getElementsByClassName("Audio_Long")[0].click();
-		ele00.getElementsByClassName("Random_Play_Do_ST_Switch_CLS")[0].click();
+		if ( Audio_URL_STR_CLS.VAL.Random_Play_Do_ST_Switch==0 )	{ele00.getElementsByClassName("Random_Play_Do_ST_Switch_CLS")[0].click();	}
 		//==========DIVISION==========
-		var elel_RP_BTN=ele00.getElementsByClassName("RP_BTN");
+		num00=0;
 		arr00=[[0],[2],[4],[6],[10],[1],[3],[5],[7],[11],
 				[76,77,78,79,80,81,82,83],[76,77,78,79,80,81,82,83],[76,77,78,79,80,81,82,83],[76,77,78,79,80,81,82,83]][ele01.selectedIndex];
 		for (i=0;i<arr00.length;i++)
 		{
 			AR_ID=arr00[i];elel_RP_BTN[AR_ID].click();
+			if ( num00==0 )
+			{
+				if ( ele01.selectedIndex>=0 && ele01.selectedIndex<=9 )		{elel_TD_Audio[AR_ID].getElementsByTagName("video")[0].play();num00++;}
+				else				{}
+			}
+			else				{}
 		}
 		//==========DIVISION==========
 	}
