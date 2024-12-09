@@ -458,7 +458,7 @@ var Audio_URL_STR_CLS						=
 			if ( Speed_2_Time_Fun_Type==0 )
 			{
 				//==============================Fun_EVAL_Code_Area("00000000").Begin==============================
-				//"↑":ITime_2_Time_TTI_SD_ID_ARR;Speed_2_Time_TTI_SD_ID_ARR;
+				//"↑":ITime_2_Time_TTI_SD_ID_ARR;Volume_2_Time_TTI_SD_ID_ARR;Speed_2_Time_TTI_SD_ID_ARR;
 				//var TTI_SD_ID=30;
 				var Audio_VAR_CLS=(function(Evoke_By_OBJ,TTI_SD_ID)
 				{
@@ -490,7 +490,7 @@ var Audio_URL_STR_CLS						=
 			else if ( Speed_2_Time_Fun_Type==1 )
 			{
 				//==============================Fun_EVAL_Code_Area("00000001").Begin==============================
-				//"↑":ITime_2_Time_TTI_SD_ID_ARR;Speed_2_Time_TTI_SD_ID_ARR;
+				//"↑":ITime_2_Time_TTI_SD_ID_ARR;Volume_2_Time_TTI_SD_ID_ARR;Speed_2_Time_TTI_SD_ID_ARR;
 				//var TTI_SD_ID=30;
 				var Audio_VAR_CLS=(function(Evoke_By_OBJ,TTI_SD_ID)
 				{
@@ -518,7 +518,7 @@ var Audio_URL_STR_CLS						=
 			else if ( Speed_2_Time_Fun_Type==2 )
 			{
 				//==============================Fun_EVAL_Code_Area("00000002").Begin==============================
-				//"↑":ITime_2_Time_TTI_SD_ID_ARR;Speed_2_Time_TTI_SD_ID_ARR;
+				//"↑":ITime_2_Time_TTI_SD_ID_ARR;Volume_2_Time_TTI_SD_ID_ARR;Speed_2_Time_TTI_SD_ID_ARR;
 				//var TTI_SD_ID=30;
 				var Audio_VAR_CLS=(function(Evoke_By_OBJ,TTI_SD_ID)
 				{
@@ -546,7 +546,7 @@ var Audio_URL_STR_CLS						=
 			else if ( Speed_2_Time_Fun_Type==3 )
 			{
 				//==============================Fun_EVAL_Code_Area("00000003").Begin==============================
-				//"↑":ITime_2_Time_TTI_SD_ID_ARR;Speed_2_Time_TTI_SD_ID_ARR;
+				//"↑":ITime_2_Time_TTI_SD_ID_ARR;Volume_2_Time_TTI_SD_ID_ARR;Speed_2_Time_TTI_SD_ID_ARR;
 				//var TTI_SD_ID=30;
 				var Audio_VAR_CLS=(function(Evoke_By_OBJ,TTI_SD_ID)
 				{
@@ -2846,7 +2846,8 @@ function BEXXXXX_BETTI_VAL_Set_Do(evt_target)
 		ele_BITime_CLS					.value				=Audio_URL_STR_CLS.VAL.BITime					=[0   ,0   ,0   ,0.5 ]	[num00%4];
 		ele_EITime_CLS					.value				=Audio_URL_STR_CLS.VAL.EITime					=[0.5 ,1   ,1.5 ,1.5 ]	[num00%4];
 		ele_BEITime_BTTI_CLS			.value				=Audio_URL_STR_CLS.VAL.BEITime_BTTI				=[0   ,0   ,500 ,1500]	[num00%4];
-		ele_BEITime_ETTI_CLS			.value				=Audio_URL_STR_CLS.VAL.BEITime_ETTI				=[500 ,1000,1500,2500]	[num00%4];
+		ele_BEITime_ETTI_CLS			.value				=Audio_URL_STR_CLS.VAL.BEITime_ETTI				=[500 ,1000,1500,2500]	[num00%4] * 
+																											[1,10][parseInt(2 * Math.random(),10)];
 		//	ele_BEITime_BETTI_VAL_Set_SEL	.selectedIndex		=Audio_URL_STR_CLS.VAL.BEITime_BETTI_VAL_Set	=[0][num00];
 		//	ele_ITime_2_Time_Fun_Type_SEL	.selectedIndex		=Audio_URL_STR_CLS.VAL.ITime_2_Time_Fun_Type	=[0][num00];
 
