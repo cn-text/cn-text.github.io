@@ -471,6 +471,12 @@ var Audio_URL_STR_CLS						=
 						var EITime=Audio_URL_STR_CLS.VAL.EITime;
 						v=(BITime + (EITime - BITime) / 2) + Math.sin(Math.PI / 2 / 90 * t) * (EITime - BITime) / (1 - (-1));//-1 - 1;
 					}
+					else if ( Evoke_By_OBJ=="Volume" )
+					{
+						var BVolume=Audio_URL_STR_CLS.VAL.BVolume;
+						var EVolume=Audio_URL_STR_CLS.VAL.EVolume;
+						v=(BVolume + (EVolume - BVolume) / 2) + Math.sin(Math.PI / 2 / 90 * t) * (EVolume - BVolume) / (1 - (-1));//-1 - 1;
+					}
 					else if ( Evoke_By_OBJ=="Speed" )
 					{
 						v=Math.sin(Math.PI / 2 / 90 * t) + 1.5;//0.5-2.5;
@@ -492,6 +498,10 @@ var Audio_URL_STR_CLS						=
 					t=TTI_SD_ID;
 					v="?????00000001?????";
 					if ( Evoke_By_OBJ=="ITime" )
+					{
+						v="?????00000001?????";
+					}
+					else if ( Evoke_By_OBJ=="Volume" )
 					{
 						v="?????00000001?????";
 					}
@@ -519,6 +529,10 @@ var Audio_URL_STR_CLS						=
 					{
 						v="?????00000002?????";
 					}
+					else if ( Evoke_By_OBJ=="Volume" )
+					{
+						v="?????00000002?????";
+					}
 					else if ( Evoke_By_OBJ=="Speed" )
 					{
 						v="?????00000002?????";
@@ -540,6 +554,10 @@ var Audio_URL_STR_CLS						=
 					t=TTI_SD_ID;
 					v="?????00000003?????";
 					if ( Evoke_By_OBJ=="ITime" )
+					{
+						v="?????00000003?????";
+					}
+					else if ( Evoke_By_OBJ=="Volume" )
 					{
 						v="?????00000003?????";
 					}
