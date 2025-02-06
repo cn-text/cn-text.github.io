@@ -1815,7 +1815,7 @@ function ASP_CLS_INI()
 	str00="";
 	for (ID=0;ID<LEN;ID++)
 	{
-		str00+="<option>" + ASP_CLS.VAL.Audio_Section_Data_Name_ARR[ID] + "</option>";
+		str00+="<option>" + ("0".repeat(4) + ID.toString()).slice(-4) + " : " + ASP_CLS.VAL.Audio_Section_Data_Name_ARR[ID] + "</option>";
 	}
 	ele_Audio_Section_Data_SEL.innerHTML=str00;
 	ele_Audio_Section_Data_SEL.selectedIndex		=ASP_CLS.VAL.Audio_Section_Data_ID;
@@ -1917,49 +1917,62 @@ function URL_VAR_INI()
 	eval(Parameter_Base_STR_ijk_XX(5));
 	var ID,LEN,ID_LEN;
 	//==========DIVISION==========
-	str00=location.href.replace(/^.+[\?\&]asdta=([^\&]+)\&.+$/gm,"$1")
-	if ( location.href==str00 )		{return;}
-	str00=decodeURIComponent(str00);
-	eval("arr00=" + str00.replace(/\],$/gm,"];"));
-	//console.log(JSON.stringify(arr00,null,"\t"));
-	//==========DIVISION==========
-	var TAB_STR="\tj";
-	var TAB_STR="\t";
-	var TAB_STR=" ".repeat(4);
-	//==========DIVISION==========
-	var Audio_Section_Data_CARR=arr00;
-	var Audio_Section_Data_CSTR;
-	Audio_Section_Data_CSTR="";
-	Audio_Section_Data_CSTR+="[" + "\n";
-	for (i=0;i<Audio_Section_Data_CARR.length;i++)
+	str00=location.href.replace(/^.+[\?\&]asds=([^\&]+)\&.*$/gm,"$1");
+	if ( location.href!=str00 )
 	{
-		Audio_Section_Data_CSTR+=TAB_STR + "[" + "\n";
-		for (j=0;j<Audio_Section_Data_CARR[i].length;j++)
-		{
-			if ( j==0 )
-			{
-				Audio_Section_Data_CSTR+=TAB_STR.repeat(2) + JSON.stringify(Audio_Section_Data_CARR[i][j]) + "," + "\n";
-			}
-			else if ( j>=1 )
-			{
-				Audio_Section_Data_CSTR+=TAB_STR.repeat(2) + "[" + "\n";
-				for (k=0;k<Audio_Section_Data_CARR[i][j].length;k++)
-				{
-					Audio_Section_Data_CSTR+=TAB_STR.repeat(3) + JSON.stringify(Audio_Section_Data_CARR[i][j][k]) + "," + "\n";
-				}
-				Audio_Section_Data_CSTR+=TAB_STR.repeat(2) + "]," + "\n";
-			}
-			else		{}
-		}
-		Audio_Section_Data_CSTR+=TAB_STR + "]," + "\n";
+		ele_Audio_Section_Data_SEL.selectedIndex=parseInt(str00,10);
+		ele=ele_Audio_Table;	evt={target:ele_Audio_Section_Data_SEL};	n=2;	TEXT_ATTRIBUTION(ele,evt,n);
+		ele_Audio_Section_Do_Start_BTN.click();
 	}
-	Audio_Section_Data_CSTR+="]," + "\n";
+	else		{}
 	//==========DIVISION==========
-	ele_Audio_Section_Data_CLS.value=Audio_Section_Data_CSTR;
-	eval("ASP_CLS.VAL.Audio_Section_Data_AARR=" + ele_Audio_Section_Data_CLS.value.replace(/^\],$/gm,"];"));
-	Audio_Section_Data_DARR_FARR_OARR_INI_Via_AARR();
-	ele_Audio_Section_Data_2_URL_BTN.click();
-	ele_Audio_Section_Do_Start_BTN.click();
+	str00=location.href.replace(/^.+[\?\&]asdta=([^\&]+)\&.*$/gm,"$1");
+	if ( location.href!=str00 )
+	{
+		str00=decodeURIComponent(str00);
+		eval("arr00=" + str00.replace(/\],$/gm,"];"));
+		//console.log(JSON.stringify(arr00,null,"\t"));
+		//==========DIVISION==========
+		var TAB_STR="\tj";
+		var TAB_STR="\t";
+		var TAB_STR=" ".repeat(4);
+		//==========DIVISION==========
+		var Audio_Section_Data_CARR=arr00;
+		var Audio_Section_Data_CSTR;
+		Audio_Section_Data_CSTR="";
+		Audio_Section_Data_CSTR+="[" + "\n";
+		for (i=0;i<Audio_Section_Data_CARR.length;i++)
+		{
+			Audio_Section_Data_CSTR+=TAB_STR + "[" + "\n";
+			for (j=0;j<Audio_Section_Data_CARR[i].length;j++)
+			{
+				if ( j==0 )
+				{
+					Audio_Section_Data_CSTR+=TAB_STR.repeat(2) + JSON.stringify(Audio_Section_Data_CARR[i][j]) + "," + "\n";
+				}
+				else if ( j>=1 )
+				{
+					Audio_Section_Data_CSTR+=TAB_STR.repeat(2) + "[" + "\n";
+					for (k=0;k<Audio_Section_Data_CARR[i][j].length;k++)
+					{
+						Audio_Section_Data_CSTR+=TAB_STR.repeat(3) + JSON.stringify(Audio_Section_Data_CARR[i][j][k]) + "," + "\n";
+					}
+					Audio_Section_Data_CSTR+=TAB_STR.repeat(2) + "]," + "\n";
+				}
+				else		{}
+			}
+			Audio_Section_Data_CSTR+=TAB_STR + "]," + "\n";
+		}
+		Audio_Section_Data_CSTR+="]," + "\n";
+		//==========DIVISION==========
+		ele_Audio_Section_Data_CLS.value=Audio_Section_Data_CSTR;
+		eval("ASP_CLS.VAL.Audio_Section_Data_AARR=" + ele_Audio_Section_Data_CLS.value.replace(/^\],$/gm,"];"));
+		Audio_Section_Data_DARR_FARR_OARR_INI_Via_AARR();
+		ele_Audio_Section_Data_2_URL_BTN.click();
+		ele_Audio_Section_Do_Start_BTN.click();
+		//==========DIVISION==========
+	}
+	else		{}
 	//==========DIVISION==========
 }
 
@@ -1980,8 +1993,8 @@ function URL_VAR_Do()
 	//if ( ASUC==1 )			{ele_Audio_Setting_Use_CLS.click();}
 	//==========DIVISION==========
 	//Ex.:
-	////Audio_Section_Player_01.html?ucs=2&asuc=1&w=
-	//Audio_Section_Player_01.html?ucs=2&w=
+	////Audio_Section_Player.html?ucs=2&asuc=1&w=
+	//Audio_Section_Player.html?ucs=2&w=
 	//==========DIVISION==========
 }
 
