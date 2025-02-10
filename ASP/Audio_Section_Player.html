@@ -4829,12 +4829,11 @@ function Initiation()
 	}
 	//==========DIVISION==========
 	ASP_CLS_INI();
+	if ( location.href.indexOf("https://")==0 )		{ele_Network_Type_CLS.click();}
 	ele_Audio_List_Load_BTN.click();
 	URL_VAR_INI();
 	URL_VAR_Do();
 	ELE_Hint_Do({Hint_Do_Time:0,this_step:0});
-	//==========DIVISION==========
-	if ( location.href.indexOf("https://")==0 )		{ele_Network_Type_CLS.click();}
 	//==========DIVISION==========
 	Initiation_Flag=1;
 	//==========DIVISION==========
