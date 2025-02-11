@@ -21,6 +21,9 @@ input.MultiPlier_CLS								{width:70px;}
 input.Audio_Setting_Use_CLS							{}
 select.Usage_Collection_SEL							{width:100px;}
 
+select.Play_List_ID_SEL								{width:175px;}
+input.Play_List_MP3_Num_CLS							{width:40px;}
+
 input.ITime_EAB										{width:20px;}
 input.ITime_CLS										{width:75px;}
 select.ITime_Type_SEL								{width:75px;}
@@ -160,6 +163,10 @@ var Audio_URL_STR_CLS						=
 	VAL										:
 	{
 		//==========DIVISION==========
+		Play_List_ID						:	0,
+		Play_List_ARR						:	[],
+		Play_List_MP3_Num					:	20,
+		//==========DIVISION==========
 		//Audio_Setting_Use					:	0,
 		Usage_Collection					:	0,
 		//==========DIVISION==========
@@ -184,10 +191,10 @@ var Audio_URL_STR_CLS						=
 		E_E2B_Time_Type						:	0,//0;1;
 		//	0 : End_Time .
 		//	1 : End_2_Begin_Time .
-		BITime								:	0.500,
-		EITime								:	3.500,
-		BEITime_BTTI						:	60000,
-		BEITime_ETTI						:	180000,
+		BITime								:	0,//0.500,
+		EITime								:	2.000,//3.500,
+		BEITime_BTTI						:	0,//2000,//60000,
+		BEITime_ETTI						:	1000,//3000,//180000,
 		Multi_Video_ITime_Timer_ID_ARR		:	[],
 		BEITime_BETTI_VAL_Set				:	0,
 		ITime_2_Time_Fun_Type				:	0,
@@ -226,7 +233,7 @@ var Audio_URL_STR_CLS						=
 		//	4 : Begin to End Random Speed , change after video duration seconds .
 		//	5 : Begin to End Random Speed , change after video duration random seconds .
 		//	6 : Begin to End Random Speed , eval : v=f(t) .
-		BSpeed								:	0.300,
+		BSpeed								:	0.100,
 		ESpeed								:	2.700,
 		BESpeed_BTTI						:	60000,
 		BESpeed_ETTI						:	180000,
@@ -387,6 +394,65 @@ var Audio_URL_STR_CLS						=
 	//==========DIVISION==========
 };
 
+function Play_List_Random_INI()
+{
+	//==========DIVISION==========
+	eval(Parameter_Base_STR_ijk_XX(5));
+	//==========DIVISION==========
+	var ele00=document.getElementsByClassName("Play_List_ID_SEL")[0];
+	var MP3_Base_Duraion_ARR=[0.1,0.2,0.3];
+	var MP3_Base_Duraion_ID;
+	var MP3_Base_Repeat_Num_ARR=[1000,700,500];
+	//==========DIVISION==========
+	for (i=1;i<ele00.options.length;i++)
+	{
+		//==========DIVISION==========
+		arr00=[[],[],[],[]];
+		arr01=[[],[],[],[]];
+		arr02=[[]];
+		//==========DIVISION==========
+		j=parseInt((i - 1) / 5,10);
+		k=(i - 1) % 5;
+		for (m=0;m<Audio_URL_STR_CLS.VAL.Play_List_MP3_Num;m++)
+		{
+			//==========DIVISION==========
+			arr00[0].push(("0".repeat(4) + m.toString()).slice(-4));
+			str00="X1";
+			arr00[1].push(str00);
+			//DFJF_MP3_Result/Single_00_0.1/AS_0.1_0000.mp3
+			str01=("0".repeat(4) + (k * Audio_URL_STR_CLS.VAL.Play_List_MP3_Num + m).toString()).slice(-4);
+			str02="AS_" + MP3_Base_Duraion_ARR[j].toString() + "_" + 
+				("0".repeat(4) + (k * Audio_URL_STR_CLS.VAL.Play_List_MP3_Num + m).toString()).slice(-4);
+			arr00[2].push("DFJF_MP3_Result/Single_" + ("0".repeat(2) + j.toString()).slice(-2) + "_" + MP3_Base_Duraion_ARR[j].toString() + 
+				"/" + str02 + ".mp3");
+			arr00[3].push(str02);
+			//==========DIVISION==========
+			arr01[0].push(("0".repeat(4) + m.toString()).slice(-4));
+			str00="X" + ("0".repeat(4) + (MP3_Base_Repeat_Num_ARR[j]).toString()).slice(-4);
+			arr01[1].push(str00);
+			//DFJF_MP3_Result/Repeat_00_0.1_X1000/AS_0.1_X1000_0000.mp3
+			str01=("0".repeat(4) + (k * Audio_URL_STR_CLS.VAL.Play_List_MP3_Num + m).toString()).slice(-4);
+			str02="AS_" + MP3_Base_Duraion_ARR[j].toString() + "_" + str00 + "_" + str01;
+			arr01[2].push("DFJF_MP3_Result/Repeat_" + ("0".repeat(2) + j.toString()).slice(-2) + "_" + MP3_Base_Duraion_ARR[j].toString() + 
+				"_" + str00 + "/" + str02 + ".mp3");
+			arr01[3].push(str02);
+			//==========DIVISION==========
+			arr02[0].push(MP3_Base_Duraion_ARR[j].toString() + "00");
+			//==========DIVISION==========
+		}
+		//==========DIVISION==========
+		Audio_URL_STR_CLS.VAL.Play_List_ARR[i]=
+		{
+			Short_ARR			:	arr00,
+			Long_ARR			:	arr01,
+			Time_Info_ARR		:	arr02,
+		};
+		//==========DIVISION==========
+	}
+	console.log(Audio_URL_STR_CLS.VAL.Play_List_ARR);
+	//==========DIVISION==========
+}
+
 function Audio_URL_STR_CLS_INI()
 {
 	//====================DIVISION====================
@@ -533,6 +599,39 @@ function Audio_URL_STR_CLS_INI()
 	//==========DIVISION==========
 	//====================DIVISION====================
 	//==========DIVISION==========
+	ele00=document.getElementsByClassName("Play_List_ID_SEL")[0];
+	str00="";
+	str00+='<option title="00 : ET_BGM_ORI_0000">00 : ET_BGM_ORI_0000</option>';
+	str00+='<option title="01 : Audio_Section_Random_00_0.1_0000">01 : ASR_00_0.1_0000</option>';
+	str00+='<option title="02 : Audio_Section_Random_00_0.1_0001">02 : ASR_00_0.1_0001</option>';
+	str00+='<option title="03 : Audio_Section_Random_00_0.1_0002">03 : ASR_00_0.1_0002</option>';
+	str00+='<option title="04 : Audio_Section_Random_00_0.1_0003">04 : ASR_00_0.1_0003</option>';
+	str00+='<option title="05 : Audio_Section_Random_00_0.1_0004">05 : ASR_00_0.1_0004</option>';
+	str00+='<option title="06 : Audio_Section_Random_01_0.2_0000">06 : ASR_01_0.2_0000</option>';
+	str00+='<option title="07 : Audio_Section_Random_01_0.2_0001">07 : ASR_01_0.2_0001</option>';
+	str00+='<option title="08 : Audio_Section_Random_01_0.2_0002">08 : ASR_01_0.2_0002</option>';
+	str00+='<option title="09 : Audio_Section_Random_01_0.2_0003">09 : ASR_01_0.2_0003</option>';
+	str00+='<option title="10 : Audio_Section_Random_01_0.2_0004">10 : ASR_01_0.2_0004</option>';
+	str00+='<option title="11 : Audio_Section_Random_02_0.3_0000">11 : ASR_02_0.3_0000</option>';
+	str00+='<option title="12 : Audio_Section_Random_02_0.3_0001">12 : ASR_02_0.3_0001</option>';
+	str00+='<option title="13 : Audio_Section_Random_02_0.3_0002">13 : ASR_02_0.3_0002</option>';
+	str00+='<option title="14 : Audio_Section_Random_02_0.3_0003">14 : ASR_02_0.3_0003</option>';
+	str00+='<option title="15 : Audio_Section_Random_02_0.3_0004">15 : ASR_02_0.3_0004</option>';
+	ele00.innerHTML=str00;
+	ele00.selectedIndex=Audio_URL_STR_CLS.VAL.Play_List_ID=0;
+	//==========DIVISION==========
+	Audio_URL_STR_CLS.VAL.Play_List_ARR=createArray(ele00.length);
+	Audio_URL_STR_CLS.VAL.Play_List_ARR[0]=
+	{
+		Short_ARR			:	Audio_URL_STR_CLS.Short_ARR,
+		Long_ARR			:	Audio_URL_STR_CLS.Long_ARR,
+		Time_Info_ARR		:	Audio_URL_STR_CLS.Time_Info_ARR,
+	};
+	//==========DIVISION==========
+	Play_List_Random_INI();
+	//==========DIVISION==========
+	//====================DIVISION====================
+	//==========DIVISION==========
 	Audio_URL_STR_CLS.Network_Type=0;//0:"OFF";1:"ON";
 	document.getElementsByClassName("Network_Type_CLS")[0].value="OFF";
 	//==========DIVISION==========
@@ -603,13 +702,13 @@ function Audio_URL_STR_CLS_INI()
 	ele00.disabled=[true,false][Audio_URL_STR_CLS.VAL.ITime_EAB];
 	//==========DIVISION==========
 	ele00=document.getElementsByClassName("Audio_ET_BGM_Ctrl_Table")[0].getElementsByClassName("BITime_CLS")[0];
-	ele00.disabled=[true,false][Audio_URL_STR_CLS.VAL.ITime_EAB];		ele00.value=Audio_URL_STR_CLS.VAL.BITime=0.500;
+	ele00.disabled=[true,false][Audio_URL_STR_CLS.VAL.ITime_EAB];		ele00.value=Audio_URL_STR_CLS.VAL.BITime=0;//0.500;
 	ele01=document.getElementsByClassName("Audio_ET_BGM_Ctrl_Table")[0].getElementsByClassName("EITime_CLS")[0];
-	ele01.disabled=[true,false][Audio_URL_STR_CLS.VAL.ITime_EAB];		ele01.value=Audio_URL_STR_CLS.VAL.EITime=3.500;
+	ele01.disabled=[true,false][Audio_URL_STR_CLS.VAL.ITime_EAB];		ele01.value=Audio_URL_STR_CLS.VAL.EITime=2.000;//3.500;
 	ele02=document.getElementsByClassName("Audio_ET_BGM_Ctrl_Table")[0].getElementsByClassName("BEITime_BTTI_CLS")[0];
-	ele02.disabled=[true,false][Audio_URL_STR_CLS.VAL.ITime_EAB];		ele02.value=Audio_URL_STR_CLS.VAL.BEITime_BTTI=2000;//60000;
+	ele02.disabled=[true,false][Audio_URL_STR_CLS.VAL.ITime_EAB];		ele02.value=Audio_URL_STR_CLS.VAL.BEITime_BTTI=0;//2000;//60000;
 	ele03=document.getElementsByClassName("Audio_ET_BGM_Ctrl_Table")[0].getElementsByClassName("BEITime_ETTI_CLS")[0];
-	ele03.disabled=[true,false][Audio_URL_STR_CLS.VAL.ITime_EAB];		ele03.value=Audio_URL_STR_CLS.VAL.BEITime_ETTI=3000;//180000;
+	ele03.disabled=[true,false][Audio_URL_STR_CLS.VAL.ITime_EAB];		ele03.value=Audio_URL_STR_CLS.VAL.BEITime_ETTI=1000;//3000;//180000;
 	//==========DIVISION==========
 	ele00=document.getElementsByClassName("Audio_ET_BGM_Ctrl_Table")[0].getElementsByClassName("ITime_2_Time_Fun_Type_SEL")[0];
 	str00="";
@@ -699,7 +798,7 @@ function Audio_URL_STR_CLS_INI()
 	ele00.disabled=[true,false][Audio_URL_STR_CLS.VAL.Speed_EAB];
 	//==========DIVISION==========
 	ele00=document.getElementsByClassName("Audio_ET_BGM_Ctrl_Table")[0].getElementsByClassName("BSpeed_CLS")[0];
-	ele00.disabled=[true,false][Audio_URL_STR_CLS.VAL.Speed_EAB];		ele00.value=Audio_URL_STR_CLS.VAL.BSpeed=0.300;
+	ele00.disabled=[true,false][Audio_URL_STR_CLS.VAL.Speed_EAB];		ele00.value=Audio_URL_STR_CLS.VAL.BSpeed=0.100;
 	ele01=document.getElementsByClassName("Audio_ET_BGM_Ctrl_Table")[0].getElementsByClassName("ESpeed_CLS")[0];
 	ele01.disabled=[true,false][Audio_URL_STR_CLS.VAL.Speed_EAB];		ele01.value=Audio_URL_STR_CLS.VAL.ESpeed=2.700;
 	ele02=document.getElementsByClassName("Audio_ET_BGM_Ctrl_Table")[0].getElementsByClassName("BESpeed_BTTI_CLS")[0];
@@ -930,7 +1029,7 @@ function ITime_BME_Random_Gen(i)
 	var mrv;//Math.random();Value;
 	var rsv;//Result_Value;
 	//==========DIVISION==========
-	vb=Audio_URL_STR_CLS.VAL.BITime;	vm=1;		ve=Audio_URL_STR_CLS.VAL.EITime;
+	vb=Audio_URL_STR_CLS.VAL.BITime;	vm=1;		ve=Audio_URL_STR_CLS.VAL.EITime;	vm=(ve + vb) * 0.5;
 	rb=0;								rm=0.5;		re=1;
 	mrv=Math.random();
 	//==========DIVISION==========
@@ -980,7 +1079,7 @@ function Volume_BME_Random_Gen(i)
 	var mrv;//Math.random();Value;
 	var rsv;//Result_Value;
 	//==========DIVISION==========
-	vb=Audio_URL_STR_CLS.VAL.BVolume;	vm=1;		ve=Audio_URL_STR_CLS.VAL.EVolume;
+	vb=Audio_URL_STR_CLS.VAL.BVolume;	vm=0.5;		ve=Audio_URL_STR_CLS.VAL.EVolume;
 	rb=0;								rm=0.5;		re=1;
 	mrv=Math.random();
 	//==========DIVISION==========
@@ -1073,25 +1172,33 @@ function Audio_Switch(ele)
 		Audio_URL_STR_CLS.Audio_Type=ele.className;
 	}
 	else		{}
+	//==========DIVISION==========
 	if ( ele.className=="Audio_Short" )
 	{
-		arr00=Audio_URL_STR_CLS.Short_ARR[0];
-		arr01=Audio_URL_STR_CLS.Short_ARR[1];
-		arr02=Audio_URL_STR_CLS.Short_ARR[2];
-		arr03=Audio_URL_STR_CLS.Short_ARR[3];
+		arr00=Audio_URL_STR_CLS.Short_ARR[0]=Audio_URL_STR_CLS.VAL.Play_List_ARR[Audio_URL_STR_CLS.VAL.Play_List_ID].Short_ARR[0];
+		arr01=Audio_URL_STR_CLS.Short_ARR[1]=Audio_URL_STR_CLS.VAL.Play_List_ARR[Audio_URL_STR_CLS.VAL.Play_List_ID].Short_ARR[1];
+		arr02=Audio_URL_STR_CLS.Short_ARR[2]=Audio_URL_STR_CLS.VAL.Play_List_ARR[Audio_URL_STR_CLS.VAL.Play_List_ID].Short_ARR[2];
+		arr03=Audio_URL_STR_CLS.Short_ARR[3]=Audio_URL_STR_CLS.VAL.Play_List_ARR[Audio_URL_STR_CLS.VAL.Play_List_ID].Short_ARR[3];
 	}
 	else if ( ele.className=="Audio_Long" )
 	{
-		arr00=Audio_URL_STR_CLS.Long_ARR[0];
-		arr01=Audio_URL_STR_CLS.Long_ARR[1];
-		arr02=Audio_URL_STR_CLS.Long_ARR[2];
-		arr03=Audio_URL_STR_CLS.Long_ARR[3];
+		arr00=Audio_URL_STR_CLS.Long_ARR[0]=Audio_URL_STR_CLS.VAL.Play_List_ARR[Audio_URL_STR_CLS.VAL.Play_List_ID].Long_ARR[0];
+		arr01=Audio_URL_STR_CLS.Long_ARR[1]=Audio_URL_STR_CLS.VAL.Play_List_ARR[Audio_URL_STR_CLS.VAL.Play_List_ID].Long_ARR[1];
+		arr02=Audio_URL_STR_CLS.Long_ARR[2]=Audio_URL_STR_CLS.VAL.Play_List_ARR[Audio_URL_STR_CLS.VAL.Play_List_ID].Long_ARR[2];
+		arr03=Audio_URL_STR_CLS.Long_ARR[3]=Audio_URL_STR_CLS.VAL.Play_List_ARR[Audio_URL_STR_CLS.VAL.Play_List_ID].Long_ARR[3];
 	}
 	else		{}
 	//==========DIVISION==========
+	//console.log("Audio_URL_STR_CLS.VAL.Play_List_ID : " + Audio_URL_STR_CLS.VAL.Play_List_ID);
+	//console.log(arr00);
+	//console.log(arr01);
+	//console.log(arr02);
+	//console.log(arr03);
+	//==========DIVISION==========
 	var Base_URL_DIR=["",Audio_URL_STR_CLS.Base_URL_DIR][Audio_URL_STR_CLS.Network_Type];
 	//==========DIVISION==========
-	if ( Initiation_Flag==0 || Initiation_Flag==1 || ( Initiation_Flag==2 && Audio_URL_STR_CLS.VAL.MultiPlier_EAB==1 ) )
+	if ( Initiation_Flag==0 || Initiation_Flag==1 || ( Initiation_Flag==2 && Audio_URL_STR_CLS.VAL.MultiPlier_EAB==1 ) || 
+			Audio_URL_STR_CLS.VAL.Play_List_ID>=1 )
 	{
 		//==========DIVISION==========
 		num00=2;
@@ -1644,8 +1751,18 @@ function Current_Time_Calc(AR_ID,Interval_currentTime)
 		else if ( ICTime_Type==2 )		{currentTime_MOD=parseFloat(Interval_currentTime).toFixed(3);}
 		else		{}
 		//==========DIVISION==========
-		if ( E_E2B_Time_Type==0 )		{if ( currentTime_MOD>=duration_ORI )		{currentTime_MOD=duration_ORI;}}
-		else if ( E_E2B_Time_Type==1 )	{if ( currentTime_MOD>=duration_ORI )		{currentTime_MOD=currentTime_MOD % duration_ORI;}}
+		if ( E_E2B_Time_Type==0 )
+		{
+			if ( currentTime_MOD>=duration_ORI )	{currentTime_MOD=duration_ORI;}
+			else if ( currentTime_MOD<=0 )			{currentTime_MOD+=duration_ORI;}
+			else		{}
+		}
+		else if ( E_E2B_Time_Type==1 )
+		{
+			if ( currentTime_MOD>=duration_ORI )	{currentTime_MOD=currentTime_MOD % duration_ORI;}
+			else if ( currentTime_MOD<=0 )			{currentTime_MOD=currentTime_MOD % duration_ORI + duration_ORI;}
+			else		{}
+		}
 		else		{}
 		//==========DIVISION==========
 		if ( currentTime_MOD>=duration_ORI )		{currentTime_MOD=0;}
@@ -2958,7 +3075,7 @@ function TEXT_ATTRIBUTION(ele,evt,n)
 		var parseType="",parseType_STR="",RegExp_STR="";
 		//==========DIVISION==========
 		if ( ele.className=="Audio_ET_BGM_Table" && 
-				( evt_target.className=="MultiPlier_CLS" || 
+				( evt_target.className=="Play_List_MP3_Num_CLS" || evt_target.className=="MultiPlier_CLS" || 
 				//==========DIVISION==========
 				evt_target.className=="ITime_CLS" || 
 				evt_target.className=="BITime_CLS" || evt_target.className=="EITime_CLS" || 
@@ -2994,7 +3111,9 @@ function TEXT_ATTRIBUTION(ele,evt,n)
 				0 )
 				//==========DIVISION==========
 			{parseType="parseFloat";	parseType_STR="parseFloat(evt_target.value)";	RegExp_STR="[0-9\.]+";}
-			else if ( evt_target.className=="BEITime_BTTI_CLS" || evt_target.className=="BEITime_ETTI_CLS" || 
+			else if ( evt_target.className=="Play_List_MP3_Num_CLS" || 
+				//==========DIVISION==========
+				evt_target.className=="BEITime_BTTI_CLS" || evt_target.className=="BEITime_ETTI_CLS" || 
 				//==========DIVISION==========
 				evt_target.className=="BEVolume_BTTI_CLS" || evt_target.className=="BEVolume_ETTI_CLS" || 
 				//==========DIVISION==========
@@ -3028,7 +3147,8 @@ function TEXT_ATTRIBUTION(ele,evt,n)
 			//==========DIVISION==========
 		}
 		else if ( ele.className=="Audio_ET_BGM_Table" && 
-					( evt_target.className=="ITime_Type_SEL" || 
+					( evt_target.className=="Play_List_ID_SEL" || 
+					evt_target.className=="ITime_Type_SEL" || 
 					evt_target.className=="ICTime_Type_SEL" || evt_target.className=="E_E2B_Time_Type_SEL" || 
 					evt_target.className=="Volume_Type_SEL" || evt_target.className=="Speed_Type_SEL" || 
 					evt_target.className=="BEITime_BETTI_VAL_Set_SEL" || evt_target.className=="BEVolume_BETTI_VAL_Set_SEL" || 
@@ -3042,7 +3162,10 @@ function TEXT_ATTRIBUTION(ele,evt,n)
 			str00="Audio_URL_STR_CLS.VAL." + evt_target.className.replace(/_SEL$/gm,"") + "=" + parseType_STR + ";";
 			eval(str00);
 			//==========DIVISION==========
-			if ( evt_target.className=="BEITime_BETTI_VAL_Set_SEL" || evt_target.className=="BEVolume_BETTI_VAL_Set_SEL" || 
+			if ( evt_target.className=="Play_List_ID_SEL" )
+			{
+			}
+			else if ( evt_target.className=="BEITime_BETTI_VAL_Set_SEL" || evt_target.className=="BEVolume_BETTI_VAL_Set_SEL" || 
 					evt_target.className=="BESpeed_BETTI_VAL_Set_SEL" )
 			{
 				//	str00="";
@@ -3077,7 +3200,11 @@ function TEXT_ATTRIBUTION(ele,evt,n)
 		//==========DIVISION==========
 		//ele00=document.getElementsByClassName("Audio_ET_BGM_Ctrl_Table")[0].getElementsByClassName(Audio_URL_STR_CLS.Audio_Type)[0];
 		//Audio_Switch(ele00);
-		if ( ele.className=="Audio_ET_BGM_Table" && ( 
+		if ( ele.className=="Audio_ET_BGM_Table" && evt_target.className=="Play_List_MP3_Num_CLS" )
+		{
+			Play_List_Random_INI();
+		}
+		else if ( ele.className=="Audio_ET_BGM_Table" && ( 
 				//==========DIVISION==========
 				( evt_target.className=="ITime_Type_SEL" || evt_target.className=="ITime_CLS" || 
 				evt_target.className=="BITime_CLS" || evt_target.className=="EITime_CLS" || 
@@ -3180,7 +3307,7 @@ function Audio_ET_BGM_Hotkey_Mouse(ele,evt,post_method)
 
 		if ( ( evt.which == 33 || evt.which == 34 || evt.which == 38 || evt.which == 40 || evt.which == 36 || evt.which == 35 ) && 
 				ele.tagName.toUpperCase()=="TABLE" && 
-				( evt_target.className=="MultiPlier_CLS" || 
+				( evt_target.className=="Play_List_MP3_Num_CLS" || evt_target.className=="MultiPlier_CLS" || 
 				//==========DIVISION==========
 				evt_target.className=="ITime_CLS" || 
 				evt_target.className=="BITime_CLS" || evt_target.className=="EITime_CLS" || 
@@ -3205,11 +3332,12 @@ function Audio_ET_BGM_Hotkey_Mouse(ele,evt,post_method)
 			//==========DIVISION==========
 			NUM_MAX=10000*10000;
 			//==========DIVISION==========
-			if ( evt_target.className=="MultiPlier_CLS" )							{NUM_MIN=0;NUM_MAX=100;}
+			if ( evt_target.className=="Play_List_MP3_Num_CLS" )					{NUM_MIN=0;NUM_MAX=10000*10000;}
+			else if ( evt_target.className=="MultiPlier_CLS" )						{NUM_MIN=0;NUM_MAX=100;}
 			//==========DIVISION==========
-			else if ( evt_target.className=="ITime_CLS" )							{NUM_MIN=0;NUM_MAX=10000*10000;}
-			else if ( evt_target.className=="BITime_CLS" )							{NUM_MIN=0;NUM_MAX=10000*10000;}
-			else if ( evt_target.className=="EITime_CLS" )							{NUM_MIN=0;NUM_MAX=10000*10000;}
+			else if ( evt_target.className=="ITime_CLS" )							{NUM_MIN=-10000*10000;NUM_MAX=10000*10000;}
+			else if ( evt_target.className=="BITime_CLS" )							{NUM_MIN=-10000*10000;NUM_MAX=10000*10000;}
+			else if ( evt_target.className=="EITime_CLS" )							{NUM_MIN=-10000*10000;NUM_MAX=10000*10000;}
 			else if ( evt_target.className=="BEITime_BTTI_CLS" )					{NUM_MIN=0;NUM_MAX=10000*10000;}
 			else if ( evt_target.className=="BEITime_ETTI_CLS" )					{NUM_MIN=0;NUM_MAX=10000*10000;}
 			//==========DIVISION==========
@@ -3294,7 +3422,8 @@ function Audio_ET_BGM_Hotkey_Mouse(ele,evt,post_method)
 
 			evt_target.value=NUM_10;
 			//==========DIVISION==========
-			if ( evt_target.className=="MultiPlier_CLS" )							{Audio_URL_STR_CLS.VAL.MultiPlier			=parseFloat(NUM_10);}
+			if ( evt_target.className=="Play_List_MP3_Num_CLS" )					{Audio_URL_STR_CLS.VAL.Play_List_MP3_Num				=NUM_10;}
+			else if ( evt_target.className=="MultiPlier_CLS" )						{Audio_URL_STR_CLS.VAL.MultiPlier			=parseFloat(NUM_10);}
 			//==========DIVISION==========
 			else if ( evt_target.className=="ITime_CLS" )							{Audio_URL_STR_CLS.VAL.ITime				=parseFloat(NUM_10);}
 			else if ( evt_target.className=="BITime_CLS" )							{Audio_URL_STR_CLS.VAL.BITime				=parseFloat(NUM_10);}
@@ -3326,7 +3455,7 @@ function Audio_ET_BGM_Hotkey_Mouse(ele,evt,post_method)
 			//==========DIVISION==========
 			else																	{}
 			//==========DIVISION==========
-			if ( evt_target.className=="MultiPlier_CLS" || 
+			if ( evt_target.className=="Play_List_MP3_Num_CLS" || evt_target.className=="MultiPlier_CLS" || 
 					//==========DIVISION==========
 					evt_target.className=="ITime_CLS" || 
 					evt_target.className=="BITime_CLS" || evt_target.className=="EITime_CLS" || 
@@ -3349,7 +3478,11 @@ function Audio_ET_BGM_Hotkey_Mouse(ele,evt,post_method)
 			//==========DIVISION==========
 			//ele00=document.getElementsByClassName("Audio_ET_BGM_Ctrl_Table")[0].getElementsByClassName(Audio_URL_STR_CLS.Audio_Type)[0];
 			//Audio_Switch(ele00);
-			if ( ele.className=="Audio_ET_BGM_Table" && ( 
+			if ( ele.className=="Audio_ET_BGM_Table" && evt_target.className=="Play_List_MP3_Num_CLS" )
+			{
+				Play_List_Random_INI();
+			}
+			else if ( ele.className=="Audio_ET_BGM_Table" && ( 
 					//==========DIVISION==========
 					( evt_target.className=="ITime_Type_SEL" || evt_target.className=="ITime_CLS" || 
 					evt_target.className=="BITime_CLS" || evt_target.className=="EITime_CLS" || 
@@ -3446,12 +3579,14 @@ PC台式机电脑的两个音箱开最大声，让人听到了[李洪志能量]�
 <table class="Audio_ET_BGM_Table" cellSpacing=0 cellPadding=0 border=1 onkeydown=Audio_ET_BGM_Hotkey_Mouse(this,event,0) onmouseover=TEXT_ATTRIBUTION(this,event,0) onmouseout=TEXT_ATTRIBUTION(this,event,1) onchange=TEXT_ATTRIBUTION(this,event,2)><tbody>
 <tr><td><table class="Audio_ET_BGM_Ctrl_Table" cellSpacing=0 cellPadding=0 border=1><tbody>
 	<tr>
-		<td colspan=10><span>【从李洪志师父的真人讲法录音中】【用<a href="https://github.com/audacity/audacity/" target=_blank>Audacity</a>截取+合并的：】</span></td>
+		<td colspan=10><span>【从李洪志师父的真人讲法录音中】【用<a href="https://github.com/audacity/audacity/" target=_blank>Audacity</a>截取+合并的：】。</span><span><a href="ET_BGM_Portable.7z" target=_blank>HTML离线版下载</a>。</span></td>
 	</tr><tr>
 		<td><table cellSpacing=0 cellPadding=0 border=0><tbody><tr>
 			<td><span>「李洪志」「真善忍」「法輪功」「法輪大法」【无文字音频】：<a href="https://github.com/cn-text/cn-text.github.io/releases/tag/ET_BGM" target=_blank>全部下载</a>。</span></td>
 			<td><input type="button" class="Audio_Short" value="Short" onclick=Audio_Switch(this) style="background-color:#1EB0E9;"></td>
 			<td><input type="button" class="Audio_Long" value="Long" onclick=Audio_Switch(this) style="background-color:red;"></td>
+			<td><select class="Play_List_ID_SEL" title="Play_List_ID_SEL"></select></td>
+			<td><input type="text" class="Play_List_MP3_Num_CLS" title="Play_List_MP3_Num_CLS" value="20"></td>
 			<td><input type="button" class="Network_Type_CLS" value="OFF" onclick=Network_Type_Switch(this) style="background-color:red;"></td>
 			<td><input type="button" class="Audio_Setting_Use_CLS" value="Use" onclick=Audio_Setting_Use() style="background-color:red;"></td>
 			<td><select class="Usage_Collection_SEL" title="Usage_Collection_SEL"></select></td>
@@ -3494,7 +3629,7 @@ PC台式机电脑的两个音箱开最大声，让人听到了[李洪志能量]�
 			<td><input type="button" class="Speed_EAB" title="Speed_EAB" value="S" onclick=Speed_EAB_Switch(this)></td>
 			<td><input type="text" class="Speed_CLS" title="Speed_CLS" value="1"></td>
 			<td><select class="Speed_Type_SEL" title="Speed_Type_SEL"></select></td>
-			<td><input type="text" class="BSpeed_CLS" title="BSpeed_CLS" value="0.300"></td>
+			<td><input type="text" class="BSpeed_CLS" title="BSpeed_CLS" value="0.100"></td>
 			<td><input type="text" class="ESpeed_CLS" title="ESpeed_CLS" value="2.700"></td>
 			<td><input type="text" class="BESpeed_BTTI_CLS" title="BESpeed_BTTI_CLS" value="60000"></td>
 			<td><input type="text" class="BESpeed_ETTI_CLS" title="BESpeed_ETTI_CLS" value="180000"></td>
