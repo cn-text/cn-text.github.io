@@ -1,0 +1,634 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" type="text/css" href="BASE_CSS_STYLE.css">
+<script type="text/javascript" src="BASE_JAVASCRIPT_FUNCTION.js"></script>
+<title>Unicode_65536_Char_Table</title>
+<style type="text/css">
+*
+{
+	margin:						0px;
+	padding:					0px;
+}
+</style>
+
+<style type="text/css" class="CSS_Unicode_65536_Char_Table">
+table.Unicode_65536_Char_Table
+{
+	background-color:		white;
+	border-collapse:		collapse;
+	border-style:			solid;
+	border-width:			0px;
+	border-color:			red;
+	border-top-color:		blue;
+	border-left-color:		blue;
+	/*
+	border-bottom-color:	blue;
+	border-right-color:		blue;
+	*/
+}
+table.Unicode_65536_Char_Table td
+{
+	border-width:			1px;/*可以改大一点，4px。*/
+	width:					30px;
+	height:					30px;
+	font-size:				24px;
+}
+</style>
+
+<style type="text/css" class="CSS_SD">
+</style>
+</head>
+
+
+<body bgcolor=#CCE8CF>
+<script type="text/javascript">
+//========================================Base_Function========================================
+function Parameter_Base_STR_ijk_XX(p_num)
+{
+	var i,j,str00,arr00;
+	str00="";
+	str00+="var i,j,k,m,n,p,q,r,s,t;" + "\n";
+	arr00=["num","ele","elel","str","arr","cls","fun","formData","file"];
+	//arr00=["num","ele","elel",,"str","arr","torf","flag"];
+
+	for (i=0;i<arr00.length;i++)
+	{
+		str00+="var ";
+		for (j=0;j<p_num;j++)
+		{
+			str00+=arr00[i] + ("00" + j.toString()).slice(-2);
+			if ( j<(p_num - 1) )			{str00+=",";}
+			else if ( j==(p_num - 1) )		{str00+=";" + "\n";}
+			else							{}
+		}
+	}
+
+	return str00;
+}
+
+String.prototype.repeat = function( num )
+{
+	return new Array( num + 1 ).join( this );
+};
+
+String.prototype.toLowerUpperCase = function(LU_Type)
+{
+	if ( LU_Type=="L" )
+	{
+		return this.toLowerCase();
+	}
+	else if ( LU_Type=="U" )
+	{
+		return this.toUpperCase();
+	}
+	else		{}
+};
+//========================================Base_Function========================================
+//●
+function UIID_2_UIID_CVT(UIID,UONum,UINum,UIINum)
+{
+	//==========DIVISION==========
+	var OX_ORI,OY_ORI,IX_ORI,IY_ORI,IIX_ORI,IIY_ORI;
+	var OX_MOD,OY_MOD,IX_MOD,IY_MOD,IIX_MOD,IIY_MOD;
+	var UIID_CVT;
+	//==========DIVISION==========
+	UIID_CVT,UIID;180;
+	UONum,UINum,UIINum;
+	256,16,4;
+	//==========DIVISION==========
+	OX_ORI=UIID % UINum;				IX_ORI=Math.floor(OX_ORI / UIINum);	IIX_ORI=OX_ORI % UIINum;
+	//	4								1									0
+	OY_ORI=Math.floor(UIID / UINum);	IY_ORI=Math.floor(OY_ORI / UIINum);	IIY_ORI=OY_ORI % UIINum;
+	//	11								2									3
+	IX_MOD=IIY_ORI;	IIX_MOD=IIX_ORI;	OX_MOD=IX_MOD * UIINum + IIX_MOD;
+	//	3			0					12
+	IY_MOD=IY_ORI;	IIY_MOD=IX_ORI;		OY_MOD=IY_MOD * UIINum + IIY_MOD;
+	//	2			1					9
+	//==========DIVISION==========
+	UIID_CVT=OX_MOD + OY_MOD * UINum;
+	//==========DIVISION==========
+	return UIID_CVT;
+	//==========DIVISION==========
+}
+
+function Unicode_65536_Char_Text_Table_Print()
+{
+	//==========DIVISION==========
+	eval(Parameter_Base_STR_ijk_XX(10));
+	var Print_Method_ID;
+	var ID,LEN;
+	var UOID,UONum,UOSTR="",UIID,UINum,UISTR="";
+	var UIID_CVT;
+	var UIIID,UIINum,UIISTR="";
+	var UIID_PRESTR,NS,NST;
+	var UIIDLEN;
+	var CSS_ELE_ID,CSS_STR;
+	var LU_Type="U";
+	//==========DIVISION==========
+	Print_Method_ID="0023";
+	if (	Print_Method_ID=="0000" || Print_Method_ID=="0001" || Print_Method_ID=="0002" || 
+			Print_Method_ID=="0003" || Print_Method_ID=="0004" || Print_Method_ID=="0005" )
+	{
+		//==========DIVISION==========
+		arr00=[256,256,256,65536,65536,65536];
+		arr01=[16,16,16,256,256,256];
+		arr02=[4,4,4,16,16,16];
+		arr03=["&#","","","&#","",""];
+		arr04=[10,10,16,10,10,16];
+		arr05=[3,3,2,5,5,4];
+		Print_Method_ID=parseInt(Print_Method_ID,10);
+		UONum		=arr00[Print_Method_ID];
+		UINum		=arr01[Print_Method_ID];
+		UIINum		=arr02[Print_Method_ID];
+		UIID_PRESTR	=arr03[Print_Method_ID];
+		NS			=arr04[Print_Method_ID];
+		UIIDLEN		=arr05[Print_Method_ID];
+		NST			=16;
+		//==========DIVISION==========
+		for (UIID=0;UIID<UONum;UIID++)
+		{
+			//==========DIVISION==========
+			console.log("UIID : " + UIID);
+			//==========DIVISION==========
+			UISTR="";
+			if ( UIID%UINum==0 )				{UISTR+="<tr>";}
+			str00=("0".repeat(UIIDLEN) + UIID.toString(NS)).slice(-UIIDLEN).toLowerUpperCase(LU_Type);
+			UISTR+='<td title="' + str00 + " : " + parseInt(str00,10).toString(NST) + '">' + UIID_PRESTR + str00 + "</td>";
+			if ( UIID%UINum==(UINum - 1) )		{UISTR+="</tr>" + "\n";}
+			UOSTR+=UISTR;
+			//==========DIVISION==========
+		}
+		//==========DIVISION==========
+		CSS_STR="";
+		CSS_STR+="\n";
+		for (CSS_ELE_ID=UIINum;CSS_ELE_ID<=UINum;CSS_ELE_ID+=UIINum)
+		{
+			CSS_STR+="table.Unicode_65536_Char_Table tr:nth-child(" + CSS_ELE_ID.toString() + ")	{border-bottom-color:	blue;}" + "\n";
+			CSS_STR+="table.Unicode_65536_Char_Table td:nth-child(" + CSS_ELE_ID.toString() + ")	{border-right-color:	blue;}" + "\n";
+		}
+		document.getElementsByClassName("CSS_SD")[0].innerHTML=CSS_STR;
+		//==========DIVISION==========
+	}
+	else if (	Print_Method_ID=="0010" || Print_Method_ID=="0011" || Print_Method_ID=="0012" || 
+				Print_Method_ID=="0013" || Print_Method_ID=="0014" || Print_Method_ID=="0015" )
+	{
+		//==========DIVISION==========
+		arr00=[256,256,256,65536,65536,65536];
+		arr01=[16,16,16,256,256,256];
+		arr02=[4,4,4,16,16,16];
+		arr03=["&#","","","&#","",""];
+		arr04=[10,10,16,10,10,16];
+		arr05=[3,3,2,5,5,4];
+		Print_Method_ID=parseInt(Print_Method_ID,10) - 10;
+		UONum		=arr00[Print_Method_ID];
+		UINum		=arr01[Print_Method_ID];
+		UIINum		=arr02[Print_Method_ID];
+		UIID_PRESTR	=arr03[Print_Method_ID];
+		NS			=arr04[Print_Method_ID];
+		UIIDLEN		=arr05[Print_Method_ID];
+		NST			=16;
+		//==========DIVISION==========
+		for (UIID=0;UIID<UONum;UIID++)
+		{
+			//==========DIVISION==========
+			console.log("UIID : " + UIID);
+			//==========DIVISION==========
+			UISTR="";
+			if ( UIID%(UINum * UIINum)==0 )				{UISTR+="<tr>";}
+			if ( UIID%UINum==0 )						{UISTR+='<td><table cellSpacing=0 cellPadding=0 border=1 style="' + 
+														'border-collapse:collapse;border-style:solid;border-width:1px;border-color:blue;"><tbody>';}
+			//console.log("UIID%UINum : " + UIID%UINum);
+			//==========DIVISION==========
+			UIIID=UIID%UINum;
+			//console.log("UIIID : " + UIIID);
+			//console.log("UIIID%UIINum : " + UIIID%UIINum);
+			UIISTR="";
+			if ( UIIID%UIINum==0 )						{UIISTR+="<tr>";}
+			str00=("0".repeat(UIIDLEN) + UIID.toString(NS)).slice(-UIIDLEN).toLowerUpperCase(LU_Type);
+			UIISTR+='<td title="' + str00 + " : " + parseInt(str00,10).toString(NST) + '">' + UIID_PRESTR + str00 + "</td>";
+			if ( UIIID%UIINum==(UIINum - 1) )			{UIISTR+="</tr>" + "\n";}
+			UISTR+=UIISTR;
+			//==========DIVISION==========
+			if ( UIID%UINum==(UINum - 1) )				{UISTR+="</tbody></table></td>" + "\n";}
+			if ( UIID%UINum==(UINum * UIINum - 1) )		{UISTR+="</tr>" + "\n";}
+			UOSTR+=UISTR;
+			//==========DIVISION==========
+		}
+		//==========DIVISION==========
+	}
+	else if (	Print_Method_ID=="0020" || Print_Method_ID=="0021" || Print_Method_ID=="0022" || 
+				Print_Method_ID=="0023" || Print_Method_ID=="0024" || Print_Method_ID=="0025" )
+	{
+		//==========DIVISION==========
+		arr00=[256,256,256,65536,65536,65536];
+		arr01=[16,16,16,256,256,256];
+		arr02=[4,4,4,16,16,16];
+		arr03=["&#","","","&#","",""];
+		arr04=[10,10,16,10,10,16];
+		arr05=[3,3,2,5,5,4];
+		Print_Method_ID=parseInt(Print_Method_ID,10) - 20;
+		UONum		=arr00[Print_Method_ID];
+		UINum		=arr01[Print_Method_ID];
+		UIINum		=arr02[Print_Method_ID];
+		UIID_PRESTR	=arr03[Print_Method_ID];
+		NS			=arr04[Print_Method_ID];
+		UIIDLEN		=arr05[Print_Method_ID];
+		NST			=16;
+		//==========DIVISION==========
+		for (UIID=0;UIID<UONum;UIID++)
+		{
+			//==========DIVISION==========
+			console.log("UIID : " + UIID);
+			//==========DIVISION==========
+			UISTR="";
+			if ( UIID%UINum==0 )				{UISTR+="<tr>";}
+			UIID_CVT=UIID_2_UIID_CVT(UIID,UONum,UINum,UIINum);
+			str00=("0".repeat(UIIDLEN) + UIID_CVT.toString(NS)).slice(-UIIDLEN).toLowerUpperCase(LU_Type);
+			UISTR+='<td title="' + str00 + " : " + parseInt(str00,10).toString(NST) + '">' + UIID_PRESTR + str00 + "</td>";
+			if ( UIID%UINum==(UINum - 1) )		{UISTR+="</tr>" + "\n";}
+			UOSTR+=UISTR;
+			//==========DIVISION==========
+		}
+		//==========DIVISION==========
+		CSS_STR="";
+		CSS_STR+="\n";
+		for (CSS_ELE_ID=UIINum;CSS_ELE_ID<=UINum;CSS_ELE_ID+=UIINum)
+		{
+			CSS_STR+="table.Unicode_65536_Char_Table tr:nth-child(" + CSS_ELE_ID.toString() + ")	{border-bottom-color:	blue;}" + "\n";
+			CSS_STR+="table.Unicode_65536_Char_Table td:nth-child(" + CSS_ELE_ID.toString() + ")	{border-right-color:	blue;}" + "\n";
+		}
+		document.getElementsByClassName("CSS_SD")[0].innerHTML=CSS_STR;
+		//==========DIVISION==========
+	}
+	else if (	Print_Method_ID=="0030" || Print_Method_ID=="0031" || Print_Method_ID=="0032" || 
+				Print_Method_ID=="0033" || Print_Method_ID=="0034" || Print_Method_ID=="0035" )
+	{
+		//==========DIVISION==========
+		arr00=[1296,1296,1296,1679616,1679616,1679616];
+		arr01=[36,36,36,1296,1296,1296];
+		arr02=[6,6,6,36,36,36];
+		arr03=["&#","","","&#","",""];
+		arr04=[10,10,36,10,10,36];
+		arr05=[4,4,2,7,7,4];
+		Print_Method_ID=parseInt(Print_Method_ID,10) - 30;
+		UONum		=arr00[Print_Method_ID];
+		UINum		=arr01[Print_Method_ID];
+		UIINum		=arr02[Print_Method_ID];
+		UIID_PRESTR	=arr03[Print_Method_ID];
+		NS			=arr04[Print_Method_ID];
+		UIIDLEN		=arr05[Print_Method_ID];
+		NST			=36;
+		//==========DIVISION==========
+		for (UIID=0;UIID<UONum;UIID++)
+		{
+			//==========DIVISION==========
+			console.log("UIID : " + UIID);
+			//==========DIVISION==========
+			UISTR="";
+			if ( UIID%UINum==0 )				{UISTR+="<tr>";}
+			str00=("0".repeat(UIIDLEN) + UIID.toString(NS)).slice(-UIIDLEN).toLowerUpperCase(LU_Type);
+			UISTR+='<td title="' + str00 + " : " + parseInt(str00,10).toString(NST) + '">' + UIID_PRESTR + str00 + "</td>";
+			if ( UIID%UINum==(UINum - 1) )		{UISTR+="</tr>" + "\n";}
+			UOSTR+=UISTR;
+			//==========DIVISION==========
+		}
+		//==========DIVISION==========
+		CSS_STR="";
+		CSS_STR+="\n";
+		for (CSS_ELE_ID=UIINum;CSS_ELE_ID<=UINum;CSS_ELE_ID+=UIINum)
+		{
+			CSS_STR+="table.Unicode_65536_Char_Table tr:nth-child(" + CSS_ELE_ID.toString() + ")	{border-bottom-color:	blue;}" + "\n";
+			CSS_STR+="table.Unicode_65536_Char_Table td:nth-child(" + CSS_ELE_ID.toString() + ")	{border-right-color:	blue;}" + "\n";
+		}
+		document.getElementsByClassName("CSS_SD")[0].innerHTML=CSS_STR;
+		//==========DIVISION==========
+	}
+	else if (	Print_Method_ID=="0040" || Print_Method_ID=="0041" || Print_Method_ID=="0042" || 
+				Print_Method_ID=="0043" || Print_Method_ID=="0044" || Print_Method_ID=="0045" )
+	{
+		//==========DIVISION==========
+		arr00=[1296,1296,1296,1679616,1679616,1679616];
+		arr01=[36,36,36,1296,1296,1296];
+		arr02=[6,6,6,36,36,36];
+		arr03=["&#","","","&#","",""];
+		arr04=[10,10,36,10,10,36];
+		arr05=[4,4,2,7,7,4];
+		Print_Method_ID=parseInt(Print_Method_ID,10) - 40;
+		UONum		=arr00[Print_Method_ID];
+		UINum		=arr01[Print_Method_ID];
+		UIINum		=arr02[Print_Method_ID];
+		UIID_PRESTR	=arr03[Print_Method_ID];
+		NS			=arr04[Print_Method_ID];
+		UIIDLEN		=arr05[Print_Method_ID];
+		NST			=36;
+		//==========DIVISION==========
+		for (UIID=0;UIID<UONum;UIID++)
+		{
+			//==========DIVISION==========
+			console.log("UIID : " + UIID);
+			//==========DIVISION==========
+			UISTR="";
+			if ( UIID%(UINum * UIINum)==0 )				{UISTR+="<tr>";}
+			if ( UIID%UINum==0 )						{UISTR+='<td><table cellSpacing=0 cellPadding=0 border=1 style="' + 
+														'border-collapse:collapse;border-style:solid;border-width:1px;border-color:blue;"><tbody>';}
+			//console.log("UIID%UINum : " + UIID%UINum);
+			//==========DIVISION==========
+			UIIID=UIID%UINum;
+			//console.log("UIIID : " + UIIID);
+			//console.log("UIIID%UIINum : " + UIIID%UIINum);
+			UIISTR="";
+			if ( UIIID%UIINum==0 )						{UIISTR+="<tr>";}
+			str00=("0".repeat(UIIDLEN) + UIID.toString(NS)).slice(-UIIDLEN).toLowerUpperCase(LU_Type);
+			UIISTR+='<td title="' + str00 + " : " + parseInt(str00,10).toString(NST) + '">' + UIID_PRESTR + str00 + "</td>";
+			if ( UIIID%UIINum==(UIINum - 1) )			{UIISTR+="</tr>" + "\n";}
+			UISTR+=UIISTR;
+			//==========DIVISION==========
+			if ( UIID%UINum==(UINum - 1) )				{UISTR+="</tbody></table></td>" + "\n";}
+			if ( UIID%UINum==(UINum * UIINum - 1) )		{UISTR+="</tr>" + "\n";}
+			UOSTR+=UISTR;
+			//==========DIVISION==========
+		}
+		//==========DIVISION==========
+	}
+	else if (	Print_Method_ID=="0050" || Print_Method_ID=="0051" || Print_Method_ID=="0052" || 
+				Print_Method_ID=="0053" || Print_Method_ID=="0054" || Print_Method_ID=="0055" )
+	{
+		//==========DIVISION==========
+		arr00=[1296,1296,1296,1679616,1679616,1679616];
+		arr01=[36,36,36,1296,1296,1296];
+		arr02=[6,6,6,36,36,36];
+		arr03=["&#","","","&#","",""];
+		arr04=[10,10,36,10,10,36];
+		arr05=[4,4,2,7,7,4];
+		Print_Method_ID=parseInt(Print_Method_ID,10) - 50;
+		UONum		=arr00[Print_Method_ID];
+		UINum		=arr01[Print_Method_ID];
+		UIINum		=arr02[Print_Method_ID];
+		UIID_PRESTR	=arr03[Print_Method_ID];
+		NS			=arr04[Print_Method_ID];
+		UIIDLEN		=arr05[Print_Method_ID];
+		NST			=36;
+		//==========DIVISION==========
+		for (UIID=0;UIID<UONum;UIID++)
+		{
+			//==========DIVISION==========
+			console.log("UIID : " + UIID);
+			//==========DIVISION==========
+			UISTR="";
+			if ( UIID%UINum==0 )				{UISTR+="<tr>";}
+			UIID_CVT=UIID_2_UIID_CVT(UIID,UONum,UINum,UIINum);
+			str00=("0".repeat(UIIDLEN) + UIID_CVT.toString(NS)).slice(-UIIDLEN).toLowerUpperCase(LU_Type);
+			UISTR+='<td title="' + str00 + " : " + parseInt(str00,10).toString(NST) + '">' + UIID_PRESTR + str00 + "</td>";
+			if ( UIID%UINum==(UINum - 1) )		{UISTR+="</tr>" + "\n";}
+			UOSTR+=UISTR;
+			//==========DIVISION==========
+		}
+		//==========DIVISION==========
+		CSS_STR="";
+		CSS_STR+="\n";
+		for (CSS_ELE_ID=UIINum;CSS_ELE_ID<=UINum;CSS_ELE_ID+=UIINum)
+		{
+			CSS_STR+="table.Unicode_65536_Char_Table tr:nth-child(" + CSS_ELE_ID.toString() + ")	{border-bottom-color:	blue;}" + "\n";
+			CSS_STR+="table.Unicode_65536_Char_Table td:nth-child(" + CSS_ELE_ID.toString() + ")	{border-right-color:	blue;}" + "\n";
+		}
+		document.getElementsByClassName("CSS_SD")[0].innerHTML=CSS_STR;
+		//==========DIVISION==========
+	}
+	else		{}
+	//==========DIVISION==========
+	document.getElementsByClassName("Unicode_65536_Char_Table")[0].getElementsByTagName("tbody")[0].innerHTML="\n" + UOSTR;
+	console.log("Unicode_65536_Char_Text_Table_Print Over !");
+	//==========DIVISION==========
+}
+
+function Unicode_65536_Char_Canvas_Table_Print()
+{
+	//==========DIVISION==========
+	eval(Parameter_Base_STR_ijk_XX(10));
+	var Print_Method_ID,Print_Arrange_ID,Data_LEN_Type;
+	var ID,LEN;
+	var UOID,UONum,UOSTR="",UIID,UINum,UISTR="";
+	var UIID_CVT;
+	var UIIID,UIINum,UIISTR="";
+	var UIID_PRESTR,NS,NST;//NS_Text;
+	var UIIDLEN;
+	var CSS_ELE_ID,CSS_STR;
+	//==========DIVISION==========
+	var cvs00,cvs01,cvs02,cvs03,cvs04;
+	var ctx00,ctx01,ctx02,ctx03,ctx04;
+	var One_Width,One_Height;
+	var ALL_Width,ALL_Height;
+	var FontSize;
+	var IX,IY,IIX,IIY;
+	var Line_Draw_Time=6;
+	var LU_Type="U";
+	//==========DIVISION==========
+	ele00=document.getElementsByClassName("Unicode_65536_Char_Table")[0].getElementsByTagName("tbody")[0];
+	ele00.innerHTML="\n" + "<tr><td><canvas></canvas></td></tr>" + "\n";
+	cvs01=ele00.getElementsByTagName("canvas")[0];
+	ctx01=cvs01.getContext("2d");
+	var LU_Type;
+	//==========DIVISION==========
+	LU_Type="U";
+	Print_Method_ID="0113";
+	if (	//==========DIVISION==========
+			Print_Method_ID=="0100" || Print_Method_ID=="0101" || Print_Method_ID=="0102" || 
+			Print_Method_ID=="0103" || Print_Method_ID=="0104" || Print_Method_ID=="0105" || 
+			Print_Method_ID=="0110" || Print_Method_ID=="0111" || Print_Method_ID=="0112" || 
+			Print_Method_ID=="0113" || Print_Method_ID=="0114" || Print_Method_ID=="0115" || 
+			Print_Method_ID=="0120" || Print_Method_ID=="0121" || Print_Method_ID=="0122" || 
+			Print_Method_ID=="0123" || Print_Method_ID=="0124" || Print_Method_ID=="0125" || 
+			//==========DIVISION==========
+			Print_Method_ID=="0130" || Print_Method_ID=="0131" || Print_Method_ID=="0132" || 
+			Print_Method_ID=="0133" || Print_Method_ID=="0134" || Print_Method_ID=="0135" || 
+			Print_Method_ID=="0140" || Print_Method_ID=="0141" || Print_Method_ID=="0142" || 
+			Print_Method_ID=="0143" || Print_Method_ID=="0144" || Print_Method_ID=="0145" || 
+			Print_Method_ID=="0150" || Print_Method_ID=="0151" || Print_Method_ID=="0152" || 
+			Print_Method_ID=="0153" || Print_Method_ID=="0154" || Print_Method_ID=="0155" )
+			//==========DIVISION==========
+	{
+		//==========DIVISION==========
+		Print_Method_ID=parseInt(Print_Method_ID,10);
+		Data_LEN_Type=parseInt(parseInt(Print_Method_ID / 10,10)%10 / 3,10);
+		if ( Data_LEN_Type==0 )
+		{
+			arr00=[256,256,256,65536,65536,65536];
+			arr01=[16,16,16,256,256,256];
+			arr02=[4,4,4,16,16,16];
+			arr03=["&#","","","&#","",""];
+			arr04=[10,10,16,10,10,16];
+			arr05=[3,3,2,5,5,4];
+		}
+		else if ( Data_LEN_Type==1 )
+		{
+			arr00=[1296,1296,1296,1679616,1679616,1679616];
+			arr01=[36,36,36,1296,1296,1296];
+			arr02=[6,6,6,36,36,36];
+			arr03=["&#","","","&#","",""];
+			arr04=[10,10,36,10,10,36];
+			arr05=[4,4,2,7,7,4];
+		}
+		else		{}
+		Print_Arrange_ID=((Print_Method_ID - Print_Method_ID%10 ) / 10)%10%3;
+		Print_Method_ID=Print_Method_ID%10;
+		UONum		=arr00[Print_Method_ID];
+		UINum		=arr01[Print_Method_ID];
+		UIINum		=arr02[Print_Method_ID];
+		UIID_PRESTR	=arr03[Print_Method_ID];
+		NS			=arr04[Print_Method_ID];
+		UIIDLEN		=arr05[Print_Method_ID];
+		NST			=16;
+		//==========DIVISION==========
+		if ( Data_LEN_Type==0 )
+		{
+			arr06=[30,30,30,30,30,30];
+			arr07=[30,30,30,30,30,30];
+			arr08=[24,16,24,24,12,12];
+			arr08=[20,16,20,20,10,10];
+
+			//arr06=[64,64,64,64,64,64];
+			//arr07=[64,64,64,64,64,64];
+			//arr08=[40,20,40,40,20,20];
+		}
+		else if ( Data_LEN_Type==1 )
+		{
+			arr06=[50,50,50,50,50,50];
+			arr07=[50,50,50,50,50,50];
+			arr08=[32,16,32,32,16,16];
+		}
+		else		{}
+		One_Width	=arr06[Print_Method_ID];
+		One_Height	=arr07[Print_Method_ID];
+		FontSize	=arr08[Print_Method_ID];
+		//==========DIVISION==========
+		ALL_Width	=One_Width * UINum;
+		ALL_Height	=One_Height * UINum;
+		cvs01.width=ALL_Width;cvs01.height=ALL_Height;
+		//==========DIVISION==========
+		for (UIID=0;UIID<UONum;UIID++)
+		{
+			//==========DIVISION==========
+			cvs00=document.createElement("canvas");
+			cvs00.width=One_Width;cvs00.height=One_Height;
+			ctx00=cvs00.getContext("2d");
+			ctx00.fillStyle="rgba(255,255,255,1.0)";//"White";
+			ctx00.fillRect(0,0,cvs00.width,cvs00.height);
+			ctx00.fillStyle="rgba(0,0,0,0.0)";
+			ctx00.fillRect(0,0,cvs00.width,cvs00.height);
+			//==========DIVISION==========
+			ctx00.beginPath();
+			ctx00.lineWidth="1";
+			ctx00.strokeStyle="red";
+			ctx00.moveTo(0,0);						for (i=0;i<Line_Draw_Time;i++)	{ctx00.lineTo(cvs00.width,0);}
+			ctx00.moveTo(cvs00.width,0);			for (i=0;i<Line_Draw_Time;i++)	{ctx00.lineTo(cvs00.width,cvs00.height);}
+			ctx00.moveTo(cvs00.width,cvs00.height);	for (i=0;i<Line_Draw_Time;i++)	{ctx00.lineTo(0,cvs00.height);}
+			ctx00.moveTo(0,cvs00.height);			for (i=0;i<Line_Draw_Time;i++)	{ctx00.lineTo(0,0);}
+			ctx00.stroke();
+			//==========DIVISION==========
+			if ( Print_Arrange_ID==0 )									{UIID_CVT=UIID;}
+			else if ( Print_Arrange_ID==1 || Print_Arrange_ID==2 )		{UIID_CVT=UIID_2_UIID_CVT(UIID,UONum,UINum,UIINum);}
+			else														{}
+			//==========DIVISION==========
+			if ( Print_Method_ID%3==0 )
+			{
+				UISTR=String.fromCharCode(UIID_CVT);
+			}
+			else if ( Print_Method_ID%3==1 )
+			{
+				UISTR=("0".repeat(UIIDLEN) + UIID_CVT.toString(NS)).slice(-UIIDLEN).toLowerUpperCase(LU_Type);
+			}
+			else if ( Print_Method_ID%3==2 )
+			{
+				UISTR=("0".repeat(UIIDLEN) + UIID_CVT.toString(NS)).slice(-UIIDLEN).toLowerUpperCase(LU_Type);
+			}
+			else		{}
+			//==========DIVISION==========
+			ctx00.fillStyle="rgba(0,0,0,1.0)";
+			ctx00.font=FontSize.toString() + "px Georgia";
+			if ( parseInt(Print_Method_ID / 3,10)==0 )
+			{
+				ctx00.fillText(UISTR,0,FontSize);
+			}
+			else if ( parseInt(Print_Method_ID / 3,10)==1 )
+			{
+				if ( Print_Method_ID%3==0 )
+				{
+					ctx00.fillText(UISTR,0,FontSize);
+				}
+				else if ( Print_Method_ID%3==1 || Print_Method_ID%3==2)
+				{
+					if ( Data_LEN_Type==0 )
+					{
+						str01=UISTR.replace(/^(...)(..)$/gm,"$1").replace(/^(..)(..)$/gm,"$1");
+						str02=UISTR.replace(/^(...)(..)$/gm,"$2").replace(/^(..)(..)$/gm,"$2");
+					}
+					else if ( Data_LEN_Type==1 )
+					{
+						str01=UISTR.replace(/^(....)(...)$/gm,"$1").replace(/^(..)(..)$/gm,"$1");
+						str02=UISTR.replace(/^(....)(...)$/gm,"$2").replace(/^(..)(..)$/gm,"$2");
+					}
+					else		{}
+					ctx00.fillText(str01,0,FontSize);
+					ctx00.fillText(str02,0,FontSize * 2);
+				}
+				else		{}
+			}
+			else		{}
+			//==========DIVISION==========
+			IX=One_Width * (UIID % UINum);
+			IY=One_Height * (Math.floor(UIID / UINum));
+			ctx01.drawImage(cvs00,
+				0,0,cvs00.width,cvs00.height,
+				IX,IY,cvs00.width,cvs00.height
+				);
+			//==========DIVISION==========
+			console.log("UIID : " + UIID + ";\t" + 
+						"IX : " + IX + ";\t" + 
+						"IY : " + IY + ";\t" + 
+						"");
+			//==========DIVISION==========
+		}
+		//==========DIVISION==========
+		for (UIID=UIINum;UIID<UINum;UIID+=UIINum)
+		{
+			ctx01.beginPath();
+			ctx01.lineWidth="1";
+			ctx01.strokeStyle="blue";
+			IX=One_Width * UIID;
+			IY=One_Height * UIID;
+			ctx01.moveTo(IX,0);			for (i=0;i<Line_Draw_Time;i++)	{ctx01.lineTo(IX,ALL_Height);}
+			ctx01.moveTo(0,IY);			for (i=0;i<Line_Draw_Time;i++)	{ctx01.lineTo(ALL_Width,IY);}
+			ctx01.stroke();
+		}
+		//==========DIVISION==========
+		ctx01.beginPath();
+		ctx01.lineWidth="1";
+		ctx01.strokeStyle="blue";
+		ctx01.moveTo(0,0);						for (i=0;i<Line_Draw_Time;i++)	{ctx01.lineTo(cvs01.width,0);}
+		ctx01.moveTo(cvs01.width,0);			for (i=0;i<Line_Draw_Time;i++)	{ctx01.lineTo(cvs01.width,cvs01.height);}
+		ctx01.moveTo(cvs01.width,cvs01.height);	for (i=0;i<Line_Draw_Time;i++)	{ctx01.lineTo(0,cvs01.height);}
+		ctx01.moveTo(0,cvs01.height);			for (i=0;i<Line_Draw_Time;i++)	{ctx01.lineTo(0,0);}
+		ctx01.stroke();
+		//==========DIVISION==========
+	}
+	else		{}
+	//==========DIVISION==========
+	document.getElementsByClassName("CSS_Unicode_65536_Char_Table")[0].innerHTML=
+	document.getElementsByClassName("CSS_Unicode_65536_Char_Table")[0].innerHTML.replace(/border-width:			[0-9]*px;/gm,"border-width:			0px;");
+	console.log("Unicode_65536_Char_Canvas_Table_Print Over !");
+	//==========DIVISION==========
+}
+</script>
+
+<table class="Unicode_65536_Char_Table" cellSpacing=0 cellPadding=0 border=1 style=""><tbody>
+<tr><td></td></tr>
+<tr><td><table cellSpacing=0 cellPadding=0 border=1 style="border-collapse:collapse;border-style:solid;border-width:1px;border-color:red;"><tbody></tbody></table></td></tr>
+</tbody></table>
+
+<script type="text/javascript">
+Unicode_65536_Char_Text_Table_Print();
+//Unicode_65536_Char_Canvas_Table_Print();
+</script>
+</body>
+</html>
