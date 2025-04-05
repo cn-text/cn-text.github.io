@@ -256,7 +256,7 @@ function Unicode_65536_Char_DF_Ctrl_Table_Action(ele,evt,post_method)
 					var UNUM_STR	=("0".repeat(4) + (UNUM).toString()		).slice(-4);
 					//==========DIVISION==========
 					FDN=UC_CLS.VAL.Unicode_Text_ARR_FDN;
-					if ( UC_CLS.VAL.Unicode_Text_ARR_SEL_ID==1 )
+					if ( FDN=="UC_0001_NXN_01_XD16" )
 					{
 						FDN+="_" + ("0".repeat(2) + (parseInt(UBID/16/960,10)).toString()).slice(-2);
 					}
