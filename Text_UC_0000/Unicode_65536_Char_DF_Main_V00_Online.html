@@ -250,14 +250,6 @@ function URL_HREF_INI(ext_inner_cls)
 			}
 			W=decodeURIComponent(W);
 			UC_CLS.VAL.Key_Word=ele_Key_Word_CLS.value=UC;
-			num00=ele_TAG_A_TID_SEL.innerHTML.replace(/[\n]+/gm,"")
-				.replace(new RegExp(TID + "\<\/option\>.+","gm"),TID + "</option>")
-				.replace(/\<option\>TID_[0-9]+\<\/option\>/gm,"X").length - 1;
-			UC_CLS.VAL.TAG_A_TID_SEL_ID=ele_TAG_A_TID_SEL.selectedIndex=num00;
-			setTimeout(function (ele_TAG_A_TID_SEL,num00)
-			{
-				UC_CLS.VAL.TAG_A_TID_SEL_ID=ele_TAG_A_TID_SEL.selectedIndex=num00;
-			},0,ele_TAG_A_TID_SEL,num00);
 			UC_CLS.VAL.ReadMe_Word=ele_ReadMe_Word_CLS.value=W;
 			console.log("ele_TAG_A_TID_SEL.selectedIndex : " + ele_TAG_A_TID_SEL.selectedIndex + ";\t" + 
 						"num00 : " + num00 + ";\t" + 
@@ -282,6 +274,15 @@ function URL_HREF_INI(ext_inner_cls)
 				var evt={target:ele_Unicode_Text_ARR_SEL,type:"change"};
 				var post_method=2;
 				Unicode_65536_Char_DF_Ctrl_Table_Action(ele,evt,post_method);
+				//==========DIVISION==========
+				num00=ele_TAG_A_TID_SEL.innerHTML.replace(/[\n]+/gm,"")
+					.replace(new RegExp(TID + "\<\/option\>.+","gm"),TID + "</option>")
+					.replace(/\<option\>TID_[0-9]+\<\/option\>/gm,"X").length - 1;
+				UC_CLS.VAL.TAG_A_TID_SEL_ID=ele_TAG_A_TID_SEL.selectedIndex=num00;
+				setTimeout(function (ele_TAG_A_TID_SEL,num00)
+				{
+					UC_CLS.VAL.TAG_A_TID_SEL_ID=ele_TAG_A_TID_SEL.selectedIndex=num00;
+				},0,ele_TAG_A_TID_SEL,num00);
 				//==========DIVISION==========
 				TAG_A_ID=parseInt(UID / [[256,2048,128,16],[256,16]][URL_ID][UTASID],10);
 				console.log("URL_ID : " + URL_ID + ";\t" + 
