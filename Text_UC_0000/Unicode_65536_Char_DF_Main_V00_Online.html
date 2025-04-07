@@ -249,16 +249,16 @@ function URL_HREF_INI(ext_inner_cls)
 				else		{}
 			}
 			W=decodeURIComponent(W);
-			ele_Key_Word_CLS.value=UC;
+			UC_CLS.VAL.Key_Word=ele_Key_Word_CLS.value=UC;
 			num00=ele_TAG_A_TID_SEL.innerHTML.replace(/[\n]+/gm,"")
 				.replace(new RegExp(TID + "\<\/option\>.+","gm"),TID + "</option>")
 				.replace(/\<option\>TID_[0-9]+\<\/option\>/gm,"X").length - 1;
-			ele_TAG_A_TID_SEL.selectedIndex=num00;
+			UC_CLS.VAL.TAG_A_TID_SEL_ID=ele_TAG_A_TID_SEL.selectedIndex=num00;
 			setTimeout(function (ele_TAG_A_TID_SEL,num00)
 			{
-				ele_TAG_A_TID_SEL.selectedIndex=num00;
+				UC_CLS.VAL.TAG_A_TID_SEL_ID=ele_TAG_A_TID_SEL.selectedIndex=num00;
 			},0,ele_TAG_A_TID_SEL,num00);
-			ele_ReadMe_Word_CLS.value=W;
+			UC_CLS.VAL.ReadMe_Word=ele_ReadMe_Word_CLS.value=W;
 			console.log("ele_TAG_A_TID_SEL.selectedIndex : " + ele_TAG_A_TID_SEL.selectedIndex + ";\t" + 
 						"num00 : " + num00 + ";\t" + 
 						"UC_LEN : " + UC_LEN + ";\t" + 
@@ -500,11 +500,11 @@ function Unicode_65536_Char_DF_Ctrl_Table_Action(ele,evt,post_method)
 		{
 			//==========DIVISION==========
 			//?utasid=3&uid=&uc=真善忍&tid=TID_000&w=Hello.
-			var UTASID	=UC_CLS.VAL.Unicode_Text_ARR_SEL_ID;
+			var UTASID	=UC_CLS.VAL.Unicode_Text_ARR_SEL_ID		=ele_Unicode_Text_ARR_SEL.selectedIndex;
 			var UID		="";
-			var UC		=UC_CLS.VAL.Key_Word;
+			var UC		=UC_CLS.VAL.Key_Word					=ele_Key_Word_CLS.value;
 			var TID		=ele_TAG_A_TID_SEL.options[ele_TAG_A_TID_SEL.selectedIndex].innerHTML;
-			var W		=UC_CLS.VAL.ReadMe_Word;
+			var W		=UC_CLS.VAL.ReadMe_Word					=ele_ReadMe_Word_CLS.value;
 			str00="?utasid=" + UTASID.toString() + "&uid=" + UID + "&uc=" + UC + "&tid=" + TID + "&w=" + W;
 			location.href=location.href.replace(/\.html[\?\#]*.*$/gm,".html") + str00;
 			//==========DIVISION==========
