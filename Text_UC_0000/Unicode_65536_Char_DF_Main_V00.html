@@ -97,8 +97,12 @@ function ELE_ELEL_STR_INI()
 	var ele_Unicode_Text_ARR_SEL				=ele_Unicode_65536_Char_DF_Ctrl_Table.getElementsByClassName("Unicode_Text_ARR_SEL")[0];
 	var ele_Unicode_Text_ARR_FDN_CLS			=ele_Unicode_65536_Char_DF_Ctrl_Table.getElementsByClassName("Unicode_Text_ARR_FDN_CLS")[0];
 	var ele_Unicode_Text_ARR_Set_BTN			=ele_Unicode_65536_Char_DF_Ctrl_Table.getElementsByClassName("Unicode_Text_ARR_Set_BTN")[0];
+	var ele_Key_Word_CLS						=ele_Unicode_65536_Char_DF_Ctrl_Table.getElementsByClassName("Key_Word_CLS")[0];
+	var ele_TAG_A_TID_SEL						=ele_Unicode_65536_Char_DF_Ctrl_Table.getElementsByClassName("TAG_A_TID_SEL")[0];
+	var ele_Key_Word_View_BTN					=ele_Unicode_65536_Char_DF_Ctrl_Table.getElementsByClassName("Key_Word_View_BTN")[0];
+	var ele_ReadMe_Word_CLS						=ele_Unicode_65536_Char_DF_Ctrl_Table.getElementsByClassName("ReadMe_Word_CLS")[0];
 	//==========DIVISION==========
-	var elel_Unicode_Text_TAG_A					=ele_Unicode_Text_ARR_Table.getElementsByTagName("a")[0];
+	var elel_Unicode_Text_TAG_A					=ele_Unicode_Text_ARR_Table.getElementsByTagName("a");
 	//==========DIVISION==========
 	//====================DIVISION====================
 	//==============================ELE_ELEL_STR_INI.End==============================
@@ -124,6 +128,10 @@ var UC_CLS									=
 		//==========DIVISION==========
 		Unicode_Text_ARR_FDN				:	"",
 		Unicode_Text_ARR_SEL_ID				:	0,
+		//==========DIVISION==========
+		Key_Word							:	"",
+		TAG_A_TID_SEL_ID					:	0,
+		ReadMe_Word							:	"",
 		//==========DIVISION==========
 	},
 	//==========DIVISION==========
@@ -152,6 +160,187 @@ function UC_CLS_INI()
 	ele_Unicode_Text_ARR_Set_BTN.style.backgroundColor="#1EB0E9";
 	ele_Unicode_Text_ARR_Set_BTN.click();
 	//==========DIVISION==========
+	UC_CLS.VAL.Key_Word		=ele_Key_Word_CLS.value		="真善忍";
+	TAG_A_TID_ARR_INI();
+	UC_CLS.VAL.ReadMe_Word	=ele_ReadMe_Word_CLS.value	="真善忍";
+	//==========DIVISION==========
+	ele_Key_Word_View_BTN.style.backgroundColor="#1EB0E9";
+	//ele_Key_Word_View_BTN.click();
+	//==========DIVISION==========
+	URL_HREF_INI({this_step:0});
+	//==========DIVISION==========
+}
+
+function TAG_A_TID_ARR_INI()
+{
+	//==========DIVISION==========
+	eval(ELE_ELEL_STR_INI());
+	eval(Parameter_Base_STR_ijk_XX(5));
+	//==========DIVISION==========
+	LEN=UC_CLS.Text_CLS.TAG_A_TID_ARR.length;
+	str00="";
+	for (ID=0;ID<LEN;ID++)
+	{
+		str00+="<option>" + UC_CLS.Text_CLS.TAG_A_TID_ARR[ID] + "</option>";
+	}
+	ele_TAG_A_TID_SEL.innerHTML				=str00;
+	UC_CLS.VAL.TAG_A_TID_SEL_ID				=ele_TAG_A_TID_SEL.selectedIndex=0;
+	//==========DIVISION==========
+}
+
+function URL_HREF_INI(ext_inner_cls)
+{
+	//====================arguments.callee====================
+	var fun_ct_cache;
+	fun_ct_cache=arguments.callee;
+	//====================arguments.callee====================
+	console.log("window.document.readyState : " + window.document.readyState);
+	if ( window.document.readyState=="complete" && window.location.href.indexOf("\/Unicode_65536_Char_DF")>=0 )
+	{
+		//==========DIVISION==========
+		eval(ELE_ELEL_STR_INI());
+		eval(Parameter_Base_STR_ijk_XX(5));
+		var ID,LEN,ID_LEN;
+		//==========DIVISION==========
+		var STO=0;//0:Do_Not_Run_setTimeout;1:Run_setTimeout;2:Run_Function_Now;
+		//==========DIVISION==========
+		var this_step					=ext_inner_cls.this_step;
+		//==========DIVISION==========
+		if ( this_step==0 )
+		{
+			//==========DIVISION==========
+			if ( location.href.indexOf("?")<0 )			{return;}
+			//==========DIVISION==========
+			//Unicode_65536_Char_DF_Main_V00.html?utasid=0&uid=160&uc=　&tid=TID_001&w=Hello.
+			//Unicode_65536_Char_DF_Main_V00.html?utasid=0&uid=21892&uc=善&tid=TID_001&w=Hello.
+			//Unicode_65536_Char_DF_Main_V00.html?utasid=0&uid=24694&uc=恶&tid=TID_001&w=Hello.
+			//Unicode_65536_Char_DF_Main_V00.html?utasid=1&uid=00065&uc=A&tid=TID_001&w=Hello.
+			//Unicode_65536_Char_DF_Main_V00.html?utasid=1&uid=00066&uc=B&tid=TID_001&w=Hello.
+			//Unicode_65536_Char_DF_Main_V00.html?utasid=2&uid=30007&uc=男&tid=TID_001&w=Hello.
+			//Unicode_65536_Char_DF_Main_V00.html?utasid=2&uid=22899&uc=女&tid=TID_001&w=Hello.
+			//Unicode_65536_Char_DF_Main_V00.html?utasid=3&uid=21151&uc=功&tid=TID_001&w=Hello.
+			//Unicode_65536_Char_DF_Main_V00.html?utasid=3&uid=xxx&uc=法&tid=TID_001&w=Hello.
+			//Unicode_65536_Char_DF_Main_V00_Online.html?utasid=0&uid=160&uc=　&tid=TID_001&w=Hello.
+			//Unicode_65536_Char_DF_Main_V00_Online.html?utasid=1&uid=21151&uc=功&tid=TID_001&w=Hello.
+			//==========DIVISION==========
+			var UTASID	=location.href.replace(/^(.+\?)(.*)([\&]*)(utasid=)([^\?\&]*)([\&]*)(.*)$/gm,"$5");
+			var UID		=location.href.replace(/^(.+\?)(.*)([\&]*)(uid=)([^\?\&]*)([\&]*)(.*)$/gm,"$5");
+			var UC		=location.href.replace(/^(.+\?)(.*)([\&]*)(uc=)([^\?\&]*)([\&]*)(.*)$/gm,"$5");
+			var TID		=location.href.replace(/^(.+\?)(.*)([\&]*)(tid=)([^\?\&]*)([\&]*)(.*)$/gm,"$5");
+			var W		=location.href.replace(/^(.+\?)(.*)([\&]*)(w=)([^\?\&]*)([\&]*)(.*)$/gm,"$5");
+			if ( UTASID!="" && !isNaN(UTASID) )		{UTASID=parseInt(UTASID,10);}
+			else									{UTASID="-";}
+			if ( UID!="" && !isNaN(UID) )			{UID=parseInt(UID,10);UC_LEN=1;}
+			else
+			{
+				UC=decodeURIComponent(UC);
+				UC_LEN=UC.length;
+				if ( UC.length==0 )					{UID="-";}
+				else if ( UC.length==1 )
+				{
+					UID=UC.charCodeAt(0);
+					if ( !isNaN(UID) )				{UID=parseInt(UID,10);}
+					else							{UID="-";}
+				}
+				else if ( UC.length>=2 )
+				{
+					UID=4096;
+				}
+				else		{}
+			}
+			W=decodeURIComponent(W);
+			ele_Key_Word_CLS.value=UC;
+			num00=ele_TAG_A_TID_SEL.innerHTML.replace(/[\n]+/gm,"")
+				.replace(new RegExp(TID + "\<\/option\>.+","gm"),TID + "</option>")
+				.replace(/\<option\>TID_[0-9]+\<\/option\>/gm,"X").length - 1;
+			setTimeout(function (ele_TAG_A_TID_SEL,num00)
+			{
+				ele_TAG_A_TID_SEL.selectedIndex=num00;
+			},0,ele_TAG_A_TID_SEL,num00);
+			ele_ReadMe_Word_CLS.value=W;
+			console.log("ele_TAG_A_TID_SEL.selectedIndex : " + ele_TAG_A_TID_SEL.selectedIndex + ";\t" + 
+						"num00 : " + num00 + ";\t" + 
+						"UC_LEN : " + UC_LEN + ";\t" + 
+						"UID : " + UID + ";\t" + 
+						"UC : " + UC + ";\t" + 
+						"decodeURIComponent(UC) : " + decodeURIComponent(UC) + ";\t" + 
+						"W : " + W + ";\t" + 
+						"decodeURIComponent(W) : " + decodeURIComponent(W) + ";\t" + 
+						"");
+			//==========DIVISION==========
+			var URL_ID,TAG_A_ID,HREF;
+			if ( location.href.replace(/^.+\/Unicode_65536_Char_DF_Main_V00.html.*$/gm,"")=="" )				{URL_ID=0;}
+			else if ( location.href.replace(/^.+\/Unicode_65536_Char_DF_Main_V00_Online.html.*$/gm,"")=="" )	{URL_ID=1;}
+			else			{}
+			//==========DIVISION==========
+			if ( URL_ID==0 && UTASID>=0 && UTASID<=3 || URL_ID==1 && UTASID>=0 && UTASID<=1 )
+			{
+				//==========DIVISION==========
+				ele_Unicode_Text_ARR_SEL.selectedIndex=UTASID;
+				var ele=ele_Unicode_65536_Char_DF_Ctrl_Table;
+				var evt={target:ele_Unicode_Text_ARR_SEL,type:"change"};
+				var post_method=2;
+				Unicode_65536_Char_DF_Ctrl_Table_Action(ele,evt,post_method);
+				//==========DIVISION==========
+				TAG_A_ID=parseInt(UID / [[256,2048,128,16],[256,16]][URL_ID][UTASID],10);
+				console.log("URL_ID : " + URL_ID + ";\t" + 
+							"UTASID : " + UTASID + ";\t" + 
+							"TAG_A_ID : " + TAG_A_ID + ";\t" + 
+							"");
+				HREF=elel_Unicode_Text_TAG_A[TAG_A_ID].href;
+				elel_Unicode_Text_TAG_A[TAG_A_ID].href=HREF + location.search;
+				elel_Unicode_Text_TAG_A[TAG_A_ID].click();
+				elel_Unicode_Text_TAG_A[TAG_A_ID].href=HREF;
+				//==========DIVISION==========
+			}
+			else		{}
+			//==========DIVISION==========
+			if ( this_step==0 )			{this_step++;STO=1;}
+			//==========DIVISION==========
+		}
+		else if ( this_step==1 )
+		{
+			//==========DIVISION==========
+			console.log("URL_HREF_INI Over .");
+			//==========DIVISION==========
+			if ( this_step==1 )			{this_step++;STO=1;}
+			//==========DIVISION==========
+		}
+		else if ( this_step==2 )
+		{
+			//==========DIVISION==========
+			if ( this_step==2 )			{this_step++;STO=1;}
+			//==========DIVISION==========
+		}
+		else if ( this_step==3 )
+		{
+			//==========DIVISION==========
+			if ( this_step==3 )			{this_step++;STO=1;}
+			//==========DIVISION==========
+		}
+		else		{STO=0;}
+		//==========DIVISION==========
+		ext_inner_cls.this_step			=this_step;
+		//==========DIVISION==========
+		//====================STO====================
+		if ( STO==0 )//0:Do_Not_Run_setTimeout;1:Run_setTimeout;2:Run_Function_Now;
+		{
+		}
+		else if ( STO==1 )//0:Do_Not_Run_setTimeout;1:Run_setTimeout;2:Run_Function_Now;
+		{
+			setTimeout(fun_ct_cache,TTI_IN_USE * 2,ext_inner_cls);
+		}
+		else if ( STO==2 )//0:Do_Not_Run_setTimeout;1:Run_setTimeout;2:Run_Function_Now;
+		{
+			fun_ct_cache(ext_inner_cls);
+		}
+		else		{}
+		//====================STO====================
+	}
+	else
+	{
+		setTimeout(fun_ct_cache,TTI_IN_USE * 2,ext_inner_cls);
+	}
 }
 //========================================UC_CLS========================================
 //========================================DIVISION========================================
@@ -183,7 +372,19 @@ function Unicode_65536_Char_DF_Ctrl_Table_Action(ele,evt,post_method)
 		}
 		else if ( ele.className=="Unicode_65536_Char_DF_Ctrl_Table" && evt_target.className=="Unicode_Text_ARR_FDN_CLS" )
 		{
-			UC_CLS.VAL.Unicode_Text_ARR_FDN=evt_target.value;
+			UC_CLS.VAL.Unicode_Text_ARR_FDN		=evt_target.value;
+		}
+		else if ( ele.className=="Unicode_65536_Char_DF_Ctrl_Table" && evt_target.className=="Key_Word_CLS" )
+		{
+			UC_CLS.VAL.Key_Word					=ele_Key_Word_CLS.value;
+		}
+		else if ( ele.className=="Unicode_65536_Char_DF_Ctrl_Table" && evt_target.className=="TAG_A_TID_SEL" )
+		{
+			UC_CLS.VAL.TAG_A_TID_SEL_ID			=evt_target.selectedIndex;
+		}
+		else if ( ele.className=="Unicode_65536_Char_DF_Ctrl_Table" && evt_target.className=="ReadMe_Word_CLS" )
+		{
+			UC_CLS.VAL.ReadMe_Word				=ele_ReadMe_Word_CLS.value;
 		}
 		else		{}
 	}
@@ -195,6 +396,7 @@ function Unicode_65536_Char_DF_Ctrl_Table_Action(ele,evt,post_method)
 			//==========DIVISION==========
 			str00="UC_CLS.Text_CLS=UC_CLS." + UC_CLS_Text_CLS_Name_ARR[UC_CLS.VAL.Unicode_Text_ARR_SEL_ID] + ";";
 			eval(str00);
+			TAG_A_TID_ARR_INI();
 			//==========DIVISION==========
 			//Unicode_65536_Char_DF_1X1_D_00000-00255_H_0000-00FF_N_0256.html
 			//
@@ -288,6 +490,19 @@ function Unicode_65536_Char_DF_Ctrl_Table_Action(ele,evt,post_method)
 			ele_Unicode_Text_ARR_Table.getElementsByTagName("tbody")[0].innerHTML=TAG_BODY_STR;
 			//==========DIVISION==========
 		}
+		else if ( ele.className=="Unicode_65536_Char_DF_Ctrl_Table" && evt_target.className=="Key_Word_View_BTN" )
+		{
+			//==========DIVISION==========
+			//?utasid=3&uid=&uc=真善忍&tid=TID_000&w=Hello.
+			var UTASID	=UC_CLS.VAL.Unicode_Text_ARR_SEL_ID;
+			var UID		="";
+			var UC		=UC_CLS.VAL.Key_Word;
+			var TID		=ele_TAG_A_TID_SEL.options[ele_TAG_A_TID_SEL.selectedIndex].innerHTML;
+			var W		=UC_CLS.VAL.ReadMe_Word;
+			str00="?utasid=" + UTASID.toString() + "&uid=" + UID + "&uc=" + UC + "&tid=" + TID + "&w=" + W;
+			location.href=location.href.replace(/\.html[\?\#]*.*$/gm,".html") + str00;
+			//==========DIVISION==========
+		}
 		else		{}
 		//==========DIVISION==========
 	}
@@ -344,9 +559,63 @@ function TEXT_ATTRIBUTION(ele,evt,n)
 	}
 }
 //========================================控件動作變化========================================
+//========================================Unicode_65536_Char_DF_Hotkey_Mouse========================================
+function Unicode_65536_Char_DF_Hotkey_Mouse(ele,evt,post_method)
+{
+	//==========DIVISION==========
+	eval(ELE_ELEL_STR_INI());
+	eval(Parameter_Base_STR_ijk_XX(10));
+	var ID,LEN,ID_LEN;
+	//==========DIVISION==========
+	//console.log("function now is : TEXT_ATTRIBUTION(ele,evt,n)");
+
+	//IE7 : evt.srcElement ;Other : evt.target;
+	var evt_target = evt.target ? evt.target : evt.srcElement;
+	//alert(evt_target.outerHTML + "\n" + 
+	//	evt_target.tagName + "\n" + evt_target.className + "\n" + 
+	//	evt_target.tpye + "\n" + evt_target.getAttribute("type") + "\n" + 
+	//	evt_target.getAttribute("type_x_y"));
+
+	//evt.ctrlKey失效可能是其他函数的原因。
+	//console.log("evt _ evt.ctrlKey _ evt.altKey _ evt.shiftKey _ evt.which : " + evt + evt.ctrlKey + "_" + evt.altKey + "_" + evt.shiftKey + "_" + evt.which);
+	//						17				18			16
+	//==========DIVISION==========
+	if ( post_method==0 && evt && evt.type=="keydown" && 
+		( ( evt.which == 33 || evt.which == 34 ) || ( evt.ctrlKey || evt.altKey || evt.shiftKey ) ) )
+	{
+		//Google Search :
+		//javascript page up no scroll
+		//https://stackoverflow.com/questions/26440644/is-it-possible-to-prevent-users-page-up-page-down-up-and-down-arrow-keys-from
+		//Is it possible to prevent users Page Up, Page Down, Up and Down arrow keys from scroll functioning?
+		//evt.preventDefault();
+	}
+	else
+	{
+	}
+	//==========DIVISION==========
+	var referenceNode;
+	if ( post_method==0 && evt && evt.type=="keydown" && evt.which==13 )//enter:13;
+	{
+		if ( ele.className=="Unicode_65536_Char_DF_Main_Table" && 
+			( evt_target.className=="Key_Word_CLS" || evt_target.className=="ReadMe_Word_CLS" ) )
+		{
+			str00=("UC_CLS.VAL." + evt_target.className.replace(/_CLS$/gm,"") + "=evt_target.value;");
+			eval(str00);
+			ele_Key_Word_View_BTN.click();
+		}
+		else
+		{
+		}
+	}
+	else
+	{
+	}
+	//==========DIVISION==========
+}
+//========================================Unicode_65536_Char_DF_Hotkey_Mouse========================================
 </script>
 
-<table class="Unicode_65536_Char_DF_Main_Table" cellSpacing=0 cellPadding=0 border=1 onmouseover=TEXT_ATTRIBUTION(this,event,0) onmouseout=TEXT_ATTRIBUTION(this,event,1) onchange=TEXT_ATTRIBUTION(this,event,2)><tbody>
+<table class="Unicode_65536_Char_DF_Main_Table" cellSpacing=0 cellPadding=0 border=1 onkeydown=Unicode_65536_Char_DF_Hotkey_Mouse(this,event,0) onmouseover=TEXT_ATTRIBUTION(this,event,0) onmouseout=TEXT_ATTRIBUTION(this,event,1) onchange=TEXT_ATTRIBUTION(this,event,2)><tbody>
 <tr><td>
 	<table class="Unicode_65536_Char_DF_Ctrl_Table" cellSpacing=0 cellPadding=0 border=1 onchange=Unicode_65536_Char_DF_Ctrl_Table_Action(this,event,2) onclick=Unicode_65536_Char_DF_Ctrl_Table_Action(this,event,3)><tbody>
 	<tr><td><table cellSpacing=0 cellPadding=0 border=1><tbody>
@@ -363,6 +632,10 @@ function TEXT_ATTRIBUTION(ele,evt,n)
 			<td><select class="Unicode_Text_ARR_SEL" title="Unicode_Text_ARR_SEL"></select></td>
 			<td><input type="text" class="Unicode_Text_ARR_FDN_CLS" title="Unicode_Text_ARR_FDN_CLS" value="UC_0000_1X1_00_X1"></td>
 			<td><input type="button" class="Unicode_Text_ARR_Set_BTN" title="Unicode_Text_ARR_Set_BTN" value="U"></td>
+			<td><input type="text" class="Key_Word_CLS" title="Key_Word_CLS" value="真善忍"></td>
+			<td><select class="TAG_A_TID_SEL" title="TAG_A_TID_SEL"></select></td>
+			<td><input type="text" class="ReadMe_Word_CLS" title="ReadMe_Word_CLS" value="真善忍"></td>
+			<td><input type="button" class="Key_Word_View_BTN" title="Key_Word_View_BTN" value="View"></td>
 		</tr>
 	</tbody></table></td></tr>
 	</tbody></table>

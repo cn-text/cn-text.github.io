@@ -198,6 +198,184 @@ function CSS_Browser_INI()
 	//==========DIVISION==========
 }
 
+function URL_HREF_INI(ext_inner_cls)
+{
+	//====================arguments.callee====================
+	var fun_ct_cache;
+	fun_ct_cache=arguments.callee;
+	//====================arguments.callee====================
+	console.log("window.document.readyState : " + window.document.readyState);
+	if ( window.document.readyState=="complete" && window.location.href.indexOf("\/Unicode_65536_Char_DF")>=0 )
+	{
+		//==========DIVISION==========
+		//eval(ELE_ELEL_STR_INI());
+		eval(Parameter_Base_STR_ijk_XX(5));
+		var ID,LEN,ID_LEN;
+		//==========DIVISION==========
+		var STO=0;//0:Do_Not_Run_setTimeout;1:Run_setTimeout;2:Run_Function_Now;
+		//==========DIVISION==========
+		var this_step					=ext_inner_cls.this_step;
+		//==========DIVISION==========
+		if ( this_step==0 )
+		{
+			//==========DIVISION==========
+			if ( location.href.indexOf("?")<0 )			{return;}
+			//==========DIVISION==========
+			//Unicode_65536_Char_DF_NXN_D_00000-00015_H_0000-000F_N_0016.html?uid=00160&uc=¡¡&tid=TID_001&w=Hello.
+			//Unicode_65536_Char_DF_NXN_D_21136-21151_H_5290-529F_N_0016.html?uid=21151&uc=¹¦&tid=TID_001&w=Hello.
+			//==========DIVISION==========
+			var UID		=location.href.replace(/^(.+\?)(.*)([\&]*)(uid=)([^\?\&]*)([\&]*)(.*)$/gm,"$5");
+			var UC		=location.href.replace(/^(.+\?)(.*)([\&]*)(uc=)([^\?\&]*)([\&]*)(.*)$/gm,"$5");
+			var TID		=location.href.replace(/^(.+\?)(.*)([\&]*)(tid=)([^\?\&]*)([\&]*)(.*)$/gm,"$5");
+			var W		=location.href.replace(/^(.+\?)(.*)([\&]*)(w=)([^\?\&]*)([\&]*)(.*)$/gm,"$5");
+			var UC_LEN	=0;
+			if ( UID!="" && !isNaN(UID) )			{UID=parseInt(UID,10);UC_LEN=1;}
+			else
+			{
+				UC=decodeURIComponent(UC);
+				UC_LEN=UC.length;
+				if ( UC.length==0 )					{UID="-";}
+				else if ( UC.length==1 )
+				{
+					UID=UC.charCodeAt(0);
+					if ( !isNaN(UID) )				{UID=parseInt(UID,10);}
+					else							{UID="-";}
+				}
+				else if ( UC.length>=2 )
+				{
+					UID=4096;
+				}
+				else		{}
+			}
+			W=decodeURIComponent(W);
+			console.log("UC_LEN : " + UC_LEN + ";\t" + 
+						"UID : " + UID + ";\t" + 
+						"UC : " + UC + ";\t" + 
+						"decodeURIComponent(UC) : " + decodeURIComponent(UC) + ";\t" + 
+						"W : " + W + ";\t" + 
+						"decodeURIComponent(W) : " + decodeURIComponent(W) + ";\t" + 
+						"");
+			//==========DIVISION==========
+			var SID;
+			//==========DIVISION==========
+			if ( UC_LEN==0 )			{}
+			else if ( UC_LEN==1 || UC_LEN>=2 )
+			{
+				//==========DIVISION==========
+				if ( UC_LEN>=2 )
+				{
+					//==========DIVISION==========
+					var ELE_PRE_CLS_txt_cls_000_NUM=0;
+					//==========DIVISION==========
+					elel00=document.getElementsByTagName("pre");
+					for (i=0;i<elel00.length;i++)
+					{
+						//==========DIVISION==========
+						if ( elel00[i].className.toLowerCase()=="txt_cls_000" )		{ELE_PRE_CLS_txt_cls_000_NUM++;}
+						else														{}
+						//==========DIVISION==========
+						if ( ELE_PRE_CLS_txt_cls_000_NUM>=0 && ELE_PRE_CLS_txt_cls_000_NUM<=1 )		{}
+						else if ( ELE_PRE_CLS_txt_cls_000_NUM>=2 )					{elel00[i].innerHTML="";}
+						else														{}
+						//==========DIVISION==========
+					}
+					//==========DIVISION==========
+					var ELE_PRE_CLS_txt_cls_000_NUM=0;
+					//==========DIVISION==========
+					for (i=0;i<elel00.length;i++)
+					{
+						//==========DIVISION==========
+						if ( elel00[i].className.toLowerCase()=="txt_cls_000" )		{ELE_PRE_CLS_txt_cls_000_NUM++;}
+						else														{}
+						//==========DIVISION==========
+						if ( ELE_PRE_CLS_txt_cls_000_NUM>=0 && ELE_PRE_CLS_txt_cls_000_NUM<=1 )
+						{
+							elel00[i].innerHTML=elel00[i].innerHTML.replace(new RegExp(String.fromCharCode(UID),"gm"),UC);
+						}
+						else if ( ELE_PRE_CLS_txt_cls_000_NUM>=2 )					{}
+						else														{}
+						//==========DIVISION==========
+					}
+					//==========DIVISION==========
+				}
+				else		{}
+				//==========DIVISION==========
+				if ( UID!="-" )
+				{
+					//==========DIVISION==========
+					ele00=document.getElementsByTagName("title")[0];
+					ele01=document.getElementsByClassName("TXT_TAG_A_Target")[0];
+					elel01=ele01.getElementsByTagName("a");
+					ele02=document.getElementsByClassName("Unicode_ID_SEL")[0];
+					//==========DIVISION==========
+					ele02.selectedIndex=SID=UID - parseInt(ele02.options[0].innerHTML.replace(/^U_D_([0-9]+)_.+$/gm,"$1"),10);
+					//==========DIVISION==========
+					Unicode_ID_SEL_Switch(ele02);
+					//==========DIVISION==========
+					for (i=0;i<elel01.length;i++)
+					{
+						if ( TID.toUpperCase()==elel01[i].innerHTML )
+						{
+							elel01[i].click();
+							break;
+						}
+						else		{}
+					}
+					//==========DIVISION==========
+				}
+				else		{}
+				//==========DIVISION==========
+			}
+			else		{}
+			//==========DIVISION==========
+			if ( this_step==0 )			{this_step++;STO=1;}
+			//==========DIVISION==========
+		}
+		else if ( this_step==1 )
+		{
+			//==========DIVISION==========
+			console.log("URL_HREF_INI Over .");
+			//==========DIVISION==========
+			if ( this_step==1 )			{this_step++;STO=1;}
+			//==========DIVISION==========
+		}
+		else if ( this_step==2 )
+		{
+			//==========DIVISION==========
+			if ( this_step==2 )			{this_step++;STO=1;}
+			//==========DIVISION==========
+		}
+		else if ( this_step==3 )
+		{
+			//==========DIVISION==========
+			if ( this_step==3 )			{this_step++;STO=1;}
+			//==========DIVISION==========
+		}
+		else		{STO=0;}
+		//==========DIVISION==========
+		ext_inner_cls.this_step			=this_step;
+		//==========DIVISION==========
+		//====================STO====================
+		if ( STO==0 )//0:Do_Not_Run_setTimeout;1:Run_setTimeout;2:Run_Function_Now;
+		{
+		}
+		else if ( STO==1 )//0:Do_Not_Run_setTimeout;1:Run_setTimeout;2:Run_Function_Now;
+		{
+			setTimeout(fun_ct_cache,TTI_IN_USE * 2,ext_inner_cls);
+		}
+		else if ( STO==2 )//0:Do_Not_Run_setTimeout;1:Run_setTimeout;2:Run_Function_Now;
+		{
+			fun_ct_cache(ext_inner_cls);
+		}
+		else		{}
+		//====================STO====================
+	}
+	else
+	{
+		setTimeout(fun_ct_cache,TTI_IN_USE * 2,ext_inner_cls);
+	}
+}
+
 setTimeout(function (ext_inner_cls)
 {
 	//====================arguments.callee====================
@@ -222,6 +400,7 @@ setTimeout(function (ext_inner_cls)
 			//==========DIVISION==========
 			Unicode_65536_Char_DF_INI();
 			CSS_Browser_INI();
+			URL_HREF_INI({this_step:0});
 			//==========DIVISION==========
 			if ( this_step==0 )			{this_step++;STO=1;}
 			//==========DIVISION==========
