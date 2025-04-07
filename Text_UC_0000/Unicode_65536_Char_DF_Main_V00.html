@@ -253,6 +253,7 @@ function URL_HREF_INI(ext_inner_cls)
 			num00=ele_TAG_A_TID_SEL.innerHTML.replace(/[\n]+/gm,"")
 				.replace(new RegExp(TID + "\<\/option\>.+","gm"),TID + "</option>")
 				.replace(/\<option\>TID_[0-9]+\<\/option\>/gm,"X").length - 1;
+			ele_TAG_A_TID_SEL.selectedIndex=num00;
 			setTimeout(function (ele_TAG_A_TID_SEL,num00)
 			{
 				ele_TAG_A_TID_SEL.selectedIndex=num00;
