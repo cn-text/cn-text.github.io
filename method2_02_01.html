@@ -10,6 +10,16 @@
 }
 
 pre,span																		{font-size:20px;}
+
+table.DF_PIC_Link_Table table
+{
+	border-width:			0px;
+	border-style:			solid;
+	border-color:			black;
+	font-size:				20px;
+	/*font-weight:			bold;*/
+}
+
 table.Audio_Table table.Audio_SD_Table video									{width:280px;height:30px;}
 table.Audio_Table table.Audio_SD_Table td.TD_Audio								{max-height:30px;}
 table.Audio_Table table.Audio_SD_Table td.TD_Text								{min-width:330px;width:340px;max-height:30px;}
@@ -20,9 +30,13 @@ table.Audio_Table table.Audio_SD_Table td.TD_Text span.Time_Info_Inner_SPAN		{fo
 
 table.Audio_Table input.RP_BTN						{height:30px;width:24px;}
 
+input.Black_Background_Full_Screen_BTN				{width:20px;color:white;background-color:black;}
+input.Video_Action_Effect_Type_BTN					{width:45px;}
+
 input.MultiPlier_EAB								{width:20px;}
 input.MultiPlier_CLS								{width:70px;}
 
+input.Play_List_Time_Arrow_BTN						{width:20px;}
 input.Audio_Setting_Use_CLS							{}
 select.Usage_Collection_SEL							{width:100px;}
 
@@ -168,6 +182,10 @@ var Audio_URL_STR_CLS						=
 	//==========DIVISION==========
 	VAL										:
 	{
+		//==========DIVISION==========
+		Play_List_Time_Arrow				:	{ID:0,STR:"Obverse"},//{ID:0,STR:"Obverse"};{ID:1,STR:"Reverse"};
+		//==========DIVISION==========
+		Video_Action_Effect_Type			:	{ID:0,STR:"One"},//{ID:0,STR:"One"};{ID:1,STR:"ALL"};
 		//==========DIVISION==========
 		//Audio_Setting_Use					:	0,
 		Usage_Collection					:	0,
@@ -616,6 +634,24 @@ function Audio_URL_STR_CLS_INI()
 	Audio_URL_STR_CLS.Time_Info_ARR=arr02;
 	//==========DIVISION==========
 	//====================DIVISION====================
+	//==========DIVISION==========
+	Audio_URL_STR_CLS.Network_Type=0;
+	if ( location.href.indexOf("https://")==0 )		{Audio_URL_STR_CLS.Network_Type=1;}
+	ele00=document.getElementsByClassName("Network_Type_CLS")[0];
+	ele00.value					=["OFF","ON"][Audio_URL_STR_CLS.Network_Type];
+	ele00.style.backgroundColor	=["red","#1EB0E9"][Audio_URL_STR_CLS.Network_Type];
+	//==========DIVISION==========
+	ele00=document.getElementsByClassName("Play_List_Time_Arrow_BTN")[0];
+	Audio_URL_STR_CLS.VAL.Play_List_Time_Arrow={ID:0,STR:"Obverse"};//{ID:0,STR:"Obverse"};{ID:1,STR:"Reverse"};
+	ele00.style.backgroundColor	=["#FFFFFF","#000000"][Audio_URL_STR_CLS.VAL.Play_List_Time_Arrow.ID];
+	ele00.style.color			=["#000000","#FFFFFF"][Audio_URL_STR_CLS.VAL.Play_List_Time_Arrow.ID];
+	ele00.value					=["O","R"][Audio_URL_STR_CLS.VAL.Play_List_Time_Arrow.ID];
+	//==========DIVISION==========
+	num00=0;
+	Audio_URL_STR_CLS.VAL.Video_Action_Effect_Type	=[{ID:0,STR:"One"},{ID:1,STR:"ALL"}][num00];
+	ele00=document.getElementsByClassName("Audio_Ctrl_Table")[0].getElementsByClassName("Video_Action_Effect_Type_BTN")[0];
+	ele00.value					=["VAEO","VAEA"][num00];
+	ele00.style.backgroundColor	=["GreenYellow","Green"][num00];
 	//==========DIVISION==========
 	ele00=document.getElementsByClassName("Audio_Ctrl_Table")[0].getElementsByClassName("Audio_Setting_Use_CLS")[0];
 	ele00.style.backgroundColor="#1EB0E9";
@@ -1133,6 +1169,28 @@ function Speed_BME_Random_Gen(i)
 	//==========DIVISION==========
 }
 //==============================DIVISION==============================
+function Black_Background_Full_Screen_Set(ele)
+{
+	//==========DIVISION==========
+	ele_html=document.getElementsByTagName("html")[0];
+	ele_body=document.getElementsByTagName("body")[0];
+	ele_html.style.backgroundColor="#000000";
+	ele_body.style.display="none";
+	//==========DIVISION==========
+	document.documentElement.requestFullscreen();
+	//document.exitFullscreen();
+	//==========DIVISION==========
+}
+
+function Play_List_Time_Arrow_Switch(ele)
+{
+	ele00=document.getElementsByClassName("Play_List_Time_Arrow_BTN")[0];
+	Audio_URL_STR_CLS.VAL.Play_List_Time_Arrow.ID=(Audio_URL_STR_CLS.VAL.Play_List_Time_Arrow.ID + 1)%2;//{ID:0,STR:"Obverse"};{ID:1,STR:"Reverse"};
+	ele00.style.backgroundColor	=["#FFFFFF","#000000"][Audio_URL_STR_CLS.VAL.Play_List_Time_Arrow.ID];
+	ele00.style.color			=["#000000","#FFFFFF"][Audio_URL_STR_CLS.VAL.Play_List_Time_Arrow.ID];
+	ele00.value					=["O","R"][Audio_URL_STR_CLS.VAL.Play_List_Time_Arrow.ID];
+}
+//==============================DIVISION==============================
 function Audio_Switch(ele)
 {
 	//==========DIVISION==========
@@ -1231,6 +1289,15 @@ function Audio_Switch(ele)
 	//==========DIVISION==========
 	if ( Initiation_Flag==1 )	{Initiation_Flag++;}
 	//==========DIVISION==========
+}
+
+function Video_Action_Effect_Type_Switch(ele)
+{
+	var num00=Audio_URL_STR_CLS.VAL.Video_Action_Effect_Type.ID;
+	num00=(num00 + 1)%2;
+	Audio_URL_STR_CLS.VAL.Video_Action_Effect_Type	=[{ID:0,STR:"One"},{ID:1,STR:"ALL"}][num00];;
+	ele.value										=["VAEO","VAEA"][num00];
+	ele.style.backgroundColor						=["GreenYellow","Green"][num00];
 }
 
 function Network_Type_Switch(ele)
@@ -1370,6 +1437,7 @@ function Audio_Official_Play(ele)
 	var ele00,ele01;
 	var elel00;
 	var AR_ID;
+	var VID;
 	//==========DIVISION==========
 	ele00=document.getElementsByClassName("Audio_Official_Table")[0];
 	elel00=ele00.getElementsByTagName("input");
@@ -1395,10 +1463,12 @@ function Audio_Official_Play(ele)
 		//elel01[num00].src="https://github.com/cn-text/cn-text.github.io/releases/download/jiangfa_audio_video/Guangzhou40k_" + num00 + ".mp3";
 		ele00.getElementsByTagName("td")[1 + (num00 - 1) * 2 + 1].innerHTML=//num00;
 		'<video AR_ID="' + AR_ID + '" duration_ORI="" controls="" name="media" loop=true><source src="' + 
-		'https://github.com/cn-text/cn-text.github.io/releases/download/jiangfa_audio_video/Guangzhou40k_' + num00 + '.mp3' + 
+		['','https://github.com/cn-text/cn-text.github.io/releases/download/'][Audio_URL_STR_CLS.Network_Type] + 
+		'jiangfa_audio_video/Guangzhou40k_' + num00 + '.mp3' + 
 		'" type="audio/mpeg">		</video>';
 	}
 	else		{}
+	VID=num00 - 1;
 	//==========DIVISION==========
 	if ( Initiation_Flag==0 )
 	{
@@ -1414,16 +1484,37 @@ function Audio_Official_Play(ele)
 		Volume_EAB_Core_Action(Table_Class_Name);
 		Speed_EAB_Core_Action(Table_Class_Name);
 		//==========DIVISION==========
-		var multiplier=Audio_URL_STR_CLS.VAL.MultiPlier;
-		var speed=Audio_URL_STR_CLS.VAL.Speed;
 		arr03=document.getElementsByClassName("Audio_Official_Table")[0].getElementsByTagName("tbody")[0].getElementsByClassName("TD_Audio");
-		for (i=0;i<arr03.length;i++)
+		ele01=arr03[VID];
+		ele02=ele01.getElementsByTagName("video")[0];
+		//==========DIVISION==========
+		setTimeout(function(ele02)
 		{
 			//==========DIVISION==========
-			ele01=document.createElement("DIV");
-			ele01.innerHTML=arr03[i].innerHTML;
-			ele02=ele01.getElementsByTagName("video")[0];
-			if ( ele02==undefined )			{continue;}
+			var fun_ct_cache_00;
+			fun_ct_cache_00=arguments.callee;
+			//==========DIVISION==========
+			eval(Parameter_Base_STR_ijk_XX(5));
+			//==========DIVISION==========
+			//==========DIVISION==========
+			var Pass_Or_Not=1;
+			if ( ele02==undefined || ele02.readyState!=4 )		{Pass_Or_Not=0;}
+			//console.log("Pass_Or_Not : " + Pass_Or_Not);
+			//==========DIVISION==========
+			if ( Pass_Or_Not==0 )
+			{
+				setTimeout(function(fun_ct_cache_00,ele02)
+				{
+					fun_ct_cache_00(ele02);
+				//},TTI_IN_USE,fun_ct_cache_00,ele02);
+				},1000,fun_ct_cache_00,ele02);
+				return;
+			}
+			else if ( Pass_Or_Not==1 )		{}
+			else		{}
+			//==========DIVISION==========
+			var multiplier=Audio_URL_STR_CLS.VAL.MultiPlier;
+			var speed=Audio_URL_STR_CLS.VAL.Speed;
 			//==========DIVISION==========
 			if ( Audio_URL_STR_CLS.VAL.MultiPlier_EAB==0 )			{}
 			else if ( Audio_URL_STR_CLS.VAL.MultiPlier_EAB==1 )
@@ -1439,10 +1530,38 @@ function Audio_Official_Play(ele)
 			}
 			else		{}
 			//==========DIVISION==========
-			arr03[i].innerHTML="";
-			arr03[i].appendChild(ele01);
-			//==========DIVISION==========
-		}
+		},TTI_IN_USE,ele02);
+		//==========DIVISION==========
+		//	var multiplier=Audio_URL_STR_CLS.VAL.MultiPlier;
+		//	var speed=Audio_URL_STR_CLS.VAL.Speed;
+		//	arr03=document.getElementsByClassName("Audio_Official_Table")[0].getElementsByTagName("tbody")[0].getElementsByClassName("TD_Audio");
+		//	for (i=0;i<arr03.length;i++)
+		//	{
+		//		//==========DIVISION==========
+		//		ele01=document.createElement("DIV");
+		//		ele01.innerHTML=arr03[i].innerHTML;
+		//		ele02=ele01.getElementsByTagName("video")[0];
+		//		if ( ele02==undefined || ele02.readyState!=4 )			{continue;}
+		//		//==========DIVISION==========
+		//		if ( Audio_URL_STR_CLS.VAL.MultiPlier_EAB==0 )			{}
+		//		else if ( Audio_URL_STR_CLS.VAL.MultiPlier_EAB==1 )
+		//		{
+		//			amplifyMedia(ele02,multiplier);
+		//		}
+		//		else		{}
+		//		//==========DIVISION==========
+		//		if ( Audio_URL_STR_CLS.VAL.Speed_EAB==0 )				{}
+		//		else if ( Audio_URL_STR_CLS.VAL.Speed_EAB==1 )
+		//		{
+		//			ele02.playbackRate=speed;
+		//		}
+		//		else		{}
+		//		//==========DIVISION==========
+		//		arr03[i].innerHTML="";
+		//		arr03[i].appendChild(ele01);
+		//		//==========DIVISION==========
+		//	}
+		//==========DIVISION==========
 	}
 	else		{}
 	//==========DIVISION==========
@@ -1775,14 +1894,35 @@ function MultiPlier_EAB_Core_Action(Table_Class_Name)
 			//				"Audio_URL_STR_CLS.VAL.MultiPlier_EAB : " + Audio_URL_STR_CLS.VAL.MultiPlier_EAB + ";\t" + 
 			//				"");
 			//==========DIVISION==========
-			//for (i=0;i<arr00[0].length;i++)
+			var Pass_Or_Not=1;
+			for (i=0;i<elel03.length && Pass_Or_Not==1;i++)
+			{
+				ele01=ele00.getElementsByClassName("TD_Audio")[i];
+				ele02=ele01.getElementsByTagName("video")[0];
+				if ( ele02==undefined || ( ele02.readyState!=4 && arr00[i%2][parseInt(i/2,10)]!="" ) )		{Pass_Or_Not=0;break;}
+			}
+			//console.log("Pass_Or_Not : " + Pass_Or_Not);
+			//==========DIVISION==========
+			if ( Pass_Or_Not==0 )
+			{
+				setTimeout(function(Table_Class_Name)
+				{
+					MultiPlier_EAB_Core_Action(Table_Class_Name);
+				//},TTI_IN_USE,Table_Class_Name);
+				},1000,Table_Class_Name);
+				return;
+			}
+			else if ( Pass_Or_Not==1 )		{}
+			else		{}
+			//==========DIVISION==========
+			var multiplier=Audio_URL_STR_CLS.VAL.MultiPlier;
+			var speed=Audio_URL_STR_CLS.VAL.Speed;
+			//==========DIVISION==========
 			for (i=0;i<elel03.length;i++)
 			{
 				//==========DIVISION==========
-				ele01=document.createElement("DIV");
-				ele01.innerHTML=ele00.getElementsByClassName("TD_Audio")[i].innerHTML;
+				ele01=ele00.getElementsByClassName("TD_Audio")[i];
 				ele02=ele01.getElementsByTagName("video")[0];
-				if ( ele02==undefined )			{continue;}
 				//==========DIVISION==========
 				if ( Audio_URL_STR_CLS.VAL.MultiPlier_EAB==0 )			{}
 				else if ( Audio_URL_STR_CLS.VAL.MultiPlier_EAB==1 )
@@ -1791,10 +1931,28 @@ function MultiPlier_EAB_Core_Action(Table_Class_Name)
 				}
 				else		{}
 				//==========DIVISION==========
-				ele00.getElementsByClassName("TD_Audio")[i].innerHTML="";
-				ele00.getElementsByClassName("TD_Audio")[i].appendChild(ele01);
-				//==========DIVISION==========
 			}
+			//==========DIVISION==========
+			//	//for (i=0;i<arr00[0].length;i++)
+			//	for (i=0;i<elel03.length;i++)
+			//	{
+			//		//==========DIVISION==========
+			//		ele01=document.createElement("DIV");
+			//		ele01.innerHTML=ele00.getElementsByClassName("TD_Audio")[i].innerHTML;
+			//		ele02=ele01.getElementsByTagName("video")[0];
+			//		if ( ele02==undefined || ele02.readyState!=4 )			{continue;}
+			//		//==========DIVISION==========
+			//		if ( Audio_URL_STR_CLS.VAL.MultiPlier_EAB==0 )			{}
+			//		else if ( Audio_URL_STR_CLS.VAL.MultiPlier_EAB==1 )
+			//		{
+			//			amplifyMedia(ele02,multiplier);
+			//		}
+			//		else		{}
+			//		//==========DIVISION==========
+			//		ele00.getElementsByClassName("TD_Audio")[i].innerHTML="";
+			//		ele00.getElementsByClassName("TD_Audio")[i].appendChild(ele01);
+			//		//==========DIVISION==========
+			//	}
 			//==========DIVISION==========
 		}
 		else		{}
@@ -1844,8 +2002,18 @@ function Current_Time_Calc(AR_ID,Interval_currentTime)
 		else if ( ICTime_Type==2 )		{currentTime_MOD=parseFloat(Interval_currentTime).toFixed(3);}
 		else		{}
 		//==========DIVISION==========
-		if ( E_E2B_Time_Type==0 )		{if ( currentTime_MOD>=duration_ORI )		{currentTime_MOD=duration_ORI;}}
-		else if ( E_E2B_Time_Type==1 )	{if ( currentTime_MOD>=duration_ORI )		{currentTime_MOD=currentTime_MOD % duration_ORI;}}
+		if ( E_E2B_Time_Type==0 )
+		{
+			if ( currentTime_MOD>=duration_ORI )	{currentTime_MOD=duration_ORI;}
+			else if ( currentTime_MOD<=0 )			{currentTime_MOD+=duration_ORI;}
+			else		{}
+		}
+		else if ( E_E2B_Time_Type==1 )
+		{
+			if ( currentTime_MOD>=duration_ORI )	{currentTime_MOD=currentTime_MOD % duration_ORI;}
+			else if ( currentTime_MOD<=0 )			{currentTime_MOD=currentTime_MOD % duration_ORI + duration_ORI;}
+			else		{}
+		}
 		else		{}
 		//==========DIVISION==========
 		if ( currentTime_MOD>=duration_ORI )		{currentTime_MOD=0;}
@@ -2000,7 +2168,7 @@ function ITime_EAB_Core_Action(Table_Class_Name)
 						//==========DIVISION==========
 						var ele02=elel03[i].getElementsByTagName("video")[0];
 						//==========DIVISION==========
-						if ( ele02.readyState==4 )
+						if ( ele02.readyState==4 && ( ele02.paused==false || Audio_URL_STR_CLS.VAL.Video_Action_Effect_Type.ID==1 ) )
 						{
 							Audio_URL_STR_CLS.VAL.Multi_Video_ITime_Timer_ID_ARR[i]=setTimeout(function (i,ele02)
 							{
@@ -2013,6 +2181,14 @@ function ITime_EAB_Core_Action(Table_Class_Name)
 								//==========DIVISION==========
 								var fun_ct_cache_01;
 								fun_ct_cache_01=arguments.callee;
+								//==========DIVISION==========
+								if ( ele02.readyState==4 && ( ele02.paused==false || Audio_URL_STR_CLS.VAL.Video_Action_Effect_Type.ID==1 ) )	{}
+								else
+								{
+									Audio_URL_STR_CLS.VAL.Multi_Video_ITime_Timer_ID_ARR[i]=
+									setTimeout(fun_ct_cache_01,TTI_IN_USE,i,ele02);
+									return;
+								}
 								//==========DIVISION==========
 								var ID,LEN,ID_LEN;
 								var AR_ID=i;
@@ -2230,7 +2406,7 @@ function Volume_EAB_Core_Action(Table_Class_Name)
 						//==========DIVISION==========
 						var ele02=elel03[i].getElementsByTagName("video")[0];
 						//==========DIVISION==========
-						if ( ele02.readyState==4 )
+						if ( ele02.readyState==4 && ( ele02.paused==false || Audio_URL_STR_CLS.VAL.Video_Action_Effect_Type.ID==1 ) )
 						{
 							Audio_URL_STR_CLS.VAL.Multi_Video_Volume_Timer_ID_ARR[i]=setTimeout(function (i,ele02)
 							{
@@ -2243,6 +2419,14 @@ function Volume_EAB_Core_Action(Table_Class_Name)
 								//==========DIVISION==========
 								var fun_ct_cache_01;
 								fun_ct_cache_01=arguments.callee;
+								//==========DIVISION==========
+								if ( ele02.readyState==4 && ( ele02.paused==false || Audio_URL_STR_CLS.VAL.Video_Action_Effect_Type.ID==1 ) )	{}
+								else
+								{
+									Audio_URL_STR_CLS.VAL.Multi_Video_Volume_Timer_ID_ARR[i]=
+									setTimeout(fun_ct_cache_01,TTI_IN_USE,i,ele02);
+									return;
+								}
 								//==========DIVISION==========
 								var ID,LEN,ID_LEN;
 								//==========DIVISION==========
@@ -2452,7 +2636,7 @@ function Speed_EAB_Core_Action(Table_Class_Name)
 						//==========DIVISION==========
 						var ele02=elel03[i].getElementsByTagName("video")[0];
 						//==========DIVISION==========
-						if ( ele02.readyState==4 )
+						if ( ele02.readyState==4 && ( ele02.paused==false || Audio_URL_STR_CLS.VAL.Video_Action_Effect_Type.ID==1 ) )
 						{
 							Audio_URL_STR_CLS.VAL.Multi_Video_Speed_Timer_ID_ARR[i]=setTimeout(function (i,ele02)
 							{
@@ -2465,6 +2649,14 @@ function Speed_EAB_Core_Action(Table_Class_Name)
 								//==========DIVISION==========
 								var fun_ct_cache_01;
 								fun_ct_cache_01=arguments.callee;
+								//==========DIVISION==========
+								if ( ele02.readyState==4 && ( ele02.paused==false || Audio_URL_STR_CLS.VAL.Video_Action_Effect_Type.ID==1 ) )	{}
+								else
+								{
+									Audio_URL_STR_CLS.VAL.Multi_Video_Speed_Timer_ID_ARR[i]=
+									setTimeout(fun_ct_cache_01,TTI_IN_USE,i,ele02);
+									return;
+								}
 								//==========DIVISION==========
 								var ID,LEN,ID_LEN;
 								//==========DIVISION==========
@@ -3410,9 +3602,9 @@ function Audio_Hotkey_Mouse(ele,evt,post_method)
 			//==========DIVISION==========
 			if ( evt_target.className=="MultiPlier_CLS" )							{NUM_MIN=0;NUM_MAX=100;}
 			//==========DIVISION==========
-			else if ( evt_target.className=="ITime_CLS" )							{NUM_MIN=0;NUM_MAX=10000*10000;}
-			else if ( evt_target.className=="BITime_CLS" )							{NUM_MIN=0;NUM_MAX=10000*10000;}
-			else if ( evt_target.className=="EITime_CLS" )							{NUM_MIN=0;NUM_MAX=10000*10000;}
+			else if ( evt_target.className=="ITime_CLS" )							{NUM_MIN=-10000*10000;NUM_MAX=10000*10000;}
+			else if ( evt_target.className=="BITime_CLS" )							{NUM_MIN=-10000*10000;NUM_MAX=10000*10000;}
+			else if ( evt_target.className=="EITime_CLS" )							{NUM_MIN=-10000*10000;NUM_MAX=10000*10000;}
 			else if ( evt_target.className=="BEITime_BTTI_CLS" )					{NUM_MIN=0;NUM_MAX=10000*10000;}
 			else if ( evt_target.className=="BEITime_ETTI_CLS" )					{NUM_MIN=0;NUM_MAX=10000*10000;}
 			//==========DIVISION==========
@@ -3630,16 +3822,50 @@ function Audio_Hotkey_Mouse(ele,evt,post_method)
 https://gb.falundafa.org/photo.html
 https://falundafa.org/images/master_Li_high.zip
 
-<a href="view/Photo_View_01.html"			target=_blank>https://cn-text.github.io/view/Photo_View_01.html</a>
-<a href="view/master_Li_high.jpg"			target=_blank>https://cn-text.github.io/view/master_Li_high.jpg</a>
-<a href="view/master_Li_high_R90.jpg"		target=_blank>https://cn-text.github.io/view/master_Li_high_R90.jpg</a>
-<a href="view/master_Li_high_R180.jpg"		target=_blank>https://cn-text.github.io/view/master_Li_high_R180.jpg</a>
-<a href="view/master_Li_high_R270.jpg"		target=_blank>https://cn-text.github.io/view/master_Li_high_R270.jpg</a>
-
+<table class="DF_PIC_Link_Table" cellSpacing=0 cellPadding=0 border=1><tbody>
+	<tr><td><table cellSpacing=0 cellPadding=0 border=0><tbody>
+		<tr><td><a href="https://falundafa.org/images/master_Li_high.zip" target=_blank>https://falundafa.org/images/master_Li_high.zip</a></td></tr>
+		<tr><td><a href="view/Photo_View_01.html"			target=_blank>https://cn-text.github.io/view/Photo_View_01.html</a></td></tr>
+		<tr><td><a href="view/master_Li_high.jpg"			target=_blank>https://cn-text.github.io/view/master_Li_high.jpg</a></td></tr>
+		<tr><td><a href="view/master_Li_high_R90.jpg"		target=_blank>https://cn-text.github.io/view/master_Li_high_R90.jpg</a></td></tr>
+		<tr><td><a href="view/master_Li_high_R180.jpg"		target=_blank>https://cn-text.github.io/view/master_Li_high_R180.jpg</a></td></tr>
+		<tr><td><a href="view/master_Li_high_R270.jpg"		target=_blank>https://cn-text.github.io/view/master_Li_high_R270.jpg</a></td></tr>
+	</tbody></table></td></tr>
+	<tr><td><table class="MLH_PIC_Table" cellSpacing=0 cellPadding=0 border=1><tbody>
+		<tr>
+			<td><a href="view/MLH_001/MLH_000_R_R000.jpg"	target=_blank>上</a></td>
+			<td><a href="view/MLH_001/MLH_001_M_R000.jpg"	target=_blank>上</a></td>
+			<td><a href="view/MLH_001/MLH_020_R_R180.jpg"	target=_blank>下</a></td>
+			<td><a href="view/MLH_001/MLH_021_M_R180.jpg"	target=_blank>下</a></td>
+			<td><a href="view/MLH_001/MLH_030_R_R270.jpg"	target=_blank>左</a></td>
+			<td><a href="view/MLH_001/MLH_031_M_R270.jpg"	target=_blank>左</a></td>
+			<td><a href="view/MLH_001/MLH_010_R_R090.jpg"	target=_blank>右</a></td>
+			<td><a href="view/MLH_001/MLH_011_M_R090.jpg"	target=_blank>右</a></td>
+		</tr>
+		<tr>
+			<td><a href="view/MLH_001/MLH_100_R000_M_1X2_00.jpg"	target=_blank>上上</a></td>
+			<td><a href="view/MLH_001/MLH_100_R000_M_1X2_01.jpg"	target=_blank>上上</a></td>
+			<td><a href="view/MLH_001/MLH_100_R000_M_1X2_02.jpg"	target=_blank>下下</a></td>
+			<td><a href="view/MLH_001/MLH_100_R000_M_1X2_03.jpg"	target=_blank>下下</a></td>
+			<td><a href="view/MLH_001/MLH_100_R001_M_1X2_02.jpg"	target=_blank>左左</a></td>
+			<td><a href="view/MLH_001/MLH_100_R001_M_1X2_03.jpg"	target=_blank>左左</a></td>
+			<td><a href="view/MLH_001/MLH_100_R001_M_1X2_00.jpg"	target=_blank>右右</a></td>
+			<td><a href="view/MLH_001/MLH_100_R001_M_1X2_01.jpg"	target=_blank>右右</a></td>
+		</tr>
+	</tbody></table></td></tr>
+	<tr><td><table cellSpacing=0 cellPadding=0 border=0><tbody>
+		<tr><td><pre>Ctrl & +	放大</pre></td></tr>
+		<tr><td><pre>Ctrl & -	缩小</pre></td></tr>
+		<tr><td><pre>Ctrl & 0	恢复原尺寸</pre></td></tr>
+		<tr><td><pre>F11		全屏</pre></td></tr>
+	</tbody></table></td></tr>
+	<!--<tr><td>Ctrl & +	放大<br>Ctrl & -	缩小<br>Ctrl & 0	恢复原尺寸<br>F11			全屏<br></td></tr>-->
+</tbody></table><!--
 Ctrl & +	放大
 Ctrl & -	缩小
 Ctrl & 0	恢复原尺寸
 F11			全屏
+-->
 ============================================================
 <table class="Audio_Table" cellSpacing=0 cellPadding=0 border=1 onkeydown=Audio_Hotkey_Mouse(this,event,0) onmouseover=TEXT_ATTRIBUTION(this,event,0) onmouseout=TEXT_ATTRIBUTION(this,event,1) onchange=TEXT_ATTRIBUTION(this,event,2)><tbody>
 <tr><td><table class="Audio_Ctrl_Table" cellSpacing=0 cellPadding=0 border=0><tbody>
@@ -3648,8 +3874,11 @@ F11			全屏
 	</tr><tr>
 		<td><table cellSpacing=0 cellPadding=0 border=0><tbody><tr>
 			<td><span>「李洪志」「真善忍」「法輪功」「法輪大法」【音频】：<a href="https://github.com/cn-text/cn-text.github.io/releases/download/CNText01/cn-text_HTML_21_Audio.7z" target=_blank>全部下载</a>。</span></td>
+			<td><input type="button" class="Black_Background_Full_Screen_BTN" title="Black_Background_Full_Screen_BTN" value="BF" onclick=Black_Background_Full_Screen_Set(this)></td>
 			<td><input type="button" class="Audio_Short" value="Short" onclick=Audio_Switch(this) style="background-color:#1EB0E9;"></td>
 			<td><input type="button" class="Audio_Long" value="Long" onclick=Audio_Switch(this) style="background-color:red;"></td>
+			<td><input type="button" class="Play_List_Time_Arrow_BTN" title="Play_List_Time_Arrow_BTN : Obverse/Reverse ." onclick=Play_List_Time_Arrow_Switch(this) value="O"></td>
+			<td><input type="button" class="Video_Action_Effect_Type_BTN" title="Video_Action_Effect_Type_BTN : Effect_One/Effect_ALL ." value="VAEO" onclick=Video_Action_Effect_Type_Switch(this)></td>
 			<td><input type="button" class="Network_Type_CLS" value="OFF" onclick=Network_Type_Switch(this) style="background-color:red;"></td>
 			<td><input type="button" class="Audio_Setting_Use_CLS" value="Use" onclick=Audio_Setting_Use() style="background-color:red;"></td>
 			<td><select class="Usage_Collection_SEL" title="Usage_Collection_SEL"></select></td>
