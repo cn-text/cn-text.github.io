@@ -146,6 +146,22 @@ function UC_CLS_INI()
 	var ID,LEN,ID_LEN;
 	var UTID;
 	//==========DIVISION==========
+	var location_href=location.href;
+	str00=location_href.replace(/^.+Unicode_65536_Char_DF_Main_V[0-9]{2}.html.*$/gm,"");
+	str01=location_href.replace(/^.+Unicode_65536_Char_DF_Main_V[0-9]{2}_Online.html.*$/gm,"");
+	var URL_Type;
+	if ( str00=="" )	{URL_Type=0;}
+	else		{}
+	if ( str01=="" )	{URL_Type=1;}
+	else		{}
+	//==========DIVISION==========
+	var INI_Type=[[0,3][parseInt(2 * Math.random(),10)],parseInt(2 * Math.random(),10)][URL_Type];
+	//==========DIVISION==========
+	console.log("URL_Type : " + URL_Type + ";\t" + 
+				"INI_Type : " + INI_Type + ";\t" + 
+				"[[0,1,2,3],[0,1]][URL_Type][INI_Type] : " + [[0,1,2,3],[0,1]][URL_Type][INI_Type] + ";\t" + 
+				"[15,0][INI_Type] : " + [15,0][INI_Type] + ";\t" + 
+				"");
 	LEN=Unicode_Text_FDN_ARR.length;
 	str00="";
 	for (UTID=0;UTID<LEN;UTID++)
@@ -154,15 +170,17 @@ function UC_CLS_INI()
 	}
 	ele_Unicode_Text_ARR_SEL.innerHTML=str00;
 	//==========DIVISION==========
-	UC_CLS.VAL.Unicode_Text_ARR_SEL_ID		=ele_Unicode_Text_ARR_SEL.selectedIndex=0;
-	UC_CLS.VAL.Unicode_Text_ARR_FDN			=ele_Unicode_Text_ARR_SEL.options[ele_Unicode_Text_ARR_SEL.selectedIndex].value;
+	UC_CLS.VAL.Unicode_Text_ARR_SEL_ID		=ele_Unicode_Text_ARR_SEL.selectedIndex=[[0,1,2,3],[0,1]][URL_Type][INI_Type];
+	UC_CLS.VAL.Unicode_Text_ARR_FDN			=ele_Unicode_Text_ARR_FDN_CLS.value
+											=ele_Unicode_Text_ARR_SEL.options[ele_Unicode_Text_ARR_SEL.selectedIndex].value;
 	//==========DIVISION==========
 	ele_Unicode_Text_ARR_Set_BTN.style.backgroundColor="#1EB0E9";
 	ele_Unicode_Text_ARR_Set_BTN.click();
 	//==========DIVISION==========
-	UC_CLS.VAL.Key_Word		=ele_Key_Word_CLS.value		="真善忍";
+	UC_CLS.VAL.Key_Word						=ele_Key_Word_CLS.value		="真善忍";
 	TAG_A_TID_ARR_INI();
-	UC_CLS.VAL.ReadMe_Word	=ele_ReadMe_Word_CLS.value	="真善忍";
+	UC_CLS.VAL.TAG_A_TID_SEL_ID				=ele_TAG_A_TID_SEL.selectedIndex=[15,0][INI_Type];
+	UC_CLS.VAL.ReadMe_Word					=ele_ReadMe_Word_CLS.value	="真善忍";
 	//==========DIVISION==========
 	ele_Key_Word_View_BTN.style.backgroundColor="#1EB0E9";
 	//ele_Key_Word_View_BTN.click();
@@ -209,7 +227,10 @@ function URL_HREF_INI(ext_inner_cls)
 		if ( this_step==0 )
 		{
 			//==========DIVISION==========
-			if ( location.href.indexOf("?")<0 )			{return;}
+			var location_href=location.href;
+			var location_search=location.search;
+			//==========DIVISION==========
+			if ( location_href.indexOf("?")<0 )			{return;}
 			//==========DIVISION==========
 			//Unicode_65536_Char_DF_Main_V00.html?utasid=0&uid=160&uc=　&tid=TID_001&w=Hello.
 			//Unicode_65536_Char_DF_Main_V00.html?utasid=0&uid=21892&uc=善&tid=TID_001&w=Hello.
@@ -223,11 +244,21 @@ function URL_HREF_INI(ext_inner_cls)
 			//Unicode_65536_Char_DF_Main_V00_Online.html?utasid=0&uid=160&uc=　&tid=TID_001&w=Hello.
 			//Unicode_65536_Char_DF_Main_V00_Online.html?utasid=1&uid=21151&uc=功&tid=TID_001&w=Hello.
 			//==========DIVISION==========
-			var UTASID	=location.href.replace(/^(.+\?)(.*)([\&]*)(utasid=)([^\?\&]*)([\&]*)(.*)$/gm,"$5");
-			var UID		=location.href.replace(/^(.+\?)(.*)([\&]*)(uid=)([^\?\&]*)([\&]*)(.*)$/gm,"$5");
-			var UC		=location.href.replace(/^(.+\?)(.*)([\&]*)(uc=)([^\?\&]*)([\&]*)(.*)$/gm,"$5");
-			var TID		=location.href.replace(/^(.+\?)(.*)([\&]*)(tid=)([^\?\&]*)([\&]*)(.*)$/gm,"$5");
-			var W		=location.href.replace(/^(.+\?)(.*)([\&]*)(w=)([^\?\&]*)([\&]*)(.*)$/gm,"$5");
+			var UTASID	=location_href.replace(/^(.+)([\?\&])(utasid=)([^\?\&]*)([\&]*)(.*)$/gm,"$4");
+			var UID		=location_href.replace(/^(.+)([\?\&])(uid=)([^\?\&]*)([\&]*)(.*)$/gm,"$4");
+			var UC		=location_href.replace(/^(.+)([\?\&])(uc=)([^\?\&]*)([\&]*)(.*)$/gm,"$4");
+			var TID		=location_href.replace(/^(.+)([\?\&])(tid=)([^\?\&]*)([\&]*)(.*)$/gm,"$4");
+			var W		=location_href.replace(/^(.+)([\?\&])(w=)([^\?\&]*)([\&]*)(.*)$/gm,"$4");
+			//==========DIVISION==========
+			if ( UTASID==location_href && UID==location_href && UC==location_href && TID==location_href && W==location_href )		{return;}
+			else		{}
+			//	console.log("UTASID : " + UTASID + ";\t" + 
+			//				"UID : " + UID + ";\t" + 
+			//				"UC : " + UC + ";\t" + 
+			//				"TID : " + TID + ";\t" + 
+			//				"W : " + W + ";\t" + 
+			//				"");
+			//==========DIVISION==========
 			if ( UTASID!="" && !isNaN(UTASID) )		{UTASID=parseInt(UTASID,10);}
 			else									{UTASID="-";}
 			if ( UID!="" && !isNaN(UID) )			{UID=parseInt(UID,10);UC_LEN=1;}
@@ -257,13 +288,14 @@ function URL_HREF_INI(ext_inner_cls)
 						"UID : " + UID + ";\t" + 
 						"UC : " + UC + ";\t" + 
 						"decodeURIComponent(UC) : " + decodeURIComponent(UC) + ";\t" + 
+						"TID : " + TID + ";\t" + 
 						"W : " + W + ";\t" + 
 						"decodeURIComponent(W) : " + decodeURIComponent(W) + ";\t" + 
 						"");
 			//==========DIVISION==========
 			var URL_ID,TAG_A_ID,HREF;
-			if ( location.href.replace(/^.+\/Unicode_65536_Char_DF_Main_V00.html.*$/gm,"")=="" )				{URL_ID=0;}
-			else if ( location.href.replace(/^.+\/Unicode_65536_Char_DF_Main_V00_Online.html.*$/gm,"")=="" )	{URL_ID=1;}
+			if ( location_href.replace(/^.+\/Unicode_65536_Char_DF_Main_V00.html.*$/gm,"")=="" )				{URL_ID=0;}
+			else if ( location_href.replace(/^.+\/Unicode_65536_Char_DF_Main_V00_Online.html.*$/gm,"")=="" )	{URL_ID=1;}
 			else			{}
 			//==========DIVISION==========
 			if ( URL_ID==0 && UTASID>=0 && UTASID<=3 || URL_ID==1 && UTASID>=0 && UTASID<=1 )
@@ -290,7 +322,7 @@ function URL_HREF_INI(ext_inner_cls)
 							"TAG_A_ID : " + TAG_A_ID + ";\t" + 
 							"");
 				HREF=elel_Unicode_Text_TAG_A[TAG_A_ID].href;
-				elel_Unicode_Text_TAG_A[TAG_A_ID].href=HREF + location.search;
+				elel_Unicode_Text_TAG_A[TAG_A_ID].href=HREF + location_search;
 				elel_Unicode_Text_TAG_A[TAG_A_ID].click();
 				elel_Unicode_Text_TAG_A[TAG_A_ID].href=HREF;
 				//==========DIVISION==========
