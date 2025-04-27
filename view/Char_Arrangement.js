@@ -1,3 +1,22 @@
+//====================DIVISION====================
+function CSS_Browser_INI()
+{
+	//==========DIVISION==========
+	var ele00=document.getElementsByTagName("body")[0];
+	//==========DIVISION==========
+	if ( navigator.userAgent.indexOf("Chrome")>=0 )
+	{
+		ele00.style.zoom=1.23;
+	}
+	else if ( navigator.userAgent.indexOf("Firefox")>=0 )
+	{
+		ele00.style.zoom="";
+	}
+	else		{}
+	//==========DIVISION==========
+}
+CSS_Browser_INI();
+//====================DIVISION====================
 function Key_Evt_INI()
 {
 	document.getElementsByTagName("body")[0].setAttribute("onkeydown","Hotkey_Mouse(this,event,0)");
@@ -143,3 +162,4 @@ function Hotkey_Mouse(ele,evt,post_method)
 	console.log(evt.type + "\n" + evt.which + "\n" + evt.target.tagName + "\n" + ele.tagName + "\n" + 
 					"Num_X == " + Num_X + "\n" + "Timing_Mode == " + Timing_Mode);
 }
+//====================DIVISION====================
