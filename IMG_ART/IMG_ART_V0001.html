@@ -130,8 +130,13 @@ else											{}
 //==========DIVISION==========
 //========================================Base_Function========================================
 //========================================Pre_Definition========================================
-function ELE_ELEL_STR_INI()
+function ELE_ELEL_STR_INI(INI_Type)
 {
+	//==========DIVISION==========
+	if ( INI_Type==0 )		{return "";}
+	else if ( INI_Type==1 )	{}
+	else					{}
+	//==========DIVISION==========
 	//==============================ELE_ELEL_STR_INI.Begin==============================
 	//====================DIVISION====================
 	//==========DIVISION==========
@@ -170,6 +175,8 @@ function ELE_ELEL_STR_INI()
 	//==========DIVISION==========
 	var ele_Canvas_Area_Table						=ele_IMG_ART_Table.getElementsByClassName("Canvas_Area_Table")[0];
 	var ele_Canvas_Main_CLS							=ele_Canvas_Area_Table.getElementsByClassName("Canvas_Main_CLS")[0];
+	var ele_IMG_ARR_Area_Table						=ele_IMG_ART_Table.getElementsByClassName("IMG_ARR_Area_Table")[0];
+	var elel_IMG_Main_CLS							=ele_IMG_ARR_Area_Table.getElementsByClassName("IMG_Main_CLS");
 	//==========DIVISION==========
 	//====================DIVISION====================
 	//==============================ELE_ELEL_STR_INI.End==============================
@@ -180,7 +187,9 @@ function ELE_ELEL_STR_INI()
 	//Use 0.104 s .//.replace(new RegExp("^[\\s\\S]+\\r\\n\\t+(\\/\\/=+BC_Code_Almost_Same_Area\\(\\\"" + 
 	//Use 0.003 s .//.replace(new RegExp("^function[ ]*[\\s\\S]+\\r\\n\\t+(\\/\\/=+BC_Code_Almost_Same_Area\\(\\\"" + 
 	//Use 0.001-0.002 s .//
-	.replace(new RegExp("^function[ ]*" + fun_ct_cache.name + "\\(\\)\\n[\\t]*\\{\\n([\\t]*\\/\\/=+" + fun_ct_cache.name + "\.Begin)","gm"),"$1")
+	//.replace(new RegExp("^function[ ]*" + fun_ct_cache.name + "\\(INI_Type\\)\\n[\\t]*\\{\\n([\\t]*\\/\\/=+" + fun_ct_cache.name + "\.Begin)","gm"),"$1")
+	.replace(new RegExp("^function[ ]*" + fun_ct_cache.name + 
+	"\\(INI_Type\\)\\n[\\t]*\\{[\\s\\S]*\\n([\\t]*\\/\\/=+" + fun_ct_cache.name + "\.Begin)","gm"),"$1")
 	.replace(new RegExp("(\\/\\/=+" + fun_ct_cache.name + "\.End=+\\n)[\\s\\S]*$","gm"),"$1")
 	.replace(/(\n)[\t]{1}/gm,"$1");
 	return str00;
@@ -196,15 +205,22 @@ var IMG_ART_CLS								=
 		I2C_Rotate_IOrC						:	0,//0:"Rotate_IMG";1:"Rotate_Canvas";
 		//==========DIVISION==========
 		IMG_Start_Stop_Rotate_State			:	0,//0:"Stop";1:"Start";
+		//==========DIVISION==========
 		I2C_Canvas_Icon_INI_State			:	0,//0:Wait;1:Begin_00;2:Begin_01;3:END;
+		//==========DIVISION==========
 		I2C_Canvas_Main_INI_State			:	0,//0:Wait;1:Begin_00;2:Begin_01;3:END;
 		I2C_Canvas_Main_INI_Num				:	0,
 		I2C_Canvas_Main_INI_ST_ID			:	0,
+		//==========DIVISION==========
+		I2C_IMG_ARR_Main_INI_State			:	0,//0:Wait;1:Begin_00;2:Begin_01;3:END;
+		I2C_IMG_ARR_Main_INI_Num			:	0,
+		I2C_IMG_ARR_Main_INI_ST_ID			:	0,
 		//==========DIVISION==========
 		IMG_Info_CLS						:	{SRC:"IMG_List\/master_Li_high.jpg",BX:950,BY:700,EX:3130,EY:3350,X:0,Y:0,W:0,H:0,},
 		ele_IMG_ORI							:	null,
 		ele_Canvas_ORI						:	null,
 		ele_Canvas_Mode						:	null,
+		ele_IMG_Mode						:	null,
 		//==========DIVISION==========
 		IMG_ORI_Width						:	0,
 		IMG_ORI_Height						:	0,
@@ -247,7 +263,7 @@ var IMG_ART_CLS								=
 function IMG_ART_CLS_INI()
 {
 	//==========DIVISION==========
-	eval(ELE_ELEL_STR_INI());
+	eval(ELE_ELEL_STR_INI(0));
 	eval(Parameter_Base_STR_ijk_XX(5));
 	var ID,LEN,ID_LEN;
 	var INI_Type;
@@ -258,6 +274,9 @@ function IMG_ART_CLS_INI()
 	I2C_CLS.I2C_Rotate_IOrC=0;//0:"Rotate_IMG";1:"Rotate_Canvas";
 	ele_I2C_Rotate_IOrC_BTN.style.backgroundColor=["yellow","orange"][I2C_CLS.I2C_Rotate_IOrC];
 	ele_I2C_Rotate_IOrC_BTN.value=["I","C"][I2C_CLS.I2C_Rotate_IOrC];
+	//==========DIVISION==========
+	ele_IMG_ARR_Area_Table.style.display=["","none"][I2C_CLS.I2C_Rotate_IOrC];
+	ele_Canvas_Area_Table.style.display=["","none"][(I2C_CLS.I2C_Rotate_IOrC + 1)%2];
 	//==========DIVISION==========
 	ele_IMG_ART_Reset_CLS.style.backgroundColor="#1EB0E9";
 	I2C_CLS.IMG_Start_Stop_Rotate_State=num00=0;//0:"Stop";1:"Start";
@@ -303,7 +322,7 @@ function IMG_ART_CLS_INI()
 function IMG_2_Canvas_Ctrl_Table_INI(INI_Type)
 {
 	//==========DIVISION==========
-	eval(ELE_ELEL_STR_INI());
+	eval(ELE_ELEL_STR_INI(0));
 	eval(Parameter_Base_STR_ijk_XX(10));
 	var ID,LEN,ID_LEN;
 	var Code_Area;
@@ -405,7 +424,7 @@ function I2C_Canvas_Icon_INI(INI_Type)
 	//==========DIVISION==========
 	IMG_ART_CLS.VAL.I2C_Canvas_Icon_INI_State=1;//0:Wait;1:Begin_00;2:Begin_01;3:END;
 	//==========DIVISION==========
-	eval(ELE_ELEL_STR_INI());
+	eval(ELE_ELEL_STR_INI(0));
 	eval(Parameter_Base_STR_ijk_XX(10));
 	var ID,LEN,ID_LEN;
 	var Code_Area;
@@ -418,7 +437,7 @@ function I2C_Canvas_Icon_INI(INI_Type)
 					"");
 	}
 	//==========DIVISION==========
-	var ele_IMG_ORI,ele_Canvas_ORI,ele_Canvas_Mode;
+	var ele_IMG_ORI,ele_Canvas_ORI,ele_Canvas_Mode,ele_IMG_Mode;
 	//==========DIVISION==========
 	ele_IMG_ORI				=ele_IMG_Icon_CLS;
 	ele_Canvas_ORI			=document.createElement("canvas");
@@ -466,15 +485,113 @@ function I2C_Canvas_Icon_INI(INI_Type)
 		ctx02.drawImage(ele_Canvas_ORI,sx,sy,swidth,sheight,x,y,width,height);
 	})(ctx02,ele_Canvas_ORI);
 	//==========DIVISION==========
+	ele_IMG_Mode			=document.createElement("img");
+	ele_IMG_Mode.src		=ele_Canvas_Mode.toDataURL();
+	//console.log(ele_IMG_Mode.src);
+	//==========DIVISION==========
 	IMG_ART_CLS.VAL.ele_IMG_ORI			=ele_IMG_ORI		;
 	IMG_ART_CLS.VAL.ele_Canvas_ORI		=ele_Canvas_ORI		;
 	IMG_ART_CLS.VAL.ele_Canvas_Mode		=ele_Canvas_Mode	;
+	IMG_ART_CLS.VAL.ele_IMG_Mode		=ele_IMG_Mode		;
 	//==========DIVISION==========
-	IMG_ART_CLS.VAL.I2C_Canvas_Main_INI_State=0;//0:Wait;1:Begin_00;2:Begin_01;3:END;
-	I2C_Canvas_Main_INI(INI_Type);
+	//0:"Rotate_IMG";1:"Rotate_Canvas";
+	if ( IMG_ART_CLS.VAL.I2C_Rotate_IOrC==0 )
+	{
+		//==========DIVISION==========
+		str00="";
+		str00+="\n";
+		for (ID_Y=0;ID_Y<IMG_ART_CLS.VAL.Canvas_MOD_Main_IMG_NUM_Y;ID_Y++)
+		{
+			str00+="\t<tr>" + "\n";
+			for (ID_X=0;ID_X<IMG_ART_CLS.VAL.Canvas_MOD_Main_IMG_NUM_X;ID_X++)
+			{
+				str00+='\t\t<td><div style="overflow:hidden;"><div><img class="IMG_Main_CLS" src="' + ele_IMG_Mode.src + '"></div></div></td>' + "\n";
+			}
+			str00+="\t</tr>" + "\n";
+		}
+		ele_IMG_ARR_Area_Table.getElementsByTagName("tbody")[0].innerHTML=str00;
+		//==========DIVISION==========
+		IMG_ART_CLS.VAL.I2C_IMG_ARR_Main_INI_State=0;//0:Wait;1:Begin_00;2:Begin_01;3:END;
+		I2C_IMG_ARR_Main_INI(INI_Type);
+		//==========DIVISION==========
+	}
+	else if ( IMG_ART_CLS.VAL.I2C_Rotate_IOrC==1 )
+	{
+		IMG_ART_CLS.VAL.I2C_Canvas_Main_INI_State=0;//0:Wait;1:Begin_00;2:Begin_01;3:END;
+		I2C_Canvas_Main_INI(INI_Type);
+	}
+	else		{}
 	//==========DIVISION==========
-	IMG_ART_CLS.VAL.I2C_Canvas_Icon_INI_State=2;//0:Wait;1:Begin_00;2:Begin_01;3:END;
-	IMG_ART_CLS.VAL.I2C_Canvas_Icon_INI_State=3;//0:Wait;1:Begin_00;2:Begin_01;3:END;
+}
+
+function I2C_IMG_ARR_Main_INI(INI_Type)
+{
+	//==========DIVISION==========
+	IMG_ART_CLS.VAL.I2C_IMG_ARR_Main_INI_State=1;//0:Wait;1:Begin_00;2:Begin_01;3:END;
+	//==========DIVISION==========
+	eval(ELE_ELEL_STR_INI(0));
+	eval(Parameter_Base_STR_ijk_XX(10));
+	var ID,LEN,ID_LEN;
+	var Code_Area;
+	var ctx00,ctx01,ctx02,ctx03,ctx04;
+	//==========DIVISION==========
+	var ele_IMG_ORI,ele_Canvas_ORI,ele_Canvas_Mode,ele_IMG_Mode;
+	//==========DIVISION==========
+	ele_IMG_ORI		=IMG_ART_CLS.VAL.ele_IMG_ORI			;
+	ele_Canvas_ORI	=IMG_ART_CLS.VAL.ele_Canvas_ORI			;
+	ele_Canvas_Mode	=IMG_ART_CLS.VAL.ele_Canvas_Mode		;
+	ele_IMG_Mode	=IMG_ART_CLS.VAL.ele_IMG_Mode			;
+	//==========DIVISION==========
+	var ID_X,ID_Y;
+	//==========DIVISION==========
+	for (ID_X=0;ID_X<IMG_ART_CLS.VAL.Canvas_MOD_Main_IMG_NUM_X;ID_X++)
+	{
+		for (ID_Y=0;ID_Y<IMG_ART_CLS.VAL.Canvas_MOD_Main_IMG_NUM_Y;ID_Y++)
+		{
+			//==========DIVISION==========
+			var rotate_VAL	=null;	rotate_VAL	=360 * Math.random();
+			var rotateX_VAL	=null;	rotateX_VAL	=[0,180][Math.round(Math.random())];
+			var rotateY_VAL	=null;	rotateY_VAL	=[0,180][Math.round(Math.random())];
+			var rotateZ_VAL	=null;	rotateZ_VAL	=[0,180][Math.round(Math.random())];
+			//==========DIVISION==========
+			var style_rotate_STR,style_rotateX_STR,style_rotateY_STR,style_rotateZ_STR;
+			var style_STR_MOD,style_STR_ORI;
+			//==========DIVISION==========
+			style_rotate_STR	="";
+			style_rotateX_STR	="";
+			style_rotateY_STR	="";
+			style_rotateZ_STR	="";
+			style_STR_MOD		="";
+			//==========DIVISION==========
+			if ( rotate_VAL!=null && rotate_VAL!=0 )	{style_rotate_STR	="rotate(" + rotate_VAL.toString() + "deg)";}
+			if ( rotateX_VAL!=null && rotateX_VAL!=0 )	{style_rotateX_STR	="rotateX(" + rotateX_VAL.toString() + "deg)";}
+			if ( rotateY_VAL!=null && rotateY_VAL!=0 )	{style_rotateY_STR	="rotateY(" + rotateY_VAL.toString() + "deg)";}
+			if ( rotateZ_VAL!=null && rotateZ_VAL!=0 )	{style_rotateZ_STR	="rotateZ(" + rotateZ_VAL.toString() + "deg)";}
+			//==========DIVISION==========
+			ele_div=elel_IMG_Main_CLS[ID_Y * IMG_ART_CLS.VAL.Canvas_MOD_Main_IMG_NUM_X + ID_X].parentNode;
+			//==========DIVISION==========
+			style_STR_MOD="transform:" + style_rotate_STR + style_rotateX_STR + style_rotateY_STR + style_rotateZ_STR + ";";
+			style_STR_ORI=ele_div.style.transform;
+			if ( style_STR_ORI!=style_STR_MOD )
+			{
+				ele_div.style.transform=style_STR_MOD;
+				//ele_div.setAttribute("style","transform:" + style_STR_MOD);
+				if ( ele_div.getAttribute("style")==null || ele_div.getAttribute("style")==undefined || ele_div.getAttribute("style")=="" )
+				{
+					ele_div.setAttribute("style",style_STR_MOD);
+				}
+				else
+				{
+					ele_div.setAttribute("style",ele_div.getAttribute("style").replace(/transform\:[^;]*;/gm,style_STR_MOD));
+				}
+			}
+			else		{}
+			//==========DIVISION==========
+		}
+	}
+	//==========DIVISION==========
+	IMG_ART_CLS.VAL.I2C_IMG_ARR_Main_INI_State=2;//0:Wait;1:Begin_00;2:Begin_01;3:END;
+	IMG_ART_CLS.VAL.I2C_IMG_ARR_Main_INI_State=3;//0:Wait;1:Begin_00;2:Begin_01;3:END;
 	//==========DIVISION==========
 }
 
@@ -483,17 +600,18 @@ function I2C_Canvas_Main_INI(INI_Type)
 	//==========DIVISION==========
 	IMG_ART_CLS.VAL.I2C_Canvas_Main_INI_State=1;//0:Wait;1:Begin_00;2:Begin_01;3:END;
 	//==========DIVISION==========
-	eval(ELE_ELEL_STR_INI());
+	eval(ELE_ELEL_STR_INI(0));
 	eval(Parameter_Base_STR_ijk_XX(10));
 	var ID,LEN,ID_LEN;
 	var Code_Area;
 	var ctx00,ctx01,ctx02,ctx03,ctx04;
 	//==========DIVISION==========
-	var ele_IMG_ORI,ele_Canvas_ORI,ele_Canvas_Mode;
+	var ele_IMG_ORI,ele_Canvas_ORI,ele_Canvas_Mode,ele_IMG_Mode;
 	//==========DIVISION==========
 	ele_IMG_ORI		=IMG_ART_CLS.VAL.ele_IMG_ORI			;
 	ele_Canvas_ORI	=IMG_ART_CLS.VAL.ele_Canvas_ORI			;
 	ele_Canvas_Mode	=IMG_ART_CLS.VAL.ele_Canvas_Mode		;
+	ele_IMG_Mode	=IMG_ART_CLS.VAL.ele_IMG_Mode			;
 	//==========DIVISION==========
 	ctx02=ele_Canvas_Mode.getContext("2d");
 	//==========DIVISION==========
@@ -555,7 +673,7 @@ function IMG_ART_Main_Ctrl_Table_Action(ele,evt,post_method)
 	//==============================arguments.callee==============================
 	//====================Pre_Definition====================
 	//==========DIVISION==========
-	eval(ELE_ELEL_STR_INI());
+	eval(ELE_ELEL_STR_INI(0));
 	eval(Parameter_Base_STR_ijk_XX(5));
 	var ID,LEN,ID_LEN;
 	var INI_Type;
@@ -595,95 +713,193 @@ function IMG_ART_Main_Ctrl_Table_Action(ele,evt,post_method)
 			IMG_ART_CLS.VAL.IMG_Start_Stop_Rotate_State=IMG_Start_Stop_Rotate_State;
 			ele_IMG_Start_Stop_Rotate_CLS.style.backgroundColor=["red","#1EB0E9"][IMG_Start_Stop_Rotate_State];
 			//==========DIVISION==========
-			//0:"Stop";1:"Start";
-			if ( IMG_Start_Stop_Rotate_State==0 )
+			if ( I2C_CLS.I2C_Rotate_IOrC==0 )//0:"Rotate_IMG";
 			{
-				clearTimeout(IMG_ART_CLS.VAL.I2C_Canvas_Main_INI_ST_ID);
-			}
-			else if ( IMG_Start_Stop_Rotate_State==1 )
-			{
-				//==========DIVISION==========
-				IMG_ART_CLS.VAL.I2C_Canvas_Main_INI_Num=0;
-				//==========DIVISION==========
-				var this_step=0;
-				IMG_ART_CLS.VAL.I2C_Canvas_Main_INI_ST_ID=setTimeout(function (this_step)
+				//0:"Stop";1:"Start";
+				if ( IMG_Start_Stop_Rotate_State==0 )
+				{
+					clearTimeout(IMG_ART_CLS.VAL.I2C_IMG_ARR_Main_INI_ST_ID);
+				}
+				else if ( IMG_Start_Stop_Rotate_State==1 )
 				{
 					//==========DIVISION==========
-					clearTimeout(IMG_ART_CLS.VAL.I2C_Canvas_Main_INI_ST_ID);
+					IMG_ART_CLS.VAL.I2C_Canvas_Main_INI_Num=0;
 					//==========DIVISION==========
-					//====================arguments.callee====================
-					var fun_ct_cache;
-					fun_ct_cache=arguments.callee;
-					//====================arguments.callee====================
-					//====================Variable_Predefinition====================
-					//==========DIVISION==========
-					eval(Parameter_Base_STR_ijk_XX(5));
-					var ID,LEN;
-					var STO=0;//0:Do_Not_Run_setTimeout;1:Run_setTimeout;2:Run_Function_Now;
-					//==========DIVISION==========
-					//====================Variable_Predefinition====================
-					//====================this_step====================
-					if ( this_step==0 )
+					var this_step=0;
+					IMG_ART_CLS.VAL.I2C_IMG_ARR_Main_INI_ST_ID=setTimeout(function (this_step)
 					{
 						//==========DIVISION==========
-						INI_Type=0;
-						IMG_ART_CLS.VAL.I2C_Canvas_Main_INI_State=0;//0:Wait;1:Begin_00;2:Begin_01;3:END;
-						I2C_Canvas_Main_INI(INI_Type);
+						clearTimeout(IMG_ART_CLS.VAL.I2C_IMG_ARR_Main_INI_ST_ID);
 						//==========DIVISION==========
-						if ( this_step==0 )			{this_step++;STO=1;}
+						//====================arguments.callee====================
+						var fun_ct_cache;
+						fun_ct_cache=arguments.callee;
+						//====================arguments.callee====================
+						//====================Variable_Predefinition====================
 						//==========DIVISION==========
-					}
-					else if ( this_step==1 )
-					{
+						eval(Parameter_Base_STR_ijk_XX(5));
+						var ID,LEN;
+						var STO=0;//0:Do_Not_Run_setTimeout;1:Run_setTimeout;2:Run_Function_Now;
 						//==========DIVISION==========
-						if ( IMG_ART_CLS.VAL.I2C_Canvas_Main_INI_State>=0 && IMG_ART_CLS.VAL.I2C_Canvas_Main_INI_State<=2 )
+						//====================Variable_Predefinition====================
+						//====================this_step====================
+						if ( this_step==0 )
 						{
-							if ( this_step==1 )			{STO=1;}
+							//==========DIVISION==========
+							INI_Type=0;
+							IMG_ART_CLS.VAL.I2C_IMG_ARR_Main_INI_State=0;//0:Wait;1:Begin_00;2:Begin_01;3:END;
+							I2C_IMG_ARR_Main_INI(INI_Type);
+							//==========DIVISION==========
+							if ( this_step==0 )			{this_step++;STO=1;}
+							//==========DIVISION==========
 						}
-						else if ( IMG_ART_CLS.VAL.I2C_Canvas_Main_INI_State==3 )
+						else if ( this_step==1 )
 						{
-							IMG_ART_CLS.VAL.I2C_Canvas_Main_INI_Num++;
-							//	console.log("I2C_Canvas_Main_INI_Num : " + IMG_ART_CLS.VAL.I2C_Canvas_Main_INI_Num + ";\n" + 
-							//				"I2C_Canvas_Main_INI One_Time Over ." + ";\n" + 
-							//				"");
-							if ( this_step==1 )			{this_step--;STO=1;}
+							//==========DIVISION==========
+							if ( IMG_ART_CLS.VAL.I2C_IMG_ARR_Main_INI_State>=0 && IMG_ART_CLS.VAL.I2C_IMG_ARR_Main_INI_State<=2 )
+							{
+								if ( this_step==1 )			{STO=1;}
+							}
+							else if ( IMG_ART_CLS.VAL.I2C_IMG_ARR_Main_INI_State==3 )
+							{
+								IMG_ART_CLS.VAL.I2C_IMG_ARR_Main_INI_Num++;
+								//	console.log("I2C_IMG_ARR_Main_INI_Num : " + IMG_ART_CLS.VAL.I2C_IMG_ARR_Main_INI_Num + ";\n" + 
+								//				"I2C_IMG_ARR_Main_INI One_Time Over ." + ";\n" + 
+								//				"");
+								if ( this_step==1 )			{this_step--;STO=1;}
+							}
+							else		{}
+							//==========DIVISION==========
+						}
+						else if ( this_step==2 )
+						{
+							//==========DIVISION==========
+							//==========DIVISION==========
+							if ( this_step==2 )			{this_step++;STO=1;}
+							//==========DIVISION==========
+						}
+						else if ( this_step==3 )
+						{
+							//==========DIVISION==========
+							//==========DIVISION==========
+							if ( this_step==3 )			{this_step++;STO=1;}
+							//==========DIVISION==========
+						}
+						else		{STO=0;}
+						//==========DIVISION==========
+						//====================this_step====================
+						//====================STO====================
+						if ( STO==0 )//0:Do_Not_Run_setTimeout;1:Run_setTimeout;2:Run_Function_Now;
+						{
+						}
+						else if ( STO==1 )//0:Do_Not_Run_setTimeout;1:Run_setTimeout;2:Run_Function_Now;
+						{
+							IMG_ART_CLS.VAL.I2C_IMG_ARR_Main_INI_ST_ID=setTimeout(fun_ct_cache,IMG_ART_CLS.VAL.ITime,this_step);
+						}
+						else if ( STO==2 )//0:Do_Not_Run_setTimeout;1:Run_setTimeout;2:Run_Function_Now;
+						{
+							fun_ct_cache(this_step);
 						}
 						else		{}
-						//==========DIVISION==========
-					}
-					else if ( this_step==2 )
-					{
-						//==========DIVISION==========
-						//==========DIVISION==========
-						if ( this_step==2 )			{this_step++;STO=1;}
-						//==========DIVISION==========
-					}
-					else if ( this_step==3 )
-					{
-						//==========DIVISION==========
-						//==========DIVISION==========
-						if ( this_step==3 )			{this_step++;STO=1;}
-						//==========DIVISION==========
-					}
-					else		{STO=0;}
+						//====================STO====================
+					},IMG_ART_CLS.VAL.ITime,this_step);
 					//==========DIVISION==========
-					//====================this_step====================
-					//====================STO====================
-					if ( STO==0 )//0:Do_Not_Run_setTimeout;1:Run_setTimeout;2:Run_Function_Now;
+				}
+				else		{}
+			}
+			else if ( I2C_CLS.I2C_Rotate_IOrC==1 )//1:"Rotate_Canvas";
+			{
+				//0:"Stop";1:"Start";
+				if ( IMG_Start_Stop_Rotate_State==0 )
+				{
+					clearTimeout(IMG_ART_CLS.VAL.I2C_Canvas_Main_INI_ST_ID);
+				}
+				else if ( IMG_Start_Stop_Rotate_State==1 )
+				{
+					//==========DIVISION==========
+					IMG_ART_CLS.VAL.I2C_Canvas_Main_INI_Num=0;
+					//==========DIVISION==========
+					var this_step=0;
+					IMG_ART_CLS.VAL.I2C_Canvas_Main_INI_ST_ID=setTimeout(function (this_step)
 					{
-					}
-					else if ( STO==1 )//0:Do_Not_Run_setTimeout;1:Run_setTimeout;2:Run_Function_Now;
-					{
-						IMG_ART_CLS.VAL.I2C_Canvas_Main_INI_ST_ID=setTimeout(fun_ct_cache,IMG_ART_CLS.VAL.ITime,this_step);
-					}
-					else if ( STO==2 )//0:Do_Not_Run_setTimeout;1:Run_setTimeout;2:Run_Function_Now;
-					{
-						fun_ct_cache(this_step);
-					}
-					else		{}
-					//====================STO====================
-				},IMG_ART_CLS.VAL.ITime,this_step);
-				//==========DIVISION==========
+						//==========DIVISION==========
+						clearTimeout(IMG_ART_CLS.VAL.I2C_Canvas_Main_INI_ST_ID);
+						//==========DIVISION==========
+						//====================arguments.callee====================
+						var fun_ct_cache;
+						fun_ct_cache=arguments.callee;
+						//====================arguments.callee====================
+						//====================Variable_Predefinition====================
+						//==========DIVISION==========
+						eval(Parameter_Base_STR_ijk_XX(5));
+						var ID,LEN;
+						var STO=0;//0:Do_Not_Run_setTimeout;1:Run_setTimeout;2:Run_Function_Now;
+						//==========DIVISION==========
+						//====================Variable_Predefinition====================
+						//====================this_step====================
+						if ( this_step==0 )
+						{
+							//==========DIVISION==========
+							INI_Type=0;
+							IMG_ART_CLS.VAL.I2C_Canvas_Main_INI_State=0;//0:Wait;1:Begin_00;2:Begin_01;3:END;
+							I2C_Canvas_Main_INI(INI_Type);
+							//==========DIVISION==========
+							if ( this_step==0 )			{this_step++;STO=1;}
+							//==========DIVISION==========
+						}
+						else if ( this_step==1 )
+						{
+							//==========DIVISION==========
+							if ( IMG_ART_CLS.VAL.I2C_Canvas_Main_INI_State>=0 && IMG_ART_CLS.VAL.I2C_Canvas_Main_INI_State<=2 )
+							{
+								if ( this_step==1 )			{STO=1;}
+							}
+							else if ( IMG_ART_CLS.VAL.I2C_Canvas_Main_INI_State==3 )
+							{
+								IMG_ART_CLS.VAL.I2C_Canvas_Main_INI_Num++;
+								//	console.log("I2C_Canvas_Main_INI_Num : " + IMG_ART_CLS.VAL.I2C_Canvas_Main_INI_Num + ";\n" + 
+								//				"I2C_Canvas_Main_INI One_Time Over ." + ";\n" + 
+								//				"");
+								if ( this_step==1 )			{this_step--;STO=1;}
+							}
+							else		{}
+							//==========DIVISION==========
+						}
+						else if ( this_step==2 )
+						{
+							//==========DIVISION==========
+							//==========DIVISION==========
+							if ( this_step==2 )			{this_step++;STO=1;}
+							//==========DIVISION==========
+						}
+						else if ( this_step==3 )
+						{
+							//==========DIVISION==========
+							//==========DIVISION==========
+							if ( this_step==3 )			{this_step++;STO=1;}
+							//==========DIVISION==========
+						}
+						else		{STO=0;}
+						//==========DIVISION==========
+						//====================this_step====================
+						//====================STO====================
+						if ( STO==0 )//0:Do_Not_Run_setTimeout;1:Run_setTimeout;2:Run_Function_Now;
+						{
+						}
+						else if ( STO==1 )//0:Do_Not_Run_setTimeout;1:Run_setTimeout;2:Run_Function_Now;
+						{
+							IMG_ART_CLS.VAL.I2C_Canvas_Main_INI_ST_ID=setTimeout(fun_ct_cache,IMG_ART_CLS.VAL.ITime,this_step);
+						}
+						else if ( STO==2 )//0:Do_Not_Run_setTimeout;1:Run_setTimeout;2:Run_Function_Now;
+						{
+							fun_ct_cache(this_step);
+						}
+						else		{}
+						//====================STO====================
+					},IMG_ART_CLS.VAL.ITime,this_step);
+					//==========DIVISION==========
+				}
+				else		{}
 			}
 			else		{}
 			//==========DIVISION==========
@@ -691,9 +907,35 @@ function IMG_ART_Main_Ctrl_Table_Action(ele,evt,post_method)
 		else if ( ele.className=="IMG_ART_Main_Ctrl_Table" && evt_target.className=="I2C_Rotate_IOrC_BTN" )
 		{
 			//==========DIVISION==========
+			var IMG_Start_Stop_Rotate_State=IMG_ART_CLS.VAL.IMG_Start_Stop_Rotate_State;//0:"Stop";1:"Start";
+			var Do_Rotate_Reset=0;
+			if ( IMG_Start_Stop_Rotate_State==1 )	{Do_Rotate_Reset=1;}
+			else									{}
+			//==========DIVISION==========
+			if ( Do_Rotate_Reset==1 )
+			{
+				ele_IMG_Start_Stop_Rotate_CLS.click();
+			}
+			else		{}
+			//==========DIVISION==========
 			I2C_CLS.I2C_Rotate_IOrC=(I2C_CLS.I2C_Rotate_IOrC + 1)%2;//0:"Rotate_IMG";1:"Rotate_Canvas";
 			ele_I2C_Rotate_IOrC_BTN.style.backgroundColor=["yellow","orange"][I2C_CLS.I2C_Rotate_IOrC];
 			ele_I2C_Rotate_IOrC_BTN.value=["I","C"][I2C_CLS.I2C_Rotate_IOrC];
+			//==========DIVISION==========
+			ele_IMG_ARR_Area_Table.style.display=["","none"][I2C_CLS.I2C_Rotate_IOrC];
+			ele_Canvas_Area_Table.style.display=["","none"][(I2C_CLS.I2C_Rotate_IOrC + 1)%2];
+			//==========DIVISION==========
+			INI_Type=0;
+			IMG_2_Canvas_Ctrl_Table_INI(INI_Type);
+			IMG_ART_CLS.VAL.I2C_Canvas_Icon_INI_State=0;//0:Wait;1:Begin_00;2:Begin_01;3:END;
+			I2C_Canvas_Icon_INI(INI_Type);
+			//==========DIVISION==========
+			if ( Do_Rotate_Reset==1 )
+			{
+				ele_IMG_Start_Stop_Rotate_CLS.click();
+				Do_Rotate_Reset=0;
+			}
+			else		{}
 			//==========DIVISION==========
 		}
 		else		{}
@@ -712,7 +954,7 @@ function IMG_2_Canvas_Ctrl_Table_Action(ele,evt,post_method)
 	//==============================arguments.callee==============================
 	//====================Pre_Definition====================
 	//==========DIVISION==========
-	eval(ELE_ELEL_STR_INI());
+	eval(ELE_ELEL_STR_INI(0));
 	eval(Parameter_Base_STR_ijk_XX(5));
 	var ID,LEN,ID_LEN;
 	var INI_Type;
@@ -851,7 +1093,7 @@ function IMG_2_Canvas_Ctrl_Table_Action(ele,evt,post_method)
 function TEXT_ATTRIBUTION(ele,evt,n)
 {
 	//==========DIVISION==========
-	eval(ELE_ELEL_STR_INI());
+	eval(ELE_ELEL_STR_INI(0));
 	eval(Parameter_Base_STR_ijk_XX(5));
 	var ID,LEN,ID_LEN;
 	//==========DIVISION==========
@@ -917,7 +1159,7 @@ function IMG_ART_Hotkey_Mouse(ele,evt,post_method)
 {
 	//==========DIVISION==========
 	eval(Parameter_Base_STR_ijk_XX(10));
-	eval(ELE_ELEL_STR_INI());
+	eval(ELE_ELEL_STR_INI(0));
 	var ID,LEN,ID_LEN;
 	//==========DIVISION==========
 	//console.log("function now is : TEXT_ATTRIBUTION(ele,evt,n)");
@@ -1179,15 +1421,35 @@ function IMG_ART_Hotkey_Mouse(ele,evt,post_method)
 	</tbody></table></td></tr>
 </tbody></table></td></tr>
 
-<tr><td><table class="Canvas_Area_Table" cellSpacing=0 cellPadding=0 border=0 style="background-color:black;"><tbody>
+<tr><td><table class="Canvas_Area_Table" cellSpacing=0 cellPadding=0 border=0 style="background-color:black;overflow:hidden;"><tbody>
 	<tr>
 		<td><div><canvas class="Canvas_Main_CLS"></canvas></div></td>
+	</tr>
+</tbody></table></td></tr>
+
+<tr><td><table class="IMG_ARR_Area_Table" cellSpacing=0 cellPadding=0 border=0 style="background-color:black;overflow:hidden;"><tbody>
+	<tr>
+		<td><div><img class="IMG_Main_CLS" src=""></div></td>
+		<td><div><img class="IMG_Main_CLS" src=""></div></td>
+		<td><div><img class="IMG_Main_CLS" src=""></div></td>
+	</tr>
+	<tr>
+		<td><div><img class="IMG_Main_CLS" src=""></div></td>
+		<td><div><img class="IMG_Main_CLS" src=""></div></td>
+		<td><div><img class="IMG_Main_CLS" src=""></div></td>
+	</tr>
+	<tr>
+		<td><div><img class="IMG_Main_CLS" src=""></div></td>
+		<td><div><img class="IMG_Main_CLS" src=""></div></td>
+		<td><div><img class="IMG_Main_CLS" src=""></div></td>
 	</tr>
 </tbody></table></td></tr>
 
 </tbody></table>
 
 <script type="text/javascript">
+eval(ELE_ELEL_STR_INI(1));
+
 var Initiation_Flag=0;
 
 function Initiation()
@@ -1208,17 +1470,24 @@ function Initiation()
 }
 Initiation();
 
+
 </script>
 
 </body>
 </html>
 
 <!--
+
 环保局
 清洁工
 清洁工具样板
 
 这里是李洪志真善忍环保局
 专门雇佣李洪志真善忍清洁工，临时工、小时工，10元/1小时。
+
+李洪志真善忍清洁工具测试中，清洁剂，洗厕所专用，化粪除污，化粪处理、粪便处理、污水处理、垃圾处理等。
+
+原因就是：李洪志不定时传响。
+原因就是：李洪志不定时倒车。
 
 -->
