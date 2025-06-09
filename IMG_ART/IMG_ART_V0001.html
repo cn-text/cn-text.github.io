@@ -75,7 +75,7 @@ table.IMG_ART_Table table.IMG_ARR_Area_Table								{}
 table.Canvas_Area_Table img.IMG_Main_CLS									{}
 /*====================DIVISION====================*/
 table.IMG_ART_Table table.Text_Area_Table									{}
-table.Text_Area_Table span.Text_Area_CT_CLS									{font-weight:bold;}
+table.Text_Area_Table span.Text_Area_CT_CLS									{font-weight:bold;line-height:100%;}
 /*====================DIVISION====================*/
 /*==============================XXXXX_Area_Table==============================*/
 </style>
@@ -344,12 +344,12 @@ function IMG_ART_CLS_INI()
 	//==========DIVISION==========
 	var I2C_CLS=IMG_ART_CLS.VAL;
 	//==========DIVISION==========
+	I2C_CLS.IMG_ARR_Area_Table_P_TD_SH_State	=1;//0:"Hide";1:"Show";
+	I2C_CLS.Canvas_Area_Table_P_TD_SH_State		=1;//0:"Hide";1:"Show";
+	I2C_CLS.Text_Area_Table_P_TD_SH_State		=0;//0:"Hide";1:"Show";
 	ele_IMG_ARR_Area_Table_P_TD_SH_BTN	.style.backgroundColor=["red","#1EB0E9"][I2C_CLS.IMG_ARR_Area_Table_P_TD_SH_State	];//0:"Hide";1:"Show";
 	ele_Canvas_Area_Table_P_TD_SH_BTN	.style.backgroundColor=["red","#1EB0E9"][I2C_CLS.Canvas_Area_Table_P_TD_SH_State	];//0:"Hide";1:"Show";
 	ele_Text_Area_Table_P_TD_SH_BTN		.style.backgroundColor=["red","#1EB0E9"][I2C_CLS.Text_Area_Table_P_TD_SH_State		];//0:"Hide";1:"Show";
-	I2C_CLS.IMG_ARR_Area_Table_P_TD_SH_State	=0;//0:"Hide";1:"Show";
-	I2C_CLS.Canvas_Area_Table_P_TD_SH_State		=0;//0:"Hide";1:"Show";
-	I2C_CLS.Text_Area_Table_P_TD_SH_State		=0;//0:"Hide";1:"Show";
 	ele_IMG_ARR_Area_Table	.parentNode.style.display=["none",""][I2C_CLS.IMG_ARR_Area_Table_P_TD_SH_State	];
 	ele_Canvas_Area_Table	.parentNode.style.display=["none",""][I2C_CLS.Canvas_Area_Table_P_TD_SH_State	];
 	ele_Text_Area_Table		.parentNode.style.display=["none",""][I2C_CLS.Text_Area_Table_P_TD_SH_State		];
@@ -412,7 +412,7 @@ function IMG_ART_CLS_INI()
 	ele_Text_Font_Size_CLS.value				=I2C_CLS.Text_Font_Size				=2583;//2100;
 	ele_Text_Area_CT_CLS.style.fontSize			//=(I2C_CLS.Text_Font_Size * Multiple_VAL).toString() + "%";
 												=I2C_CLS.Text_Font_Size.toString() + "%";
-	ele_Text_Opacity_CLS.value					=I2C_CLS.Text_Opacity				=1;
+	ele_Text_Opacity_CLS.value					=ele_Text_Area_Table.style.opacity	=I2C_CLS.Text_Opacity	=1;
 	ele_Text_Sep_STR_CLS.value					=I2C_CLS.Text_Sep_STR_STR			="";
 	//==========DIVISION==========
 	str00="";
@@ -441,39 +441,50 @@ function IMG_ART_CLS_INI()
 	ele_Text_CT_STR_01_Break_Or_Not_BTN.style.backgroundColor	=["red","#1EB0E9"][I2C_CLS.Text_CT_STR_01_Break_Or_Not];
 	ele_Text_CT_STR_02_Break_Or_Not_BTN.style.backgroundColor	=["red","#1EB0E9"][I2C_CLS.Text_CT_STR_02_Break_Or_Not];
 	//==========DIVISION==========
+	Code_Area=2;
+	if ( Code_Area==0 )			{}
+	else if ( Code_Area==1 )
+	{
+		//==========DIVISION==========
+		ele_Text_NUM_X_CLS.value					=I2C_CLS.Text_NUM_X					=1;
+		ele_Text_NUM_Y_CLS.value					=I2C_CLS.Text_NUM_Y					=7;
+		ele_Text_Font_Size_CLS.value				=I2C_CLS.Text_Font_Size				=870;
+		ele_Text_Area_CT_CLS.style.fontSize			=I2C_CLS.Text_Font_Size.toString() + "%";
+		ele_Text_Area_CT_CLS.style.lineHeight		="102%";
+		//==========DIVISION==========
+											I2C_CLS.Text_CT_STR_00_Break_Or_Not		=0;//0:"Not_Do_Break";1:"Do_Break";
+											I2C_CLS.Text_CT_STR_01_Break_Or_Not		=0;//0:"Not_Do_Break";1:"Do_Break";
+											I2C_CLS.Text_CT_STR_02_Break_Or_Not		=0;//0:"Not_Do_Break";1:"Do_Break";
+		ele_Text_CT_STR_00_Break_Or_Not_BTN.style.backgroundColor	=["red","#1EB0E9"][I2C_CLS.Text_CT_STR_00_Break_Or_Not];
+		ele_Text_CT_STR_01_Break_Or_Not_BTN.style.backgroundColor	=["red","#1EB0E9"][I2C_CLS.Text_CT_STR_01_Break_Or_Not];
+		ele_Text_CT_STR_02_Break_Or_Not_BTN.style.backgroundColor	=["red","#1EB0E9"][I2C_CLS.Text_CT_STR_02_Break_Or_Not];
+		//==========DIVISION==========
+	}
+	else if ( Code_Area==2 )
+	{
+		//==========DIVISION==========
+		ele_Text_NUM_X_CLS.value					=I2C_CLS.Text_NUM_X					=1;
+		ele_Text_NUM_Y_CLS.value					=I2C_CLS.Text_NUM_Y					=8;
+		ele_Text_Font_Size_CLS.value				=I2C_CLS.Text_Font_Size				=763;
+		ele_Text_Area_CT_CLS.style.fontSize			=I2C_CLS.Text_Font_Size.toString() + "%";
+		ele_Text_Area_CT_CLS.style.lineHeight		="102%";
+		//==========DIVISION==========
+											I2C_CLS.Text_CT_STR_00_Break_Or_Not		=0;//0:"Not_Do_Break";1:"Do_Break";
+											I2C_CLS.Text_CT_STR_01_Break_Or_Not		=0;//0:"Not_Do_Break";1:"Do_Break";
+											I2C_CLS.Text_CT_STR_02_Break_Or_Not		=0;//0:"Not_Do_Break";1:"Do_Break";
+		ele_Text_CT_STR_00_Break_Or_Not_BTN.style.backgroundColor	=["red","#1EB0E9"][I2C_CLS.Text_CT_STR_00_Break_Or_Not];
+		ele_Text_CT_STR_01_Break_Or_Not_BTN.style.backgroundColor	=["red","#1EB0E9"][I2C_CLS.Text_CT_STR_01_Break_Or_Not];
+		ele_Text_CT_STR_02_Break_Or_Not_BTN.style.backgroundColor	=["red","#1EB0E9"][I2C_CLS.Text_CT_STR_02_Break_Or_Not];
+		//==========DIVISION==========
+	}
+	else
+	{
+	}
+	//==========DIVISION==========
 	Text_Area_CT_INI();
 	//==========DIVISION==========
 }
 
-function Text_Area_CT_INI()
-{
-	//==========DIVISION==========
-	eval(ELE_ELEL_STR_INI(0));
-	eval(Parameter_Base_STR_ijk_XX(5));
-	var ID,LEN,ID_LEN;
-	var ID_X,ID_Y;
-	var INI_Type;
-	var Code_Area;
-	//==========DIVISION==========
-	var I2C_CLS=IMG_ART_CLS.VAL;
-	//==========DIVISION==========
-	str00="";
-	var ID_X,ID_Y;
-	for (ID_Y=0;ID_Y<I2C_CLS.Text_NUM_Y;ID_Y++)
-	{
-		for (ID_X=0;ID_X<I2C_CLS.Text_NUM_X;ID_X++)
-		{
-			str00+=I2C_CLS.Text_CT_STR_00_Main_STR + I2C_CLS.Text_CT_STR_00_Sub_STR + ["","\n"][I2C_CLS.Text_CT_STR_00_Break_Or_Not];
-			str00+=I2C_CLS.Text_CT_STR_01_Main_STR + I2C_CLS.Text_CT_STR_01_Sub_STR + ["","\n"][I2C_CLS.Text_CT_STR_01_Break_Or_Not];
-			str00+=I2C_CLS.Text_CT_STR_02_Main_STR + I2C_CLS.Text_CT_STR_02_Sub_STR + ["","\n"][I2C_CLS.Text_CT_STR_02_Break_Or_Not];
-		}
-		str00+="\n";
-	}
-	str00=str00.replace(/(.)/gm,"$1" + I2C_CLS.Text_Sep_STR_STR);
-	ele_Text_Area_CT_CLS.innerHTML		=I2C_CLS.Text_Area_CT_STR				=str00;
-	//==========DIVISION==========
-}
-//====================DIVISION====================
 function IMG_2_Canvas_Ctrl_Table_INI(INI_Type)
 {
 	//==========DIVISION==========
@@ -537,13 +548,8 @@ function IMG_2_Canvas_Ctrl_Table_INI(INI_Type)
 	//==========DIVISION==========
 	//====================DIVISION====================
 	//==========DIVISION==========
-	Code_Area=1;
-	//==========DIVISION==========
-	//====================DIVISION====================
-	//==========DIVISION==========
-	if ( Code_Area==0 )
-	{
-	}
+	Code_Area=3;
+	if ( Code_Area==0 )			{}
 	else if ( Code_Area==1 )
 	{
 		//==========DIVISION==========
@@ -561,19 +567,88 @@ function IMG_2_Canvas_Ctrl_Table_INI(INI_Type)
 															=I2C_CLS.Canvas_MOD_Sub_Coordinate_WH * I2C_CLS.Canvas_MOD_Main_IMG_NUM_Y;
 		//==========DIVISION==========
 	}
+	else if ( Code_Area==2 )
+	{
+		//==========DIVISION==========
+		ele_IMG_ORI_Coordinate_X_CLS		.value	=I2C_CLS.IMG_ORI_Coordinate_X		=I2C_CLS.IMG_Info_CLS.X		=1000;
+		ele_IMG_ORI_Coordinate_Y_CLS		.value	=I2C_CLS.IMG_ORI_Coordinate_Y		=I2C_CLS.IMG_Info_CLS.Y		=1000;
+		ele_IMG_ORI_Coordinate_WH_CLS		.value	=I2C_CLS.IMG_ORI_Coordinate_WH		=I2C_CLS.IMG_Info_CLS.WH	=2000;
+		//==========DIVISION==========
+		ele_Canvas_MOD_Sub_Coordinate_WH_CLS	.value		=I2C_CLS.Canvas_MOD_Sub_Coordinate_WH			=160;
+		//==========DIVISION==========
+		ele_Canvas_MOD_Main_IMG_NUM_X_CLS		.value		=I2C_CLS.Canvas_MOD_Main_IMG_NUM_X				=[12,12,12, 7, 7][OS.ID];
+		ele_Canvas_MOD_Main_IMG_NUM_Y_CLS		.value		=I2C_CLS.Canvas_MOD_Main_IMG_NUM_Y				=[ 7, 7, 7,12,12][OS.ID];
+		ele_Canvas_MOD_Main_Canvas_Width_CLS	.value		=I2C_CLS.Canvas_MOD_Main_Canvas_Width
+															=I2C_CLS.Canvas_MOD_Sub_Coordinate_WH * I2C_CLS.Canvas_MOD_Main_IMG_NUM_X;
+		ele_Canvas_MOD_Main_Canvas_Height_CLS	.value		=I2C_CLS.Canvas_MOD_Main_Canvas_Height
+															=I2C_CLS.Canvas_MOD_Sub_Coordinate_WH * I2C_CLS.Canvas_MOD_Main_IMG_NUM_Y;
+		//==========DIVISION==========
+	}
+	else if ( Code_Area==3 )
+	{
+		//==========DIVISION==========
+		ele_IMG_ORI_Coordinate_X_CLS		.value	=I2C_CLS.IMG_ORI_Coordinate_X		=I2C_CLS.IMG_Info_CLS.X		=1000;
+		ele_IMG_ORI_Coordinate_Y_CLS		.value	=I2C_CLS.IMG_ORI_Coordinate_Y		=I2C_CLS.IMG_Info_CLS.Y		=1000;
+		ele_IMG_ORI_Coordinate_WH_CLS		.value	=I2C_CLS.IMG_ORI_Coordinate_WH		=I2C_CLS.IMG_Info_CLS.WH	=2000;
+		//==========DIVISION==========
+		ele_Canvas_MOD_Sub_Coordinate_WH_CLS	.value		=I2C_CLS.Canvas_MOD_Sub_Coordinate_WH			=140;
+		//==========DIVISION==========
+		ele_Canvas_MOD_Main_IMG_NUM_X_CLS		.value		=I2C_CLS.Canvas_MOD_Main_IMG_NUM_X				=[14,14,14, 8, 8][OS.ID];
+		ele_Canvas_MOD_Main_IMG_NUM_Y_CLS		.value		=I2C_CLS.Canvas_MOD_Main_IMG_NUM_Y				=[ 8, 8, 8,14,14][OS.ID];
+		ele_Canvas_MOD_Main_Canvas_Width_CLS	.value		=I2C_CLS.Canvas_MOD_Main_Canvas_Width
+															=I2C_CLS.Canvas_MOD_Sub_Coordinate_WH * I2C_CLS.Canvas_MOD_Main_IMG_NUM_X;
+		ele_Canvas_MOD_Main_Canvas_Height_CLS	.value		=I2C_CLS.Canvas_MOD_Main_Canvas_Height
+															=I2C_CLS.Canvas_MOD_Sub_Coordinate_WH * I2C_CLS.Canvas_MOD_Main_IMG_NUM_Y;
+		//==========DIVISION==========
+	}
 	else		{}
 	//==========DIVISION==========
 	//====================DIVISION====================
 	//==========DIVISION==========
-	ele_ITime_CLS			.value=I2C_CLS.ITime			 =10;
-	ele_IMG_Opacity_CLS		.value=I2C_CLS.IMG_Opacity		 =1;
-	ele_Direction_Num_CLS	.value=I2C_CLS.Direction_Num	 =12;
+	ele_ITime_CLS			.value			=I2C_CLS.ITime			=10;
 	//==========DIVISION==========
+	//0:"Hide";1:"Show";
+	if ( I2C_CLS.Text_Area_Table_P_TD_SH_State==0 )			{num00=1;}
+	else if ( I2C_CLS.Text_Area_Table_P_TD_SH_State==1 )	{num00=0.6;}
+	else		{}
+	ele_IMG_Opacity_CLS		.value			=
+	ele_Canvas_Area_Table	.style.opacity	=
+	ele_IMG_ARR_Area_Table	.style.opacity	=I2C_CLS.IMG_Opacity	=num00;
 	//==========DIVISION==========
+	ele_Direction_Num_CLS	.value			=I2C_CLS.Direction_Num	=12;
 	//==========DIVISION==========
-	//==========DIVISION==========
+	//====================DIVISION====================
 }
 
+function Text_Area_CT_INI()
+{
+	//==========DIVISION==========
+	eval(ELE_ELEL_STR_INI(0));
+	eval(Parameter_Base_STR_ijk_XX(5));
+	var ID,LEN,ID_LEN;
+	var ID_X,ID_Y;
+	var INI_Type;
+	var Code_Area;
+	//==========DIVISION==========
+	var I2C_CLS=IMG_ART_CLS.VAL;
+	//==========DIVISION==========
+	str00="";
+	var ID_X,ID_Y;
+	for (ID_Y=0;ID_Y<I2C_CLS.Text_NUM_Y;ID_Y++)
+	{
+		for (ID_X=0;ID_X<I2C_CLS.Text_NUM_X;ID_X++)
+		{
+			str00+=I2C_CLS.Text_CT_STR_00_Main_STR + I2C_CLS.Text_CT_STR_00_Sub_STR + ["","\n"][I2C_CLS.Text_CT_STR_00_Break_Or_Not];
+			str00+=I2C_CLS.Text_CT_STR_01_Main_STR + I2C_CLS.Text_CT_STR_01_Sub_STR + ["","\n"][I2C_CLS.Text_CT_STR_01_Break_Or_Not];
+			str00+=I2C_CLS.Text_CT_STR_02_Main_STR + I2C_CLS.Text_CT_STR_02_Sub_STR + ["","\n"][I2C_CLS.Text_CT_STR_02_Break_Or_Not];
+		}
+		str00+="\n";
+	}
+	str00=str00.replace(/(.)/gm,"$1" + I2C_CLS.Text_Sep_STR_STR);
+	ele_Text_Area_CT_CLS.innerHTML		=I2C_CLS.Text_Area_CT_STR				=str00;
+	//==========DIVISION==========
+}
+//====================DIVISION====================
 function I2C_Canvas_Icon_INI(INI_Type)
 {
 	//==========DIVISION==========
@@ -1099,22 +1174,22 @@ function IMG_ART_Main_Ctrl_Table_Action(ele,evt,post_method)
 		{
 			//==========DIVISION==========
 			str00=evt_target.className.replace(/_BTN$/gm,"");
-			str01="";
-			str01+="ele_" + evt_target.className + '.style.backgroundColor=["red","#1EB0E9"][I2C_CLS.' + str00 + "_State];" + "\n";//0:"Hide";1:"Show";
-			str01+="I2C_CLS." + str00 + "_State=(" + "I2C_CLS." + str00 + " + 1)%2;" + "\n";//0:"Hide";1:"Show";
-			str01+="";
-			eval(str01);
+			str01=str00.replace(/_P_TD_SH$/gm,"");
+			str02="";
+			str02+="I2C_CLS." + str00 + "_State=(" + "I2C_CLS." + str00 + "_State + 1)%2;" + "\n";//0:"Hide";1:"Show";
+			str02+="ele_" + evt_target.className + '.style.backgroundColor=["red","#1EB0E9"][I2C_CLS.' + str00 + "_State];" + "\n";//0:"Hide";1:"Show";
+			str02+="ele_" + str01 + '.parentNode.style.display=["none",""][I2C_CLS.' + str00 + "_State];" + "\n";
+			eval(str02);
+			//==========DIVISION==========
+			//0:"Hide";1:"Show";
+			if ( I2C_CLS.Text_Area_Table_P_TD_SH_State==0 )			{num00=1;}
+			else if ( I2C_CLS.Text_Area_Table_P_TD_SH_State==1 )	{num00=0.6;}
+			else		{}
+			ele_IMG_Opacity_CLS		.value			=
+			ele_Canvas_Area_Table	.style.opacity	=
+			ele_IMG_ARR_Area_Table	.style.opacity	=I2C_CLS.IMG_Opacity	=num00;
 			//==========DIVISION==========
 		}
-	ele_IMG_ARR_Area_Table_P_TD_SH_BTN	.style.backgroundColor=["red","#1EB0E9"][I2C_CLS.IMG_ARR_Area_Table_P_TD_SH_State	];//0:"Hide";1:"Show";
-	ele_Canvas_Area_Table_P_TD_SH_BTN	.style.backgroundColor=["red","#1EB0E9"][I2C_CLS.Canvas_Area_Table_P_TD_SH_State	];//0:"Hide";1:"Show";
-	ele_Text_Area_Table_P_TD_SH_BTN		.style.backgroundColor=["red","#1EB0E9"][I2C_CLS.Text_Area_Table_P_TD_SH_State		];//0:"Hide";1:"Show";
-	I2C_CLS.IMG_ARR_Area_Table_P_TD_SH_State	=0;//0:"Hide";1:"Show";
-	I2C_CLS.Canvas_Area_Table_P_TD_SH_State		=0;//0:"Hide";1:"Show";
-	I2C_CLS.Text_Area_Table_P_TD_SH_State		=0;//0:"Hide";1:"Show";
-	ele_IMG_ARR_Area_Table	.parentNode.style.display=["none",""][I2C_CLS.IMG_ARR_Area_Table_P_TD_SH_State	];
-	ele_Canvas_Area_Table	.parentNode.style.display=["none",""][I2C_CLS.Canvas_Area_Table_P_TD_SH_State	];
-	ele_Text_Area_Table		.parentNode.style.display=["none",""][I2C_CLS.Text_Area_Table_P_TD_SH_State		];
 		else		{}
 		//==========DIVISION==========
 	}
@@ -1328,7 +1403,7 @@ function Text_Ctrl_Table_Action(ele,evt,post_method)
 		if ( evt_target.className=="Text_NUM_X_CLS" )								{IMG_ART_CLS.VAL.Text_NUM_X			=parseInt(NUM_10,10);}
 		else if ( evt_target.className=="Text_NUM_Y_CLS" )							{IMG_ART_CLS.VAL.Text_NUM_Y			=parseInt(NUM_10,10);}
 		else if ( evt_target.className=="Text_Font_Size_CLS" )						{IMG_ART_CLS.VAL.Text_Font_Size		=parseInt(NUM_10,10);}
-		else if ( evt_target.className=="Text_Opacity_CLS" )						{IMG_ART_CLS.VAL.Text_Opacity		=parseInt(NUM_10,10);}
+		else if ( evt_target.className=="Text_Opacity_CLS" )						{IMG_ART_CLS.VAL.Text_Opacity		=parseFloat(NUM_10);}
 		//==========DIVISION==========
 		else if (	evt_target.className=="Text_Sep_STR_CLS" || 
 					evt_target.className=="Text_CT_STR_00_Sub_CLS" || evt_target.className=="Text_CT_STR_01_Sub_CLS" || 
@@ -1345,20 +1420,7 @@ function Text_Ctrl_Table_Action(ele,evt,post_method)
 			0 )
 		{
 			//==========DIVISION==========
-			str00="IMG_ART_CLS.VAL." + evt_target.className.replace(/_SEL$/gm,"") + "_STR" + "=evt_target.options[evt_target.selectedIndex];";
-			eval(str00);
-			//==========DIVISION==========
-		}
-		else if (	evt_target.className=="Text_CT_STR_00_Break_Or_Not_BTN" || evt_target.className=="Text_CT_STR_01_Break_Or_Not_BTN" || 
-					evt_target.className=="Text_CT_STR_02_Break_Or_Not_BTN" || 
-			0 )
-		{
-			//==========DIVISION==========
-			//0:"Not_Do_Break";1:"Do_Break";
-			str01=evt_target.className.replace(/_BTN$/gm,"");
-			str00="";
-			str00+="IMG_ART_CLS.VAL." + str01 + "=(IMG_ART_CLS.VAL." + str01 + " + 1)%2;" + "\n";
-			str00+='evt_target.style.backgroundColor=["red","#1EB0E9"][IMG_ART_CLS.VAL.' + str01 + '];' + "\n";
+			str00="IMG_ART_CLS.VAL." + evt_target.className.replace(/_SEL$/gm,"") + "_STR" + "=evt_target.options[evt_target.selectedIndex].innerHTML;";
 			eval(str00);
 			//==========DIVISION==========
 		}
@@ -1415,6 +1477,7 @@ function Text_Ctrl_Table_Action(ele,evt,post_method)
 			str01="";
 			str01+="I2C_CLS." + str00 + "=(" + "I2C_CLS." + str00 + " + 1)%2" + "\n";
 			str01+='evt_target.style.backgroundColor=["red","#1EB0E9"][I2C_CLS.' + str00 + "];" + "\n";
+			eval(str01);
 			//==========DIVISION==========
 		}
 		//==========DIVISION==========
@@ -1558,15 +1621,6 @@ function IMG_ART_Hotkey_Mouse(ele,evt,post_method)
 				0 ) )
 	{
 		//==========DIVISION==========
-		//if ( ( evt.which == 33 || evt.which == 34 ) || ( evt.ctrlKey || evt.altKey || evt.shiftKey ) )
-		if ( ( evt.which == 33 || evt.which == 34 ) || 
-			( evt.ctrlKey && !evt.altKey && !evt.shiftKey || !evt.ctrlKey && evt.altKey && !evt.shiftKey || 
-				!evt.ctrlKey && !evt.altKey && evt.shiftKey ) )
-		{
-			evt.preventDefault();
-		}
-		else		{}
-		//==========DIVISION==========
 		/*
 		up arrow	38
 		down arrow	40
@@ -1603,6 +1657,15 @@ function IMG_ART_Hotkey_Mouse(ele,evt,post_method)
 				//==========DIVISION==========
 				0 ) )
 		{
+			//==========DIVISION==========
+			//if ( ( evt.which == 33 || evt.which == 34 ) || ( evt.ctrlKey || evt.altKey || evt.shiftKey ) )
+			if ( ( evt.which == 33 || evt.which == 34 ) || 
+				( evt.ctrlKey && !evt.altKey && !evt.shiftKey || !evt.ctrlKey && evt.altKey && !evt.shiftKey || 
+					!evt.ctrlKey && !evt.altKey && evt.shiftKey ) )
+			{
+				evt.preventDefault();
+			}
+			else		{}
 			//==========DIVISION==========
 			NUM_MAX=10000*10000;
 			//==========DIVISION==========
@@ -1816,13 +1879,19 @@ function IMG_ART_Hotkey_Mouse(ele,evt,post_method)
 	</tbody></table></td></tr>
 </tbody></table></td></tr>
 
-<tr><td><table class="Canvas_Area_Table" cellSpacing=0 cellPadding=0 border=0 style="background-color:white;overflow:hidden;"><tbody>
+<tr><td><table class="Text_Area_Table" cellSpacing=0 cellPadding=0 border=0 style="z-index:1;position:absolute;overflow:hidden;"><tbody>
+	<tr>
+		<td><pre><div><span class="Text_Area_CT_CLS"></span></div></pre></td>
+	</tr>
+</tbody></table></td></tr>
+
+<tr><td><table class="Canvas_Area_Table" cellSpacing=0 cellPadding=0 border=0 style="z-index:2;position:absolute;overflow:hidden;"><tbody>
 	<tr>
 		<td><div><canvas class="Canvas_Main_CLS"></canvas></div></td>
 	</tr>
 </tbody></table></td></tr>
 
-<tr><td><table class="IMG_ARR_Area_Table" cellSpacing=0 cellPadding=0 border=0 style="background-color:white;overflow:hidden;"><tbody>
+<tr><td><table class="IMG_ARR_Area_Table" cellSpacing=0 cellPadding=0 border=0 style="z-index:1;position:absolute;overflow:hidden;"><tbody>
 	<tr>
 		<td><div><div><img class="IMG_Main_CLS" src=""></div></div></td>
 		<td><div><div><img class="IMG_Main_CLS" src=""></div></div></td>
@@ -1837,12 +1906,6 @@ function IMG_ART_Hotkey_Mouse(ele,evt,post_method)
 		<td><div><div><img class="IMG_Main_CLS" src=""></div></div></td>
 		<td><div><div><img class="IMG_Main_CLS" src=""></div></div></td>
 		<td><div><div><img class="IMG_Main_CLS" src=""></div></div></td>
-	</tr>
-</tbody></table></td></tr>
-
-<tr><td><table class="Text_Area_Table" cellSpacing=0 cellPadding=0 border=0 style="overflow:hidden;"><tbody>
-	<tr>
-		<td><pre><div><span class="Text_Area_CT_CLS"></span></div></pre></td>
 	</tr>
 </tbody></table></td></tr>
 
