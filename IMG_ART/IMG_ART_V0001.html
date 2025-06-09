@@ -1093,6 +1093,28 @@ function IMG_ART_Main_Ctrl_Table_Action(ele,evt,post_method)
 			else		{}
 			//==========DIVISION==========
 		}
+		else if ( ele.className=="IMG_ART_Main_Ctrl_Table" && ( evt_target.className=="IMG_ARR_Area_Table_P_TD_SH_BTN" || 
+				evt_target.className=="Canvas_Area_Table_P_TD_SH_BTN" || evt_target.className=="Text_Area_Table_P_TD_SH_BTN" || 
+				0 ) )
+		{
+			//==========DIVISION==========
+			str00=evt_target.className.replace(/_BTN$/gm,"");
+			str01="";
+			str01+="ele_" + evt_target.className + '.style.backgroundColor=["red","#1EB0E9"][I2C_CLS.' + str00 + "_State];" + "\n";//0:"Hide";1:"Show";
+			str01+="I2C_CLS." + str00 + "_State=(" + "I2C_CLS." + str00 + " + 1)%2;" + "\n";//0:"Hide";1:"Show";
+			str01+="";
+			eval(str01);
+			//==========DIVISION==========
+		}
+	ele_IMG_ARR_Area_Table_P_TD_SH_BTN	.style.backgroundColor=["red","#1EB0E9"][I2C_CLS.IMG_ARR_Area_Table_P_TD_SH_State	];//0:"Hide";1:"Show";
+	ele_Canvas_Area_Table_P_TD_SH_BTN	.style.backgroundColor=["red","#1EB0E9"][I2C_CLS.Canvas_Area_Table_P_TD_SH_State	];//0:"Hide";1:"Show";
+	ele_Text_Area_Table_P_TD_SH_BTN		.style.backgroundColor=["red","#1EB0E9"][I2C_CLS.Text_Area_Table_P_TD_SH_State		];//0:"Hide";1:"Show";
+	I2C_CLS.IMG_ARR_Area_Table_P_TD_SH_State	=0;//0:"Hide";1:"Show";
+	I2C_CLS.Canvas_Area_Table_P_TD_SH_State		=0;//0:"Hide";1:"Show";
+	I2C_CLS.Text_Area_Table_P_TD_SH_State		=0;//0:"Hide";1:"Show";
+	ele_IMG_ARR_Area_Table	.parentNode.style.display=["none",""][I2C_CLS.IMG_ARR_Area_Table_P_TD_SH_State	];
+	ele_Canvas_Area_Table	.parentNode.style.display=["none",""][I2C_CLS.Canvas_Area_Table_P_TD_SH_State	];
+	ele_Text_Area_Table		.parentNode.style.display=["none",""][I2C_CLS.Text_Area_Table_P_TD_SH_State		];
 		else		{}
 		//==========DIVISION==========
 	}
