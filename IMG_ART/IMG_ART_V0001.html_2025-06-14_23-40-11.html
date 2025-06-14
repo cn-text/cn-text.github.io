@@ -1,0 +1,2549 @@
+<html>
+<head>
+<title>IMG_ART_V0001</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<style type="text/css">
+/*==============================*==============================*/
+*
+{
+	margin:						0px;
+	padding:					0px;
+	font-size:					18px;
+}
+/*==============================*==============================*/
+/*==============================IMG_ART_Ctrl_Table==============================*/
+table.IMG_ART_Ctrl_Table													{zoom:0.7;}
+/*==============================IMG_ART_Ctrl_Table==============================*/
+/*==============================IMG_2_Canvas_Ctrl_Table==============================*/
+/*====================DIVISION====================*/
+table.IMG_ART_Table table.IMG_ART_Ctrl_Table table.IMG_ART_Main_Ctrl_Table	{}
+table.IMG_ART_Main_Ctrl_Table												{}
+table.IMG_ART_Main_Ctrl_Table input.IMG_ART_Reset_CLS						{height:25px;}
+table.IMG_ART_Main_Ctrl_Table input.IMG_Start_Stop_Rotate_CLS				{height:25px;}
+table.IMG_ART_Main_Ctrl_Table select.I2C_Rotate_Sequence_Type_SEL			{height:25px;width:125px;}
+table.IMG_ART_Main_Ctrl_Table select.I2C_Rotate_Sequence_Mirror_X_Type_SEL	{height:25px;width:132px;}
+table.IMG_ART_Main_Ctrl_Table select.I2C_Rotate_Sequence_Mirror_Y_Type_SEL	{height:25px;width:132px;}
+table.IMG_ART_Main_Ctrl_Table select.I2C_Rotate_Sequence_Mirror_Z_Type_SEL	{height:25px;width:132px;}
+table.IMG_ART_Main_Ctrl_Table select.I2C_Rotate_Sequence_NUM_X_Y_Type_SEL	{height:25px;width:100px;}
+table.IMG_ART_Main_Ctrl_Table input.I2C_Rotate_Sequence_ID_CLS				{height:25px;width:100px;}
+table.IMG_ART_Main_Ctrl_Table input.I2C_Rotate_IOrC_BTN						{height:25px;width:25px;}
+table.IMG_ART_Main_Ctrl_Table input.IMG_ARR_Area_Table_P_TD_SH_BTN			{height:25px;width:25px;}
+table.IMG_ART_Main_Ctrl_Table input.Canvas_Area_Table_P_TD_SH_BTN			{height:25px;width:25px;}
+table.IMG_ART_Main_Ctrl_Table input.Text_Area_Table_P_TD_SH_BTN				{height:25px;width:25px;}
+table.IMG_ART_Main_Ctrl_Table select.Usage_Collection_SEL					{height:25px;width:100px;}
+/*====================DIVISION====================*/
+table.IMG_ART_Table table.IMG_ART_Ctrl_Table table.IMG_2_Canvas_Ctrl_Table	{}
+table.IMG_2_Canvas_Ctrl_Table												{}
+table.IMG_2_Canvas_Ctrl_Table div.IMG_Icon_CLS_Parent_DIV					{height:50px;width:50px;}
+table.IMG_2_Canvas_Ctrl_Table img.IMG_Icon_CLS								{height:50px;}
+table.IMG_2_Canvas_Ctrl_Table input.IMG_ORI_Width_CLS						{height:25px;width:60px;background-color:LightPink;}
+table.IMG_2_Canvas_Ctrl_Table input.IMG_ORI_Height_CLS						{height:25px;width:60px;background-color:LightPink;}
+table.IMG_2_Canvas_Ctrl_Table div.Canvas_Icon_CLS_Parent_DIV				{height:50px;width:50px;}
+table.IMG_2_Canvas_Ctrl_Table canvas.Canvas_Icon_CLS						{height:50px;width:50px;}
+/*====================DIVISION====================*/
+table.IMG_2_Canvas_Ctrl_Table input.IMG_ORI_Coordinate_X_CLS				{height:25px;width:60px;background-color:LightCyan;}/*LightGreen;*/
+table.IMG_2_Canvas_Ctrl_Table input.IMG_ORI_Coordinate_Y_CLS				{height:25px;width:60px;background-color:LightCyan;}/*LightGreen;*/
+table.IMG_2_Canvas_Ctrl_Table input.IMG_ORI_Coordinate_WH_CLS				{height:25px;width:60px;background-color:LightCyan;}/*LawnGreen;*/
+table.IMG_2_Canvas_Ctrl_Table input.Canvas_MOD_Sub_Coordinate_X_CLS			{height:25px;width:60px;background-color:MistyRose;}
+table.IMG_2_Canvas_Ctrl_Table input.Canvas_MOD_Sub_Coordinate_Y_CLS			{height:25px;width:60px;background-color:MistyRose;}
+table.IMG_2_Canvas_Ctrl_Table input.Canvas_MOD_Sub_Coordinate_WH_CLS		{height:25px;width:60px;background-color:MistyRose;}/*Plum;*/
+table.IMG_2_Canvas_Ctrl_Table input.Canvas_MOD_Main_IMG_NUM_X_CLS			{height:25px;width:60px;background-color:LightPink;}
+table.IMG_2_Canvas_Ctrl_Table input.Canvas_MOD_Main_IMG_NUM_Y_CLS			{height:25px;width:60px;background-color:LightPink;}
+table.IMG_2_Canvas_Ctrl_Table input.Canvas_MOD_Main_Canvas_Width_CLS		{height:25px;width:60px;background-color:LightCoral;}
+table.IMG_2_Canvas_Ctrl_Table input.Canvas_MOD_Main_Canvas_Height_CLS		{height:25px;width:60px;background-color:LightCoral;}
+/*====================DIVISION====================*/
+table.IMG_2_Canvas_Ctrl_Table select.IMG_VAR_SEL			{height:25px;width:150px;}
+table.IMG_2_Canvas_Ctrl_Table input.ITime_CLS				{height:25px;width:60px;background-color:Aqua;}
+table.IMG_2_Canvas_Ctrl_Table input.IMG_Opacity_CLS			{height:25px;width:60px;background-color:Aquamarine;}
+table.IMG_2_Canvas_Ctrl_Table input.Direction_Num_CLS		{height:25px;width:60px;background-color:DarkTurquoise;}
+/*====================DIVISION====================*/
+table.IMG_ART_Table table.IMG_ART_Ctrl_Table table.Text_Ctrl_Table			{}
+table.Text_Ctrl_Table input.Text_NUM_X_CLS									{height:25px;width:60px;}
+table.Text_Ctrl_Table input.Text_NUM_Y_CLS									{height:25px;width:60px;}
+table.Text_Ctrl_Table input.Text_Font_Size_CLS								{height:25px;width:60px;}
+table.Text_Ctrl_Table input.Text_Opacity_CLS								{height:25px;width:60px;}
+table.Text_Ctrl_Table select.Text_VAR_SEL									{height:25px;width:150px;}
+table.Text_Ctrl_Table input.Text_Sep_STR_CLS								{height:25px;width:110px;}
+table.Text_Ctrl_Table select.Text_CT_STR_00_Main_SEL						{height:25px;width:110px;}
+table.Text_Ctrl_Table input.Text_CT_STR_00_Sub_CLS							{height:25px;width:110px;}
+table.Text_Ctrl_Table input.Text_CT_STR_00_Break_Or_Not_BTN					{height:25px;width:25px;}
+table.Text_Ctrl_Table select.Text_CT_STR_01_Main_SEL						{height:25px;width:110px;}
+table.Text_Ctrl_Table input.Text_CT_STR_01_Sub_CLS							{height:25px;width:110px;}
+table.Text_Ctrl_Table input.Text_CT_STR_01_Break_Or_Not_BTN					{height:25px;width:25px;}
+table.Text_Ctrl_Table select.Text_CT_STR_02_Main_SEL						{height:25px;width:110px;}
+table.Text_Ctrl_Table input.Text_CT_STR_02_Sub_CLS							{height:25px;width:110px;}
+table.Text_Ctrl_Table input.Text_CT_STR_02_Break_Or_Not_BTN					{height:25px;width:25px;}
+/*====================DIVISION====================*/
+/*==============================IMG_2_Canvas_Ctrl_Table==============================*/
+/*==============================XXXXX_Area_Table==============================*/
+/*====================DIVISION====================*/
+table.IMG_ART_Table table.Canvas_Area_Table									{}
+table.Canvas_Area_Table canvas.Canvas_Main_CLS								{}
+/*====================DIVISION====================*/
+table.IMG_ART_Table table.IMG_ARR_Area_Table								{}
+table.Canvas_Area_Table img.IMG_Main_CLS									{}
+/*====================DIVISION====================*/
+table.IMG_ART_Table table.Text_Area_Table									{}
+table.Text_Area_Table span.Text_Area_CT_CLS									{font-weight:bold;line-height:100%;}
+/*====================DIVISION====================*/
+/*==============================XXXXX_Area_Table==============================*/
+</style>
+
+<body bgcolor=#CCE8CF>
+<script type="text/javascript">
+//========================================Base_Function========================================
+//==========DIVISION==========
+function Parameter_Base_STR_ijk_XX(p_num)
+{
+	var i,j,str00,arr00;
+	str00="";
+	str00+="var i,j,k,m,n,p,q,r,s,t;" + "\n";
+	arr00=["num","ele","elel","str","arr","cls","fun","formData","file"];
+	//arr00=["num","ele","elel",,"str","arr","torf","flag"];
+
+	for (i=0;i<arr00.length;i++)
+	{
+		str00+="var ";
+		for (j=0;j<p_num;j++)
+		{
+			str00+=arr00[i] + ("00" + j.toString()).slice(-2);
+			if ( j<(p_num - 1) )			{str00+=",";}
+			else if ( j==(p_num - 1) )		{str00+=";" + "\n";}
+			else							{}
+		}
+	}
+
+	return str00;
+}
+
+function createArray(length)
+{
+	var arr=new Array(length||0),i=length;
+	if ( arguments.length>1 )
+	{
+		var args=Array.prototype.slice.call(arguments,1);
+		while(i--)
+		{
+			arr[length-1-i]=createArray.apply(this,args);
+		}
+	}
+	return arr;
+}
+
+String.prototype.repeat = function( num )
+{
+	return new Array( num + 1 ).join( this );
+};
+
+function ReadTextFile(oFile)
+{
+	if (window.XMLHttpRequest)//code for IE7+, Firefox, Chrome, Opera, Safari
+	{
+		xmlhttp=new XMLHttpRequest();
+	}
+	else// code for IE6, IE5
+	{
+		xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+	}
+
+	xmlhttp.open("GET",oFile,false);
+	xmlhttp.send();
+	var xmlText=xmlhttp.responseText; 
+	return xmlText;
+}
+
+var TTIS=100;
+var TTI_IN_USE=TTIS;
+//==========DIVISION==========
+var Screen_Width	=window.screen.width;
+var Screen_Height	=window.screen.height;
+//==========DIVISION==========
+//解析操作系统信息。
+var Platform		=navigator.platform;
+var OS				="Unknown";
+if ( Platform.match(/win/i) )					{OS={STR:"Windows",	ID:0};}
+else if ( Platform.match(/mac/i) )				{OS={STR:"MacOS",	ID:1};}
+else if ( Platform.match(/linux/i) )
+{
+	if ( Screen_Width>=Screen_Height )			{OS={STR:"Linux",	ID:2};}
+	else										{OS={STR:"Android",	ID:3};}
+}
+else if ( Platform.match(/android/i) )			{OS={STR:"Android",	ID:3};}
+else if ( Platform.match(/iphone|ipad|ipod/i) )	{OS={STR:"iOS",		ID:4};}
+else											{}
+//==========DIVISION==========
+//========================================Base_Function========================================
+//========================================Pre_Definition========================================
+function ELE_ELEL_STR_INI(INI_Type)
+{
+	//==========DIVISION==========
+	if ( INI_Type==0 )		{return "";}
+	else if ( INI_Type==1 )	{}
+	else					{}
+	//==========DIVISION==========
+	//==============================ELE_ELEL_STR_INI.Begin==============================
+	//====================DIVISION====================
+	//==========DIVISION==========
+	var ID,LEN,ID_LEN;
+	//==========DIVISION==========
+	var ele_IMG_ART_Table							=document.getElementsByClassName("IMG_ART_Table")[0];
+	var ele_IMG_ART_Ctrl_Table						=ele_IMG_ART_Table.getElementsByClassName("IMG_ART_Ctrl_Table")[0];
+	//==========DIVISION==========
+	var ele_IMG_ART_Main_Ctrl_Table					=ele_IMG_ART_Ctrl_Table.getElementsByClassName("IMG_ART_Main_Ctrl_Table")[0];
+	var ele_IMG_ART_Reset_CLS						=ele_IMG_ART_Main_Ctrl_Table.getElementsByClassName("IMG_ART_Reset_CLS")[0];
+	var ele_IMG_Start_Stop_Rotate_CLS				=ele_IMG_ART_Main_Ctrl_Table.getElementsByClassName("IMG_Start_Stop_Rotate_CLS")[0];
+	var ele_I2C_Rotate_Sequence_Type_SEL			=ele_IMG_ART_Main_Ctrl_Table.getElementsByClassName("I2C_Rotate_Sequence_Type_SEL")[0];
+	var ele_I2C_Rotate_Sequence_Mirror_X_Type_SEL	=ele_IMG_ART_Main_Ctrl_Table.getElementsByClassName("I2C_Rotate_Sequence_Mirror_X_Type_SEL")[0];
+	var ele_I2C_Rotate_Sequence_Mirror_Y_Type_SEL	=ele_IMG_ART_Main_Ctrl_Table.getElementsByClassName("I2C_Rotate_Sequence_Mirror_Y_Type_SEL")[0];
+	var ele_I2C_Rotate_Sequence_Mirror_Z_Type_SEL	=ele_IMG_ART_Main_Ctrl_Table.getElementsByClassName("I2C_Rotate_Sequence_Mirror_Z_Type_SEL")[0];
+	var ele_I2C_Rotate_Sequence_NUM_X_Y_Type_SEL	=ele_IMG_ART_Main_Ctrl_Table.getElementsByClassName("I2C_Rotate_Sequence_NUM_X_Y_Type_SEL")[0];
+	var ele_I2C_Rotate_Sequence_ID_CLS				=ele_IMG_ART_Main_Ctrl_Table.getElementsByClassName("I2C_Rotate_Sequence_ID_CLS")[0];
+	var ele_I2C_Rotate_IOrC_BTN						=ele_IMG_ART_Main_Ctrl_Table.getElementsByClassName("I2C_Rotate_IOrC_BTN")[0];
+	var ele_IMG_ARR_Area_Table_P_TD_SH_BTN			=ele_IMG_ART_Main_Ctrl_Table.getElementsByClassName("IMG_ARR_Area_Table_P_TD_SH_BTN")[0];
+	var ele_Canvas_Area_Table_P_TD_SH_BTN			=ele_IMG_ART_Main_Ctrl_Table.getElementsByClassName("Canvas_Area_Table_P_TD_SH_BTN")[0];
+	var ele_Text_Area_Table_P_TD_SH_BTN				=ele_IMG_ART_Main_Ctrl_Table.getElementsByClassName("Text_Area_Table_P_TD_SH_BTN")[0];
+	var ele_Usage_Collection_SEL					=ele_IMG_ART_Main_Ctrl_Table.getElementsByClassName("Usage_Collection_SEL")[0];
+	//==========DIVISION==========
+	var ele_IMG_2_Canvas_Ctrl_Table					=ele_IMG_ART_Ctrl_Table.getElementsByClassName("IMG_2_Canvas_Ctrl_Table")[0];
+	var ele_IMG_Icon_CLS_Parent_DIV					=ele_IMG_2_Canvas_Ctrl_Table.getElementsByClassName("IMG_Icon_CLS_Parent_DIV")[0];
+	var ele_IMG_Icon_CLS							=ele_IMG_2_Canvas_Ctrl_Table.getElementsByClassName("IMG_Icon_CLS")[0];
+	var ele_IMG_ORI_Width_CLS						=ele_IMG_2_Canvas_Ctrl_Table.getElementsByClassName("IMG_ORI_Width_CLS")[0];
+	var ele_IMG_ORI_Height_CLS						=ele_IMG_2_Canvas_Ctrl_Table.getElementsByClassName("IMG_ORI_Height_CLS")[0];
+	var ele_Canvas_Icon_CLS_Parent_DIV				=ele_IMG_2_Canvas_Ctrl_Table.getElementsByClassName("Canvas_Icon_CLS_Parent_DIV")[0];
+	var ele_Canvas_Icon_CLS							=ele_IMG_2_Canvas_Ctrl_Table.getElementsByClassName("Canvas_Icon_CLS")[0];
+	//==========DIVISION==========
+	var ele_IMG_ORI_Coordinate_X_CLS				=ele_IMG_2_Canvas_Ctrl_Table.getElementsByClassName("IMG_ORI_Coordinate_X_CLS")[0];
+	var ele_IMG_ORI_Coordinate_Y_CLS				=ele_IMG_2_Canvas_Ctrl_Table.getElementsByClassName("IMG_ORI_Coordinate_Y_CLS")[0];
+	var ele_IMG_ORI_Coordinate_WH_CLS				=ele_IMG_2_Canvas_Ctrl_Table.getElementsByClassName("IMG_ORI_Coordinate_WH_CLS")[0];
+	var ele_Canvas_MOD_Sub_Coordinate_X_CLS			=ele_IMG_2_Canvas_Ctrl_Table.getElementsByClassName("Canvas_MOD_Sub_Coordinate_X_CLS")[0];
+	var ele_Canvas_MOD_Sub_Coordinate_Y_CLS			=ele_IMG_2_Canvas_Ctrl_Table.getElementsByClassName("Canvas_MOD_Sub_Coordinate_Y_CLS")[0];
+	var ele_Canvas_MOD_Sub_Coordinate_WH_CLS		=ele_IMG_2_Canvas_Ctrl_Table.getElementsByClassName("Canvas_MOD_Sub_Coordinate_WH_CLS")[0];
+	var ele_Canvas_MOD_Main_IMG_NUM_X_CLS			=ele_IMG_2_Canvas_Ctrl_Table.getElementsByClassName("Canvas_MOD_Main_IMG_NUM_X_CLS")[0];
+	var ele_Canvas_MOD_Main_IMG_NUM_Y_CLS			=ele_IMG_2_Canvas_Ctrl_Table.getElementsByClassName("Canvas_MOD_Main_IMG_NUM_Y_CLS")[0];
+	var ele_Canvas_MOD_Main_Canvas_Width_CLS		=ele_IMG_2_Canvas_Ctrl_Table.getElementsByClassName("Canvas_MOD_Main_Canvas_Width_CLS")[0];
+	var ele_Canvas_MOD_Main_Canvas_Height_CLS		=ele_IMG_2_Canvas_Ctrl_Table.getElementsByClassName("Canvas_MOD_Main_Canvas_Height_CLS")[0];
+	//==========DIVISION==========
+	var ele_IMG_VAR_SEL								=ele_IMG_2_Canvas_Ctrl_Table.getElementsByClassName("IMG_VAR_SEL")[0];
+	var ele_ITime_CLS								=ele_IMG_2_Canvas_Ctrl_Table.getElementsByClassName("ITime_CLS")[0];
+	var ele_IMG_Opacity_CLS							=ele_IMG_2_Canvas_Ctrl_Table.getElementsByClassName("IMG_Opacity_CLS")[0];
+	var ele_Direction_Num_CLS						=ele_IMG_2_Canvas_Ctrl_Table.getElementsByClassName("Direction_Num_CLS")[0];
+	//==========DIVISION==========
+	var ele_Text_Ctrl_Table							=ele_IMG_ART_Ctrl_Table.getElementsByClassName("Text_Ctrl_Table")[0];
+	var ele_Text_NUM_X_CLS							=ele_Text_Ctrl_Table.getElementsByClassName("Text_NUM_X_CLS")[0];
+	var ele_Text_NUM_Y_CLS							=ele_Text_Ctrl_Table.getElementsByClassName("Text_NUM_Y_CLS")[0];
+	var ele_Text_Font_Size_CLS						=ele_Text_Ctrl_Table.getElementsByClassName("Text_Font_Size_CLS")[0];
+	var ele_Text_Opacity_CLS						=ele_Text_Ctrl_Table.getElementsByClassName("Text_Opacity_CLS")[0];
+	var ele_Text_VAR_SEL							=ele_Text_Ctrl_Table.getElementsByClassName("Text_VAR_SEL")[0];
+	var ele_Text_Sep_STR_CLS						=ele_Text_Ctrl_Table.getElementsByClassName("Text_Sep_STR_CLS")[0];
+	var ele_Text_CT_STR_00_Main_SEL					=ele_Text_Ctrl_Table.getElementsByClassName("Text_CT_STR_00_Main_SEL")[0];
+	var ele_Text_CT_STR_00_Sub_CLS					=ele_Text_Ctrl_Table.getElementsByClassName("Text_CT_STR_00_Sub_CLS")[0];
+	var ele_Text_CT_STR_00_Break_Or_Not_BTN			=ele_Text_Ctrl_Table.getElementsByClassName("Text_CT_STR_00_Break_Or_Not_BTN")[0];
+	var ele_Text_CT_STR_01_Main_SEL					=ele_Text_Ctrl_Table.getElementsByClassName("Text_CT_STR_01_Main_SEL")[0];
+	var ele_Text_CT_STR_01_Sub_CLS					=ele_Text_Ctrl_Table.getElementsByClassName("Text_CT_STR_01_Sub_CLS")[0];
+	var ele_Text_CT_STR_01_Break_Or_Not_BTN			=ele_Text_Ctrl_Table.getElementsByClassName("Text_CT_STR_01_Break_Or_Not_BTN")[0];
+	var ele_Text_CT_STR_02_Main_SEL					=ele_Text_Ctrl_Table.getElementsByClassName("Text_CT_STR_02_Main_SEL")[0];
+	var ele_Text_CT_STR_02_Sub_CLS					=ele_Text_Ctrl_Table.getElementsByClassName("Text_CT_STR_02_Sub_CLS")[0];
+	var ele_Text_CT_STR_02_Break_Or_Not_BTN			=ele_Text_Ctrl_Table.getElementsByClassName("Text_CT_STR_02_Break_Or_Not_BTN")[0];
+	//==========DIVISION==========
+	var ele_Canvas_Area_Table						=ele_IMG_ART_Table.getElementsByClassName("Canvas_Area_Table")[0];
+	var ele_Canvas_Main_CLS							=ele_Canvas_Area_Table.getElementsByClassName("Canvas_Main_CLS")[0];
+	var ele_IMG_ARR_Area_Table						=ele_IMG_ART_Table.getElementsByClassName("IMG_ARR_Area_Table")[0];
+	var elel_IMG_Main_CLS							=ele_IMG_ARR_Area_Table.getElementsByClassName("IMG_Main_CLS");
+	var ele_Text_Area_Table							=ele_IMG_ART_Table.getElementsByClassName("Text_Area_Table")[0];
+	var ele_Text_Area_CT_CLS						=ele_Text_Area_Table.getElementsByClassName("Text_Area_CT_CLS")[0];
+	//==========DIVISION==========
+	//====================DIVISION====================
+	//==============================ELE_ELEL_STR_INI.End==============================
+	var fun_ct_cache;
+	fun_ct_cache=arguments.callee;
+	var str00;
+	str00=fun_ct_cache.toString()
+	//Use 0.104 s .//.replace(new RegExp("^[\\s\\S]+\\r\\n\\t+(\\/\\/=+BC_Code_Almost_Same_Area\\(\\\"" + 
+	//Use 0.003 s .//.replace(new RegExp("^function[ ]*[\\s\\S]+\\r\\n\\t+(\\/\\/=+BC_Code_Almost_Same_Area\\(\\\"" + 
+	//Use 0.001-0.002 s .//
+	//.replace(new RegExp("^function[ ]*" + fun_ct_cache.name + "\\(INI_Type\\)\\n[\\t]*\\{\\n([\\t]*\\/\\/=+" + fun_ct_cache.name + "\.Begin)","gm"),"$1")
+	.replace(new RegExp("^function[ ]*" + fun_ct_cache.name + 
+	"\\(INI_Type\\)\\n[\\t]*\\{[\\s\\S]*\\n([\\t]*\\/\\/=+" + fun_ct_cache.name + "\.Begin)","gm"),"$1")
+	.replace(new RegExp("(\\/\\/=+" + fun_ct_cache.name + "\.End=+\\n)[\\s\\S]*$","gm"),"$1")
+	.replace(/(\n)[\t]{1}/gm,"$1");
+	return str00;
+}
+//========================================Pre_Definition========================================
+//========================================IMG_ART_CLS========================================
+var IMG_ART_CLS								=
+{
+	//==========DIVISION==========
+	VAL										:
+	{
+		//==========DIVISION==========
+		I2C_Rotate_Sequence_Type			:	0,//0:"Forward";1:"Reverse";2:"Random_Uniform";3:"Random_Multiple";
+		I2C_Rotate_Sequence_Mirror_X_Type	:	0,//0:"X_Disabled";1:"X_ORI";2:"X_Mirror";3:"X_ORI+X_Mirror";
+		I2C_Rotate_Sequence_Mirror_Y_Type	:	0,//0:"Y_Disabled";1:"Y_ORI";2:"Y_Mirror";3:"Y_ORI+Y_Mirror";
+		I2C_Rotate_Sequence_Mirror_Z_Type	:	0,//0:"Z_Disabled";1:"Z_ORI";2:"Z_Mirror";3:"Z_ORI+Z_Mirror";
+		I2C_Rotate_Sequence_NUM_X_Y_Type	:	0,//0:"1X1";1:"2X2";2:"3X3";
+		I2C_Rotate_Sequence_ID				:	0,
+		I2C_Rotate_IOrC						:	0,//0:"Rotate_IMG";1:"Rotate_Canvas";
+		//==========DIVISION==========
+		IMG_Start_Stop_Rotate_State			:	0,//0:"Stop";1:"Start";
+		//==========DIVISION==========
+		I2C_Canvas_Icon_INI_State			:	0,//0:Wait;1:Begin_00;2:Begin_01;3:END;
+		//==========DIVISION==========
+		I2C_Canvas_Main_INI_State			:	0,//0:Wait;1:Begin_00;2:Begin_01;3:END;
+		I2C_Canvas_Main_INI_Num				:	0,
+		I2C_Canvas_Main_INI_ST_ID			:	0,
+		//==========DIVISION==========
+		I2C_IMG_ARR_Main_INI_State			:	0,//0:Wait;1:Begin_00;2:Begin_01;3:END;
+		I2C_IMG_ARR_Main_INI_Num			:	0,
+		I2C_IMG_ARR_Main_INI_ST_ID			:	0,
+		//==========DIVISION==========
+		IMG_ARR_Area_Table_P_TD_SH_State	:	0,//0:"Hide";1:"Show";
+		Canvas_Area_Table_P_TD_SH_State		:	0,//0:"Hide";1:"Show";
+		Text_Area_Table_P_TD_SH_State		:	0,//0:"Hide";1:"Show";
+		//==========DIVISION==========
+		Usage_Collection_ID					:	0,
+		//==========DIVISION==========
+		IMG_Info_CLS						:	{SRC:"IMG_List\/master_Li_high.jpg",BX:950,BY:700,EX:3130,EY:3350,X:0,Y:0,W:0,H:0,},
+		ele_IMG_ORI							:	null,
+		ele_Canvas_ORI						:	null,
+		ele_Canvas_Mode						:	null,
+		ele_IMG_Mode						:	null,
+		//==========DIVISION==========
+		IMG_ORI_Width						:	0,
+		IMG_ORI_Height						:	0,
+		IMG_ORI_Coordinate_X				:	0,
+		IMG_ORI_Coordinate_Y				:	0,
+		IMG_ORI_Coordinate_WH				:	0,
+		Canvas_MOD_Sub_Coordinate_X			:	0,
+		Canvas_MOD_Sub_Coordinate_Y			:	0,
+		Canvas_MOD_Sub_Coordinate_WH		:	0,
+		Canvas_MOD_Main_IMG_NUM_X			:	0,
+		Canvas_MOD_Main_IMG_NUM_Y			:	0,
+		Canvas_MOD_Main_Canvas_Width		:	0,
+		Canvas_MOD_Main_Canvas_Height		:	0,
+		//==========DIVISION==========
+		IMG_VAR_ID							:	0,
+		//==========DIVISION==========
+		//Interval_Time
+		ITime								:	1,
+		IMG_Opacity							:	1,
+		Direction_Num						:	6,
+		//==========DIVISION==========
+		Text_NUM_X							:	0,
+		Text_NUM_Y							:	0,
+		Text_Font_Size						:	0,
+		Text_Sep_STR_STR					:	"",
+		Text_VAR_ID							:	0,
+		Text_CT_STR_00_Main_STR				:	"",
+		Text_CT_STR_00_Sub_STR				:	"",
+		Text_CT_STR_00_Break_Or_Not			:	0,//0:"Not_Do_Break";1:"Do_Break";
+		Text_CT_STR_01_Main_STR				:	"",
+		Text_CT_STR_01_Sub_STR				:	"",
+		Text_CT_STR_01_Break_Or_Not			:	0,//0:"Not_Do_Break";1:"Do_Break";
+		Text_CT_STR_02_Main_STR				:	"",
+		Text_CT_STR_02_Sub_STR				:	"",
+		Text_CT_STR_02_Break_Or_Not			:	0,//0:"Not_Do_Break";1:"Do_Break";
+		//==========DIVISION==========
+		Text_Area_CT_STR					:	"",
+		//==========DIVISION==========
+	},
+	//==========DIVISION==========
+	FUN									:
+	{
+		Print_Data						:	function ()
+		{
+			//==========DIVISION==========
+			var IMG_ART_CLS_VAL=JSON.parse(JSON.stringify(IMG_ART_CLS.VAL,null,"\t"));
+			//==========DIVISION==========
+			console.log("IMG_ART_CLS_VAL : " + JSON.stringify(IMG_ART_CLS_VAL,null,"\t") + ";\t" + 
+						"");
+			//==========DIVISION==========
+		},
+	},
+	//IMG_ART_CLS.FUN.Print_Data();
+	//==========DIVISION==========
+};
+//========================================IMG_ART_CLS========================================
+//========================================IMG_ART_Function========================================
+//====================DIVISION====================
+function IMG_ART_CLS_INI()
+{
+	//==========DIVISION==========
+	eval(ELE_ELEL_STR_INI(0));
+	eval(Parameter_Base_STR_ijk_XX(5));
+	var ID,LEN,ID_LEN;
+	var ID_X,ID_Y;
+	var INI_Type;
+	var Code_Area;
+	//==========DIVISION==========
+	var I2C_CLS=IMG_ART_CLS.VAL;
+	//==========DIVISION==========
+	I2C_CLS.IMG_ARR_Area_Table_P_TD_SH_State	=1;//0:"Hide";1:"Show";
+	I2C_CLS.Canvas_Area_Table_P_TD_SH_State		=1;//0:"Hide";1:"Show";
+	I2C_CLS.Text_Area_Table_P_TD_SH_State		=0;//0:"Hide";1:"Show";
+	ele_IMG_ARR_Area_Table_P_TD_SH_BTN	.style.backgroundColor=["red","#1EB0E9"][I2C_CLS.IMG_ARR_Area_Table_P_TD_SH_State	];//0:"Hide";1:"Show";
+	ele_Canvas_Area_Table_P_TD_SH_BTN	.style.backgroundColor=["red","#1EB0E9"][I2C_CLS.Canvas_Area_Table_P_TD_SH_State	];//0:"Hide";1:"Show";
+	ele_Text_Area_Table_P_TD_SH_BTN		.style.backgroundColor=["red","#1EB0E9"][I2C_CLS.Text_Area_Table_P_TD_SH_State		];//0:"Hide";1:"Show";
+	ele_IMG_ARR_Area_Table	.parentNode.style.display=["none",""][I2C_CLS.IMG_ARR_Area_Table_P_TD_SH_State	];
+	ele_Canvas_Area_Table	.parentNode.style.display=["none",""][I2C_CLS.Canvas_Area_Table_P_TD_SH_State	];
+	ele_Text_Area_Table		.parentNode.style.display=["none",""][I2C_CLS.Text_Area_Table_P_TD_SH_State		];
+	//==========DIVISION==========
+	str00="";
+	str00+="<option>00 : Usage_Collection_0000_XXXXX</option>";
+	str00+="<option>01 : Usage_Collection_0001_XXXXX</option>";
+	str00+="<option>02 : Usage_Collection_0002_XXXXX</option>";
+	str00+="<option>03 : Usage_Collection_0003_XXXXX</option>";
+	str00+="<option>04 : Usage_Collection_0004_XXXXX</option>";
+	str00+="<option>05 : Usage_Collection_0005_XXXXX</option>";
+	str00+="<option>06 : Usage_Collection_0006_XXXXX</option>";
+	str00+="<option>07 : Usage_Collection_0007_XXXXX</option>";
+	str00+="<option>08 : Usage_Collection_0008_XXXXX</option>";
+	str00+="<option>09 : Usage_Collection_0009_XXXXX</option>";
+	ele_Usage_Collection_SEL.innerHTML		=str00;
+	ele_Usage_Collection_SEL.selectedIndex	=I2C_CLS.Usage_Collection_ID	=1;
+	//==========DIVISION==========
+	str00="";
+	str00+="<option>Forward</option>";
+	str00+="<option>Reverse</option>";
+	str00+="<option>Random_Uniform</option>";
+	str00+="<option>Random_Multiple</option>";
+	ele_I2C_Rotate_Sequence_Type_SEL.innerHTML			=str00;
+	//0:"Forward";1:"Reverse";2:"Random_Uniform";3:"Random_Multiple";
+	ele_I2C_Rotate_Sequence_Type_SEL.selectedIndex		=I2C_CLS.I2C_Rotate_Sequence_Type=2;
+	//==========DIVISION==========
+	str00="";
+	str00+="<option>X_Disabled</option>";
+	str00+="<option>X_ORI</option>";
+	str00+="<option>X_Mirror</option>";
+	str00+="<option>X_ORI+X_Mirror</option>";
+	ele_I2C_Rotate_Sequence_Mirror_X_Type_SEL.innerHTML		=str00;
+	//0:"X_Disabled";1:"X_ORI";2:"X_Mirror";3:"X_ORI+X_Mirror";
+	ele_I2C_Rotate_Sequence_Mirror_X_Type_SEL.selectedIndex	=I2C_CLS.I2C_Rotate_Sequence_Mirror_X_Type=0;
+	//==========DIVISION==========
+	str00="";
+	str00+="<option>Y_Disabled</option>";
+	str00+="<option>Y_ORI</option>";
+	str00+="<option>Y_Mirror</option>";
+	str00+="<option>Y_ORI+Y_Mirror</option>";
+	ele_I2C_Rotate_Sequence_Mirror_Y_Type_SEL.innerHTML		=str00;
+	//0:"Y_Disabled";1:"Y_ORI";2:"Y_Mirror";3:"Y_ORI+Y_Mirror";
+	ele_I2C_Rotate_Sequence_Mirror_Y_Type_SEL.selectedIndex	=I2C_CLS.I2C_Rotate_Sequence_Mirror_Y_Type=3;
+	//==========DIVISION==========
+	str00="";
+	str00+="<option>Z_Disabled</option>";
+	str00+="<option>Z_ORI</option>";
+	str00+="<option>Z_Mirror</option>";
+	str00+="<option>Z_ORI+Z_Mirror</option>";
+	ele_I2C_Rotate_Sequence_Mirror_Z_Type_SEL.innerHTML		=str00;
+	//0:"Z_Disabled";1:"Z_ORI";2:"Z_Mirror";3:"Z_ORI+Z_Mirror";
+	ele_I2C_Rotate_Sequence_Mirror_Z_Type_SEL.selectedIndex	=I2C_CLS.I2C_Rotate_Sequence_Mirror_Z_Type=0;
+	//==========DIVISION==========
+	str00="";
+	str00+="<option>1X1</option>";
+	str00+="<option>2X2</option>";
+	str00+="<option>3X3</option>";
+	ele_I2C_Rotate_Sequence_NUM_X_Y_Type_SEL.innerHTML		=str00;
+	ele_I2C_Rotate_Sequence_NUM_X_Y_Type_SEL.selectedIndex	=I2C_CLS.I2C_Rotate_Sequence_NUM_X_Y_Type=1;//0:"1X1";1:"2X2";2:"3X3";
+	//==========DIVISION==========
+	ele_I2C_Rotate_Sequence_ID_CLS.value					=I2C_CLS.I2C_Rotate_Sequence_ID=0;
+	//==========DIVISION==========
+	I2C_CLS.I2C_Rotate_IOrC=0;//0:"Rotate_IMG";1:"Rotate_Canvas";
+	ele_I2C_Rotate_IOrC_BTN.style.backgroundColor=["yellow","orange"][I2C_CLS.I2C_Rotate_IOrC];
+	ele_I2C_Rotate_IOrC_BTN.value=["I","C"][I2C_CLS.I2C_Rotate_IOrC];
+	//==========DIVISION==========
+	ele_IMG_ARR_Area_Table.style.display=["","none"][I2C_CLS.I2C_Rotate_IOrC];
+	ele_Canvas_Area_Table.style.display=["","none"][(I2C_CLS.I2C_Rotate_IOrC + 1)%2];
+	//==========DIVISION==========
+	ele_IMG_ART_Reset_CLS.style.backgroundColor="#1EB0E9";
+	I2C_CLS.IMG_Start_Stop_Rotate_State=num00=0;//0:"Stop";1:"Start";
+	ele_IMG_Start_Stop_Rotate_CLS.style.backgroundColor=["red","#1EB0E9"][num00];
+	//==========DIVISION==========
+	I2C_CLS.IMG_Info_CLS				={SRC:"IMG_List\/master_Li_high.jpg",BX:950,BY:700,EX:3130,EY:3350,X:0,Y:0,WH:0,};
+	//==========DIVISION==========
+	ele_IMG_Icon_CLS.src				=I2C_CLS.IMG_Info_CLS.SRC;
+	ele_IMG_ORI_Width_CLS.value			=I2C_CLS.IMG_ORI_Width				=0;
+	ele_IMG_ORI_Height_CLS.value		=I2C_CLS.IMG_ORI_Height				=0;
+	//==========DIVISION==========
+	setTimeout(function(ele_IMG_Icon_CLS)
+	{
+		//==========DIVISION==========
+		var fun_ct_cache;
+		fun_ct_cache=arguments.callee;
+		//==========DIVISION==========
+		//console.log("ele_IMG_Icon_CLS.complete : " + ele_IMG_Icon_CLS.complete);
+		if ( ele_IMG_Icon_CLS.complete==true )
+		{
+			//==========DIVISION==========
+			ele_IMG_ORI_Width_CLS.value		=I2C_CLS.IMG_ORI_Width	=ele_IMG_Icon_CLS.naturalWidth;		ele_IMG_ORI_Width_CLS.disabled	=true;
+			ele_IMG_ORI_Height_CLS.value	=I2C_CLS.IMG_ORI_Height	=ele_IMG_Icon_CLS.naturalHeight;	ele_IMG_ORI_Height_CLS.disabled	=true;
+			//==========DIVISION==========
+			var INI_Type=0;
+			IMG_2_Canvas_Ctrl_Table_INI(INI_Type);
+			IMG_ART_CLS.VAL.I2C_Canvas_Icon_INI_State=0;//0:Wait;1:Begin_00;2:Begin_01;3:END;
+			I2C_Canvas_Icon_INI(INI_Type);
+			//==========DIVISION==========
+		}
+		else
+		{
+			setTimeout(fun_ct_cache,TTI_IN_USE,ele_IMG_Icon_CLS);
+			return;
+		}
+		//==========DIVISION==========
+	},TTI_IN_USE,ele_IMG_Icon_CLS);
+	//Text_2_Text_Ctrl_Table_INI(INI_Type);
+	//Text_2_Canvas_Ctrl_Table_INI(INI_Type);
+	//==========DIVISION==========
+	str00="";
+	str00+="<option>00 : IMG_VAR_0000_XXXXX</option>";
+	str00+="<option>01 : IMG_VAR_0001_XXXXX</option>";
+	str00+="<option>02 : IMG_VAR_0002_XXXXX</option>";
+	str00+="<option>03 : IMG_VAR_0003_XXXXX</option>";
+	str00+="<option>04 : IMG_VAR_0004_XXXXX</option>";
+	str00+="<option>05 : IMG_VAR_0005_XXXXX</option>";
+	str00+="<option>06 : IMG_VAR_0006_XXXXX</option>";
+	str00+="<option>07 : IMG_VAR_0007_XXXXX</option>";
+	str00+="<option>08 : IMG_VAR_0008_XXXXX</option>";
+	str00+="<option>09 : IMG_VAR_0009_XXXXX</option>";
+	ele_IMG_VAR_SEL.innerHTML		=str00;
+	ele_IMG_VAR_SEL.selectedIndex	=I2C_CLS.IMG_VAR_ID		=5;
+	//==========DIVISION==========
+	IMG_VAR_INI();
+	//==========DIVISION==========
+	str00="";
+	str00+="<option>00 : Text_VAR_0000_XXXXX</option>";
+	str00+="<option>01 : Text_VAR_0001_XXXXX</option>";
+	str00+="<option>02 : Text_VAR_0002_XXXXX</option>";
+	str00+="<option>03 : Text_VAR_0003_XXXXX</option>";
+	str00+="<option>04 : Text_VAR_0004_XXXXX</option>";
+	str00+="<option>05 : Text_VAR_0005_XXXXX</option>";
+	str00+="<option>06 : Text_VAR_0006_XXXXX</option>";
+	str00+="<option>07 : Text_VAR_0007_XXXXX</option>";
+	str00+="<option>08 : Text_VAR_0008_XXXXX</option>";
+	str00+="<option>09 : Text_VAR_0009_XXXXX</option>";
+	ele_Text_VAR_SEL.innerHTML		=str00;
+	ele_Text_VAR_SEL.selectedIndex	=I2C_CLS.Text_VAR_ID	=5;
+	//==========DIVISION==========
+	str00="";
+	str00+="<option>李洪志</option>";
+	str00+="<option>真善忍</option>";
+	str00+="<option>法轮功</option>";
+	str00+="<option>法轮大法</option>";
+	str00+="<option>法輪功</option>";
+	str00+="<option>法輪大法</option>";
+	ele_Text_CT_STR_00_Main_SEL.innerHTML=str00;
+	ele_Text_CT_STR_01_Main_SEL.innerHTML=str00;
+	ele_Text_CT_STR_02_Main_SEL.innerHTML=str00;
+	ele_Text_CT_STR_00_Main_SEL.selectedIndex=0;
+	ele_Text_CT_STR_01_Main_SEL.selectedIndex=1;
+	ele_Text_CT_STR_02_Main_SEL.selectedIndex=2;
+	I2C_CLS.Text_CT_STR_00_Main_STR		=ele_Text_CT_STR_00_Main_SEL.options[ele_Text_CT_STR_00_Main_SEL.selectedIndex].innerHTML;
+	I2C_CLS.Text_CT_STR_01_Main_STR		=ele_Text_CT_STR_01_Main_SEL.options[ele_Text_CT_STR_01_Main_SEL.selectedIndex].innerHTML;
+	I2C_CLS.Text_CT_STR_02_Main_STR		=ele_Text_CT_STR_02_Main_SEL.options[ele_Text_CT_STR_02_Main_SEL.selectedIndex].innerHTML;
+	ele_Text_CT_STR_00_Sub_CLS.value	=I2C_CLS.Text_CT_STR_00_Sub_STR			="好";
+	ele_Text_CT_STR_01_Sub_CLS.value	=I2C_CLS.Text_CT_STR_01_Sub_STR			="好";
+	ele_Text_CT_STR_02_Sub_CLS.value	=I2C_CLS.Text_CT_STR_02_Sub_STR			="好";
+	//==========DIVISION==========
+	Text_VAR_INI();
+	//==========DIVISION==========
+	Text_Area_CT_INI();
+	//==========DIVISION==========
+}
+
+function IMG_2_Canvas_Ctrl_Table_INI(INI_Type)
+{
+	//==========DIVISION==========
+	eval(ELE_ELEL_STR_INI(0));
+	eval(Parameter_Base_STR_ijk_XX(10));
+	var ID,LEN,ID_LEN;
+	var Code_Area;
+	//==========DIVISION==========
+	//	//==========DIVISION==========
+	//	IMG_Info_CLS						:	{SRC:"",BX:950,BY:700,EX:3130,EY:3350,X:0,Y:0,WH:0,},
+	//	//==========DIVISION==========
+	//	IMG_ORI_Width						:	0,
+	//	IMG_ORI_Height						:	0,
+	//	IMG_ORI_Coordinate_X				:	0,
+	//	IMG_ORI_Coordinate_Y				:	0,
+	//	IMG_ORI_Coordinate_WH				:	0,
+	//	Canvas_MOD_Sub_Coordinate_X			:	0,
+	//	Canvas_MOD_Sub_Coordinate_Y			:	0,
+	//	Canvas_MOD_Sub_Coordinate_WH		:	0,
+	//	Canvas_MOD_Main_IMG_NUM_X			:	0,
+	//	Canvas_MOD_Main_IMG_NUM_Y			:	0,
+	//	Canvas_MOD_Main_Canvas_Width		:	0,
+	//	Canvas_MOD_Main_Canvas_Height		:	0,
+	//	//==========DIVISION==========
+	//	//Interval_Time
+	//	ITime								:	1,
+	//	IMG_Opacity							:	1,
+	//	Direction_Num						:	6,
+	//	//==========DIVISION==========
+	//==========DIVISION==========
+	var I2C_CLS=IMG_ART_CLS.VAL;
+	//==========DIVISION==========
+	//====================DIVISION====================
+	//==========DIVISION==========
+	IMG_VAR_INI();
+	//==========DIVISION==========
+	ele_ITime_CLS			.value			=I2C_CLS.ITime			=10;
+	//==========DIVISION==========
+	//0:"Hide";1:"Show";
+	if ( I2C_CLS.Text_Area_Table_P_TD_SH_State==0 )			{num00=1;}
+	else if ( I2C_CLS.Text_Area_Table_P_TD_SH_State==1 )	{num00=0.6;}
+	else		{}
+	ele_IMG_Opacity_CLS		.value			=
+	ele_Canvas_Area_Table	.style.opacity	=
+	ele_IMG_ARR_Area_Table	.style.opacity	=I2C_CLS.IMG_Opacity	=num00;
+	//==========DIVISION==========
+	ele_Direction_Num_CLS	.value			=I2C_CLS.Direction_Num	=12;
+	//==========DIVISION==========
+	//====================DIVISION====================
+}
+
+function IMG_VAR_INI()
+{
+	//==========DIVISION==========
+	eval(ELE_ELEL_STR_INI(0));
+	eval(Parameter_Base_STR_ijk_XX(10));
+	var ID,LEN,ID_LEN;
+	var Code_Area;
+	//==========DIVISION==========
+	function IMG_Default_Size_ID()
+	{
+		var ID;
+		ID=parseInt(2 * Math.random(),10);
+		return ID;
+	}
+	//==========DIVISION==========
+	var I2C_CLS=IMG_ART_CLS.VAL;
+	//==========DIVISION==========
+	if ( I2C_CLS.IMG_VAR_ID==0 || I2C_CLS.IMG_VAR_ID==1 )
+	{
+		//==========DIVISION==========
+		ele_IMG_ORI_Coordinate_X_CLS		.value	=I2C_CLS.IMG_ORI_Coordinate_X		=I2C_CLS.IMG_Info_CLS.X
+											=I2C_CLS.IMG_Info_CLS.BX + parseInt((I2C_CLS.IMG_Info_CLS.EX - I2C_CLS.IMG_Info_CLS.BX) * Math.random(),10);
+		ele_IMG_ORI_Coordinate_Y_CLS		.value	=I2C_CLS.IMG_ORI_Coordinate_Y		=I2C_CLS.IMG_Info_CLS.Y
+											=I2C_CLS.IMG_Info_CLS.BY + parseInt((I2C_CLS.IMG_Info_CLS.EY - I2C_CLS.IMG_Info_CLS.BY) * Math.random(),10);
+		num00=I2C_CLS.IMG_Info_CLS.EX - I2C_CLS.IMG_Info_CLS.X;		num02=parseInt(num00 * Math.random(),10);
+		num01=I2C_CLS.IMG_Info_CLS.EY - I2C_CLS.IMG_Info_CLS.Y;		num03=parseInt(num01 * Math.random(),10);
+		//	400	350;400	150;
+		//	300	200;300	200;
+		if ( num02>num01 )	{num02=num01;}
+		if ( num03>num00 )	{num03=num00;}
+		if ( num02>num03 )	{num02=num03;}
+		ele_IMG_ORI_Coordinate_WH_CLS		.value	=I2C_CLS.IMG_ORI_Coordinate_WH		=I2C_CLS.IMG_Info_CLS.WH	=num02;
+		//==========DIVISION==========
+		num04=[60,120][I2C_CLS.IMG_VAR_ID];
+		if ( I2C_CLS.IMG_Info_CLS.WH<num04 )	{num04=I2C_CLS.IMG_Info_CLS.WH;}
+		//==========DIVISION==========
+		ele_Canvas_MOD_Sub_Coordinate_X_CLS		.value		=I2C_CLS.Canvas_MOD_Sub_Coordinate_X			=0;
+		ele_Canvas_MOD_Sub_Coordinate_Y_CLS		.value		=I2C_CLS.Canvas_MOD_Sub_Coordinate_Y			=0;
+		ele_Canvas_MOD_Sub_Coordinate_WH_CLS	.value		=I2C_CLS.Canvas_MOD_Sub_Coordinate_WH			=num04;
+		//==========DIVISION==========
+		ele_Canvas_MOD_Main_IMG_NUM_X_CLS		.value		=I2C_CLS.Canvas_MOD_Main_IMG_NUM_X
+															=[[32,32,32,12,12][OS.ID],[16,16,16, 6, 6][OS.ID]][I2C_CLS.IMG_VAR_ID];
+		ele_Canvas_MOD_Main_IMG_NUM_Y_CLS		.value		=I2C_CLS.Canvas_MOD_Main_IMG_NUM_Y
+															=[[18,18,18,26,26][OS.ID],[ 9, 9, 9,13,13][OS.ID]][I2C_CLS.IMG_VAR_ID];
+		ele_Canvas_MOD_Main_Canvas_Width_CLS	.value		=I2C_CLS.Canvas_MOD_Main_Canvas_Width
+															=I2C_CLS.Canvas_MOD_Sub_Coordinate_WH * I2C_CLS.Canvas_MOD_Main_IMG_NUM_X;
+		ele_Canvas_MOD_Main_Canvas_Height_CLS	.value		=I2C_CLS.Canvas_MOD_Main_Canvas_Height
+															=I2C_CLS.Canvas_MOD_Sub_Coordinate_WH * I2C_CLS.Canvas_MOD_Main_IMG_NUM_Y;
+		//==========DIVISION==========
+	}
+	else if ( I2C_CLS.IMG_VAR_ID==2 )
+	{
+		//==========DIVISION==========
+		ele_IMG_ORI_Coordinate_X_CLS		.value	=I2C_CLS.IMG_ORI_Coordinate_X		=I2C_CLS.IMG_Info_CLS.X		=[1000,0950][IMG_Default_Size_ID()];
+		ele_IMG_ORI_Coordinate_Y_CLS		.value	=I2C_CLS.IMG_ORI_Coordinate_Y		=I2C_CLS.IMG_Info_CLS.Y		=[1000,0900][IMG_Default_Size_ID()];
+		ele_IMG_ORI_Coordinate_WH_CLS		.value	=I2C_CLS.IMG_ORI_Coordinate_WH		=I2C_CLS.IMG_Info_CLS.WH	=[2000,2200][IMG_Default_Size_ID()];
+		//==========DIVISION==========
+		ele_Canvas_MOD_Sub_Coordinate_WH_CLS	.value		=I2C_CLS.Canvas_MOD_Sub_Coordinate_WH			=960;
+		//==========DIVISION==========
+		ele_Canvas_MOD_Main_IMG_NUM_X_CLS		.value		=I2C_CLS.Canvas_MOD_Main_IMG_NUM_X				=[ 2, 2, 2, 1, 1][OS.ID];
+		ele_Canvas_MOD_Main_IMG_NUM_Y_CLS		.value		=I2C_CLS.Canvas_MOD_Main_IMG_NUM_Y				=[ 1, 1, 1, 2, 2][OS.ID];
+		ele_Canvas_MOD_Main_Canvas_Width_CLS	.value		=I2C_CLS.Canvas_MOD_Main_Canvas_Width
+															=I2C_CLS.Canvas_MOD_Sub_Coordinate_WH * I2C_CLS.Canvas_MOD_Main_IMG_NUM_X;
+		ele_Canvas_MOD_Main_Canvas_Height_CLS	.value		=I2C_CLS.Canvas_MOD_Main_Canvas_Height
+															=I2C_CLS.Canvas_MOD_Sub_Coordinate_WH * I2C_CLS.Canvas_MOD_Main_IMG_NUM_Y;
+		//==========DIVISION==========
+	}
+	else if ( I2C_CLS.IMG_VAR_ID==3 )
+	{
+		//==========DIVISION==========
+		ele_IMG_ORI_Coordinate_X_CLS		.value	=I2C_CLS.IMG_ORI_Coordinate_X		=I2C_CLS.IMG_Info_CLS.X		=[1000,0950][IMG_Default_Size_ID()];
+		ele_IMG_ORI_Coordinate_Y_CLS		.value	=I2C_CLS.IMG_ORI_Coordinate_Y		=I2C_CLS.IMG_Info_CLS.Y		=[1000,0900][IMG_Default_Size_ID()];
+		ele_IMG_ORI_Coordinate_WH_CLS		.value	=I2C_CLS.IMG_ORI_Coordinate_WH		=I2C_CLS.IMG_Info_CLS.WH	=[2000,2200][IMG_Default_Size_ID()];
+		//==========DIVISION==========
+		ele_Canvas_MOD_Sub_Coordinate_WH_CLS	.value		=I2C_CLS.Canvas_MOD_Sub_Coordinate_WH			=160;
+		//==========DIVISION==========
+		ele_Canvas_MOD_Main_IMG_NUM_X_CLS		.value		=I2C_CLS.Canvas_MOD_Main_IMG_NUM_X				=[12,12,12, 7, 7][OS.ID];
+		ele_Canvas_MOD_Main_IMG_NUM_Y_CLS		.value		=I2C_CLS.Canvas_MOD_Main_IMG_NUM_Y				=[ 7, 7, 7,12,12][OS.ID];
+		ele_Canvas_MOD_Main_Canvas_Width_CLS	.value		=I2C_CLS.Canvas_MOD_Main_Canvas_Width
+															=I2C_CLS.Canvas_MOD_Sub_Coordinate_WH * I2C_CLS.Canvas_MOD_Main_IMG_NUM_X;
+		ele_Canvas_MOD_Main_Canvas_Height_CLS	.value		=I2C_CLS.Canvas_MOD_Main_Canvas_Height
+															=I2C_CLS.Canvas_MOD_Sub_Coordinate_WH * I2C_CLS.Canvas_MOD_Main_IMG_NUM_Y;
+		//==========DIVISION==========
+	}
+	else if ( I2C_CLS.IMG_VAR_ID==4 )
+	{
+		//==========DIVISION==========
+		ele_IMG_ORI_Coordinate_X_CLS		.value	=I2C_CLS.IMG_ORI_Coordinate_X		=I2C_CLS.IMG_Info_CLS.X		=[1000,0950][IMG_Default_Size_ID()];
+		ele_IMG_ORI_Coordinate_Y_CLS		.value	=I2C_CLS.IMG_ORI_Coordinate_Y		=I2C_CLS.IMG_Info_CLS.Y		=[1000,0900][IMG_Default_Size_ID()];
+		ele_IMG_ORI_Coordinate_WH_CLS		.value	=I2C_CLS.IMG_ORI_Coordinate_WH		=I2C_CLS.IMG_Info_CLS.WH	=[2000,2200][IMG_Default_Size_ID()];
+		//==========DIVISION==========
+		ele_Canvas_MOD_Sub_Coordinate_WH_CLS	.value		=I2C_CLS.Canvas_MOD_Sub_Coordinate_WH			=140;
+		//==========DIVISION==========
+		ele_Canvas_MOD_Main_IMG_NUM_X_CLS		.value		=I2C_CLS.Canvas_MOD_Main_IMG_NUM_X				=[14,14,14, 8, 8][OS.ID];
+		ele_Canvas_MOD_Main_IMG_NUM_Y_CLS		.value		=I2C_CLS.Canvas_MOD_Main_IMG_NUM_Y				=[ 8, 8, 8,14,14][OS.ID];
+		ele_Canvas_MOD_Main_Canvas_Width_CLS	.value		=I2C_CLS.Canvas_MOD_Main_Canvas_Width
+															=I2C_CLS.Canvas_MOD_Sub_Coordinate_WH * I2C_CLS.Canvas_MOD_Main_IMG_NUM_X;
+		ele_Canvas_MOD_Main_Canvas_Height_CLS	.value		=I2C_CLS.Canvas_MOD_Main_Canvas_Height
+															=I2C_CLS.Canvas_MOD_Sub_Coordinate_WH * I2C_CLS.Canvas_MOD_Main_IMG_NUM_Y;
+		//==========DIVISION==========
+	}
+	else if ( I2C_CLS.IMG_VAR_ID==5 )
+	{
+		//==========DIVISION==========
+		ele_IMG_ORI_Coordinate_X_CLS		.value	=I2C_CLS.IMG_ORI_Coordinate_X		=I2C_CLS.IMG_Info_CLS.X		=[1000,0950][IMG_Default_Size_ID()];
+		ele_IMG_ORI_Coordinate_Y_CLS		.value	=I2C_CLS.IMG_ORI_Coordinate_Y		=I2C_CLS.IMG_Info_CLS.Y		=[1000,0900][IMG_Default_Size_ID()];
+		ele_IMG_ORI_Coordinate_WH_CLS		.value	=I2C_CLS.IMG_ORI_Coordinate_WH		=I2C_CLS.IMG_Info_CLS.WH	=[2000,2200][IMG_Default_Size_ID()];
+		//==========DIVISION==========
+		ele_Canvas_MOD_Sub_Coordinate_WH_CLS	.value		=I2C_CLS.Canvas_MOD_Sub_Coordinate_WH			=60;
+		//==========DIVISION==========
+		ele_Canvas_MOD_Main_IMG_NUM_X_CLS		.value		=I2C_CLS.Canvas_MOD_Main_IMG_NUM_X				=[32,32,32,18,18][OS.ID];
+		ele_Canvas_MOD_Main_IMG_NUM_Y_CLS		.value		=I2C_CLS.Canvas_MOD_Main_IMG_NUM_Y				=[18,18,18,32,32][OS.ID];
+		ele_Canvas_MOD_Main_Canvas_Width_CLS	.value		=I2C_CLS.Canvas_MOD_Main_Canvas_Width
+															=I2C_CLS.Canvas_MOD_Sub_Coordinate_WH * I2C_CLS.Canvas_MOD_Main_IMG_NUM_X;
+		ele_Canvas_MOD_Main_Canvas_Height_CLS	.value		=I2C_CLS.Canvas_MOD_Main_Canvas_Height
+															=I2C_CLS.Canvas_MOD_Sub_Coordinate_WH * I2C_CLS.Canvas_MOD_Main_IMG_NUM_Y;
+		//==========DIVISION==========
+	}
+	else if ( I2C_CLS.IMG_VAR_ID==6 )
+	{
+		//==========DIVISION==========
+		ele_IMG_ORI_Coordinate_X_CLS		.value	=I2C_CLS.IMG_ORI_Coordinate_X		=I2C_CLS.IMG_Info_CLS.X		=[1000,0950][IMG_Default_Size_ID()];
+		ele_IMG_ORI_Coordinate_Y_CLS		.value	=I2C_CLS.IMG_ORI_Coordinate_Y		=I2C_CLS.IMG_Info_CLS.Y		=[1000,0900][IMG_Default_Size_ID()];
+		ele_IMG_ORI_Coordinate_WH_CLS		.value	=I2C_CLS.IMG_ORI_Coordinate_WH		=I2C_CLS.IMG_Info_CLS.WH	=[2000,2200][IMG_Default_Size_ID()];
+		//==========DIVISION==========
+		ele_Canvas_MOD_Sub_Coordinate_WH_CLS	.value		=I2C_CLS.Canvas_MOD_Sub_Coordinate_WH			=40;
+		//==========DIVISION==========
+		ele_Canvas_MOD_Main_IMG_NUM_X_CLS		.value		=I2C_CLS.Canvas_MOD_Main_IMG_NUM_X				=[48,48,48,27,27][OS.ID];
+		ele_Canvas_MOD_Main_IMG_NUM_Y_CLS		.value		=I2C_CLS.Canvas_MOD_Main_IMG_NUM_Y				=[27,27,27,48,48][OS.ID];
+		ele_Canvas_MOD_Main_Canvas_Width_CLS	.value		=I2C_CLS.Canvas_MOD_Main_Canvas_Width
+															=I2C_CLS.Canvas_MOD_Sub_Coordinate_WH * I2C_CLS.Canvas_MOD_Main_IMG_NUM_X;
+		ele_Canvas_MOD_Main_Canvas_Height_CLS	.value		=I2C_CLS.Canvas_MOD_Main_Canvas_Height
+															=I2C_CLS.Canvas_MOD_Sub_Coordinate_WH * I2C_CLS.Canvas_MOD_Main_IMG_NUM_Y;
+		//==========DIVISION==========
+	}
+	else		{}
+	//==========DIVISION==========
+}
+
+function Text_VAR_INI()
+{
+	//==========DIVISION==========
+	eval(ELE_ELEL_STR_INI(0));
+	eval(Parameter_Base_STR_ijk_XX(10));
+	var ID,LEN,ID_LEN;
+	var Code_Area;
+	//==========DIVISION==========
+	var I2C_CLS=IMG_ART_CLS.VAL;
+	//==========DIVISION==========
+	var Multiple_VAL=1;
+	if ( navigator.userAgent.indexOf("Chrome")>=0 )			{Multiple_VAL=1.23;}
+	else if ( navigator.userAgent.indexOf("Firefox")>=0 )	{Multiple_VAL=1.23;}
+	else													{}
+	var Multiple_VAL=1;
+	//==========DIVISION==========
+	if ( I2C_CLS.Text_VAR_ID==0 )
+	{
+		//==========DIVISION==========
+		ele_Text_NUM_X_CLS.value					=I2C_CLS.Text_NUM_X					=3;
+		ele_Text_NUM_Y_CLS.value					=I2C_CLS.Text_NUM_Y					=40;
+		//==========DIVISION==========
+		ele_Text_Font_Size_CLS.value				=I2C_CLS.Text_Font_Size				=327;
+		ele_Text_Area_CT_CLS.style.fontSize			//=(I2C_CLS.Text_Font_Size * Multiple_VAL).toString() + "%";
+													=I2C_CLS.Text_Font_Size.toString() + "%";
+		ele_Text_Area_CT_CLS.style.lineHeight		="102%";
+		ele_Text_Opacity_CLS.value					=ele_Text_Area_Table.style.opacity	=I2C_CLS.Text_Opacity	=1;
+		ele_Text_Sep_STR_CLS.value					=I2C_CLS.Text_Sep_STR_STR			="";
+		//==========DIVISION==========
+											I2C_CLS.Text_CT_STR_00_Break_Or_Not		=0;//0:"Not_Do_Break";1:"Do_Break";
+											I2C_CLS.Text_CT_STR_01_Break_Or_Not		=0;//0:"Not_Do_Break";1:"Do_Break";
+											I2C_CLS.Text_CT_STR_02_Break_Or_Not		=0;//0:"Not_Do_Break";1:"Do_Break";
+		ele_Text_CT_STR_00_Break_Or_Not_BTN.style.backgroundColor	=["red","#1EB0E9"][I2C_CLS.Text_CT_STR_00_Break_Or_Not];
+		ele_Text_CT_STR_01_Break_Or_Not_BTN.style.backgroundColor	=["red","#1EB0E9"][I2C_CLS.Text_CT_STR_01_Break_Or_Not];
+		ele_Text_CT_STR_02_Break_Or_Not_BTN.style.backgroundColor	=["red","#1EB0E9"][I2C_CLS.Text_CT_STR_02_Break_Or_Not];
+		//==========DIVISION==========
+	}
+	else if ( I2C_CLS.Text_VAR_ID==1 )
+	{
+		//==========DIVISION==========
+		ele_Text_NUM_X_CLS.value					=I2C_CLS.Text_NUM_X					=2;
+		ele_Text_NUM_Y_CLS.value					=I2C_CLS.Text_NUM_Y					=20;
+		//==========DIVISION==========
+		ele_Text_Font_Size_CLS.value				=I2C_CLS.Text_Font_Size				=653;
+		ele_Text_Area_CT_CLS.style.fontSize			//=(I2C_CLS.Text_Font_Size * Multiple_VAL).toString() + "%";
+													=I2C_CLS.Text_Font_Size.toString() + "%";
+		ele_Text_Area_CT_CLS.style.lineHeight		="102%";
+		ele_Text_Opacity_CLS.value					=ele_Text_Area_Table.style.opacity	=I2C_CLS.Text_Opacity	=1;
+		ele_Text_Sep_STR_CLS.value					=I2C_CLS.Text_Sep_STR_STR			="";
+		//==========DIVISION==========
+											I2C_CLS.Text_CT_STR_00_Break_Or_Not		=0;//0:"Not_Do_Break";1:"Do_Break";
+											I2C_CLS.Text_CT_STR_01_Break_Or_Not		=0;//0:"Not_Do_Break";1:"Do_Break";
+											I2C_CLS.Text_CT_STR_02_Break_Or_Not		=0;//0:"Not_Do_Break";1:"Do_Break";
+		ele_Text_CT_STR_00_Break_Or_Not_BTN.style.backgroundColor	=["red","#1EB0E9"][I2C_CLS.Text_CT_STR_00_Break_Or_Not];
+		ele_Text_CT_STR_01_Break_Or_Not_BTN.style.backgroundColor	=["red","#1EB0E9"][I2C_CLS.Text_CT_STR_01_Break_Or_Not];
+		ele_Text_CT_STR_02_Break_Or_Not_BTN.style.backgroundColor	=["red","#1EB0E9"][I2C_CLS.Text_CT_STR_02_Break_Or_Not];
+		//==========DIVISION==========
+	}
+	else if ( I2C_CLS.Text_VAR_ID==2 )
+	{
+		//==========DIVISION==========
+		ele_Text_NUM_X_CLS.value					=I2C_CLS.Text_NUM_X					=1;
+		ele_Text_NUM_Y_CLS.value					=I2C_CLS.Text_NUM_Y					=5;
+		//==========DIVISION==========
+		ele_Text_Font_Size_CLS.value				=I2C_CLS.Text_Font_Size				=2583;//2100;
+		ele_Text_Area_CT_CLS.style.fontSize			//=(I2C_CLS.Text_Font_Size * Multiple_VAL).toString() + "%";
+													=I2C_CLS.Text_Font_Size.toString() + "%";
+		ele_Text_Area_CT_CLS.style.lineHeight		="102%";
+		ele_Text_Opacity_CLS.value					=ele_Text_Area_Table.style.opacity	=I2C_CLS.Text_Opacity	=1;
+		ele_Text_Sep_STR_CLS.value					=I2C_CLS.Text_Sep_STR_STR			="";
+		//==========DIVISION==========
+											I2C_CLS.Text_CT_STR_00_Break_Or_Not		=1;//0:"Not_Do_Break";1:"Do_Break";
+											I2C_CLS.Text_CT_STR_01_Break_Or_Not		=1;//0:"Not_Do_Break";1:"Do_Break";
+											I2C_CLS.Text_CT_STR_02_Break_Or_Not		=0;//0:"Not_Do_Break";1:"Do_Break";
+		ele_Text_CT_STR_00_Break_Or_Not_BTN.style.backgroundColor	=["red","#1EB0E9"][I2C_CLS.Text_CT_STR_00_Break_Or_Not];
+		ele_Text_CT_STR_01_Break_Or_Not_BTN.style.backgroundColor	=["red","#1EB0E9"][I2C_CLS.Text_CT_STR_01_Break_Or_Not];
+		ele_Text_CT_STR_02_Break_Or_Not_BTN.style.backgroundColor	=["red","#1EB0E9"][I2C_CLS.Text_CT_STR_02_Break_Or_Not];
+		//==========DIVISION==========
+	}
+	else if ( I2C_CLS.Text_VAR_ID==3 )
+	{
+		//==========DIVISION==========
+		ele_Text_NUM_X_CLS.value					=I2C_CLS.Text_NUM_X					=1;
+		ele_Text_NUM_Y_CLS.value					=I2C_CLS.Text_NUM_Y					=16;
+		ele_Text_Font_Size_CLS.value				=I2C_CLS.Text_Font_Size				=870;
+		ele_Text_Area_CT_CLS.style.fontSize			=I2C_CLS.Text_Font_Size.toString() + "%";
+		ele_Text_Area_CT_CLS.style.lineHeight		="102%";
+		ele_Text_Opacity_CLS.value					=ele_Text_Area_Table.style.opacity	=I2C_CLS.Text_Opacity	=1;
+		ele_Text_Sep_STR_CLS.value					=I2C_CLS.Text_Sep_STR_STR			="";
+		//==========DIVISION==========
+											I2C_CLS.Text_CT_STR_00_Break_Or_Not		=0;//0:"Not_Do_Break";1:"Do_Break";
+											I2C_CLS.Text_CT_STR_01_Break_Or_Not		=0;//0:"Not_Do_Break";1:"Do_Break";
+											I2C_CLS.Text_CT_STR_02_Break_Or_Not		=0;//0:"Not_Do_Break";1:"Do_Break";
+		ele_Text_CT_STR_00_Break_Or_Not_BTN.style.backgroundColor	=["red","#1EB0E9"][I2C_CLS.Text_CT_STR_00_Break_Or_Not];
+		ele_Text_CT_STR_01_Break_Or_Not_BTN.style.backgroundColor	=["red","#1EB0E9"][I2C_CLS.Text_CT_STR_01_Break_Or_Not];
+		ele_Text_CT_STR_02_Break_Or_Not_BTN.style.backgroundColor	=["red","#1EB0E9"][I2C_CLS.Text_CT_STR_02_Break_Or_Not];
+		//==========DIVISION==========
+	}
+	else if ( I2C_CLS.Text_VAR_ID==4 )
+	{
+		//==========DIVISION==========
+		ele_Text_NUM_X_CLS.value					=I2C_CLS.Text_NUM_X					=1;
+		ele_Text_NUM_Y_CLS.value					=I2C_CLS.Text_NUM_Y					=18;
+		ele_Text_Font_Size_CLS.value				=I2C_CLS.Text_Font_Size				=763;
+		ele_Text_Area_CT_CLS.style.fontSize			=I2C_CLS.Text_Font_Size.toString() + "%";
+		ele_Text_Area_CT_CLS.style.lineHeight		="102%";
+		ele_Text_Opacity_CLS.value					=ele_Text_Area_Table.style.opacity	=I2C_CLS.Text_Opacity	=1;
+		ele_Text_Sep_STR_CLS.value					=I2C_CLS.Text_Sep_STR_STR			="";
+		//==========DIVISION==========
+											I2C_CLS.Text_CT_STR_00_Break_Or_Not		=0;//0:"Not_Do_Break";1:"Do_Break";
+											I2C_CLS.Text_CT_STR_01_Break_Or_Not		=0;//0:"Not_Do_Break";1:"Do_Break";
+											I2C_CLS.Text_CT_STR_02_Break_Or_Not		=0;//0:"Not_Do_Break";1:"Do_Break";
+		ele_Text_CT_STR_00_Break_Or_Not_BTN.style.backgroundColor	=["red","#1EB0E9"][I2C_CLS.Text_CT_STR_00_Break_Or_Not];
+		ele_Text_CT_STR_01_Break_Or_Not_BTN.style.backgroundColor	=["red","#1EB0E9"][I2C_CLS.Text_CT_STR_01_Break_Or_Not];
+		ele_Text_CT_STR_02_Break_Or_Not_BTN.style.backgroundColor	=["red","#1EB0E9"][I2C_CLS.Text_CT_STR_02_Break_Or_Not];
+		//==========DIVISION==========
+	}
+	else if ( I2C_CLS.Text_VAR_ID==5 )
+	{
+		//==========DIVISION==========
+		ele_Text_NUM_X_CLS.value					=I2C_CLS.Text_NUM_X					=3;
+		ele_Text_NUM_Y_CLS.value					=I2C_CLS.Text_NUM_Y					=40;
+		//==========DIVISION==========
+		ele_Text_Font_Size_CLS.value				=I2C_CLS.Text_Font_Size				=327;
+		ele_Text_Area_CT_CLS.style.fontSize			//=(I2C_CLS.Text_Font_Size * Multiple_VAL).toString() + "%";
+													=I2C_CLS.Text_Font_Size.toString() + "%";
+		ele_Text_Area_CT_CLS.style.lineHeight		="102%";
+		ele_Text_Opacity_CLS.value					=ele_Text_Area_Table.style.opacity	=I2C_CLS.Text_Opacity	=1;
+		ele_Text_Sep_STR_CLS.value					=I2C_CLS.Text_Sep_STR_STR			="";
+		//==========DIVISION==========
+											I2C_CLS.Text_CT_STR_00_Break_Or_Not		=0;//0:"Not_Do_Break";1:"Do_Break";
+											I2C_CLS.Text_CT_STR_01_Break_Or_Not		=0;//0:"Not_Do_Break";1:"Do_Break";
+											I2C_CLS.Text_CT_STR_02_Break_Or_Not		=0;//0:"Not_Do_Break";1:"Do_Break";
+		ele_Text_CT_STR_00_Break_Or_Not_BTN.style.backgroundColor	=["red","#1EB0E9"][I2C_CLS.Text_CT_STR_00_Break_Or_Not];
+		ele_Text_CT_STR_01_Break_Or_Not_BTN.style.backgroundColor	=["red","#1EB0E9"][I2C_CLS.Text_CT_STR_01_Break_Or_Not];
+		ele_Text_CT_STR_02_Break_Or_Not_BTN.style.backgroundColor	=["red","#1EB0E9"][I2C_CLS.Text_CT_STR_02_Break_Or_Not];
+		//==========DIVISION==========
+	}
+	else
+	{
+	}
+	//==========DIVISION==========
+}
+
+function Text_Area_CT_INI()
+{
+	//==========DIVISION==========
+	eval(ELE_ELEL_STR_INI(0));
+	eval(Parameter_Base_STR_ijk_XX(5));
+	var ID,LEN,ID_LEN;
+	var ID_X,ID_Y;
+	var INI_Type;
+	var Code_Area;
+	//==========DIVISION==========
+	var I2C_CLS=IMG_ART_CLS.VAL;
+	//==========DIVISION==========
+	str00="";
+	var ID_X,ID_Y;
+	for (ID_Y=0;ID_Y<I2C_CLS.Text_NUM_Y;ID_Y++)
+	{
+		for (ID_X=0;ID_X<I2C_CLS.Text_NUM_X;ID_X++)
+		{
+			str00+=I2C_CLS.Text_CT_STR_00_Main_STR + I2C_CLS.Text_CT_STR_00_Sub_STR + ["","\n"][I2C_CLS.Text_CT_STR_00_Break_Or_Not];
+			str00+=I2C_CLS.Text_CT_STR_01_Main_STR + I2C_CLS.Text_CT_STR_01_Sub_STR + ["","\n"][I2C_CLS.Text_CT_STR_01_Break_Or_Not];
+			str00+=I2C_CLS.Text_CT_STR_02_Main_STR + I2C_CLS.Text_CT_STR_02_Sub_STR + ["","\n"][I2C_CLS.Text_CT_STR_02_Break_Or_Not];
+		}
+		str00+="\n";
+	}
+	str00=str00.replace(/(.)/gm,"$1" + I2C_CLS.Text_Sep_STR_STR);
+	ele_Text_Area_CT_CLS.innerHTML		=I2C_CLS.Text_Area_CT_STR				=str00;
+	//==========DIVISION==========
+}
+//====================DIVISION====================
+function I2C_Canvas_Icon_INI(INI_Type)
+{
+	//==========DIVISION==========
+	IMG_ART_CLS.VAL.I2C_Canvas_Icon_INI_State=1;//0:Wait;1:Begin_00;2:Begin_01;3:END;
+	//==========DIVISION==========
+	eval(ELE_ELEL_STR_INI(0));
+	eval(Parameter_Base_STR_ijk_XX(10));
+	var ID,LEN,ID_LEN;
+	var Code_Area;
+	var ctx00,ctx01,ctx02,ctx03,ctx04;
+	//==========DIVISION==========
+	function Print_VAR_drawImage(sx,sy,swidth,sheight,x,y,width,height)
+	{
+		console.log("sx : " + sx + ";\t" + "sy : " + sy + ";\t" + "swidth : " + swidth + ";\t" + "sheight : " + sheight + ";\t" + 
+					"x : " + x + ";\t" + "y : " + y + ";\t" + "width : " + width + ";\t" + "height : " + height + ";\t" + 
+					"");
+	}
+	//==========DIVISION==========
+	var ele_IMG_ORI,ele_Canvas_ORI,ele_Canvas_Mode,ele_IMG_Mode;
+	//==========DIVISION==========
+	ele_IMG_ORI				=ele_IMG_Icon_CLS;
+	ele_Canvas_ORI			=document.createElement("canvas");
+	ele_Canvas_ORI.width	=ele_IMG_ORI.naturalWidth;
+	ele_Canvas_ORI.height	=ele_IMG_ORI.naturalHeight;
+	ctx00=ele_Canvas_ORI.getContext("2d");
+	ctx00.drawImage(ele_IMG_ORI,0,0);
+	//==========DIVISION==========
+	ele_Canvas_Icon_CLS.width	=50;
+	ele_Canvas_Icon_CLS.height	=50;
+	ctx01=ele_Canvas_Icon_CLS.getContext("2d");
+	(function (ctx01,ele_Canvas_ORI)
+	{
+		var sx,sy,swidth,sheight,x,y,width,height;
+		sx		=IMG_ART_CLS.VAL.IMG_ORI_Coordinate_X			;
+		sy		=IMG_ART_CLS.VAL.IMG_ORI_Coordinate_Y			;
+		swidth	=IMG_ART_CLS.VAL.IMG_ORI_Coordinate_WH			;
+		sheight	=IMG_ART_CLS.VAL.IMG_ORI_Coordinate_WH			;
+		x		=IMG_ART_CLS.VAL.Canvas_MOD_Sub_Coordinate_X	=0;
+		y		=IMG_ART_CLS.VAL.Canvas_MOD_Sub_Coordinate_Y	=0;
+		width	=IMG_ART_CLS.VAL.Canvas_MOD_Sub_Coordinate_WH	;
+		height	=IMG_ART_CLS.VAL.Canvas_MOD_Sub_Coordinate_WH	;
+		//Print_VAR_drawImage(sx,sy,swidth,sheight,x,y,width,height);
+		ctx01.scale(ele_Canvas_Icon_CLS.width / width,
+					ele_Canvas_Icon_CLS.height / height);
+		ctx01.drawImage(ele_Canvas_ORI,sx,sy,swidth,sheight,x,y,width,height);
+	})(ctx01,ele_Canvas_ORI);
+	//==========DIVISION==========
+	ele_Canvas_Mode			=document.createElement("canvas");
+	ele_Canvas_Mode.width	=IMG_ART_CLS.VAL.Canvas_MOD_Sub_Coordinate_WH;
+	ele_Canvas_Mode.height	=IMG_ART_CLS.VAL.Canvas_MOD_Sub_Coordinate_WH;
+	ctx02=ele_Canvas_Mode.getContext("2d");
+	(function (ctx02,ele_Canvas_ORI)
+	{
+		var sx,sy,swidth,sheight,x,y,width,height;
+		sx		=IMG_ART_CLS.VAL.IMG_ORI_Coordinate_X			;
+		sy		=IMG_ART_CLS.VAL.IMG_ORI_Coordinate_Y			;
+		swidth	=IMG_ART_CLS.VAL.IMG_ORI_Coordinate_WH			;
+		sheight	=IMG_ART_CLS.VAL.IMG_ORI_Coordinate_WH			;
+		x		=IMG_ART_CLS.VAL.Canvas_MOD_Sub_Coordinate_X	=0;
+		y		=IMG_ART_CLS.VAL.Canvas_MOD_Sub_Coordinate_Y	=0;
+		width	=IMG_ART_CLS.VAL.Canvas_MOD_Sub_Coordinate_WH	;
+		height	=IMG_ART_CLS.VAL.Canvas_MOD_Sub_Coordinate_WH	;
+		//Print_VAR_drawImage(sx,sy,swidth,sheight,x,y,width,height);
+		ctx02.drawImage(ele_Canvas_ORI,sx,sy,swidth,sheight,x,y,width,height);
+	})(ctx02,ele_Canvas_ORI);
+	//==========DIVISION==========
+	ele_IMG_Mode			=document.createElement("img");
+	ele_IMG_Mode.src		=ele_Canvas_Mode.toDataURL();
+	//console.log(ele_IMG_Mode.src);
+	//==========DIVISION==========
+	IMG_ART_CLS.VAL.ele_IMG_ORI			=ele_IMG_ORI		;
+	IMG_ART_CLS.VAL.ele_Canvas_ORI		=ele_Canvas_ORI		;
+	IMG_ART_CLS.VAL.ele_Canvas_Mode		=ele_Canvas_Mode	;
+	IMG_ART_CLS.VAL.ele_IMG_Mode		=ele_IMG_Mode		;
+	//==========DIVISION==========
+	//0:"Rotate_IMG";1:"Rotate_Canvas";
+	if ( IMG_ART_CLS.VAL.I2C_Rotate_IOrC==0 )
+	{
+		//==========DIVISION==========
+		str00="";
+		str00+="\n";
+		for (ID_Y=0;ID_Y<IMG_ART_CLS.VAL.Canvas_MOD_Main_IMG_NUM_Y;ID_Y++)
+		{
+			str00+="\t<tr>" + "\n";
+			for (ID_X=0;ID_X<IMG_ART_CLS.VAL.Canvas_MOD_Main_IMG_NUM_X;ID_X++)
+			{
+				str00+='\t\t<td><div style="overflow:hidden;"><div><img class="IMG_Main_CLS" src="' + ele_IMG_Mode.src + '"></div></div></td>' + "\n";
+			}
+			str00+="\t</tr>" + "\n";
+		}
+		ele_IMG_ARR_Area_Table.getElementsByTagName("tbody")[0].innerHTML=str00;
+		//==========DIVISION==========
+		IMG_ART_CLS.VAL.I2C_IMG_ARR_Main_INI_State=0;//0:Wait;1:Begin_00;2:Begin_01;3:END;
+		I2C_IMG_ARR_Main_INI(INI_Type);
+		//==========DIVISION==========
+	}
+	else if ( IMG_ART_CLS.VAL.I2C_Rotate_IOrC==1 )
+	{
+		IMG_ART_CLS.VAL.I2C_Canvas_Main_INI_State=0;//0:Wait;1:Begin_00;2:Begin_01;3:END;
+		I2C_Canvas_Main_INI(INI_Type);
+	}
+	else		{}
+	//==========DIVISION==========
+}
+
+function I2C_IMG_ARR_Main_INI(INI_Type)
+{
+	//==========DIVISION==========
+	IMG_ART_CLS.VAL.I2C_IMG_ARR_Main_INI_State=1;//0:Wait;1:Begin_00;2:Begin_01;3:END;
+	//==========DIVISION==========
+	eval(ELE_ELEL_STR_INI(0));
+	eval(Parameter_Base_STR_ijk_XX(10));
+	var ID,LEN,ID_LEN;
+	var Code_Area;
+	var ctx00,ctx01,ctx02,ctx03,ctx04;
+	//==========DIVISION==========
+	var ele_IMG_ORI,ele_Canvas_ORI,ele_Canvas_Mode,ele_IMG_Mode;
+	//==========DIVISION==========
+	ele_IMG_ORI		=IMG_ART_CLS.VAL.ele_IMG_ORI			;
+	ele_Canvas_ORI	=IMG_ART_CLS.VAL.ele_Canvas_ORI			;
+	ele_Canvas_Mode	=IMG_ART_CLS.VAL.ele_Canvas_Mode		;
+	ele_IMG_Mode	=IMG_ART_CLS.VAL.ele_IMG_Mode			;
+	//==========DIVISION==========
+	var I2C_CLS=IMG_ART_CLS.VAL;
+	//==========DIVISION==========
+	var RD_VAL=Math.random();
+	var ID_X,ID_Y;
+	for (ID_X=0;ID_X<IMG_ART_CLS.VAL.Canvas_MOD_Main_IMG_NUM_X;ID_X++)
+	{
+		for (ID_Y=0;ID_Y<IMG_ART_CLS.VAL.Canvas_MOD_Main_IMG_NUM_Y;ID_Y++)
+		{
+			//====================DIVISION====================
+			//==========DIVISION==========
+			var rotate_ID	=null;var rotate_VAL	=null;
+			var rotateX_ID	=null;var rotateX_VAL	=null;
+			var rotateY_ID	=null;var rotateY_VAL	=null;
+			var rotateZ_ID	=null;var rotateZ_VAL	=null;
+			//==========DIVISION==========
+			//0:"Forward";1:"Reverse";2:"Random_Uniform";3:"Random_Multiple";
+			if ( I2C_CLS.I2C_Rotate_Sequence_Type==0 )
+			{
+				rotate_VAL	=I2C_CLS.I2C_Rotate_Sequence_ID%360;
+			}
+			else if ( I2C_CLS.I2C_Rotate_Sequence_Type==1 )
+			{
+				rotate_VAL	=(360 - I2C_CLS.I2C_Rotate_Sequence_ID)%360;
+			}
+			else if ( I2C_CLS.I2C_Rotate_Sequence_Type==2 )
+			{
+				rotate_VAL	=360 * RD_VAL;
+			}
+			else if ( I2C_CLS.I2C_Rotate_Sequence_Type==3 )
+			{
+				rotate_VAL	=360 * Math.random();
+			}
+			else		{}
+			//==========DIVISION==========
+			//0:"X_Disabled";1:"X_ORI";2:"X_Mirror";3:"X_ORI+X_Mirror";
+			if ( I2C_CLS.I2C_Rotate_Sequence_Mirror_X_Type==0 )
+			{
+				rotateX_VAL=null;
+			}
+			else if ( I2C_CLS.I2C_Rotate_Sequence_Mirror_X_Type==1 )
+			{
+				//0:"1X1";1:"2X2";2:"3X3";
+				if ( I2C_CLS.I2C_Rotate_Sequence_NUM_X_Y_Type==0 )
+				{
+					rotateX_VAL=0;
+				}
+				else if ( I2C_CLS.I2C_Rotate_Sequence_NUM_X_Y_Type==1 )
+				{
+					rotateX_VAL=[[0,180],[180,0]][ID_Y%2][ID_X%2];
+				}
+				else if ( I2C_CLS.I2C_Rotate_Sequence_NUM_X_Y_Type==2 )
+				{
+					rotateX_VAL=[[0,180,0],[180,0,180],[0,180,0]][ID_Y%3][ID_X%3];
+				}
+				else		{}
+			}
+			else if ( I2C_CLS.I2C_Rotate_Sequence_Mirror_X_Type==2 )
+			{
+				//0:"1X1";1:"2X2";2:"3X3";
+				if ( I2C_CLS.I2C_Rotate_Sequence_NUM_X_Y_Type==0 )
+				{
+					rotateX_VAL=180;
+				}
+				else if ( I2C_CLS.I2C_Rotate_Sequence_NUM_X_Y_Type==1 )
+				{
+					rotateX_VAL=[[180,0],[0,180]][ID_Y%2][ID_X%2];
+				}
+				else if ( I2C_CLS.I2C_Rotate_Sequence_NUM_X_Y_Type==2 )
+				{
+					rotateX_VAL=[[180,0,180],[0,180,0],[180,0,180]][ID_Y%3][ID_X%3];
+				}
+				else		{}
+			}
+			else if ( I2C_CLS.I2C_Rotate_Sequence_Mirror_X_Type==3 )
+			{
+				//==========DIVISION==========
+				//0:"Forward";1:"Reverse";2:"Random_Uniform";3:"Random_Multiple";
+				//==========DIVISION==========
+				if ( I2C_CLS.I2C_Rotate_Sequence_Type==0 )
+				{
+					rotateX_VAL	=[0,180][(I2C_CLS.I2C_Rotate_Sequence_ID + 1)%2];
+				}
+				else if ( I2C_CLS.I2C_Rotate_Sequence_Type==1 )
+				{
+					rotateX_VAL	=[0,180][(2 - (I2C_CLS.I2C_Rotate_Sequence_ID + 1)%2)%2];
+				}
+				else if ( I2C_CLS.I2C_Rotate_Sequence_Type==2 )
+				{
+					rotateX_VAL	=[0,180][Math.round(RD_VAL)];
+				}
+				else if ( I2C_CLS.I2C_Rotate_Sequence_Type==3 )
+				{
+					rotateX_VAL	=[0,180][Math.round(Math.random())];
+				}
+				else		{}
+				//==========DIVISION==========
+				//0:"1X1";1:"2X2";2:"3X3";
+				if ( I2C_CLS.I2C_Rotate_Sequence_NUM_X_Y_Type==0 )
+				{
+					m=rotateX_VAL;n=(m + 180)%360;	rotateX_VAL=m;
+				}
+				else if ( I2C_CLS.I2C_Rotate_Sequence_NUM_X_Y_Type==1 )
+				{
+					m=rotateX_VAL;n=(m + 180)%360;	rotateX_VAL=[[m,n],[n,m]][ID_Y%2][ID_X%2];
+				}
+				else if ( I2C_CLS.I2C_Rotate_Sequence_NUM_X_Y_Type==2 )
+				{
+					m=rotateX_VAL;n=(m + 180)%360;	rotateX_VAL=[[m,n,m],[n,m,n],[m,n,m]][ID_Y%3][ID_X%3];
+				}
+				else		{}
+				//==========DIVISION==========
+			}
+			else		{}
+			//==========DIVISION==========
+			//0:"Y_Disabled";1:"Y_ORI";2:"Y_Mirror";3:"Y_ORI+Y_Mirror";
+			if ( I2C_CLS.I2C_Rotate_Sequence_Mirror_Y_Type==0 )
+			{
+				rotateY_VAL=null;
+			}
+			else if ( I2C_CLS.I2C_Rotate_Sequence_Mirror_Y_Type==1 )
+			{
+				//0:"1X1";1:"2X2";2:"3X3";
+				if ( I2C_CLS.I2C_Rotate_Sequence_NUM_X_Y_Type==0 )
+				{
+					rotateY_VAL=0;
+				}
+				else if ( I2C_CLS.I2C_Rotate_Sequence_NUM_X_Y_Type==1 )
+				{
+					rotateY_VAL=[[0,180],[180,0]][ID_Y%2][ID_X%2];
+				}
+				else if ( I2C_CLS.I2C_Rotate_Sequence_NUM_X_Y_Type==2 )
+				{
+					rotateY_VAL=[[0,180,0],[180,0,180],[0,180,0]][ID_Y%3][ID_X%3];
+				}
+				else		{}
+			}
+			else if ( I2C_CLS.I2C_Rotate_Sequence_Mirror_Y_Type==2 )
+			{
+				//0:"1X1";1:"2X2";2:"3X3";
+				if ( I2C_CLS.I2C_Rotate_Sequence_NUM_X_Y_Type==0 )
+				{
+					rotateY_VAL=180;
+				}
+				else if ( I2C_CLS.I2C_Rotate_Sequence_NUM_X_Y_Type==1 )
+				{
+					rotateY_VAL=[[180,0],[0,180]][ID_Y%2][ID_X%2];
+				}
+				else if ( I2C_CLS.I2C_Rotate_Sequence_NUM_X_Y_Type==2 )
+				{
+					rotateY_VAL=[[180,0,180],[0,180,0],[180,0,180]][ID_Y%3][ID_X%3];
+				}
+				else		{}
+			}
+			else if ( I2C_CLS.I2C_Rotate_Sequence_Mirror_Y_Type==3 )
+			{
+				//==========DIVISION==========
+				//0:"Forward";1:"Reverse";2:"Random_Uniform";3:"Random_Multiple";
+				//==========DIVISION==========
+				if ( I2C_CLS.I2C_Rotate_Sequence_Type==0 )
+				{
+					rotateY_VAL	=[0,180][(I2C_CLS.I2C_Rotate_Sequence_ID + 1)%2];
+				}
+				else if ( I2C_CLS.I2C_Rotate_Sequence_Type==1 )
+				{
+					rotateY_VAL	=[0,180][(2 - (I2C_CLS.I2C_Rotate_Sequence_ID + 1)%2)%2];
+				}
+				else if ( I2C_CLS.I2C_Rotate_Sequence_Type==2 )
+				{
+					rotateY_VAL	=[0,180][Math.round(RD_VAL)];
+				}
+				else if ( I2C_CLS.I2C_Rotate_Sequence_Type==3 )
+				{
+					rotateY_VAL	=[0,180][Math.round(Math.random())];
+				}
+				else		{}
+				//==========DIVISION==========
+				//0:"1X1";1:"2X2";2:"3X3";
+				if ( I2C_CLS.I2C_Rotate_Sequence_NUM_X_Y_Type==0 )
+				{
+					m=rotateY_VAL;n=(m + 180)%360;	rotateY_VAL=m;
+				}
+				else if ( I2C_CLS.I2C_Rotate_Sequence_NUM_X_Y_Type==1 )
+				{
+					m=rotateY_VAL;n=(m + 180)%360;	rotateY_VAL=[[m,n],[n,m]][ID_Y%2][ID_X%2];
+				}
+				else if ( I2C_CLS.I2C_Rotate_Sequence_NUM_X_Y_Type==2 )
+				{
+					m=rotateY_VAL;n=(m + 180)%360;	rotateY_VAL=[[m,n,m],[n,m,n],[m,n,m]][ID_Y%3][ID_X%3];
+				}
+				else		{}
+				//==========DIVISION==========
+			}
+			else		{}
+			//==========DIVISION==========
+			//0:"Z_Disabled";1:"Z_ORI";2:"Z_Mirror";3:"Z_ORI+Z_Mirror";
+			if ( I2C_CLS.I2C_Rotate_Sequence_Mirror_Z_Type==0 )
+			{
+				rotateZ_VAL=null;
+			}
+			else if ( I2C_CLS.I2C_Rotate_Sequence_Mirror_Z_Type==1 )
+			{
+				//0:"1X1";1:"2X2";2:"3X3";
+				if ( I2C_CLS.I2C_Rotate_Sequence_NUM_X_Y_Type==0 )
+				{
+					rotateZ_VAL=0;
+				}
+				else if ( I2C_CLS.I2C_Rotate_Sequence_NUM_X_Y_Type==1 )
+				{
+					rotateZ_VAL=[[0,180],[180,0]][ID_Y%2][ID_X%2];
+				}
+				else if ( I2C_CLS.I2C_Rotate_Sequence_NUM_X_Y_Type==2 )
+				{
+					rotateZ_VAL=[[0,180,0],[180,0,180],[0,180,0]][ID_Y%3][ID_X%3];
+				}
+				else		{}
+			}
+			else if ( I2C_CLS.I2C_Rotate_Sequence_Mirror_Z_Type==2 )
+			{
+				//0:"1X1";1:"2X2";2:"3X3";
+				if ( I2C_CLS.I2C_Rotate_Sequence_NUM_X_Y_Type==0 )
+				{
+					rotateZ_VAL=180;
+				}
+				else if ( I2C_CLS.I2C_Rotate_Sequence_NUM_X_Y_Type==1 )
+				{
+					rotateZ_VAL=[[180,0],[0,180]][ID_Y%2][ID_X%2];
+				}
+				else if ( I2C_CLS.I2C_Rotate_Sequence_NUM_X_Y_Type==2 )
+				{
+					rotateZ_VAL=[[180,0,180],[0,180,0],[180,0,180]][ID_Y%3][ID_X%3];
+				}
+				else		{}
+			}
+			else if ( I2C_CLS.I2C_Rotate_Sequence_Mirror_Z_Type==3 )
+			{
+				//==========DIVISION==========
+				//0:"Forward";1:"Reverse";2:"Random_Uniform";3:"Random_Multiple";
+				//==========DIVISION==========
+				if ( I2C_CLS.I2C_Rotate_Sequence_Type==0 )
+				{
+					rotateZ_VAL	=[0,180][(I2C_CLS.I2C_Rotate_Sequence_ID + 1)%2];
+				}
+				else if ( I2C_CLS.I2C_Rotate_Sequence_Type==1 )
+				{
+					rotateZ_VAL	=[0,180][(2 - (I2C_CLS.I2C_Rotate_Sequence_ID + 1)%2)%2];
+				}
+				else if ( I2C_CLS.I2C_Rotate_Sequence_Type==2 )
+				{
+					rotateZ_VAL	=[0,180][Math.round(RD_VAL)];
+				}
+				else if ( I2C_CLS.I2C_Rotate_Sequence_Type==3 )
+				{
+					rotateZ_VAL	=[0,180][Math.round(Math.random())];
+				}
+				else		{}
+				//==========DIVISION==========
+				//0:"1X1";1:"2X2";2:"3X3";
+				if ( I2C_CLS.I2C_Rotate_Sequence_NUM_X_Y_Type==0 )
+				{
+					m=rotateZ_VAL;n=(m + 180)%360;	rotateZ_VAL=m;
+				}
+				else if ( I2C_CLS.I2C_Rotate_Sequence_NUM_X_Y_Type==1 )
+				{
+					m=rotateZ_VAL;n=(m + 180)%360;	rotateZ_VAL=[[m,n],[n,m]][ID_Y%2][ID_X%2];
+				}
+				else if ( I2C_CLS.I2C_Rotate_Sequence_NUM_X_Y_Type==2 )
+				{
+					m=rotateZ_VAL;n=(m + 180)%360;	rotateZ_VAL=[[m,n,m],[n,m,n],[m,n,m]][ID_Y%3][ID_X%3];
+				}
+				else		{}
+				//==========DIVISION==========
+			}
+			else		{}
+			//==========DIVISION==========
+			//====================DIVISION====================
+			//==========DIVISION==========
+			var style_rotate_STR,style_rotateX_STR,style_rotateY_STR,style_rotateZ_STR;
+			var style_STR_MOD,style_STR_ORI;
+			//==========DIVISION==========
+			style_rotate_STR	="";
+			style_rotateX_STR	="";
+			style_rotateY_STR	="";
+			style_rotateZ_STR	="";
+			style_STR_MOD		="";
+			//==========DIVISION==========
+			if ( rotate_VAL!=null && rotate_VAL!=0 )	{style_rotate_STR	="rotate(" + rotate_VAL.toString() + "deg)";}
+			if ( rotateX_VAL!=null && rotateX_VAL!=0 )	{style_rotateX_STR	="rotateX(" + rotateX_VAL.toString() + "deg)";}
+			if ( rotateY_VAL!=null && rotateY_VAL!=0 )	{style_rotateY_STR	="rotateY(" + rotateY_VAL.toString() + "deg)";}
+			if ( rotateZ_VAL!=null && rotateZ_VAL!=0 )	{style_rotateZ_STR	="rotateZ(" + rotateZ_VAL.toString() + "deg)";}
+			//==========DIVISION==========
+			ele_div=elel_IMG_Main_CLS[ID_Y * IMG_ART_CLS.VAL.Canvas_MOD_Main_IMG_NUM_X + ID_X].parentNode;
+			//==========DIVISION==========
+			style_STR_MOD="transform:" + style_rotate_STR + style_rotateX_STR + style_rotateY_STR + style_rotateZ_STR + ";";
+			style_STR_ORI=ele_div.style.transform;
+			if ( style_STR_ORI!=style_STR_MOD )
+			{
+				ele_div.style.transform=style_STR_MOD;
+				//ele_div.setAttribute("style","transform:" + style_STR_MOD);
+				if ( ele_div.getAttribute("style")==null || ele_div.getAttribute("style")==undefined || ele_div.getAttribute("style")=="" )
+				{
+					ele_div.setAttribute("style",style_STR_MOD);
+				}
+				else
+				{
+					ele_div.setAttribute("style",ele_div.getAttribute("style").replace(/transform\:[^;]*;/gm,style_STR_MOD));
+				}
+			}
+			else		{}
+			//==========DIVISION==========
+			//====================DIVISION====================
+		}
+	}
+	//==========DIVISION==========
+	IMG_ART_CLS.VAL.I2C_IMG_ARR_Main_INI_State=2;//0:Wait;1:Begin_00;2:Begin_01;3:END;
+	IMG_ART_CLS.VAL.I2C_IMG_ARR_Main_INI_State=3;//0:Wait;1:Begin_00;2:Begin_01;3:END;
+	//==========DIVISION==========
+}
+
+function I2C_Canvas_Main_INI(INI_Type)
+{
+	//==========DIVISION==========
+	IMG_ART_CLS.VAL.I2C_Canvas_Main_INI_State=1;//0:Wait;1:Begin_00;2:Begin_01;3:END;
+	//==========DIVISION==========
+	eval(ELE_ELEL_STR_INI(0));
+	eval(Parameter_Base_STR_ijk_XX(10));
+	var ID,LEN,ID_LEN;
+	var Code_Area;
+	var ctx00,ctx01,ctx02,ctx03,ctx04;
+	//==========DIVISION==========
+	var ele_IMG_ORI,ele_Canvas_ORI,ele_Canvas_Mode,ele_IMG_Mode;
+	//==========DIVISION==========
+	ele_IMG_ORI		=IMG_ART_CLS.VAL.ele_IMG_ORI			;
+	ele_Canvas_ORI	=IMG_ART_CLS.VAL.ele_Canvas_ORI			;
+	ele_Canvas_Mode	=IMG_ART_CLS.VAL.ele_Canvas_Mode		;
+	ele_IMG_Mode	=IMG_ART_CLS.VAL.ele_IMG_Mode			;
+	//==========DIVISION==========
+	ctx02=ele_Canvas_Mode.getContext("2d");
+	//==========DIVISION==========
+	var ID_X,ID_Y;
+	ele_Canvas_Main_CLS.width		=IMG_ART_CLS.VAL.Canvas_MOD_Main_Canvas_Width	;
+	ele_Canvas_Main_CLS.height		=IMG_ART_CLS.VAL.Canvas_MOD_Main_Canvas_Height	;
+	ctx03=ele_Canvas_Main_CLS.getContext("2d");
+	for (ID_X=0;ID_X<IMG_ART_CLS.VAL.Canvas_MOD_Main_IMG_NUM_X;ID_X++)
+	{
+		for (ID_Y=0;ID_Y<IMG_ART_CLS.VAL.Canvas_MOD_Main_IMG_NUM_Y;ID_Y++)
+		{
+			(function (ctx02,ele_Canvas_Mode,ctx03,ele_Canvas_Main_CLS)
+			{
+				//==========DIVISION==========
+				var ele_Canvas_Cache;
+				var sx,sy,swidth,sheight,x,y,width,height;
+				//==========DIVISION==========
+				ele_Canvas_Cache			=document.createElement("canvas");
+				ele_Canvas_Cache.width		=ele_Canvas_Mode.width;
+				ele_Canvas_Cache.height		=ele_Canvas_Mode.height;
+				ctx04=ele_Canvas_Cache.getContext("2d");
+				//==========DIVISION==========
+				//Angular;
+				ctx04.translate(ele_Canvas_Cache.width / 2,ele_Canvas_Cache.height / 2);
+				ctx04.rotate(Math.PI/180 * 360 * Math.random());
+				ctx04.translate(-ele_Canvas_Cache.width / 2,-ele_Canvas_Cache.height / 2);
+				//Mirror;
+				var m0=[-1,1][Math.round(Math.random())];
+				var m1=[-1,1][Math.round(Math.random())];
+				ctx04.scale(m0,m1);
+				ctx04.drawImage(ele_Canvas_Mode,0,0,ele_Canvas_Mode.width * m0,ele_Canvas_Mode.height * m1);
+				//==========DIVISION==========
+				sx		=IMG_ART_CLS.VAL.Canvas_MOD_Sub_Coordinate_X			=0;
+				sy		=IMG_ART_CLS.VAL.Canvas_MOD_Sub_Coordinate_Y			=0;
+				swidth	=IMG_ART_CLS.VAL.Canvas_MOD_Sub_Coordinate_WH			;
+				sheight	=IMG_ART_CLS.VAL.Canvas_MOD_Sub_Coordinate_WH			;
+				x		=ID_X * IMG_ART_CLS.VAL.Canvas_MOD_Sub_Coordinate_WH	;
+				y		=ID_Y * IMG_ART_CLS.VAL.Canvas_MOD_Sub_Coordinate_WH	;
+				width	=IMG_ART_CLS.VAL.Canvas_MOD_Sub_Coordinate_WH			;
+				height	=IMG_ART_CLS.VAL.Canvas_MOD_Sub_Coordinate_WH			;
+				//Print_VAR_drawImage(sx,sy,swidth,sheight,x,y,width,height);
+				ctx03.drawImage(ele_Canvas_Cache,sx,sy,swidth,sheight,x,y,width,height);
+				//==========DIVISION==========
+			})(ctx02,ele_Canvas_Mode,ctx03,ele_Canvas_Main_CLS);
+		}
+	}
+	//==========DIVISION==========
+	IMG_ART_CLS.VAL.I2C_Canvas_Main_INI_State=2;//0:Wait;1:Begin_00;2:Begin_01;3:END;
+	IMG_ART_CLS.VAL.I2C_Canvas_Main_INI_State=3;//0:Wait;1:Begin_00;2:Begin_01;3:END;
+	//==========DIVISION==========
+}
+//====================DIVISION====================
+function IMG_ART_Main_Ctrl_Table_Action(ele,evt,post_method)
+{
+	//==============================arguments.callee==============================
+	var fun_ct_cache;
+	fun_ct_cache=arguments.callee;
+	var STO=0;//0:Do_Not_Run_setTimeout;1:Run_setTimeout;2:Run_Function_Now;
+	//==============================arguments.callee==============================
+	//====================Pre_Definition====================
+	//==========DIVISION==========
+	eval(ELE_ELEL_STR_INI(0));
+	eval(Parameter_Base_STR_ijk_XX(5));
+	var ID,LEN,ID_LEN;
+	var INI_Type;
+	//==========DIVISION==========
+	var I2C_CLS=IMG_ART_CLS.VAL;
+	//==========DIVISION==========
+	var evt_target = evt.target ? evt.target : evt.srcElement;
+	//==========DIVISION==========
+	//====================Pre_Definition====================
+	//====================DIVISION====================
+	if ( post_method==2 && evt && evt.type=="change" )//onchange;
+	{
+		if ( evt_target.className=="I2C_Rotate_Sequence_Type_SEL" || evt_target.className=="I2C_Rotate_Sequence_Mirror_X_Type_SEL" || 
+			evt_target.className=="I2C_Rotate_Sequence_Mirror_Y_Type_SEL" || evt_target.className=="I2C_Rotate_Sequence_Mirror_Z_Type_SEL" || 
+			evt_target.className=="I2C_Rotate_Sequence_NUM_X_Y_Type_SEL" )
+		{
+			str00="IMG_ART_CLS.VAL." + evt_target.className.replace(/_SEL$/gm,"") + "=evt_target.selectedIndex;";
+			eval(str00);
+			ele_IMG_ART_Reset_CLS.click();
+		}
+		else if ( evt_target.className=="I2C_Rotate_Sequence_ID_CLS" )
+		{
+			IMG_ART_CLS.VAL.I2C_Rotate_Sequence_ID=parseInt(evt_target.value,10);
+			ele_IMG_ART_Reset_CLS.click();
+		}
+		else if ( ele.className=="IMG_ART_Main_Ctrl_Table" && evt_target.className=="Usage_Collection_SEL" )
+		{
+			IMG_ART_CLS.VAL.Usage_Collection_ID=ele_Usage_Collection_SEL.selectedIndex;
+		}
+		else		{}
+	}
+	else if ( post_method==3 && evt && evt.type=="click" )//onclick;
+	{
+		//==========DIVISION==========
+		if ( ele.className=="IMG_ART_Main_Ctrl_Table" && evt_target.className=="IMG_ART_Reset_CLS" )
+		{
+			//==========DIVISION==========
+			INI_Type=0;
+			IMG_2_Canvas_Ctrl_Table_INI(INI_Type);
+			IMG_ART_CLS.VAL.I2C_Canvas_Icon_INI_State=0;//0:Wait;1:Begin_00;2:Begin_01;3:END;
+			I2C_Canvas_Icon_INI(INI_Type);
+			//==========DIVISION==========
+		}
+		else if ( ele.className=="IMG_ART_Main_Ctrl_Table" && evt_target.className=="IMG_Start_Stop_Rotate_CLS" )
+		{
+			//==========DIVISION==========
+			var IMG_Start_Stop_Rotate_State=IMG_ART_CLS.VAL.IMG_Start_Stop_Rotate_State;//0:"Stop";1:"Start";
+			IMG_Start_Stop_Rotate_State=(IMG_Start_Stop_Rotate_State + 1)%2;
+			IMG_ART_CLS.VAL.IMG_Start_Stop_Rotate_State=IMG_Start_Stop_Rotate_State;
+			ele_IMG_Start_Stop_Rotate_CLS.style.backgroundColor=["red","#1EB0E9"][IMG_Start_Stop_Rotate_State];
+			//==========DIVISION==========
+			if ( I2C_CLS.I2C_Rotate_IOrC==0 )//0:"Rotate_IMG";
+			{
+				//0:"Stop";1:"Start";
+				if ( IMG_Start_Stop_Rotate_State==0 )
+				{
+					clearTimeout(IMG_ART_CLS.VAL.I2C_IMG_ARR_Main_INI_ST_ID);
+				}
+				else if ( IMG_Start_Stop_Rotate_State==1 )
+				{
+					//==========DIVISION==========
+					IMG_ART_CLS.VAL.I2C_Canvas_Main_INI_Num=0;
+					//==========DIVISION==========
+					var this_step=0;
+					IMG_ART_CLS.VAL.I2C_IMG_ARR_Main_INI_ST_ID=setTimeout(function (this_step)
+					{
+						//==========DIVISION==========
+						clearTimeout(IMG_ART_CLS.VAL.I2C_IMG_ARR_Main_INI_ST_ID);
+						//==========DIVISION==========
+						//====================arguments.callee====================
+						var fun_ct_cache;
+						fun_ct_cache=arguments.callee;
+						//====================arguments.callee====================
+						//====================Variable_Predefinition====================
+						//==========DIVISION==========
+						eval(Parameter_Base_STR_ijk_XX(5));
+						var ID,LEN;
+						var STO=0;//0:Do_Not_Run_setTimeout;1:Run_setTimeout;2:Run_Function_Now;
+						//==========DIVISION==========
+						//====================Variable_Predefinition====================
+						//====================this_step====================
+						if ( this_step==0 )
+						{
+							//==========DIVISION==========
+							INI_Type=0;
+							IMG_ART_CLS.VAL.I2C_IMG_ARR_Main_INI_State=0;//0:Wait;1:Begin_00;2:Begin_01;3:END;
+							I2C_IMG_ARR_Main_INI(INI_Type);
+							//==========DIVISION==========
+							if ( this_step==0 )			{this_step++;STO=1;}
+							//==========DIVISION==========
+						}
+						else if ( this_step==1 )
+						{
+							//==========DIVISION==========
+							if ( IMG_ART_CLS.VAL.I2C_IMG_ARR_Main_INI_State>=0 && IMG_ART_CLS.VAL.I2C_IMG_ARR_Main_INI_State<=2 )
+							{
+								if ( this_step==1 )			{STO=1;}
+							}
+							else if ( IMG_ART_CLS.VAL.I2C_IMG_ARR_Main_INI_State==3 )
+							{
+								//==========DIVISION==========
+								I2C_CLS.I2C_Rotate_Sequence_ID++;
+								ele_I2C_Rotate_Sequence_ID_CLS.value=I2C_CLS.I2C_Rotate_Sequence_ID;
+								//==========DIVISION==========
+								IMG_ART_CLS.VAL.I2C_IMG_ARR_Main_INI_Num++;
+								//	console.log("I2C_IMG_ARR_Main_INI_Num : " + IMG_ART_CLS.VAL.I2C_IMG_ARR_Main_INI_Num + ";\n" + 
+								//				"I2C_IMG_ARR_Main_INI One_Time Over ." + ";\n" + 
+								//				"");
+								//==========DIVISION==========
+								if ( this_step==1 )			{this_step--;STO=1;}
+								//==========DIVISION==========
+							}
+							else		{}
+							//==========DIVISION==========
+						}
+						else if ( this_step==2 )
+						{
+							//==========DIVISION==========
+							//==========DIVISION==========
+							if ( this_step==2 )			{this_step++;STO=1;}
+							//==========DIVISION==========
+						}
+						else if ( this_step==3 )
+						{
+							//==========DIVISION==========
+							//==========DIVISION==========
+							if ( this_step==3 )			{this_step++;STO=1;}
+							//==========DIVISION==========
+						}
+						else		{STO=0;}
+						//==========DIVISION==========
+						//====================this_step====================
+						//====================STO====================
+						if ( STO==0 )//0:Do_Not_Run_setTimeout;1:Run_setTimeout;2:Run_Function_Now;
+						{
+						}
+						else if ( STO==1 )//0:Do_Not_Run_setTimeout;1:Run_setTimeout;2:Run_Function_Now;
+						{
+							IMG_ART_CLS.VAL.I2C_IMG_ARR_Main_INI_ST_ID=setTimeout(fun_ct_cache,IMG_ART_CLS.VAL.ITime,this_step);
+						}
+						else if ( STO==2 )//0:Do_Not_Run_setTimeout;1:Run_setTimeout;2:Run_Function_Now;
+						{
+							fun_ct_cache(this_step);
+						}
+						else		{}
+						//====================STO====================
+					},IMG_ART_CLS.VAL.ITime,this_step);
+					//==========DIVISION==========
+				}
+				else		{}
+			}
+			else if ( I2C_CLS.I2C_Rotate_IOrC==1 )//1:"Rotate_Canvas";
+			{
+				//0:"Stop";1:"Start";
+				if ( IMG_Start_Stop_Rotate_State==0 )
+				{
+					clearTimeout(IMG_ART_CLS.VAL.I2C_Canvas_Main_INI_ST_ID);
+				}
+				else if ( IMG_Start_Stop_Rotate_State==1 )
+				{
+					//==========DIVISION==========
+					IMG_ART_CLS.VAL.I2C_Canvas_Main_INI_Num=0;
+					//==========DIVISION==========
+					var this_step=0;
+					IMG_ART_CLS.VAL.I2C_Canvas_Main_INI_ST_ID=setTimeout(function (this_step)
+					{
+						//==========DIVISION==========
+						clearTimeout(IMG_ART_CLS.VAL.I2C_Canvas_Main_INI_ST_ID);
+						//==========DIVISION==========
+						//====================arguments.callee====================
+						var fun_ct_cache;
+						fun_ct_cache=arguments.callee;
+						//====================arguments.callee====================
+						//====================Variable_Predefinition====================
+						//==========DIVISION==========
+						eval(Parameter_Base_STR_ijk_XX(5));
+						var ID,LEN;
+						var STO=0;//0:Do_Not_Run_setTimeout;1:Run_setTimeout;2:Run_Function_Now;
+						//==========DIVISION==========
+						//====================Variable_Predefinition====================
+						//====================this_step====================
+						if ( this_step==0 )
+						{
+							//==========DIVISION==========
+							INI_Type=0;
+							IMG_ART_CLS.VAL.I2C_Canvas_Main_INI_State=0;//0:Wait;1:Begin_00;2:Begin_01;3:END;
+							I2C_Canvas_Main_INI(INI_Type);
+							//==========DIVISION==========
+							if ( this_step==0 )			{this_step++;STO=1;}
+							//==========DIVISION==========
+						}
+						else if ( this_step==1 )
+						{
+							//==========DIVISION==========
+							if ( IMG_ART_CLS.VAL.I2C_Canvas_Main_INI_State>=0 && IMG_ART_CLS.VAL.I2C_Canvas_Main_INI_State<=2 )
+							{
+								if ( this_step==1 )			{STO=1;}
+							}
+							else if ( IMG_ART_CLS.VAL.I2C_Canvas_Main_INI_State==3 )
+							{
+								//==========DIVISION==========
+								I2C_CLS.I2C_Rotate_Sequence_ID++;
+								ele_I2C_Rotate_Sequence_ID_CLS.value=I2C_CLS.I2C_Rotate_Sequence_ID;
+								//==========DIVISION==========
+								IMG_ART_CLS.VAL.I2C_Canvas_Main_INI_Num++;
+								//	console.log("I2C_Canvas_Main_INI_Num : " + IMG_ART_CLS.VAL.I2C_Canvas_Main_INI_Num + ";\n" + 
+								//				"I2C_Canvas_Main_INI One_Time Over ." + ";\n" + 
+								//				"");
+								//==========DIVISION==========
+								if ( this_step==1 )			{this_step--;STO=1;}
+								//==========DIVISION==========
+							}
+							else		{}
+							//==========DIVISION==========
+						}
+						else if ( this_step==2 )
+						{
+							//==========DIVISION==========
+							//==========DIVISION==========
+							if ( this_step==2 )			{this_step++;STO=1;}
+							//==========DIVISION==========
+						}
+						else if ( this_step==3 )
+						{
+							//==========DIVISION==========
+							//==========DIVISION==========
+							if ( this_step==3 )			{this_step++;STO=1;}
+							//==========DIVISION==========
+						}
+						else		{STO=0;}
+						//==========DIVISION==========
+						//====================this_step====================
+						//====================STO====================
+						if ( STO==0 )//0:Do_Not_Run_setTimeout;1:Run_setTimeout;2:Run_Function_Now;
+						{
+						}
+						else if ( STO==1 )//0:Do_Not_Run_setTimeout;1:Run_setTimeout;2:Run_Function_Now;
+						{
+							IMG_ART_CLS.VAL.I2C_Canvas_Main_INI_ST_ID=setTimeout(fun_ct_cache,IMG_ART_CLS.VAL.ITime,this_step);
+						}
+						else if ( STO==2 )//0:Do_Not_Run_setTimeout;1:Run_setTimeout;2:Run_Function_Now;
+						{
+							fun_ct_cache(this_step);
+						}
+						else		{}
+						//====================STO====================
+					},IMG_ART_CLS.VAL.ITime,this_step);
+					//==========DIVISION==========
+				}
+				else		{}
+			}
+			else		{}
+			//==========DIVISION==========
+		}
+		else if ( ele.className=="IMG_ART_Main_Ctrl_Table" && evt_target.className=="I2C_Rotate_IOrC_BTN" )
+		{
+			//==========DIVISION==========
+			var IMG_Start_Stop_Rotate_State=IMG_ART_CLS.VAL.IMG_Start_Stop_Rotate_State;//0:"Stop";1:"Start";
+			var Do_Rotate_Reset=0;
+			if ( IMG_Start_Stop_Rotate_State==1 )	{Do_Rotate_Reset=1;}
+			else									{}
+			//==========DIVISION==========
+			if ( Do_Rotate_Reset==1 )
+			{
+				ele_IMG_Start_Stop_Rotate_CLS.click();
+			}
+			else		{}
+			//==========DIVISION==========
+			I2C_CLS.I2C_Rotate_IOrC=(I2C_CLS.I2C_Rotate_IOrC + 1)%2;//0:"Rotate_IMG";1:"Rotate_Canvas";
+			ele_I2C_Rotate_IOrC_BTN.style.backgroundColor=["yellow","orange"][I2C_CLS.I2C_Rotate_IOrC];
+			ele_I2C_Rotate_IOrC_BTN.value=["I","C"][I2C_CLS.I2C_Rotate_IOrC];
+			//==========DIVISION==========
+			ele_IMG_ARR_Area_Table.style.display=["","none"][I2C_CLS.I2C_Rotate_IOrC];
+			ele_Canvas_Area_Table.style.display=["","none"][(I2C_CLS.I2C_Rotate_IOrC + 1)%2];
+			//==========DIVISION==========
+			INI_Type=0;
+			IMG_2_Canvas_Ctrl_Table_INI(INI_Type);
+			IMG_ART_CLS.VAL.I2C_Canvas_Icon_INI_State=0;//0:Wait;1:Begin_00;2:Begin_01;3:END;
+			I2C_Canvas_Icon_INI(INI_Type);
+			//==========DIVISION==========
+			if ( Do_Rotate_Reset==1 )
+			{
+				ele_IMG_Start_Stop_Rotate_CLS.click();
+				Do_Rotate_Reset=0;
+			}
+			else		{}
+			//==========DIVISION==========
+		}
+		else if ( ele.className=="IMG_ART_Main_Ctrl_Table" && ( evt_target.className=="IMG_ARR_Area_Table_P_TD_SH_BTN" || 
+				evt_target.className=="Canvas_Area_Table_P_TD_SH_BTN" || evt_target.className=="Text_Area_Table_P_TD_SH_BTN" || 
+				0 ) )
+		{
+			//==========DIVISION==========
+			str00=evt_target.className.replace(/_BTN$/gm,"");
+			str01=str00.replace(/_P_TD_SH$/gm,"");
+			str02="";
+			str02+="I2C_CLS." + str00 + "_State=(" + "I2C_CLS." + str00 + "_State + 1)%2;" + "\n";//0:"Hide";1:"Show";
+			str02+="ele_" + evt_target.className + '.style.backgroundColor=["red","#1EB0E9"][I2C_CLS.' + str00 + "_State];" + "\n";//0:"Hide";1:"Show";
+			str02+="ele_" + str01 + '.parentNode.style.display=["none",""][I2C_CLS.' + str00 + "_State];" + "\n";
+			eval(str02);
+			//==========DIVISION==========
+			//0:"Hide";1:"Show";
+			if ( I2C_CLS.Text_Area_Table_P_TD_SH_State==0 )			{num00=1;}
+			else if ( I2C_CLS.Text_Area_Table_P_TD_SH_State==1 )	{num00=0.6;}
+			else		{}
+			ele_IMG_Opacity_CLS		.value			=
+			ele_Canvas_Area_Table	.style.opacity	=
+			ele_IMG_ARR_Area_Table	.style.opacity	=I2C_CLS.IMG_Opacity	=num00;
+			//==========DIVISION==========
+		}
+		else		{}
+		//==========DIVISION==========
+	}
+	else		{}
+	//====================DIVISION====================
+}
+
+function IMG_2_Canvas_Ctrl_Table_Action(ele,evt,post_method)
+{
+	//==============================arguments.callee==============================
+	var fun_ct_cache;
+	fun_ct_cache=arguments.callee;
+	var STO=0;//0:Do_Not_Run_setTimeout;1:Run_setTimeout;2:Run_Function_Now;
+	//==============================arguments.callee==============================
+	//====================Pre_Definition====================
+	//==========DIVISION==========
+	eval(ELE_ELEL_STR_INI(0));
+	eval(Parameter_Base_STR_ijk_XX(5));
+	var ID,LEN,ID_LEN;
+	var INI_Type;
+	//==========DIVISION==========
+	var evt_target = evt.target ? evt.target : evt.srcElement;
+	//==========DIVISION==========
+	//====================Pre_Definition====================
+	//====================DIVISION====================
+	if ( post_method==2 && evt && evt.type=="change" )//onchange;
+	{
+		//====================DIVISION====================
+		//==========DIVISION==========
+		var NUM_10=evt_target.value;
+		//==========DIVISION==========
+		if ( evt_target.className=="IMG_ORI_Width_CLS" )							{IMG_ART_CLS.VAL.IMG_ORI_Width		=parseInt(NUM_10,10);}
+		else if ( evt_target.className=="IMG_ORI_Height_CLS" )						{IMG_ART_CLS.VAL.IMG_ORI_Height		=parseInt(NUM_10,10);}
+		//==========DIVISION==========
+		else if ( evt_target.className=="IMG_ORI_Coordinate_X_CLS" || evt_target.className=="IMG_ORI_Coordinate_Y_CLS" || 
+			evt_target.className=="IMG_ORI_Coordinate_WH_CLS" || 
+			evt_target.className=="Canvas_MOD_Sub_Coordinate_X_CLS" || evt_target.className=="Canvas_MOD_Sub_Coordinate_Y_CLS" || 
+			evt_target.className=="Canvas_MOD_Sub_Coordinate_WH_CLS" || 
+			evt_target.className=="Canvas_MOD_Main_IMG_NUM_X_CLS" || evt_target.className=="Canvas_MOD_Main_IMG_NUM_Y_CLS" || 
+			evt_target.className=="Canvas_MOD_Main_Canvas_Width_CLS" || evt_target.className=="Canvas_MOD_Main_Canvas_Height_CLS" || 
+			0 )
+		{
+			str00="IMG_ART_CLS.VAL." + evt_target.className.replace(/_CLS/gm,"") + "=parseInt(NUM_10,10);";
+			eval(str00);
+		}
+		//==========DIVISION==========
+		else if ( evt_target.className=="IMG_VAR_SEL" )
+		{
+			IMG_ART_CLS.VAL.IMG_VAR_ID		=evt_target.selectedIndex;
+			IMG_VAR_INI();
+		}
+		//==========DIVISION==========
+		else if ( evt_target.className=="ITime_CLS" )								{IMG_ART_CLS.VAL.ITime				=parseInt(NUM_10,10);}
+		else if ( evt_target.className=="IMG_Opacity_CLS" )							{IMG_ART_CLS.VAL.IMG_Opacity		=parseFloat(NUM_10);}
+		else if ( evt_target.className=="Direction_Num_CLS" )						{IMG_ART_CLS.VAL.Direction_Num		=parseInt(NUM_10,10);}
+		//==========DIVISION==========
+		else																		{}
+		//==========DIVISION==========
+		//====================DIVISION====================
+		//==========DIVISION==========
+		var I2C_CLS=IMG_ART_CLS.VAL;
+		//I2C_CLS.IMG_Info_CLS				={SRC:"IMG_List\/master_Li_high.jpg",BX:950,BY:700,EX:3130,EY:3350,X:0,Y:0,WH:0,};
+		//==========DIVISION==========
+		if ( evt_target.className=="IMG_ORI_Width_CLS" || evt_target.className=="IMG_ORI_Height_CLS" || 
+			0 )
+		{
+		}
+		else if ( evt_target.className=="IMG_ORI_Coordinate_X_CLS" || evt_target.className=="IMG_ORI_Coordinate_Y_CLS" )
+		{
+			//==========DIVISION==========
+			I2C_CLS.IMG_Info_CLS.X		=I2C_CLS.IMG_ORI_Coordinate_X		;
+			I2C_CLS.IMG_Info_CLS.Y		=I2C_CLS.IMG_ORI_Coordinate_Y		;
+			//==========DIVISION==========
+		}
+		else if ( evt_target.className=="IMG_ORI_Coordinate_WH_CLS" )
+		{
+			//==========DIVISION==========
+			I2C_CLS.IMG_Info_CLS.WH		=I2C_CLS.IMG_ORI_Coordinate_WH		;
+			//==========DIVISION==========
+		}
+		else if ( evt_target.className=="Canvas_MOD_Sub_Coordinate_X_CLS" || evt_target.className=="Canvas_MOD_Sub_Coordinate_Y_CLS" || 
+					evt_target.className=="Canvas_MOD_Sub_Coordinate_WH_CLS" || 
+					0 )
+		{
+		}
+		else if ( evt_target.className=="Canvas_MOD_Main_IMG_NUM_X_CLS" || evt_target.className=="Canvas_MOD_Main_IMG_NUM_Y_CLS" || 
+					evt_target.className=="Canvas_MOD_Main_Canvas_Width_CLS" || evt_target.className=="Canvas_MOD_Main_Canvas_Height_CLS" || 
+					0 )
+		{
+		}
+		else if ( evt_target.className=="ITime_CLS" )
+		{
+
+		}
+		else if ( evt_target.className=="IMG_Opacity_CLS" )
+		{
+			ele_Canvas_Area_Table.style.opacity=IMG_ART_CLS.VAL.IMG_Opacity;
+			ele_IMG_ARR_Area_Table.style.opacity=IMG_ART_CLS.VAL.IMG_Opacity;
+		}
+		else if ( evt_target.className=="Direction_Num_CLS" )
+		{
+		}
+		else		{}
+		//==========DIVISION==========
+		if ( evt_target.className=="IMG_ORI_Width_CLS" || evt_target.className=="IMG_ORI_Height_CLS" || 
+			//==========DIVISION==========
+			evt_target.className=="IMG_ORI_Coordinate_X_CLS" || evt_target.className=="IMG_ORI_Coordinate_Y_CLS" || 
+			evt_target.className=="IMG_ORI_Coordinate_WH_CLS" || 
+			evt_target.className=="Canvas_MOD_Sub_Coordinate_X_CLS" || evt_target.className=="Canvas_MOD_Sub_Coordinate_Y_CLS" || 
+			evt_target.className=="Canvas_MOD_Sub_Coordinate_WH_CLS" || 
+			evt_target.className=="Canvas_MOD_Main_IMG_NUM_X_CLS" || evt_target.className=="Canvas_MOD_Main_IMG_NUM_Y_CLS" || 
+			evt_target.className=="Canvas_MOD_Main_Canvas_Width_CLS" || evt_target.className=="Canvas_MOD_Main_Canvas_Height_CLS" || 
+			//==========DIVISION==========
+			evt_target.className=="ITime_CLS" || evt_target.className=="Direction_Num_CLS" || evt_target.className=="IMG_Opacity_CLS" || 
+			//==========DIVISION==========
+			0 )
+		{
+			//==========DIVISION==========
+			var Canvas_Width	=I2C_CLS.Canvas_MOD_Sub_Coordinate_WH * I2C_CLS.Canvas_MOD_Main_IMG_NUM_X;
+			var Canvas_Height	=I2C_CLS.Canvas_MOD_Sub_Coordinate_WH * I2C_CLS.Canvas_MOD_Main_IMG_NUM_Y;
+			//==========DIVISION==========
+			ele_Canvas_MOD_Main_Canvas_Width_CLS.value		=IMG_ART_CLS.VAL.Canvas_MOD_Main_Canvas_Width
+			=ele_Canvas_Main_CLS.width		=ele_Canvas_Area_Table.style.width		=Canvas_Width;
+			//==========DIVISION==========
+			ele_Canvas_MOD_Main_Canvas_Height_CLS.value		=IMG_ART_CLS.VAL.Canvas_MOD_Main_Canvas_Height
+			=ele_Canvas_Main_CLS.height		=ele_Canvas_Area_Table.style.height		=Canvas_Height;
+			//==========DIVISION==========
+			//	console.log("I2C_CLS.Canvas_MOD_Sub_Coordinate_WH : " + I2C_CLS.Canvas_MOD_Sub_Coordinate_WH + ";\t" + 
+			//				"I2C_CLS.Canvas_MOD_Main_IMG_NUM_X : " + I2C_CLS.Canvas_MOD_Main_IMG_NUM_X + ";\t" + 
+			//				"I2C_CLS.Canvas_MOD_Main_IMG_NUM_Y : " + I2C_CLS.Canvas_MOD_Main_IMG_NUM_Y + ";\t" + 
+			//				"");
+			//==========DIVISION==========
+			var INI_Type=0;
+			IMG_ART_CLS.VAL.I2C_Canvas_Icon_INI_State=0;//0:Wait;1:Begin_00;2:Begin_01;3:END;
+			I2C_Canvas_Icon_INI(INI_Type);
+			//==========DIVISION==========
+		}
+		//==========DIVISION==========
+		else if ( evt_target.className=="IMG_VAR_SEL" )
+		{
+			//==========DIVISION==========
+			var INI_Type=0;
+			IMG_ART_CLS.VAL.I2C_Canvas_Icon_INI_State=0;//0:Wait;1:Begin_00;2:Begin_01;3:END;
+			I2C_Canvas_Icon_INI(INI_Type);
+			//==========DIVISION==========
+		}
+		//==========DIVISION==========
+		else																		{}
+		//==========DIVISION==========
+		//====================DIVISION====================
+	}
+	else if ( post_method==3 && evt && evt.type=="click" )//onclick;
+	{
+		if ( ele.className=="IMG_2_Canvas_Ctrl_Table" && evt_target.className=="" )
+		{
+		}
+		else if ( ele.className=="IMG_2_Canvas_Ctrl_Table" && evt_target.className=="" )
+		{
+		}
+		else		{}
+	}
+	else		{}
+	//====================DIVISION====================
+}
+
+function Text_Ctrl_Table_Action(ele,evt,post_method)
+{
+	//==============================arguments.callee==============================
+	var fun_ct_cache;
+	fun_ct_cache=arguments.callee;
+	var STO=0;//0:Do_Not_Run_setTimeout;1:Run_setTimeout;2:Run_Function_Now;
+	//==============================arguments.callee==============================
+	//====================Pre_Definition====================
+	//==========DIVISION==========
+	eval(ELE_ELEL_STR_INI(0));
+	eval(Parameter_Base_STR_ijk_XX(5));
+	var ID,LEN,ID_LEN;
+	var INI_Type;
+	//==========DIVISION==========
+	var evt_target = evt.target ? evt.target : evt.srcElement;
+	//==========DIVISION==========
+	//====================Pre_Definition====================
+	//====================DIVISION====================
+	if ( post_method==2 && evt && evt.type=="change" )//onchange;
+	{
+		//==========DIVISION==========
+		var I2C_CLS=IMG_ART_CLS.VAL;
+		//I2C_CLS.IMG_Info_CLS				={SRC:"IMG_List\/master_Li_high.jpg",BX:950,BY:700,EX:3130,EY:3350,X:0,Y:0,WH:0,};
+		//==========DIVISION==========
+		//====================DIVISION====================
+		//	//==========DIVISION==========
+		//	var ele_Text_Ctrl_Table							=ele_IMG_ART_Ctrl_Table.getElementsByClassName("Text_Ctrl_Table")[0];
+		//	var ele_Text_NUM_X_CLS							=ele_Text_Ctrl_Table.getElementsByClassName("Text_NUM_X_CLS")[0];
+		//	var ele_Text_NUM_Y_CLS							=ele_Text_Ctrl_Table.getElementsByClassName("Text_NUM_Y_CLS")[0];
+		//	var ele_Text_Font_Size_CLS						=ele_Text_Ctrl_Table.getElementsByClassName("Text_Font_Size_CLS")[0];
+		//	var ele_Text_Sep_STR_CLS						=ele_Text_Ctrl_Table.getElementsByClassName("Text_Sep_STR_CLS")[0];
+		//	var ele_Text_CT_STR_00_Main_SEL					=ele_Text_Ctrl_Table.getElementsByClassName("Text_CT_STR_00_Main_SEL")[0];
+		//	var ele_Text_CT_STR_00_Sub_CLS					=ele_Text_Ctrl_Table.getElementsByClassName("Text_CT_STR_00_Sub_CLS")[0];
+		//	var ele_Text_CT_STR_00_Break_Or_Not_BTN			=ele_Text_Ctrl_Table.getElementsByClassName("Text_CT_STR_00_Break_Or_Not_BTN")[0];
+		//	var ele_Text_CT_STR_01_Main_SEL					=ele_Text_Ctrl_Table.getElementsByClassName("Text_CT_STR_01_Main_SEL")[0];
+		//	var ele_Text_CT_STR_01_Sub_CLS					=ele_Text_Ctrl_Table.getElementsByClassName("Text_CT_STR_01_Sub_CLS")[0];
+		//	var ele_Text_CT_STR_01_Break_Or_Not_BTN			=ele_Text_Ctrl_Table.getElementsByClassName("Text_CT_STR_01_Break_Or_Not_BTN")[0];
+		//	var ele_Text_CT_STR_02_Main_SEL					=ele_Text_Ctrl_Table.getElementsByClassName("Text_CT_STR_02_Main_SEL")[0];
+		//	var ele_Text_CT_STR_02_Sub_CLS					=ele_Text_Ctrl_Table.getElementsByClassName("Text_CT_STR_02_Sub_CLS")[0];
+		//	var ele_Text_CT_STR_02_Break_Or_Not_BTN			=ele_Text_Ctrl_Table.getElementsByClassName("Text_CT_STR_02_Break_Or_Not_BTN")[0];
+		//	//==========DIVISION==========
+		//	//==========DIVISION==========
+		//	Text_NUM_X							:	0,
+		//	Text_NUM_Y							:	0,
+		//	Text_Font_Size						:	0,
+		//	Text_Sep_STR_STR					:	"",
+		//	Text_CT_STR_00_Main_STR				:	"",
+		//	Text_CT_STR_00_Sub_STR				:	"",
+		//	Text_CT_STR_00_Break_Or_Not			:	0,//0:"Not_Do_Break";1:"Do_Break";
+		//	Text_CT_STR_01_Main_STR				:	"",
+		//	Text_CT_STR_01_Sub_STR				:	"",
+		//	Text_CT_STR_01_Break_Or_Not			:	0,//0:"Not_Do_Break";1:"Do_Break";
+		//	Text_CT_STR_02_Main_STR				:	"",
+		//	Text_CT_STR_02_Sub_STR				:	"",
+		//	Text_CT_STR_02_Break_Or_Not			:	0,//0:"Not_Do_Break";1:"Do_Break";
+		//	//==========DIVISION==========
+		//====================DIVISION====================
+		//==========DIVISION==========
+		var NUM_10=evt_target.value;
+		//==========DIVISION==========
+		if ( evt_target.className=="Text_NUM_X_CLS" )								{IMG_ART_CLS.VAL.Text_NUM_X			=parseInt(NUM_10,10);}
+		else if ( evt_target.className=="Text_NUM_Y_CLS" )							{IMG_ART_CLS.VAL.Text_NUM_Y			=parseInt(NUM_10,10);}
+		else if ( evt_target.className=="Text_Font_Size_CLS" )						{IMG_ART_CLS.VAL.Text_Font_Size		=parseInt(NUM_10,10);}
+		else if ( evt_target.className=="Text_Opacity_CLS" )						{IMG_ART_CLS.VAL.Text_Opacity		=parseFloat(NUM_10);}
+		//==========DIVISION==========
+		else if ( evt_target.className=="Text_VAR_SEL" )
+		{
+			IMG_ART_CLS.VAL.Text_VAR_ID		=evt_target.selectedIndex;
+			Text_VAR_INI();
+		}
+		//==========DIVISION==========
+		else if (	evt_target.className=="Text_Sep_STR_CLS" || 
+					evt_target.className=="Text_CT_STR_00_Sub_CLS" || evt_target.className=="Text_CT_STR_01_Sub_CLS" || 
+					evt_target.className=="Text_CT_STR_02_Sub_CLS" || 
+			0 )
+		{
+			//==========DIVISION==========
+			str00="IMG_ART_CLS.VAL." + evt_target.className.replace(/_CLS$/gm,"") + "_STR" + "=evt_target.value;";
+			eval(str00);
+			//==========DIVISION==========
+		}
+		else if (	evt_target.className=="Text_CT_STR_00_Main_SEL" || evt_target.className=="Text_CT_STR_01_Main_SEL" || 
+					evt_target.className=="Text_CT_STR_02_Main_SEL" || 
+			0 )
+		{
+			//==========DIVISION==========
+			str00="IMG_ART_CLS.VAL." + evt_target.className.replace(/_SEL$/gm,"") + "_STR" + "=evt_target.options[evt_target.selectedIndex].innerHTML;";
+			eval(str00);
+			//==========DIVISION==========
+		}
+		//==========DIVISION==========
+		else																		{}
+		//==========DIVISION==========
+		//====================DIVISION====================
+		//==========DIVISION==========
+		if ( evt_target.className=="Text_Font_Size_CLS" )
+		{
+			ele_Text_Area_CT_CLS.style.fontSize			=I2C_CLS.Text_Font_Size.toString() + "%";
+		}
+		else if ( evt_target.className=="Text_Opacity_CLS" )
+		{
+			ele_Text_Area_Table.style.opacity			=IMG_ART_CLS.VAL.Text_Opacity;
+		}
+		else		{}
+		//==========DIVISION==========
+		if ( ele.className=="Text_Ctrl_Table" && 
+			( evt_target.className=="Text_NUM_X_CLS" || evt_target.className=="Text_NUM_Y_CLS" || evt_target.className=="Text_Font_Size_CLS" || 
+			evt_target.className=="Text_Opacity_CLS" || 
+			evt_target.className=="Text_Sep_STR_CLS" || 
+			evt_target.className=="Text_CT_STR_00_Main_SEL" || evt_target.className=="Text_CT_STR_00_Sub_CLS" || 
+			//evt_target.className=="Text_CT_STR_00_Break_Or_Not_BTN" || 
+			evt_target.className=="Text_CT_STR_01_Main_SEL" || evt_target.className=="Text_CT_STR_01_Sub_CLS" || 
+			//evt_target.className=="Text_CT_STR_01_Break_Or_Not_BTN" || 
+			evt_target.className=="Text_CT_STR_02_Main_SEL" || evt_target.className=="Text_CT_STR_02_Sub_CLS" || 
+			//evt_target.className=="Text_CT_STR_02_Break_Or_Not_BTN" || 
+			//==========DIVISION==========
+			0 ) )
+		{
+			//==========DIVISION==========
+			Text_Area_CT_INI();
+			//==========DIVISION==========
+		}
+		//==========DIVISION==========
+		else																		{}
+		//==========DIVISION==========
+		//====================DIVISION====================
+	}
+	else if ( post_method==3 && evt && evt.type=="click" )//onclick;
+	{
+		//==========DIVISION==========
+		var I2C_CLS=IMG_ART_CLS.VAL;
+		//I2C_CLS.IMG_Info_CLS				={SRC:"IMG_List\/master_Li_high.jpg",BX:950,BY:700,EX:3130,EY:3350,X:0,Y:0,WH:0,};
+		//==========DIVISION==========
+		if ( evt_target.className=="Text_CT_STR_00_Break_Or_Not_BTN" || evt_target.className=="Text_CT_STR_01_Break_Or_Not_BTN" || 
+			evt_target.className=="Text_CT_STR_02_Break_Or_Not_BTN" || 
+			0 )
+		{
+			//==========DIVISION==========
+			//0:"Not_Do_Break";1:"Do_Break";
+			str00=evt_target.className.replace(/_BTN$/gm,"");
+			str01="";
+			str01+="I2C_CLS." + str00 + "=(" + "I2C_CLS." + str00 + " + 1)%2" + "\n";
+			str01+='evt_target.style.backgroundColor=["red","#1EB0E9"][I2C_CLS.' + str00 + "];" + "\n";
+			eval(str01);
+			//==========DIVISION==========
+		}
+		//==========DIVISION==========
+		else if ( ele.className=="Text_Ctrl_Table" && evt_target.className=="" )
+		{
+		}
+		else		{}
+		//==========DIVISION==========
+		if ( ele.className=="Text_Ctrl_Table" && 
+			( evt_target.className=="Text_CT_STR_00_Break_Or_Not_BTN" || evt_target.className=="Text_CT_STR_01_Break_Or_Not_BTN" || 
+			evt_target.className=="Text_CT_STR_02_Break_Or_Not_BTN" || 
+			0 ) )
+		{
+			//==========DIVISION==========
+			Text_Area_CT_INI();
+			//==========DIVISION==========
+		}
+		//==========DIVISION==========
+	}
+	else		{}
+	//====================DIVISION====================
+}
+//====================DIVISION====================
+//========================================IMG_ART_Function========================================
+//========================================控件動作變化========================================
+function TEXT_ATTRIBUTION(ele,evt,n)
+{
+	//==========DIVISION==========
+	eval(ELE_ELEL_STR_INI(0));
+	eval(Parameter_Base_STR_ijk_XX(5));
+	var ID,LEN,ID_LEN;
+	//==========DIVISION==========
+	//console___log("function now is : TEXT_ATTRIBUTION(ele,evt,n)");
+
+	//IE7 : evt.srcElement ;Other : evt.target;
+	var evt_target = evt.target ? evt.target : evt.srcElement;
+	//alert(evt_target.tagName);
+
+	var ele_disabled;
+	if ( n==0 )//鼠標移入。
+	{
+		if ( evt_target.tagName.toUpperCase()=="TEXTAREA" || evt_target.tagName.toUpperCase()=="INPUT" || evt_target.tagName.toUpperCase()=="SELECT" )
+		{
+			try
+			{
+				if ( evt_target.disabled==true )	{ele_disabled=true;evt_target.disabled=false;}
+				evt_target.focus();//設置焦點。
+				evt_target.select();//選中全文。
+				if ( ele_disabled==true )			{evt_target.disabled=true;}
+			}
+			catch (err)
+			{
+				console.log(err.message);
+			}
+		}
+		else		{}
+	}
+	else if ( n==1 )//鼠標移出。
+	{
+		//ele.blur();//失去焦點。
+	}
+	else if ( n==2 )//更改了文本框的內容。
+	{
+		//==========DIVISION==========
+		if ( ele.className=="IMG_ART_Table" && 
+				//==========DIVISION==========
+				( evt_target.className=="" || 
+				//==========DIVISION==========
+				0 ) )
+		{
+			//==========DIVISION==========
+			//==========DIVISION==========
+		}
+		else		{}
+		//==========DIVISION==========
+		//	console.log("IMG_ART_CLS : ");
+		//	console.log(IMG_ART_CLS);
+		//	console.log("IMG_ART_CLS.VAL : " + JSON.stringify(IMG_ART_CLS.VAL,null,"\t") + ";\t" + 
+		//				"");
+		//==========DIVISION==========
+	}
+	else if ( n==3 )//點擊了按鈕。
+	{
+	}
+	else
+	{
+	}
+}
+//========================================控件動作變化========================================
+//========================================IMG_ART_Hotkey_Mouse========================================
+function IMG_ART_Hotkey_Mouse(ele,evt,post_method)
+{
+	//==========DIVISION==========
+	eval(Parameter_Base_STR_ijk_XX(10));
+	eval(ELE_ELEL_STR_INI(0));
+	var ID,LEN,ID_LEN;
+	//==========DIVISION==========
+	//console.log("function now is : TEXT_ATTRIBUTION(ele,evt,n)");
+
+	//IE7 : evt.srcElement ;Other : evt.target;
+	var evt_target = evt.target ? evt.target : evt.srcElement;
+	//alert(evt_target.outerHTML + "\n" + 
+	//	evt_target.tagName + "\n" + evt_target.className + "\n" + 
+	//	evt_target.tpye + "\n" + evt_target.getAttribute("type") + "\n" + 
+	//	evt_target.getAttribute("type_x_y"));
+
+	//evt.ctrlKey失效可能是其他函数的原因。
+	//console.log("evt _ evt.ctrlKey _ evt.altKey _ evt.shiftKey _ evt.which : " + evt + evt.ctrlKey + "_" + evt.altKey + "_" + evt.shiftKey + "_" + evt.which);
+	//						17				18			16
+	//==========DIVISION==========
+	if ( post_method==0 && evt && evt.type=="keydown" && 
+		( ( evt.which == 33 || evt.which == 34 ) || ( evt.ctrlKey || evt.altKey || evt.shiftKey ) ) )
+	{
+		//Google Search :
+		//javascript page up no scroll
+		//https://stackoverflow.com/questions/26440644/is-it-possible-to-prevent-users-page-up-page-down-up-and-down-arrow-keys-from
+		//Is it possible to prevent users Page Up, Page Down, Up and Down arrow keys from scroll functioning?
+		//evt.preventDefault();
+	}
+	else
+	{
+	}
+	//==========DIVISION==========
+	var referenceNode;
+	if ( post_method==0 && evt && evt.type=="keydown" && evt.which==13 )//enter:13;
+	{
+		if ( ele.className=="IMG_ART_Table" && evt_target.className=="" )
+		{
+			ele01=evt_target.parentNode;
+			//	while ( ele01.className!="??????" )		{ele01=ele01.parentNode;}
+			//	ele01.getElementsByClassName("??????")[0].click();
+		}
+		else
+		{
+		}
+	}
+	else if ( post_method==0 && evt && evt.type=="keydown" && 
+				( ( evt.which == 33 || evt.which == 34 || evt.which == 38 || evt.which == 40 || evt.which == 36 || evt.which == 35 ) || 
+				( evt.which == 38 || evt.which == 40 ) || 
+				//( evt.which == 17 && evt.ctrlKey || evt.which == 18 && evt.altKey || evt.which == 16 && evt.shiftKey ) || 
+				0 ) )
+	{
+		//==========DIVISION==========
+		/*
+		up arrow	38
+		down arrow	40
+		page up		33
+		page down	34
+		home	36
+		end		35
+		*/
+		var i,j,str;
+		var NUM_10,NUM_X,NUM_MIN,NUM_MAX;
+		var number_system,NS,NUM_SYS_MAX;
+		var NS_00,NS_01;
+		var evt_sd;
+		NS_00=10;
+		//==========DIVISION==========
+		if ( ( evt.which == 33 || evt.which == 34 || evt.which == 38 || evt.which == 40 || evt.which == 36 || evt.which == 35 ) && 
+				ele.tagName.toUpperCase()=="TABLE" && 
+				//==========DIVISION==========
+				( evt_target.className=="I2C_Rotate_Sequence_ID_CLS" || 
+				evt_target.className=="IMG_ORI_Width_CLS" || evt_target.className=="IMG_ORI_Height_CLS" || 
+				//==========DIVISION==========
+				evt_target.className=="IMG_ORI_Coordinate_X_CLS" || evt_target.className=="IMG_ORI_Coordinate_Y_CLS" || 
+				evt_target.className=="IMG_ORI_Coordinate_WH_CLS" || 
+				evt_target.className=="Canvas_MOD_Sub_Coordinate_X_CLS" || evt_target.className=="Canvas_MOD_Sub_Coordinate_Y_CLS" || 
+				evt_target.className=="Canvas_MOD_Sub_Coordinate_WH_CLS" || 
+				evt_target.className=="Canvas_MOD_Main_IMG_NUM_X_CLS" || evt_target.className=="Canvas_MOD_Main_IMG_NUM_Y_CLS" || 
+				evt_target.className=="Canvas_MOD_Main_Canvas_Width_CLS" || evt_target.className=="Canvas_MOD_Main_Canvas_Height_CLS" || 
+				//==========DIVISION==========
+				evt_target.className=="ITime_CLS" || evt_target.className=="IMG_Opacity_CLS" || 
+				evt_target.className=="Direction_Num_CLS" || 
+				//==========DIVISION==========
+				evt_target.className=="Text_NUM_X_CLS" || evt_target.className=="Text_NUM_Y_CLS" || evt_target.className=="Text_Font_Size_CLS" || 
+				//==========DIVISION==========
+				evt_target.className=="Text_Opacity_CLS" || 
+				//==========DIVISION==========
+				0 ) )
+		{
+			//==========DIVISION==========
+			//if ( ( evt.which == 33 || evt.which == 34 ) || ( evt.ctrlKey || evt.altKey || evt.shiftKey ) )
+			if ( ( evt.which == 33 || evt.which == 34 ) || 
+				( evt.ctrlKey && !evt.altKey && !evt.shiftKey || !evt.ctrlKey && evt.altKey && !evt.shiftKey || 
+					!evt.ctrlKey && !evt.altKey && evt.shiftKey ) )
+			{
+				evt.preventDefault();
+			}
+			else		{}
+			//==========DIVISION==========
+			NUM_MAX=10000*10000;
+			//==========DIVISION==========
+			if ( evt_target.className=="I2C_Rotate_Sequence_ID_CLS" )					{NUM_MIN=0;NUM_MAX=10000*10000;}
+			else if ( evt_target.className=="IMG_ORI_Width_CLS" )						{NUM_MIN=0;NUM_MAX=10000*10000;}
+			else if ( evt_target.className=="IMG_ORI_Height_CLS" )						{NUM_MIN=0;NUM_MAX=10000*10000;}
+			//==========DIVISION==========
+			else if ( evt_target.className=="IMG_ORI_Coordinate_X_CLS" )				{NUM_MIN=0;NUM_MAX=10000*10000;}
+			else if ( evt_target.className=="IMG_ORI_Coordinate_Y_CLS" )				{NUM_MIN=0;NUM_MAX=10000*10000;}
+			else if ( evt_target.className=="IMG_ORI_Coordinate_WH_CLS" )				{NUM_MIN=0;NUM_MAX=10000*10000;}
+			else if ( evt_target.className=="Canvas_MOD_Sub_Coordinate_X_CLS" )			{NUM_MIN=0;NUM_MAX=10000*10000;}
+			else if ( evt_target.className=="Canvas_MOD_Sub_Coordinate_Y_CLS" )			{NUM_MIN=0;NUM_MAX=10000*10000;}
+			else if ( evt_target.className=="Canvas_MOD_Sub_Coordinate_WH_CLS" )		{NUM_MIN=0;NUM_MAX=10000*10000;}
+			else if ( evt_target.className=="Canvas_MOD_Main_IMG_NUM_X_CLS" )			{NUM_MIN=0;NUM_MAX=10000*10000;}
+			else if ( evt_target.className=="Canvas_MOD_Main_IMG_NUM_Y_CLS" )			{NUM_MIN=0;NUM_MAX=10000*10000;}
+			else if ( evt_target.className=="Canvas_MOD_Main_Canvas_Width_CLS" )		{NUM_MIN=0;NUM_MAX=10000*10000;}
+			else if ( evt_target.className=="Canvas_MOD_Main_Canvas_Height_CLS" )		{NUM_MIN=0;NUM_MAX=10000*10000;}
+			//==========DIVISION==========
+			else if ( evt_target.className=="ITime_CLS" )								{NUM_MIN=0;NUM_MAX=10000*10000;}
+			else if ( evt_target.className=="IMG_Opacity_CLS" )							{NUM_MIN=0;NUM_MAX=1;}
+			else if ( evt_target.className=="Direction_Num_CLS" )						{NUM_MIN=1;NUM_MAX=360;}
+			//==========DIVISION==========
+			else if ( evt_target.className=="Text_NUM_X_CLS" )							{NUM_MIN=0;NUM_MAX=10000*10000;}
+			else if ( evt_target.className=="Text_NUM_Y_CLS" )							{NUM_MIN=0;NUM_MAX=10000*10000;}
+			else if ( evt_target.className=="Text_Font_Size_CLS" )						{NUM_MIN=0;NUM_MAX=10000*10000;}
+			//==========DIVISION==========
+			else if ( evt_target.className=="Text_Opacity_CLS" )						{NUM_MIN=0;NUM_MAX=1;}
+			//==========DIVISION==========
+			else																		{NUM_MIN=0;NUM_MAX=10000*10000;}
+			//==========DIVISION==========
+			//evt_target.value=("00" + evt_target.value).slice(-2);
+			if ( evt_target.className=="IMG_Opacity_CLS" )								{NUM_10=parseFloat(evt_target.value);}
+			else if ( evt_target.className=="Text_Opacity_CLS" )						{NUM_10=parseFloat(evt_target.value);}
+			//==========DIVISION==========
+			else																		{NUM_10=parseInt(evt_target.value,10);}
+			//==========DIVISION==========
+			num00=0;
+			if		( evt.which == 38 )	{num00++;}		//up arrow		38
+			else if ( evt.which == 40 )	{num00--;}		//down arrow	40
+			else if ( evt.which == 33 )	{num00+=10;}	//page up		33
+			else if ( evt.which == 34 )	{num00-=10;}	//page down		34
+			else if ( evt.which == 36 )	{num00+=100;}	//home			36
+			else if ( evt.which == 35 )	{num00-=100;}	//end			35
+			else{}
+
+			if ( evt.ctrlKey || evt.altKey || evt.shiftKey )
+			{
+				if ( evt.ctrlKey )			{num00*=Math.pow(NS_00,1);}	//{num00*=Math.pow(10,1);}
+				else if ( evt.altKey )		{num00*=Math.pow(NS_00,2);}	//{num00*=Math.pow(10,2);}
+				else if ( evt.shiftKey )	{num00*=Math.pow(NS_00,3);}	//{num00*=Math.pow(10,3);}
+				else						{num00*=Math.pow(NS_00,0);}	//{num00*=Math.pow(10,0);}
+			}
+			else							{num00*=Math.pow(NS_00,0);}	//{num00*=Math.pow(10,0);}
+			//==========DIVISION==========
+			if ( evt_target.className=="IMG_Opacity_CLS" )								{NUM_10=(parseFloat(num00/1000) + NUM_10).toFixed(3);}
+			else if ( evt_target.className=="Text_Opacity_CLS" )						{NUM_10=(parseFloat(num00/1000) + NUM_10).toFixed(3);}
+			//==========DIVISION==========
+			else																		{NUM_10=num00 + NUM_10;}
+			//==========DIVISION==========
+			if		( NUM_10<NUM_MIN )						{NUM_10=NUM_MIN;}
+			else if ( NUM_10>NUM_MAX )						{NUM_10=NUM_MAX;}
+			else											{}
+
+			evt_target.value=NUM_10;
+			//==========DIVISION==========
+			if ( evt_target.className=="I2C_Rotate_Sequence_ID_CLS" )					{IMG_ART_CLS.VAL.I2C_Rotate_Sequence_ID	=parseInt(NUM_10,10);}
+			//	if ( evt_target.className=="IMG_ORI_Width_CLS" )							{IMG_ART_CLS.VAL.IMG_ORI_Width		=parseInt(NUM_10,10);}
+			//	else if ( evt_target.className=="IMG_ORI_Height_CLS" )						{IMG_ART_CLS.VAL.IMG_ORI_Height		=parseInt(NUM_10,10);}
+			//	//==========DIVISION==========
+			//	else if ( evt_target.className=="IMG_ORI_Coordinate_X_CLS" || evt_target.className=="IMG_ORI_Coordinate_Y_CLS" || 
+			//		evt_target.className=="IMG_ORI_Coordinate_Width_CLS" || evt_target.className=="IMG_ORI_Coordinate_Height_CLS" || 
+			//		evt_target.className=="Canvas_MOD_Sub_Coordinate_X_CLS" || evt_target.className=="Canvas_MOD_Sub_Coordinate_Y_CLS" || 
+			//		evt_target.className=="Canvas_MOD_Sub_Coordinate_Width_CLS" || evt_target.className=="Canvas_MOD_Sub_Coordinate_Height_CLS" || 
+			//		evt_target.className=="Canvas_MOD_Main_IMG_NUM_X_CLS" || evt_target.className=="Canvas_MOD_Main_IMG_NUM_Y_CLS" || 
+			//		evt_target.className=="Canvas_MOD_Main_Canvas_Width_CLS" || evt_target.className=="Canvas_MOD_Main_Canvas_Height_CLS" || 
+			//		0 )
+			//	{
+			//		str00="IMG_ART_CLS.VAL." + evt_target.className.replace(/_CLS/gm,"") + "=parseInt(NUM_10,10);";
+			//		eval(str00);
+			//	}
+			//	//==========DIVISION==========
+			//	else if ( evt_target.className=="ITime_CLS" )								{IMG_ART_CLS.VAL.ITime				=parseInt(NUM_10,10);}
+			//	else if ( evt_target.className=="IMG_Opacity_CLS" )							{IMG_ART_CLS.VAL.IMG_Opacity		=parseFloat(NUM_10);}
+			//	else if ( evt_target.className=="Direction_Num_CLS" )						{IMG_ART_CLS.VAL.Direction_Num		=parseInt(NUM_10,10);}
+			//	//==========DIVISION==========
+			//	else if ( evt_target.className=="Text_NUM_X_CLS" )							{IMG_ART_CLS.VAL.Text_NUM_X			=parseInt(NUM_10,10);}
+			//	else if ( evt_target.className=="Text_NUM_Y_CLS" )							{IMG_ART_CLS.VAL.Text_NUM_Y			=parseInt(NUM_10,10);}
+			//	else if ( evt_target.className=="Text_Font_Size_CLS" )						{IMG_ART_CLS.VAL.Text_Font_Size		=parseInt(NUM_10,10);}
+			//	//==========DIVISION==========
+			else																		{}
+			//==========DIVISION==========
+			if ( evt_target.className=="I2C_Rotate_Sequence_ID_CLS" )
+			{
+				post_method=2;
+				IMG_ART_Main_Ctrl_Table_Action(ele_IMG_ART_Main_Ctrl_Table,{target:evt_target,type:"change"},post_method);
+			}
+			else if ( evt_target.className=="IMG_ORI_Width_CLS" || evt_target.className=="IMG_ORI_Height_CLS" || 
+				//==========DIVISION==========
+				evt_target.className=="IMG_ORI_Coordinate_X_CLS" || evt_target.className=="IMG_ORI_Coordinate_Y_CLS" || 
+				evt_target.className=="IMG_ORI_Coordinate_WH_CLS" || 
+				evt_target.className=="Canvas_MOD_Sub_Coordinate_X_CLS" || evt_target.className=="Canvas_MOD_Sub_Coordinate_Y_CLS" || 
+				evt_target.className=="Canvas_MOD_Sub_Coordinate_WH_CLS" || 
+				evt_target.className=="Canvas_MOD_Main_IMG_NUM_X_CLS" || evt_target.className=="Canvas_MOD_Main_IMG_NUM_Y_CLS" || 
+				evt_target.className=="Canvas_MOD_Main_Canvas_Width_CLS" || evt_target.className=="Canvas_MOD_Main_Canvas_Height_CLS" || 
+				//==========DIVISION==========
+				evt_target.className=="ITime_CLS" || evt_target.className=="IMG_Opacity_CLS" || 
+				evt_target.className=="Direction_Num_CLS" || 
+				//==========DIVISION==========
+				0 )
+			{
+				post_method=2;
+				IMG_2_Canvas_Ctrl_Table_Action(ele_IMG_2_Canvas_Ctrl_Table,{target:evt_target,type:"change"},post_method);
+			}
+			else if ( evt_target.className=="Text_NUM_X_CLS" || evt_target.className=="Text_NUM_Y_CLS" || evt_target.className=="Text_Font_Size_CLS" || 
+					evt_target.className=="Text_Opacity_CLS" )
+			{
+				post_method=2;
+				Text_Ctrl_Table_Action(ele_Text_Ctrl_Table,{target:evt_target,type:"change"},post_method);
+			}
+			else											{}
+			//==========DIVISION==========
+			//	console.log("IMG_ART_CLS : ");
+			//	console.log(IMG_ART_CLS);
+			//	console.log("IMG_ART_CLS.VAL : " + JSON.stringify(IMG_ART_CLS.VAL,null,"\t") + ";\t" + 
+			//				"");
+			//==========DIVISION==========
+		}
+		else
+		{
+		}
+		//==========DIVISION==========
+		//console.log(evt_target.className + "\n" + ele.className);
+		//==========DIVISION==========
+	}
+	else
+	{
+	}
+	//==========DIVISION==========
+}
+//========================================IMG_ART_Hotkey_Mouse========================================
+</script>
+
+<table class="IMG_ART_Table" cellSpacing=0 cellPadding=0 border=1 onkeydown=IMG_ART_Hotkey_Mouse(this,event,0) onmouseover=TEXT_ATTRIBUTION(this,event,0) onmouseout=TEXT_ATTRIBUTION(this,event,1) onchange=TEXT_ATTRIBUTION(this,event,2)><tbody>
+
+<tr><td colspan=2><table class="IMG_ART_Ctrl_Table" cellSpacing=0 cellPadding=0 border=0><tbody>
+	<tr><td><table class="IMG_ART_Main_Ctrl_Table" cellSpacing=0 cellPadding=0 border=0 onchange=IMG_ART_Main_Ctrl_Table_Action(this,event,2) onclick=IMG_ART_Main_Ctrl_Table_Action(this,event,3)><tbody>
+		<tr><td><table cellSpacing=0 cellPadding=0 border=0><tbody><tr>
+			<td><span style="background-color:yellow;">IMG_ART_V0001</span></td>
+			<td><input type="button"	class="IMG_ART_Reset_CLS"						title="IMG_ART_Reset_CLS"				value="Reset"></td>
+			<td><input type="button"	class="IMG_Start_Stop_Rotate_CLS"				title="IMG_Start_Stop_Rotate_CLS"		value="Rotate"></td>
+			<td><select					class="I2C_Rotate_Sequence_Type_SEL"			title="I2C_Rotate_Sequence_Type_SEL"			></select></td>
+			<td><select					class="I2C_Rotate_Sequence_Mirror_X_Type_SEL"	title="I2C_Rotate_Sequence_Mirror_X_Type_SEL"	></select></td>
+			<td><select					class="I2C_Rotate_Sequence_Mirror_Y_Type_SEL"	title="I2C_Rotate_Sequence_Mirror_Y_Type_SEL"	></select></td>
+			<td><select					class="I2C_Rotate_Sequence_Mirror_Z_Type_SEL"	title="I2C_Rotate_Sequence_Mirror_Z_Type_SEL"	></select></td>
+			<td><select					class="I2C_Rotate_Sequence_NUM_X_Y_Type_SEL"	title="I2C_Rotate_Sequence_NUM_X_Y_Type_SEL"	></select></td>
+			<td><input type="text"		class="I2C_Rotate_Sequence_ID_CLS"				title="I2C_Rotate_Sequence_ID_CLS"		value="0"></td>
+		</tr></tbody></table></td></tr>
+		<tr><td><table cellSpacing=0 cellPadding=0 border=0><tbody><tr>
+			<td><input type="button"	class="I2C_Rotate_IOrC_BTN"						title="I2C_Rotate_IOrC_BTN"				value="I"></td>
+			<td><input type="button"	class="IMG_ARR_Area_Table_P_TD_SH_BTN"			title="IMG_ARR_Area_Table_P_TD_SH_BTN"	value="I"></td>
+			<td><input type="button"	class="Canvas_Area_Table_P_TD_SH_BTN"			title="Canvas_Area_Table_P_TD_SH_BTN"	value="C"></td>
+			<td><input type="button"	class="Text_Area_Table_P_TD_SH_BTN"				title="Text_Area_Table_P_TD_SH_BTN"		value="T"></td>
+			<td><select					class="Usage_Collection_SEL"					title="Usage_Collection_SEL"					></select></td>
+		</tr></tbody></table></td></tr>
+	</tbody></table></td></tr>
+	<tr><td><table class="IMG_2_Canvas_Ctrl_Table" cellSpacing=0 cellPadding=0 border=0 onchange=IMG_2_Canvas_Ctrl_Table_Action(this,event,2) onclick=IMG_2_Canvas_Ctrl_Table_Action(this,event,3)><tbody>
+		<tr>
+		<!--====================IMG_ORI_Table====================-->
+		<!--==========DIVISION==========-->
+		<td><div class="IMG_Icon_CLS_Parent_DIV"><img class="IMG_Icon_CLS" src=""></div></td>
+		<td><table cellSpacing=0 cellPadding=0 border=0><tbody><tr>
+			<td><input type="text"		class="IMG_ORI_Width_CLS"					title="IMG_ORI_Width_CLS"						value="0"></td>
+		</tr><tr>
+			<td><input type="text"		class="IMG_ORI_Height_CLS"					title="IMG_ORI_Height_CLS"						value="0"></td>
+		</tr></tbody></table></td>
+		<td><div class="Canvas_Icon_CLS_Parent_DIV"><canvas class="Canvas_Icon_CLS"></canvas></div></td>
+		<!--==========DIVISION==========-->
+		<td><table cellSpacing=0 cellPadding=0 border=0><tbody><tr>
+			<td><input type="text"	class="IMG_ORI_Coordinate_X_CLS"				title="IMG_ORI_Coordinate_X_CLS"				value="0"></td>
+			<td><input type="text"	class="IMG_ORI_Coordinate_Y_CLS"				title="IMG_ORI_Coordinate_Y_CLS"				value="0"></td>
+			<td><input type="text"	class="IMG_ORI_Coordinate_WH_CLS"				title="IMG_ORI_Coordinate_WH_CLS"				value="0"></td>
+		</tr><tr>
+			<td><input type="text"	class="Canvas_MOD_Sub_Coordinate_X_CLS"			title="Canvas_MOD_Sub_Coordinate_X_CLS"			value="0"></td>
+			<td><input type="text"	class="Canvas_MOD_Sub_Coordinate_Y_CLS"			title="Canvas_MOD_Sub_Coordinate_Y_CLS"			value="0"></td>
+			<td><input type="text"	class="Canvas_MOD_Sub_Coordinate_WH_CLS"		title="Canvas_MOD_Sub_Coordinate_WH_CLS"		value="0"></td>
+		</tr></tbody></table></td>
+		<!--==========DIVISION==========-->
+		<!--====================IMG_ORI_Table====================-->
+		<!--====================Canvas_MOD_Table====================-->
+		<!--==========DIVISION==========-->
+		<td><table cellSpacing=0 cellPadding=0 border=0><tbody><tr>
+			<td><input type="text"		class="Canvas_MOD_Main_IMG_NUM_X_CLS"		title="Canvas_MOD_Main_IMG_NUM_X_CLS"			value="0"></td>
+			<td><input type="text"		class="Canvas_MOD_Main_IMG_NUM_Y_CLS"		title="Canvas_MOD_Main_IMG_NUM_Y_CLS"			value="0"></td>
+		</tr><tr>
+			<td><input type="text"		class="Canvas_MOD_Main_Canvas_Width_CLS"	title="Canvas_MOD_Main_Canvas_Width_CLS"		value="0"></td>
+			<td><input type="text"		class="Canvas_MOD_Main_Canvas_Height_CLS"	title="Canvas_MOD_Main_Canvas_Height_CLS"		value="0"></td>
+		</tr></tbody></table></td>
+		<!--==========DIVISION==========-->
+		<td><table cellSpacing=0 cellPadding=0 border=0><tbody><tr>
+			<td colspan=3><select		class="IMG_VAR_SEL"			title="IMG_VAR_SEL"			></select></td>
+		</tr><tr>
+			<td><input type="text"		class="ITime_CLS"			title="ITime_CLS"			value="0"></td>
+			<td><input type="text"		class="IMG_Opacity_CLS"		title="IMG_Opacity_CLS"		value="0"></td>
+			<td><input type="text"		class="Direction_Num_CLS"	title="Direction_Num_CLS"	value="0"></td>
+		</tr></tbody></table></td>
+		<!--==========DIVISION==========-->
+		<!--====================Canvas_MOD_Table====================-->
+		</tr>
+	</tbody></table></td></tr>
+	<tr><td><table class="Text_Ctrl_Table" cellSpacing=0 cellPadding=0 border=0 onchange=Text_Ctrl_Table_Action(this,event,2) onclick=Text_Ctrl_Table_Action(this,event,3)><tbody>
+		<tr>
+		<td><table cellSpacing=0 cellPadding=0 border=0><tbody><tr>
+			<td><input type="text"		class="Text_NUM_X_CLS"						title="Text_NUM_X_CLS"					value=""></td>
+			<td><input type="text"		class="Text_NUM_Y_CLS"						title="Text_NUM_Y_CLS"					value=""></td>
+			<td><input type="text"		class="Text_Font_Size_CLS"					title="Text_Font_Size_CLS"				value=""></td>
+			<td><input type="text"		class="Text_Opacity_CLS"					title="Text_Opacity_CLS"				value=""></td>
+			<td><select					class="Text_VAR_SEL"						title="Text_VAR_SEL"							></select></td>
+			<td><input type="text"		class="Text_Sep_STR_CLS"					title="Text_Sep_STR_CLS"				value=""></td>
+			<td><select					class="Text_CT_STR_00_Main_SEL"				title="Text_CT_STR_00_Main_SEL"					></select></td>
+			<td><input type="text"		class="Text_CT_STR_00_Sub_CLS"				title="Text_CT_STR_00_Sub_CLS"			value=""></td>
+			<td><input type="button"	class="Text_CT_STR_00_Break_Or_Not_BTN"		title="Text_CT_STR_00_Break_Or_Not_BTN"	value="B"></td>
+			<td><select					class="Text_CT_STR_01_Main_SEL"				title="Text_CT_STR_01_Main_SEL"					></select></td>
+			<td><input type="text"		class="Text_CT_STR_01_Sub_CLS"				title="Text_CT_STR_01_Sub_CLS"			value=""></td>
+			<td><input type="button"	class="Text_CT_STR_01_Break_Or_Not_BTN"		title="Text_CT_STR_01_Break_Or_Not_BTN"	value="B"></td>
+			<td><select					class="Text_CT_STR_02_Main_SEL"				title="Text_CT_STR_02_Main_SEL"					></select></td>
+			<td><input type="text"		class="Text_CT_STR_02_Sub_CLS"				title="Text_CT_STR_02_Sub_CLS"			value=""></td>
+			<td><input type="button"	class="Text_CT_STR_02_Break_Or_Not_BTN"		title="Text_CT_STR_02_Break_Or_Not_BTN"	value="B"></td>
+		</tr></tbody></table></td>
+		</tr>
+	</tbody></table></td></tr>
+</tbody></table></td></tr>
+
+<tr><td><table class="Text_Area_Table" cellSpacing=0 cellPadding=0 border=0 style="z-index:1;position:absolute;overflow:hidden;"><tbody>
+	<tr>
+		<td><pre><div><span class="Text_Area_CT_CLS"></span></div></pre></td>
+	</tr>
+</tbody></table></td></tr>
+
+<tr><td><table class="Canvas_Area_Table" cellSpacing=0 cellPadding=0 border=0 style="z-index:2;position:absolute;overflow:hidden;"><tbody>
+	<tr>
+		<td><div><canvas class="Canvas_Main_CLS"></canvas></div></td>
+	</tr>
+</tbody></table></td></tr>
+
+<tr><td><table class="IMG_ARR_Area_Table" cellSpacing=0 cellPadding=0 border=0 style="z-index:1;position:absolute;overflow:hidden;"><tbody>
+	<tr>
+		<td><div><div><img class="IMG_Main_CLS" src=""></div></div></td>
+		<td><div><div><img class="IMG_Main_CLS" src=""></div></div></td>
+		<td><div><div><img class="IMG_Main_CLS" src=""></div></div></td>
+	</tr>
+	<tr>
+		<td><div><div><img class="IMG_Main_CLS" src=""></div></div></td>
+		<td><div><div><img class="IMG_Main_CLS" src=""></div></div></td>
+		<td><div><div><img class="IMG_Main_CLS" src=""></div></div></td>
+	</tr>
+	<tr>
+		<td><div><div><img class="IMG_Main_CLS" src=""></div></div></td>
+		<td><div><div><img class="IMG_Main_CLS" src=""></div></div></td>
+		<td><div><div><img class="IMG_Main_CLS" src=""></div></div></td>
+	</tr>
+</tbody></table></td></tr>
+
+</tbody></table>
+
+<script type="text/javascript">
+eval(ELE_ELEL_STR_INI(1));
+
+var Initiation_Flag=0;
+
+function Initiation()
+{
+	//==========DIVISION==========
+	//console___log("function now is : Initiation()");
+
+	if ( Initiation_Flag==1 )
+	{
+		document.getElementsByTagName("body")[0].setAttribute("onmouseover","");
+		return;
+	}
+	//==========DIVISION==========
+	IMG_ART_CLS_INI();
+	//==========DIVISION==========
+	Initiation_Flag=1;
+	//==========DIVISION==========
+}
+Initiation();
+
+
+</script>
+
+</body>
+</html>
+
+<!--
+
+环保局
+清洁工
+清洁工具样板
+
+这里是李洪志真善忍环保局
+专门雇佣李洪志真善忍清洁工，临时工、小时工，10元/1小时。
+
+李洪志真善忍清洁工具样板，测试中，清洁剂，洗厕所专用，化粪除污，化粪处理、粪便处理、污水处理、垃圾处理等。
+
+原因就是：李洪志不定时传响。
+原因就是：李洪志不定时倒车。
+
+-->
