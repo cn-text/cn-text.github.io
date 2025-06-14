@@ -18,6 +18,7 @@ table.IMG_ART_Ctrl_Table													{zoom:0.7;}
 /*====================DIVISION====================*/
 table.IMG_ART_Table table.IMG_ART_Ctrl_Table table.IMG_ART_Main_Ctrl_Table	{}
 table.IMG_ART_Main_Ctrl_Table												{}
+table.IMG_ART_Main_Ctrl_Table input.IMG_ART_Hint_CLS						{height:25px;}
 table.IMG_ART_Main_Ctrl_Table input.IMG_ART_Reset_CLS						{height:25px;}
 table.IMG_ART_Main_Ctrl_Table input.IMG_Start_Stop_Rotate_CLS				{height:25px;}
 table.IMG_ART_Main_Ctrl_Table select.I2C_Rotate_Sequence_Type_SEL			{height:25px;width:125px;}
@@ -190,6 +191,7 @@ function ELE_ELEL_STR_INI(INI_Type)
 	var ele_IMG_ART_Ctrl_Table						=ele_IMG_ART_Table.getElementsByClassName("IMG_ART_Ctrl_Table")[0];
 	//==========DIVISION==========
 	var ele_IMG_ART_Main_Ctrl_Table					=ele_IMG_ART_Ctrl_Table.getElementsByClassName("IMG_ART_Main_Ctrl_Table")[0];
+	var ele_IMG_ART_Hint_CLS						=ele_IMG_ART_Main_Ctrl_Table.getElementsByClassName("IMG_ART_Hint_CLS")[0];
 	var ele_IMG_ART_Reset_CLS						=ele_IMG_ART_Main_Ctrl_Table.getElementsByClassName("IMG_ART_Reset_CLS")[0];
 	var ele_IMG_Start_Stop_Rotate_CLS				=ele_IMG_ART_Main_Ctrl_Table.getElementsByClassName("IMG_Start_Stop_Rotate_CLS")[0];
 	var ele_I2C_Rotate_Sequence_Type_SEL			=ele_IMG_ART_Main_Ctrl_Table.getElementsByClassName("I2C_Rotate_Sequence_Type_SEL")[0];
@@ -453,6 +455,8 @@ function IMG_ART_CLS_INI()
 	ele_IMG_ARR_Area_Table.style.display=["","none"][I2C_CLS.I2C_Rotate_IOrC];
 	ele_Canvas_Area_Table.style.display=["","none"][(I2C_CLS.I2C_Rotate_IOrC + 1)%2];
 	//==========DIVISION==========
+	ele_IMG_ART_Hint_CLS.style.backgroundColor="#1EB0E9";
+	//==========DIVISION==========
 	ele_IMG_ART_Reset_CLS.style.backgroundColor="#1EB0E9";
 	I2C_CLS.IMG_Start_Stop_Rotate_State=num00=0;//0:"Stop";1:"Start";
 	ele_IMG_Start_Stop_Rotate_CLS.style.backgroundColor=["red","#1EB0E9"][num00];
@@ -492,6 +496,8 @@ function IMG_ART_CLS_INI()
 	//Text_2_Text_Ctrl_Table_INI(INI_Type);
 	//Text_2_Canvas_Ctrl_Table_INI(INI_Type);
 	//==========DIVISION==========
+	var IMG_Text_VAR_First_ID=parseInt(2 * Math.random(),10);
+	//==========DIVISION==========
 	str00="";
 	str00+="<option>00 : IMG_VAR_0000_XXXXX</option>";
 	str00+="<option>01 : IMG_VAR_0001_XXXXX</option>";
@@ -504,7 +510,7 @@ function IMG_ART_CLS_INI()
 	str00+="<option>08 : IMG_VAR_0008_XXXXX</option>";
 	str00+="<option>09 : IMG_VAR_0009_XXXXX</option>";
 	ele_IMG_VAR_SEL.innerHTML		=str00;
-	ele_IMG_VAR_SEL.selectedIndex	=I2C_CLS.IMG_VAR_ID		=5;
+	ele_IMG_VAR_SEL.selectedIndex	=I2C_CLS.IMG_VAR_ID		=[0,5][IMG_Text_VAR_First_ID];
 	//==========DIVISION==========
 	IMG_VAR_INI();
 	//==========DIVISION==========
@@ -520,7 +526,7 @@ function IMG_ART_CLS_INI()
 	str00+="<option>08 : Text_VAR_0008_XXXXX</option>";
 	str00+="<option>09 : Text_VAR_0009_XXXXX</option>";
 	ele_Text_VAR_SEL.innerHTML		=str00;
-	ele_Text_VAR_SEL.selectedIndex	=I2C_CLS.Text_VAR_ID	=5;
+	ele_Text_VAR_SEL.selectedIndex	=I2C_CLS.Text_VAR_ID	=[0,5][IMG_Text_VAR_First_ID];
 	//==========DIVISION==========
 	str00="";
 	str00+="<option>李洪志</option>";
@@ -1465,7 +1471,19 @@ function IMG_ART_Main_Ctrl_Table_Action(ele,evt,post_method)
 	else if ( post_method==3 && evt && evt.type=="click" )//onclick;
 	{
 		//==========DIVISION==========
-		if ( ele.className=="IMG_ART_Main_Ctrl_Table" && evt_target.className=="IMG_ART_Reset_CLS" )
+		if ( ele.className=="IMG_ART_Main_Ctrl_Table" && evt_target.className=="IMG_ART_Hint_CLS" )
+		{
+			//==========DIVISION==========
+			str00="";
+			str00+='这个可以叫做：李洪志真善忍清洁工具样板，测试中，清洁剂，洗厕所专用，化粪除污除臭，化粪处理、粪便处理、污水处理、垃圾处理等。' + "\n";
+			str00+="\n";
+			str00+='[透过]不同的[透明化学液体]，[看]这个[屏幕]的[照片旋转]，[化粪除污除臭]能力更强，清洁效果更佳。' + "\n";
+			str00+="\n";
+			str00+='看着舒服，作用于另外空间。' + "\n";
+			alert(str00);
+			//==========DIVISION==========
+		}
+		else if ( ele.className=="IMG_ART_Main_Ctrl_Table" && evt_target.className=="IMG_ART_Reset_CLS" )
 		{
 			//==========DIVISION==========
 			INI_Type=0;
@@ -2387,6 +2405,7 @@ function IMG_ART_Hotkey_Mouse(ele,evt,post_method)
 	<tr><td><table class="IMG_ART_Main_Ctrl_Table" cellSpacing=0 cellPadding=0 border=0 onchange=IMG_ART_Main_Ctrl_Table_Action(this,event,2) onclick=IMG_ART_Main_Ctrl_Table_Action(this,event,3)><tbody>
 		<tr><td><table cellSpacing=0 cellPadding=0 border=0><tbody><tr>
 			<td><span style="background-color:yellow;">IMG_ART_V0001</span></td>
+			<td><input type="button"	class="IMG_ART_Hint_CLS"						title="IMG_ART_Hint_CLS"				value="Hint"></td>
 			<td><input type="button"	class="IMG_ART_Reset_CLS"						title="IMG_ART_Reset_CLS"				value="Reset"></td>
 			<td><input type="button"	class="IMG_Start_Stop_Rotate_CLS"				title="IMG_Start_Stop_Rotate_CLS"		value="Rotate"></td>
 			<td><select					class="I2C_Rotate_Sequence_Type_SEL"			title="I2C_Rotate_Sequence_Type_SEL"			></select></td>
@@ -2541,7 +2560,7 @@ Initiation();
 这里是李洪志真善忍环保局
 专门雇佣李洪志真善忍清洁工，临时工、小时工，10元/1小时。
 
-李洪志真善忍清洁工具样板，测试中，清洁剂，洗厕所专用，化粪除污，化粪处理、粪便处理、污水处理、垃圾处理等。
+李洪志真善忍清洁工具样板，测试中，清洁剂，洗厕所专用，化粪除污除臭，化粪处理、粪便处理、污水处理、垃圾处理等。
 
 原因就是：李洪志不定时传响。
 原因就是：李洪志不定时倒车。
