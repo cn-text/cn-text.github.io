@@ -21,8 +21,11 @@ table.DF_PIC_Link_Table table
 }
 
 table.Audio_Table table.Audio_SD_Table video									{width:280px;height:30px;}
+table.Audio_Table table.Audio_SD_Table td.TD_CD_BTN								{height:30px;}
 table.Audio_Table table.Audio_SD_Table td.TD_Audio								{max-height:30px;}
 table.Audio_Table table.Audio_SD_Table td.TD_Text								{min-width:330px;width:340px;max-height:30px;}
+table.Audio_Table table.Audio_SD_Table input.Clone_BTN							{height:15px;width:18px;font-size:12px;background-color:#1EB0E9;}
+table.Audio_Table table.Audio_SD_Table input.Delete_BTN							{height:15px;width:18px;font-size:12px;background-color:red;}
 table.Audio_Table table.Audio_Official_Table video								{width:350px;height:30px;}
 table.Audio_Table table.Audio_Official_Table input								{height:30px;}
 table.Audio_Table table.Audio_Official_Table									{font-size:20px;}
@@ -1232,7 +1235,16 @@ function Audio_Switch(ele)
 		str00+="\n";
 		for (i=0;i<arr01[0].length;i++)
 		{
-			str00+="<tr>" + "\n";
+			//==========DIVISION==========
+			//str00+="<tr>" + "\n";
+			//==========DIVISION==========
+			str00+="<tr TR_ID=\"" + parseInt(AR_ID / 2,10) + "\">" + "\n";
+			//"TD_CD_BTN";"TD_Clone_Delete_BTN";
+			str00+='	<td class="TD_CD_BTN"><table cellSpacing=0 cellPadding=0 border=0><tbody>';
+			str00+='		<tr><td><input type="button" class="Clone_BTN" value="C" title="Clone_BTN"></td></tr>';
+			str00+='		<tr><td><input type="button" class="Delete_BTN" value="D" title="Delete_BTN"></td></tr>';
+			str00+="	</tbody></table></td>" + "\n";
+			//==========DIVISION==========
 			for (j=0;j<arr01.length;j++)
 			{
 				str00+='	<td class="TD_Text"><span>' + arr00[j][i].replace(/^[\x00-\xFF]*/gm,"") + 
@@ -1245,7 +1257,9 @@ function Audio_Switch(ele)
 						arr01[j][i].replace(/[\\]+/gm,"\/") + '.mp3" type="audio/mpeg">		</video>' + '</td>' + "\n";
 				AR_ID++;
 			}
+			//==========DIVISION==========
 			str00+="</tr>" + "\n";
+			//==========DIVISION==========
 		}
 		ele00.innerHTML=str00;
 		//==========DIVISION==========
@@ -3242,7 +3256,98 @@ function Audio_SD_Table_Action(ele,evt,post_method)
 	else if ( post_method==3 && evt && evt.type=="click" )//onclick;
 	{
 		//==========DIVISION==========
-		if ( ele.className=="Audio_SD_Table" && evt_target.className=="RP_BTN" )
+		if ( ele.className=="Audio_SD_Table" && evt_target.className=="Clone_BTN" )
+		{
+			//==========DIVISION==========
+			ele00=evt_target;
+			while ( !( ele00.tagName.toUpperCase()=="TD" && ele00.className=="TD_CD_BTN" ) )		{ele00=ele00.parentNode;}
+			ele00=ele00.parentNode;//"TR";
+			ele00.parentNode.insertBefore(ele00.cloneNode(true),ele00.nextSibling);
+			//==========DIVISION==========
+			var TR_BID,TR_ID,TR_EID;
+			var AR_BID,AR_ID,AR_EID;
+			TR_BID=parseInt(ele00.getAttribute("TR_ID"),10) + 1;
+			AR_BID=parseInt(ele00.getElementsByClassName("RP_BTN")[0].getAttribute("AR_ID"),10) + 2;
+			//==========DIVISION==========
+			var ele_Audio_SD_Table=document.getElementsByClassName("Audio_SD_Table")[0];
+			var elel_TD_CD_BTN=ele_Audio_SD_Table.getElementsByClassName("TD_CD_BTN");
+			var elel_RP_BTN=ele_Audio_SD_Table.getElementsByClassName("RP_BTN");
+			var elel_TD_Audio=ele_Audio_SD_Table.getElementsByClassName("TD_Audio");
+			TR_EID=elel_TD_CD_BTN.length - 1;
+			AR_EID=elel_RP_BTN.length - 1;
+			//==========DIVISION==========
+			for (TR_ID=TR_BID;TR_ID<=TR_EID;TR_ID++)	{elel_TD_CD_BTN[TR_ID].parentNode.setAttribute("TR_ID",TR_ID);}
+			for (AR_ID=AR_BID;AR_ID<=AR_EID;AR_ID++)	{elel_RP_BTN[AR_ID].setAttribute("AR_ID",AR_ID);}
+			for (AR_ID=AR_BID;AR_ID<=AR_EID;AR_ID++)	{elel_TD_Audio[AR_ID].getElementsByTagName("video")[0].setAttribute("AR_ID",AR_ID);}
+			arr00=[Audio_URL_STR_CLS.Short_ARR,Audio_URL_STR_CLS.Long_ARR,Audio_URL_STR_CLS.Time_Info_ARR];
+			for (i=0;i<arr00.length;i++)
+			{
+				//	arr00[0].push("0000");		arr00[3].push("ET_BGM_01_00_李洪志_00");		arr00[4].push("0.3");	
+				//	arr00[0].push("0001");		arr00[3].push("ET_BGM_01_00_真善忍_00");		arr00[4].push("1");		
+				//	arr00[0].push("0002");		arr00[3].push("ET_BGM_01_00_真善忍_01");		arr00[4].push("1");		
+				//	arr00[0].push("0003");		arr00[3].push("ET_BGM_01_00_真善忍_02");		arr00[4].push("1");		
+				for (j=0;j<arr00[i].length;j++)
+				{
+					k=AR_BID - 2;
+					arr00[i][j].splice(k + 2,0,arr00[i][j][k]);
+					arr00[i][j].splice(k + 1 + 2,0,arr00[i][j][k + 1]);
+				}
+			}
+			//==========DIVISION==========
+			var multiplier=Audio_URL_STR_CLS.VAL.MultiPlier;
+			//==========DIVISION==========
+			for (AR_ID=AR_BID;AR_ID<=AR_BID + 1;AR_ID++)
+			{
+				//==========DIVISION==========
+				ele02=elel_TD_Audio[AR_ID].getElementsByTagName("video")[0];
+				//==========DIVISION==========
+				if ( Audio_URL_STR_CLS.VAL.MultiPlier_EAB==0 )			{}
+				else if ( Audio_URL_STR_CLS.VAL.MultiPlier_EAB==1 )
+				{
+					amplifyMedia(ele02,multiplier);
+				}
+				else		{}
+				//==========DIVISION==========
+			}
+			//==========DIVISION==========
+		}
+		else if ( ele.className=="Audio_SD_Table" && evt_target.className=="Delete_BTN" )
+		{
+			//==========DIVISION==========
+			ele00=evt_target;
+			while ( !( ele00.tagName.toUpperCase()=="TD" && ele00.className=="TD_CD_BTN" ) )		{ele00=ele00.parentNode;}
+			ele00=ele00.parentNode;//"TR";
+			//==========DIVISION==========
+			var TR_BID,TR_ID,TR_EID;
+			var AR_BID,AR_ID,AR_EID;
+			TR_BID=parseInt(ele00.getAttribute("TR_ID"),10);
+			AR_BID=parseInt(ele00.getElementsByClassName("RP_BTN")[0].getAttribute("AR_ID"),10);
+			//==========DIVISION==========
+			ele00.parentNode.removeChild(ele00);
+			//==========DIVISION==========
+			var ele_Audio_SD_Table=document.getElementsByClassName("Audio_SD_Table")[0];
+			var elel_TD_CD_BTN=ele_Audio_SD_Table.getElementsByClassName("TD_CD_BTN");
+			var elel_RP_BTN=ele_Audio_SD_Table.getElementsByClassName("RP_BTN");
+			var elel_TD_Audio=ele_Audio_SD_Table.getElementsByClassName("TD_Audio");
+			TR_EID=elel_TD_CD_BTN.length - 1;
+			AR_EID=elel_RP_BTN.length - 1;
+			//==========DIVISION==========
+			for (TR_ID=TR_BID;TR_ID<=TR_EID;TR_ID++)	{elel_TD_CD_BTN[TR_ID].parentNode.setAttribute("TR_ID",TR_ID);}
+			for (AR_ID=AR_BID;AR_ID<=AR_EID;AR_ID++)	{elel_RP_BTN[AR_ID].setAttribute("AR_ID",AR_ID);}
+			for (AR_ID=AR_BID;AR_ID<=AR_EID;AR_ID++)	{elel_TD_Audio[AR_ID].getElementsByTagName("video")[0].setAttribute("AR_ID",AR_ID);}
+			arr00=[Audio_URL_STR_CLS.Short_ARR,Audio_URL_STR_CLS.Long_ARR,Audio_URL_STR_CLS.Time_Info_ARR];
+			for (i=0;i<arr00.length;i++)
+			{
+				for (j=0;j<arr00[i].length;j++)
+				{
+					k=AR_BID;
+					arr00[i][j].splice(k,1);
+					arr00[i][j].splice(k,1);
+				}
+			}
+			//==========DIVISION==========
+		}
+		else if ( ele.className=="Audio_SD_Table" && evt_target.className=="RP_BTN" )
 		{
 			//==========DIVISION==========
 			AR_ID=parseInt(evt_target.getAttribute("AR_ID"),10);
@@ -3834,25 +3939,25 @@ https://falundafa.org/images/master_Li_high.zip
 	<tr><td><table class="MLH_PIC_Table" cellSpacing=0 cellPadding=0 border=1><tbody>
 		<tr>
 			<td><a href="https://github.com/cn-text/cn-text.github.io/releases/download/CNText01/cn-text_HTML_10_View_00_PIC.7z" download>X1</a></td>
-			<td><a href="MLH_001/MLH_000_R_R000.jpg"	target=_blank>上</a></td>
-			<td><a href="MLH_001/MLH_001_M_R000.jpg"	target=_blank>上</a></td>
-			<td><a href="MLH_001/MLH_020_R_R180.jpg"	target=_blank>下</a></td>
-			<td><a href="MLH_001/MLH_021_M_R180.jpg"	target=_blank>下</a></td>
-			<td><a href="MLH_001/MLH_030_R_R270.jpg"	target=_blank>左</a></td>
-			<td><a href="MLH_001/MLH_031_M_R270.jpg"	target=_blank>左</a></td>
-			<td><a href="MLH_001/MLH_010_R_R090.jpg"	target=_blank>右</a></td>
-			<td><a href="MLH_001/MLH_011_M_R090.jpg"	target=_blank>右</a></td>
+			<td><a href="view/MLH_001/MLH_000_R_R000.jpg"	target=_blank>上</a></td>
+			<td><a href="view/MLH_001/MLH_001_M_R000.jpg"	target=_blank>上</a></td>
+			<td><a href="view/MLH_001/MLH_020_R_R180.jpg"	target=_blank>下</a></td>
+			<td><a href="view/MLH_001/MLH_021_M_R180.jpg"	target=_blank>下</a></td>
+			<td><a href="view/MLH_001/MLH_030_R_R270.jpg"	target=_blank>左</a></td>
+			<td><a href="view/MLH_001/MLH_031_M_R270.jpg"	target=_blank>左</a></td>
+			<td><a href="view/MLH_001/MLH_010_R_R090.jpg"	target=_blank>右</a></td>
+			<td><a href="view/MLH_001/MLH_011_M_R090.jpg"	target=_blank>右</a></td>
 		</tr>
 		<tr>
 			<td><a href="https://github.com/cn-text/cn-text.github.io/releases/download/CNText01/cn-text_HTML_10_View_00_PIC_X2.7z" download>X2</a></td>
-			<td><a href="MLH_001/MLH_100_R000_M_1X2_00.jpg?[Li,Hong,Zhi] photo for PC ."	target=_blank>上上</a></td>
-			<td><a href="MLH_001/MLH_100_R000_M_1X2_01.jpg?[Li,Hong,Zhi] photo for PC ."	target=_blank>上上</a></td>
-			<td><a href="MLH_001/MLH_100_R000_M_1X2_02.jpg"	target=_blank>下下</a></td>
-			<td><a href="MLH_001/MLH_100_R000_M_1X2_03.jpg"	target=_blank>下下</a></td>
-			<td><a href="MLH_001/MLH_100_R001_M_1X2_02.jpg?[Li,Hong,Zhi] photo for Android ."	target=_blank>左左</a></td>
-			<td><a href="MLH_001/MLH_100_R001_M_1X2_03.jpg?[Li,Hong,Zhi] photo for Android ."	target=_blank>左左</a></td>
-			<td><a href="MLH_001/MLH_100_R001_M_1X2_00.jpg?[Li,Hong,Zhi] photo for Android ."	target=_blank>右右</a></td>
-			<td><a href="MLH_001/MLH_100_R001_M_1X2_01.jpg?[Li,Hong,Zhi] photo for Android ."	target=_blank>右右</a></td>
+			<td><a href="view/MLH_001/MLH_100_R000_M_1X2_00.jpg?[Li,Hong,Zhi] photo for PC ."	target=_blank>上上</a></td>
+			<td><a href="view/MLH_001/MLH_100_R000_M_1X2_01.jpg?[Li,Hong,Zhi] photo for PC ."	target=_blank>上上</a></td>
+			<td><a href="view/MLH_001/MLH_100_R000_M_1X2_02.jpg"	target=_blank>下下</a></td>
+			<td><a href="view/MLH_001/MLH_100_R000_M_1X2_03.jpg"	target=_blank>下下</a></td>
+			<td><a href="view/MLH_001/MLH_100_R001_M_1X2_02.jpg?[Li,Hong,Zhi] photo for Android ."	target=_blank>左左</a></td>
+			<td><a href="view/MLH_001/MLH_100_R001_M_1X2_03.jpg?[Li,Hong,Zhi] photo for Android ."	target=_blank>左左</a></td>
+			<td><a href="view/MLH_001/MLH_100_R001_M_1X2_00.jpg?[Li,Hong,Zhi] photo for Android ."	target=_blank>右右</a></td>
+			<td><a href="view/MLH_001/MLH_100_R001_M_1X2_01.jpg?[Li,Hong,Zhi] photo for Android ."	target=_blank>右右</a></td>
 		</tr>
 	</tbody></table></td></tr>
 	<tr><td><table cellSpacing=0 cellPadding=0 border=0><tbody>
