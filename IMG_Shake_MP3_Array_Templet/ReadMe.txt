@@ -15,5 +15,5 @@ Press button : [Shake]/[MP3];
 Hotkey :
 [t]:back to top.
 
-[Shift] + [↑][↓][Page Up][Page Down][Ｈome][End]
+[Shift] + [↑][↓][Page Up][Page Down][Ｈome][End] : Change the number .
 ========================================
