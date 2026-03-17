@@ -12,6 +12,8 @@ IMG_ART_V0000_02_13_Main.html
 
 Press button : [Shake]/[MP3];
 
-Hotkey:
+Hotkey :
 [t]:back to top.
+
+[Shift] + [↑][↓][Page Up][Page Down][Ｈome][End]
 ========================================
