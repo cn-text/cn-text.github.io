@@ -240,7 +240,7 @@ var MP3_Array_CLS								=
 		DFCB_MP3_CT_ID							:	0,
 		DFCB_MP3_Array_Show_Type				:	0,//0:"In_Order";1:"Random_Order";
 		//==========DIVISION==========
-		AudioT_Video_NUM_Type_ID				:	1,//Video_TD_012_X_TR_009___AudioT_TD_008_X_TR_006
+		AudioT_Video_NUM_Type_ID				:	6,//Video_TD_012_X_TR_009___AudioT_TD_008_X_TR_006
 		AudioT_Video_NUM_ARR					:	[0,0,0,0],
 		AudioT_NUMX								:	0,
 		AudioT_NUMY								:	0,
@@ -489,24 +489,26 @@ function MP3_Array_Ctrl_Table_INI()
 	//Video_TD_004_X_TR_003___AudioT_TD_001_X_TR_001
 	//Video_TD_001_X_TR_001___AudioT_TD_008_X_TR_006
 	//Video_TD_001_X_TR_001___AudioT_TD_012_X_TR_009
+	//Video_TD_001_X_TR_001___AudioT_TD_012_X_TR_014
 	//Video_TD_001_X_TR_001___AudioT_TD_024_X_TR_018
 	//Video_TD_012_X_TR_014___AudioT_TD_002_X_TR_002
 	//Video_TD_012_X_TR_009___AudioT_TD_003_X_TR_003
 	//Video_TD_008_X_TR_006___AudioT_TD_005_X_TR_004
 	//Video_TD_004_X_TR_003___AudioT_TD_010_X_TR_008
 	str04="";
-	str04+="<option>VX012_VY014_ATX001_ATY001</option>";
-	str04+="<option>VX012_VY009_ATX001_ATY001</option>";
-	str04+="<option>VX008_VY006_ATX001_ATY001</option>";
-	str04+="<option>VX004_VY003_ATX001_ATY001</option>";
-	str04+="<option>VX001_VY001_ATX008_ATY006</option>";
-	str04+="<option>VX001_VY001_ATX012_ATY009</option>";
-	str04+="<option>VX001_VY001_ATX024_ATY018</option>";
-	str04+="<option>VX012_VY014_ATX002_ATY002</option>";
-	str04+="<option>VX012_VY009_ATX003_ATY003</option>";
-	str04+="<option>VX008_VY006_ATX005_ATY004</option>";
-	str04+="<option>VX004_VY003_ATX010_ATY008</option>";
-	ele04.innerHTML=str04;ele04.selectedIndex=0;
+	str04+="<option>VX012_VY014_ATX001_ATY001</option>";//00;
+	str04+="<option>VX012_VY009_ATX001_ATY001</option>";//01;
+	str04+="<option>VX008_VY006_ATX001_ATY001</option>";//02;
+	str04+="<option>VX004_VY003_ATX001_ATY001</option>";//03;
+	str04+="<option>VX001_VY001_ATX008_ATY006</option>";//04;
+	str04+="<option>VX001_VY001_ATX012_ATY009</option>";//05;
+	str04+="<option>VX001_VY001_ATX012_ATY014</option>";//06;
+	str04+="<option>VX001_VY001_ATX024_ATY018</option>";//07;
+	str04+="<option>VX012_VY014_ATX002_ATY002</option>";//08;
+	str04+="<option>VX012_VY009_ATX003_ATY003</option>";//09;
+	str04+="<option>VX008_VY006_ATX005_ATY004</option>";//10;
+	str04+="<option>VX004_VY003_ATX010_ATY008</option>";//11;
+	ele04.innerHTML=str04;ele04.selectedIndex=6;
 	MP3_Array_CLS.VAL.AudioT_Video_NUM_Type_ID=ele04.selectedIndex;//Video_TD_012_X_TR_014___AudioT_TD_001_X_TR_001
 	//==========DIVISION==========
 	//str04+="<option>VX012_VY014_ATX002_ATY002</option>";
@@ -530,7 +532,7 @@ function MP3_Array_Ctrl_Table_INI()
 	str05+="<option>Inner_First_Played</option>";
 	str05+="<option>Inner_ALL_Paused</option>";
 	str05+="<option>Inner_ALL_Played</option>";
-	ele05.innerHTML=str05;ele05.selectedIndex=2 + parseInt(2 * Math.random(),10);
+	ele05.innerHTML=str05;ele05.selectedIndex=parseInt(2 * Math.random(),10);
 	MP3_Array_CLS.VAL.AudioT_Play_Or_Not_Type_ID=ele05.selectedIndex;//0:"Inner_First_Paused";1:"Inner_First_Played";2:"Inner_ALL_Paused";3:"Inner_ALL_Played";
 	//==========DIVISION==========
 	//====================DIVISION====================
@@ -540,11 +542,11 @@ function MP3_Array_Ctrl_Table_INI_SD()
 {
 	//==========DIVISION==========
 	//eval(ELE_ELEL_STR_INI(0));
-	eval(Parameter_Base_STR_ijk_XX(15));
+	eval(Parameter_Base_STR_ijk_XX(5));
 	var ID,LEN,ID_LEN;
 	var AR_ID;
 	//==========DIVISION==========
-	ele_AudioT_Video_NUM_Type_SEL.selectedIndex=0;//parseInt(2 * Math.random(),10);
+	ele_AudioT_Video_NUM_Type_SEL.selectedIndex=6;//"Video_TD_001_X_TR_001___AudioT_TD_012_X_TR_014";"VX001_VY001_ATX012_ATY014";
 	(function(){
 		var ele,evt,post_method;
 		ele=ele_MP3_Array_Ctrl_Table;evt={type:"change",target:ele_AudioT_Video_NUM_Type_SEL};post_method=2;
@@ -557,6 +559,11 @@ function MP3_Array_Ctrl_Table_INI_SD()
 		ele=ele_MP3_Array_Ctrl_Table;evt={type:"change",target:ele_Speed_Type_SEL};post_method=2;
 		MP3_Array_Ctrl_Table_Action(ele,evt,post_method);
 	})();
+	//==========DIVISION==========
+	LEN=parseInt(3 * Math.random(),10);
+	for (i=0;i<LEN;i++)	{ele_Audio_LMR_BTN.click();}
+	LEN=parseInt(3 * Math.random(),10);
+	for (i=0;i<LEN;i++)	{ele_Audio_TMB_BTN.click();}
 	//==========DIVISION==========
 	ele_Speed_ST_EAB.click();
 	//==========DIVISION==========
@@ -1497,7 +1504,17 @@ function MP3_Array_AudioT_Table_ST_Do()
 					}
 					else if ( Speed_ST_EAB==1 )
 					{
-						MP3_Array_CLS.VAL.Speed_ST_ID_ARR[ATID][VID]=setTimeout(function (elel00,ATID,VID)
+						//==========DIVISION==========
+						var ext_inner_cls		=
+						{
+							elel00				:	elel00	,
+							ATIDX				:	ATIDX	,
+							ATIDY				:	ATIDY	,
+							ATID				:	ATID	,
+							VID					:	VID		,
+						};
+						//==========DIVISION==========
+						MP3_Array_CLS.VAL.Speed_ST_ID_ARR[ATID][VID]=setTimeout(function (ext_inner_cls)
 						{
 							//==========DIVISION==========
 							var Speed_ST_EAB=MP3_Array_CLS.VAL.Speed_ST_EAB;
@@ -1514,8 +1531,23 @@ function MP3_Array_AudioT_Table_ST_Do()
 							eval(Parameter_Base_STR_ijk_XX(5));
 							var ID,LEN,ID_LEN;
 							//==========DIVISION==========
+							var elel00			=ext_inner_cls.elel00	;
+							var ATIDX			=ext_inner_cls.ATIDX	;
+							var ATIDY			=ext_inner_cls.ATIDY	;
+							var ATID			=ext_inner_cls.ATID		;
+							var VID				=ext_inner_cls.VID		;
+							//==========DIVISION==========
+							var AudioT_NUMX=MP3_Array_CLS.VAL.AudioT_NUMX;
+							var AudioT_NUMY=MP3_Array_CLS.VAL.AudioT_NUMY;
 							var AudioT_Play_Or_Not_Type_ID=MP3_Array_CLS.VAL.AudioT_Play_Or_Not_Type_ID;
 							var Play_Or_Not=AudioT_Get_Play_Or_Not(AudioT_Play_Or_Not_Type_ID,ATIDX,ATIDY,AudioT_NUMX,AudioT_NUMY);
+							//	console.log("AudioT_Play_Or_Not_Type_ID : " + AudioT_Play_Or_Not_Type_ID + ";\t" + 
+							//				"ATIDX : " + ATIDX + ";\t" + 
+							//				"ATIDY : " + ATIDY + ";\t" + 
+							//				"AudioT_NUMX : " + AudioT_NUMX + ";\t" + 
+							//				"AudioT_NUMY : " + AudioT_NUMY + ";\t" + 
+							//				"Play_Or_Not : " + Play_Or_Not + ";\t" + 
+							//				"");
 							//==========DIVISION==========
 							var Speed_Type_CM				=MP3_Array_CLS.VAL.Speed_Type_CM				;
 							var Speed_Type_ID				=MP3_Array_CLS.VAL.Speed_Type_ID				;
@@ -1601,9 +1633,16 @@ function MP3_Array_AudioT_Table_ST_Do()
 							}
 							else		{}
 							//==========DIVISION==========
-							MP3_Array_CLS.VAL.Speed_ST_ID_ARR[ATID][VID]=setTimeout(fun_ct_cache_00,TTI_SD,elel00,ATID,VID);
+							ext_inner_cls.elel00	=elel00			;
+							ext_inner_cls.ATIDX		=ATIDX			;
+							ext_inner_cls.ATIDY		=ATIDY			;
+							ext_inner_cls.ATID		=ATID			;
+							ext_inner_cls.VID		=VID			;
 							//==========DIVISION==========
-						},TTI_IN_USE,elel00,ATID,VID);
+							MP3_Array_CLS.VAL.Speed_ST_ID_ARR[ATID][VID]=setTimeout(fun_ct_cache_00,TTI_SD,ext_inner_cls);
+							//==========DIVISION==========
+						},TTI_IN_USE,ext_inner_cls);
+						//==========DIVISION==========
 					}
 					else		{}
 				}
