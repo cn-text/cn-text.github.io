@@ -9,6 +9,7 @@ Stand up look , 10 Minutes , Many times , [F11] Full Screen .
 ========================================
 two eye , very distance , 2cm , look at the screen photo shake , about 5 seconds win the evil gas . 90% success .
 两只眼睛,近距离,2cm,贴近屏幕,看照片震动，5秒内战胜邪气。成功率90%。
+But have America monster destory , 0% success .
 但有食人魔搞破坏的时候，效果为0%。
 ========================================
 IMG_ART_V0000_02_12_Main.html
