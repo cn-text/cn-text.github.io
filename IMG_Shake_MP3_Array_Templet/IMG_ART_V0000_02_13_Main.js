@@ -326,7 +326,8 @@ var MP3_Array_CLS								=
 		DFCB_MP3_Array_AT_Or_IF					:	0,//0:"AudioT_Table";1:"IFrame";
 		DFCB_MP3_CT_ID							:	0,
 		DFCB_MP3_Array_Show_Type				:	0,//0:"In_Order";1:"Random_Order";
-		DFCB_MP3_ATIF_CSS_Zoom					:	1.000,
+		DFCB_MP3_ATIF_CSS_Zoom					:	[2.500,1.000][OS.HWID],//0:"PC";1:"Mobile";
+		//Android一开始"zoom:2.5;"，音频标签显示会达不到效果。
 		//==========DIVISION==========
 		AudioT_Video_NUM_Type_ID				:	6,//Video_TD_012_X_TR_009___AudioT_TD_008_X_TR_006
 		AudioT_Video_NUM_ARR					:	[0,0,0,0],
@@ -472,7 +473,8 @@ function MP3_Array_Ctrl_Table_INI()
 	ele06.innerHTML=str06;ele06.selectedIndex=parseInt(2 * Math.random(),10);
 	MP3_Array_CLS.VAL.DFCB_MP3_Array_Show_Type=ele06.selectedIndex;
 	//==========DIVISION==========
-	MP3_Array_CLS.VAL.DFCB_MP3_ATIF_CSS_Zoom=num00=2.500;
+	//Android一开始"zoom:2.5;"，音频标签显示会达不到效果。
+	MP3_Array_CLS.VAL.DFCB_MP3_ATIF_CSS_Zoom=num00=[2.500,1.000][OS.HWID];//0:"PC";1:"Mobile";
 	ele_DFCB_MP3_ATIF_CSS_Zoom_CLS.value=parseFloat(num00).toFixed(3);
 	//==========DIVISION==========
 	//0:"Disabled";1:"Enabled";
@@ -684,15 +686,17 @@ function MP3_Array_Ctrl_Table_INI_SD()
 	var ID,LEN,ID_LEN;
 	var AR_ID;
 	//==========DIVISION==========
+	ele_AudioT_Video_NUM_Type_SEL.selectedIndex=5;//"Video_TD_001_X_TR_001___AudioT_TD_012_X_TR_009";"VX001_VY001_ATX012_ATY009";
 	ele_AudioT_Video_NUM_Type_SEL.selectedIndex=6;//"Video_TD_001_X_TR_001___AudioT_TD_012_X_TR_014";"VX001_VY001_ATX012_ATY014";
 	ele_AudioT_Video_NUM_Type_SEL.selectedIndex=7;//"Video_TD_001_X_TR_001___AudioT_TD_024_X_TR_014";"VX001_VY001_ATX024_ATY014";
+	ele_AudioT_Video_NUM_Type_SEL.selectedIndex=[7,5][OS.HWID];
 	(function(){
 		var ele,evt,post_method;
 		ele=ele_MP3_Array_Ctrl_Table;evt={type:"change",target:ele_AudioT_Video_NUM_Type_SEL};post_method=2;
 		MP3_Array_Ctrl_Table_Action(ele,evt,post_method);
 	})();
 	//==========DIVISION==========
-	ele_AudioT_Play_Or_Not_Type_SEL.selectedIndex=3;//0:"Inner_First_Paused";1:"Inner_First_Played";2:"Inner_ALL_Paused";3:"Inner_ALL_Played";
+	ele_AudioT_Play_Or_Not_Type_SEL.selectedIndex=[3,parseInt(2 * Math.random(),10)][OS.HWID];//0:"Inner_First_Paused";1:"Inner_First_Played";2:"Inner_ALL_Paused";3:"Inner_ALL_Played";
 	(function(){
 		var ele,evt,post_method;
 		ele=ele_MP3_Array_Ctrl_Table;evt={type:"change",target:ele_AudioT_Play_Or_Not_Type_SEL};post_method=2;
@@ -713,6 +717,7 @@ function MP3_Array_Ctrl_Table_INI_SD()
 	//==========DIVISION==========
 	ele_Speed_ST_EAB.click();
 	//==========DIVISION==========
+	//0:"PC";1:"Mobile";
 	if ( OS.HWID==0 && OS.HWSTR=="PC" )				{}
 	else if ( OS.HWID==1 && OS.HWSTR=="Mobile" )	{}
 	else		{}
