@@ -41,7 +41,43 @@ String.prototype.repeat = function( num )
 {
 	return new Array( num + 1 ).join( this );
 };
+//==========DIVISION==========
+function Value_Random_Value_ITV(Value_ORI,Value_ITV,Value_Type)
+{
+	Value_ORI=Value_ORI + Value_ITV * Math.random() * (2 * parseInt(2 * Math.random(),10) - 1);
+	if ( Value_Type=="INT" )
+	{
+		Value_ORI=parseInt(Value_ORI,10);
+	}
+	else if ( Value_Type=="FLOAT" )
+	{
+		Value_ORI=parseFloat(Value_ORI).toFixed(3);
+	}
+	else		{}
+	//console.log("Value_ORI : " + Value_ORI + ";\t" + "Value_ITV : " + Value_ITV + ";\t" + "");
+	return Value_ORI;
+}
 
+function Value_Random_Percent_ITV(Value_ORI,Percent_ITV,Value_Type)
+{
+	Value_ORI=Value_ORI + Value_ORI * Percent_ITV * Math.random() * (2 * parseInt(2 * Math.random(),10) - 1);
+	if ( Value_Type=="INT" )
+	{
+		Value_ORI=parseInt(Value_ORI,10);
+	}
+	else if ( Value_Type=="FLOAT" )
+	{
+		Value_ORI=parseFloat(Value_ORI).toFixed(3);
+	}
+	else		{}
+	//console.log("Value_ORI : " + Value_ORI + ";\t" + "Percent_ITV : " + Percent_ITV + ";\t" + "");
+	return Value_ORI;
+}
+//console.log(Value_Random_Value_ITV(100,10,"INT"));
+//console.log(Value_Random_Value_ITV(100,10,"FLOAT"));
+//console.log(Value_Random_Percent_ITV(100,0.1,"INT"));
+//console.log(Value_Random_Percent_ITV(100,0.1,"FLOAT"));
+//==========DIVISION==========
 function ReadTextFile(oFile)
 {
 	if (window.XMLHttpRequest)//code for IE7+, Firefox, Chrome, Opera, Safari
@@ -85,6 +121,7 @@ function amplifyMedia(mediaElem,multiplier)
 
 var TTIS=100;
 var TTI_IN_USE=TTIS;
+var TTI_Percent_ITV_IN_USE=0.1;
 //==========DIVISION==========
 var Screen_Width	=window.screen.width;
 var Screen_Height	=window.screen.height;
@@ -144,34 +181,61 @@ function ELE_ELEL_STR_INI(INI_Type)
 	var ele_MP3_Array_Ctrl_ScrollTo_Bottom_BTN		=ele_MP3_Array_Ctrl_Table.getElementsByClassName("MP3_Array_Ctrl_ScrollTo_Bottom_BTN"		)[0];
 	//==========DIVISION==========
 	var ele_BG_IMG_Type_SEL							=ele_MP3_Array_Ctrl_Table.getElementsByClassName("BG_IMG_Type_SEL"							)[0];
+	var ele_BG_IMG_Type_ST_EAB						=ele_MP3_Array_Ctrl_Table.getElementsByClassName("BG_IMG_Type_ST_EAB"						)[0];
+	var ele_BG_IMG_Type_ST_TTI_CLS					=ele_MP3_Array_Ctrl_Table.getElementsByClassName("BG_IMG_Type_ST_TTI_CLS"					)[0];
+	//==========DIVISION==========
 	var ele_BG_IMG_Shake_BTN						=ele_MP3_Array_Ctrl_Table.getElementsByClassName("BG_IMG_Shake_BTN"							)[0];
+	var ele_BG_IMG_Shake_ST_TTI_CLS					=ele_MP3_Array_Ctrl_Table.getElementsByClassName("BG_IMG_Shake_ST_TTI_CLS"					)[0];
+	//==========DIVISION==========
+	var ele_BG_IMG_Shake_VAL_Random_ST_EAB			=ele_MP3_Array_Ctrl_Table.getElementsByClassName("BG_IMG_Shake_VAL_Random_ST_EAB"			)[0];
+	var ele_BG_IMG_Shake_VAL_Random_ST_TTI_CLS		=ele_MP3_Array_Ctrl_Table.getElementsByClassName("BG_IMG_Shake_VAL_Random_ST_TTI_CLS"		)[0];
+	var ele_BG_IMG_Shake_TTI_Random_BTN				=ele_MP3_Array_Ctrl_Table.getElementsByClassName("BG_IMG_Shake_TTI_Random_BTN"				)[0];
+	var ele_BG_IMG_Shake_VAL_Random_BTN				=ele_MP3_Array_Ctrl_Table.getElementsByClassName("BG_IMG_Shake_VAL_Random_BTN"				)[0];
+	//==========DIVISION==========
 	var ele_BG_IMG_Shake_CSS_ITV_Margin_Top_CLS		=ele_MP3_Array_Ctrl_Table.getElementsByClassName("BG_IMG_Shake_CSS_ITV_Margin_Top_CLS"		)[0];
 	var ele_BG_IMG_Shake_CSS_ITV_Margin_Left_CLS	=ele_MP3_Array_Ctrl_Table.getElementsByClassName("BG_IMG_Shake_CSS_ITV_Margin_Left_CLS"		)[0];
 	var ele_BG_IMG_Shake_CSS_Margin_Slope_EAB		=ele_MP3_Array_Ctrl_Table.getElementsByClassName("BG_IMG_Shake_CSS_Margin_Slope_EAB"		)[0];
+	var ele_BG_IMG_Shake_CSS_Margin_Slope_Tan_Or_Cot_BTN
+													=ele_MP3_Array_Ctrl_Table.getElementsByClassName("BG_IMG_Shake_CSS_Margin_Slope_Tan_Or_Cot_BTN")[0];
 	var ele_BG_IMG_Shake_CSS_Margin_Slope_CLS		=ele_MP3_Array_Ctrl_Table.getElementsByClassName("BG_IMG_Shake_CSS_Margin_Slope_CLS"		)[0];
+	//==========DIVISION==========
+	var ele_BG_IMG_Shake_CSS_ZPointX_CLS			=ele_MP3_Array_Ctrl_Table.getElementsByClassName("BG_IMG_Shake_CSS_ZPointX_CLS"				)[0];
+	var ele_BG_IMG_Shake_CSS_ZPointY_CLS			=ele_MP3_Array_Ctrl_Table.getElementsByClassName("BG_IMG_Shake_CSS_ZPointY_CLS"				)[0];
 	var ele_BG_IMG_Shake_CSS_ITV_Zoom_CLS			=ele_MP3_Array_Ctrl_Table.getElementsByClassName("BG_IMG_Shake_CSS_ITV_Zoom_CLS"			)[0];
+	//==========DIVISION==========
+	var ele_BG_IMG_Shake_CSS_RPointX_CLS			=ele_MP3_Array_Ctrl_Table.getElementsByClassName("BG_IMG_Shake_CSS_RPointX_CLS"				)[0];
+	var ele_BG_IMG_Shake_CSS_RPointY_CLS			=ele_MP3_Array_Ctrl_Table.getElementsByClassName("BG_IMG_Shake_CSS_RPointY_CLS"				)[0];
 	var ele_BG_IMG_Shake_CSS_ITV_Rotate_CLS			=ele_MP3_Array_Ctrl_Table.getElementsByClassName("BG_IMG_Shake_CSS_ITV_Rotate_CLS"			)[0];
+	//==========DIVISION==========
 	var ele_BG_IMG_Shake_CSS_ITV_Opacity_CLS		=ele_MP3_Array_Ctrl_Table.getElementsByClassName("BG_IMG_Shake_CSS_ITV_Opacity_CLS"			)[0];
 	//==========DIVISION==========
-	var ele_Audio_LMR_BTN							=ele_MP3_Array_Ctrl_Table.getElementsByClassName("Audio_LMR_BTN"				)[0];
-	var ele_Audio_TMB_BTN							=ele_MP3_Array_Ctrl_Table.getElementsByClassName("Audio_TMB_BTN"				)[0];
+	var ele_AudioT_Position_BTN						=ele_MP3_Array_Ctrl_Table.getElementsByClassName("AudioT_Position_BTN"			)[0];
+	var ele_AudioT_LMR_BTN							=ele_MP3_Array_Ctrl_Table.getElementsByClassName("AudioT_LMR_BTN"				)[0];
+	var ele_AudioT_LMR_Left_BTN						=ele_MP3_Array_Ctrl_Table.getElementsByClassName("AudioT_LMR_Left_BTN"			)[0];
+	var ele_AudioT_LMR_Right_BTN					=ele_MP3_Array_Ctrl_Table.getElementsByClassName("AudioT_LMR_Right_BTN"			)[0];
+	var ele_AudioT_TMB_BTN							=ele_MP3_Array_Ctrl_Table.getElementsByClassName("AudioT_TMB_BTN"				)[0];
+	var ele_AudioT_TMB_Up_BTN						=ele_MP3_Array_Ctrl_Table.getElementsByClassName("AudioT_TMB_Up_BTN"			)[0];
+	var ele_AudioT_TMB_Down_BTN						=ele_MP3_Array_Ctrl_Table.getElementsByClassName("AudioT_TMB_Down_BTN"			)[0];
 	//==========DIVISION==========
 	var ele_DFCB_MP3_Array_AT_Or_IF_BTN				=ele_MP3_Array_Ctrl_Table.getElementsByClassName("DFCB_MP3_Array_AT_Or_IF_BTN"				)[0];
 	var ele_DFCB_MP3_Array_Show_BTN					=ele_MP3_Array_Ctrl_Table.getElementsByClassName("DFCB_MP3_Array_Show_BTN"					)[0];
 	var ele_DFCB_MP3_Array_Clear_BTN				=ele_MP3_Array_Ctrl_Table.getElementsByClassName("DFCB_MP3_Array_Clear_BTN"					)[0];
 	var ele_DFCB_MP3_CT_SEL							=ele_MP3_Array_Ctrl_Table.getElementsByClassName("DFCB_MP3_CT_SEL"							)[0];
 	var ele_DFCB_MP3_Array_Show_Type_SEL			=ele_MP3_Array_Ctrl_Table.getElementsByClassName("DFCB_MP3_Array_Show_Type_SEL"				)[0];
+	var ele_DFCB_MP3_ATIF_CSS_Zoom_CLS				=ele_MP3_Array_Ctrl_Table.getElementsByClassName("DFCB_MP3_ATIF_CSS_Zoom_CLS"				)[0];
 	//==========DIVISION==========
 	var ele_Audio_CSS_Border_EAB					=ele_MP3_Array_Ctrl_Table.getElementsByClassName("Audio_CSS_Border_EAB"						)[0];
 	//==========DIVISION==========
 	var ele_MP3_Array_AudioT_Ctrl_Table				=ele_MP3_Array_Ctrl_Table.getElementsByClassName("MP3_Array_AudioT_Ctrl_Table"				)[0];
 	var ele_AudioT_CSS_Border_EAB					=ele_MP3_Array_Ctrl_Table.getElementsByClassName("AudioT_CSS_Border_EAB"					)[0];
 	var ele_AudioT_Video_NUM_Type_SEL				=ele_MP3_Array_Ctrl_Table.getElementsByClassName("AudioT_Video_NUM_Type_SEL"				)[0];
+	var ele_AudioT_Play_Or_Not_Type_Set_BTN			=ele_MP3_Array_Ctrl_Table.getElementsByClassName("AudioT_Play_Or_Not_Type_Set_BTN"			)[0];
 	var ele_AudioT_Play_Or_Not_Type_SEL				=ele_MP3_Array_Ctrl_Table.getElementsByClassName("AudioT_Play_Or_Not_Type_SEL"				)[0];
 	//==========DIVISION==========
 	var ele_MP3_Array_IFrame_Ctrl_Table				=ele_MP3_Array_Ctrl_Table.getElementsByClassName("MP3_Array_IFrame_Ctrl_Table"				)[0];
 	var ele_IFrame_CSS_Border_EAB					=ele_MP3_Array_Ctrl_Table.getElementsByClassName("IFrame_CSS_Border_EAB"					)[0];
 	var ele_IFrame_Video_NUM_Type_SEL				=ele_MP3_Array_Ctrl_Table.getElementsByClassName("IFrame_Video_NUM_Type_SEL"				)[0];
+	var ele_IFrame_Play_Or_Not_Type_Set_BTN			=ele_MP3_Array_Ctrl_Table.getElementsByClassName("IFrame_Play_Or_Not_Type_Set_BTN"			)[0];
 	var ele_IFrame_Play_Or_Not_Type_SEL				=ele_MP3_Array_Ctrl_Table.getElementsByClassName("IFrame_Play_Or_Not_Type_SEL"				)[0];
 	//==========DIVISION==========
 	var ele_Speed_ST_EAB							=ele_MP3_Array_Ctrl_Table.getElementsByClassName("Speed_ST_EAB"								)[0];
@@ -179,6 +243,7 @@ function ELE_ELEL_STR_INI(INI_Type)
 	//==========DIVISION==========
 	function elelf_AudioT_Sub()						{return ele_MP3_Array_AudioT_Table.getElementsByClassName("MP3_Array_AudioT_Sub_Table");}
 	//==========DIVISION==========
+	function elelf_BG_IMG_P0_DIV()					{return ele_BG_IMG_Table.getElementsByClassName("BG_IMG_P0_DIV");}
 	function elelf_BG_IMG()							{return ele_BG_IMG_Table.getElementsByTagName("img");}
 	//==========DIVISION==========
 	function elelf_IFrame()							{return ele_MP3_Array_IFrame_Table.getElementsByTagName("iframe");}
@@ -222,23 +287,46 @@ var MP3_Array_CLS								=
 	{
 		//==========DIVISION==========
 		BG_IMG_Type_ID							:	0,//0:"右一";1:"右二";2:"左一";3:"左二";
+		BG_IMG_Type_ST_EAB						:	0,//0:"Disabled";1:"Enabled";
+		BG_IMG_Type_ST_ID						:	0,
+		BG_IMG_Type_ST_TTI						:	10000,
+		//==========DIVISION==========
 		BG_IMG_Shake_State						:	0,//0:"Stop";1:"Start";
 		BG_IMG_Shake_ST_ID						:	0,
+		BG_IMG_Shake_ST_TTI						:	10,
+		//==========DIVISION==========
+		BG_IMG_Shake_VAL_Random_ST_EAB			:	0,//0:"Disabled";1:"Enabled";
+		BG_IMG_Shake_VAL_Random_ST_ID			:	0,
+		BG_IMG_Shake_VAL_Random_ST_TTI			:	10000,
 		//==========DIVISION==========
 		BG_IMG_Shake_CSS_ITV_Margin_Top			:	10,
 		BG_IMG_Shake_CSS_ITV_Margin_Left		:	10,
 		BG_IMG_Shake_CSS_Margin_Slope_EAB		:	0,//0:"Disabled";1:"Enabled";
+		BG_IMG_Shake_CSS_Margin_Slope_Tan_Or_Cot:	0,//0:"Tan";1:"Cot";
 		BG_IMG_Shake_CSS_Margin_Slope			:	1.000,
+		//==========DIVISION==========
+		BG_IMG_Shake_CSS_ZPointX				:	0,
+		BG_IMG_Shake_CSS_ZPointY				:	0,
 		BG_IMG_Shake_CSS_ITV_Zoom				:	0.000,
-		BG_IMG_Shake_CSS_ITV_Rotate				:	0,
+		//==========DIVISION==========
+		BG_IMG_Shake_CSS_RPointX				:	0,
+		BG_IMG_Shake_CSS_RPointY				:	0,
+		BG_IMG_Shake_CSS_ITV_Rotate				:	0.000,
+		//==========DIVISION==========
 		BG_IMG_Shake_CSS_ITV_Opacity			:	0.000,
 		//==========DIVISION==========
-		Audio_LMR_State							:	1,//0:"Left";1:"Middle";2:"Right";
-		Audio_TMB_State							:	1,//0:"Top";1:"Middle";2:"Bottom";
+		AudioT_CSS_Position_Type				:	0,//0:"LMR_TMB_9_Postion";1:"LMR_TMB_VAL";
+		//==========DIVISION==========
+		AudioT_Position_State					:	0,//0:"NULL";1:"absolute";2:"fixed";3:"relative";
+		AudioT_LMR_State						:	1,//0:"Left";1:"Middle";2:"Right";
+		AudioT_TMB_State						:	1,//0:"Top";1:"Middle";2:"Bottom";
+		AudioT_LMR_VAL							:	0,
+		AudioT_TMB_VAL							:	0,
 		//==========DIVISION==========
 		DFCB_MP3_Array_AT_Or_IF					:	0,//0:"AudioT_Table";1:"IFrame";
 		DFCB_MP3_CT_ID							:	0,
 		DFCB_MP3_Array_Show_Type				:	0,//0:"In_Order";1:"Random_Order";
+		DFCB_MP3_ATIF_CSS_Zoom					:	1.000,
 		//==========DIVISION==========
 		AudioT_Video_NUM_Type_ID				:	6,//Video_TD_012_X_TR_009___AudioT_TD_008_X_TR_006
 		AudioT_Video_NUM_ARR					:	[0,0,0,0],
@@ -315,24 +403,60 @@ function MP3_Array_Ctrl_Table_INI()
 		MP3_Array_Ctrl_Table_Action(ele,evt,post_method);
 	})();
 	//==========DIVISION==========
+	MP3_Array_CLS.VAL.BG_IMG_Type_ST_EAB=num00=0;//0:"Disabled";1:"Enabled";
+	ele_BG_IMG_Type_ST_EAB.style.backgroundColor=["red","#1EB0E9"][num00];
+	ele_BG_IMG_Type_ST_TTI_CLS.value			=MP3_Array_CLS.VAL.BG_IMG_Type_ST_TTI	=4000 + parseInt(2000 * Math.random(),10);
+	MP3_Array_CLS.VAL.BG_IMG_Type_ST_ID=0;
+	//==========DIVISION==========
 	ele02=ele00.getElementsByClassName("BG_IMG_Shake_BTN")[0];
 	MP3_Array_CLS.VAL.BG_IMG_Shake_State=0;//0:"Stop";1:"Start";
 	ele02.style.backgroundColor=["red","#1EB0E9"][MP3_Array_CLS.VAL.BG_IMG_Shake_State];
+	ele_BG_IMG_Shake_ST_TTI_CLS.value						=MP3_Array_CLS.VAL.BG_IMG_Shake_ST_TTI				=10 + parseInt(10 * Math.random(),10);
 	MP3_Array_CLS.VAL.BG_IMG_Shake_ST_ID=0;
+	//==========DIVISION==========
+	MP3_Array_CLS.VAL.BG_IMG_Shake_VAL_Random_ST_EAB=num00=0;//0:"Disabled";1:"Enabled";
+	ele_BG_IMG_Shake_VAL_Random_ST_EAB.style.backgroundColor=["red","#1EB0E9"][num00];
+	ele_BG_IMG_Shake_VAL_Random_ST_TTI_CLS.value			=MP3_Array_CLS.VAL.BG_IMG_Shake_VAL_Random_ST_TTI	=4000 + parseInt(2000 * Math.random(),10);
+	MP3_Array_CLS.VAL.BG_IMG_Shake_VAL_Random_ST_ID=0;
+	ele_BG_IMG_Shake_TTI_Random_BTN.style.backgroundColor	="violet";
+	ele_BG_IMG_Shake_VAL_Random_BTN.style.backgroundColor	="#1EB0E9";
+	//==========DIVISION==========
 	ele03=ele00.getElementsByClassName("DFCB_MP3_Array_Show_BTN")[0];
 	ele03.style.backgroundColor="#1EB0E9";
 	ele04=ele00.getElementsByClassName("DFCB_MP3_Array_Clear_BTN")[0];
 	ele04.style.backgroundColor="red";
 	//==========DIVISION==========
-	MP3_Array_CLS.VAL.BG_IMG_Shake_CSS_ITV_Margin_Top			=ele_BG_IMG_Shake_CSS_ITV_Margin_Top_CLS	.value=10 + parseInt(11 * Math.random(),10);
-	MP3_Array_CLS.VAL.BG_IMG_Shake_CSS_ITV_Margin_Left			=ele_BG_IMG_Shake_CSS_ITV_Margin_Left_CLS	.value=10 + parseInt(11 * Math.random(),10);
+	MP3_Array_CLS.VAL.BG_IMG_Shake_CSS_ITV_Margin_Top			=ele_BG_IMG_Shake_CSS_ITV_Margin_Top_CLS	.value=10 + parseInt(41 * Math.random(),10);
+	MP3_Array_CLS.VAL.BG_IMG_Shake_CSS_ITV_Margin_Left			=ele_BG_IMG_Shake_CSS_ITV_Margin_Left_CLS	.value=10 + parseInt(41 * Math.random(),10);
 	MP3_Array_CLS.VAL.BG_IMG_Shake_CSS_Margin_Slope_EAB			=0;//0:"Disabled";1:"Enabled";
 	ele_BG_IMG_Shake_CSS_Margin_Slope_EAB.style.backgroundColor	=["red","#1EB0E9"][MP3_Array_CLS.VAL.BG_IMG_Shake_CSS_Margin_Slope_EAB];
-	BG_IMG_CSS_VAL_CLS.Margin_Slope								=
+	MP3_Array_CLS.VAL.BG_IMG_Shake_CSS_Margin_Slope_Tan_Or_Cot	=0;//0:"Tan";1:"Cot";
+	ele_BG_IMG_Shake_CSS_Margin_Slope_Tan_Or_Cot_BTN.style.backgroundColor	=["yellow","orange"][MP3_Array_CLS.VAL.BG_IMG_Shake_CSS_Margin_Slope_Tan_Or_Cot];
+	ele_BG_IMG_Shake_CSS_Margin_Slope_Tan_Or_Cot_BTN.value					=["Tan","Cot"][MP3_Array_CLS.VAL.BG_IMG_Shake_CSS_Margin_Slope_Tan_Or_Cot];
 	MP3_Array_CLS.VAL.BG_IMG_Shake_CSS_Margin_Slope				=ele_BG_IMG_Shake_CSS_Margin_Slope_CLS		.value=1.000;
+	//==========DIVISION==========
+	MP3_Array_CLS.VAL.BG_IMG_Shake_CSS_ZPointX					=ele_BG_IMG_Shake_CSS_ZPointX_CLS			.value=0;
+	MP3_Array_CLS.VAL.BG_IMG_Shake_CSS_ZPointY					=ele_BG_IMG_Shake_CSS_ZPointY_CLS			.value=0;
 	MP3_Array_CLS.VAL.BG_IMG_Shake_CSS_ITV_Zoom					=ele_BG_IMG_Shake_CSS_ITV_Zoom_CLS			.value=0.000;
-	MP3_Array_CLS.VAL.BG_IMG_Shake_CSS_ITV_Rotate				=ele_BG_IMG_Shake_CSS_ITV_Rotate_CLS		.value=0;
+	//==========DIVISION==========
+	MP3_Array_CLS.VAL.BG_IMG_Shake_CSS_RPointX					=ele_BG_IMG_Shake_CSS_RPointX_CLS			.value=0;
+	MP3_Array_CLS.VAL.BG_IMG_Shake_CSS_RPointY					=ele_BG_IMG_Shake_CSS_RPointY_CLS			.value=0;
+	MP3_Array_CLS.VAL.BG_IMG_Shake_CSS_ITV_Rotate				=ele_BG_IMG_Shake_CSS_ITV_Rotate_CLS		.value=0.000;
+	//==========DIVISION==========
 	MP3_Array_CLS.VAL.BG_IMG_Shake_CSS_ITV_Opacity				=ele_BG_IMG_Shake_CSS_ITV_Opacity_CLS		.value=0.000;
+	//==========DIVISION==========
+	BG_IMG_CSS_VAL_ITV_CLS.Margin_Top			=MP3_Array_CLS.VAL.BG_IMG_Shake_CSS_ITV_Margin_Top			;
+	BG_IMG_CSS_VAL_ITV_CLS.Margin_Left			=MP3_Array_CLS.VAL.BG_IMG_Shake_CSS_ITV_Margin_Left			;
+	BG_IMG_CSS_VAL_CLS.ZPointX					=MP3_Array_CLS.VAL.BG_IMG_Shake_CSS_ZPointX					;
+	BG_IMG_CSS_VAL_CLS.ZPointY					=MP3_Array_CLS.VAL.BG_IMG_Shake_CSS_ZPointY					;
+	BG_IMG_CSS_VAL_ITV_CLS.Zoom					=MP3_Array_CLS.VAL.BG_IMG_Shake_CSS_ITV_Zoom				;
+	BG_IMG_CSS_VAL_CLS.RPointX					=MP3_Array_CLS.VAL.BG_IMG_Shake_CSS_RPointX					;
+	BG_IMG_CSS_VAL_CLS.RPointY					=MP3_Array_CLS.VAL.BG_IMG_Shake_CSS_RPointY					;
+	BG_IMG_CSS_VAL_ITV_CLS.Rotate				=MP3_Array_CLS.VAL.BG_IMG_Shake_CSS_ITV_Rotate				;
+	BG_IMG_CSS_VAL_ITV_CLS.Opacity				=MP3_Array_CLS.VAL.BG_IMG_Shake_CSS_ITV_Opacity				;
+	BG_IMG_CSS_VAL_CLS.Margin_Slope_EAB			=MP3_Array_CLS.VAL.BG_IMG_Shake_CSS_Margin_Slope_EAB		;
+	BG_IMG_CSS_VAL_CLS.Margin_Slope				=MP3_Array_CLS.VAL.BG_IMG_Shake_CSS_Margin_Slope			;
+	BG_IMG_CSS_VAL_CLS.Margin_Slope_Tan_Or_Cot	=MP3_Array_CLS.VAL.BG_IMG_Shake_CSS_Margin_Slope_Tan_Or_Cot	;
 	//==========DIVISION==========
 	str05="";
 	str05+="<option>DFJF_MP3_ALL</option>";
@@ -347,6 +471,9 @@ function MP3_Array_Ctrl_Table_INI()
 	str06+="<option>Random_Order</option>";
 	ele06.innerHTML=str06;ele06.selectedIndex=parseInt(2 * Math.random(),10);
 	MP3_Array_CLS.VAL.DFCB_MP3_Array_Show_Type=ele06.selectedIndex;
+	//==========DIVISION==========
+	MP3_Array_CLS.VAL.DFCB_MP3_ATIF_CSS_Zoom=num00=2.500;
+	ele_DFCB_MP3_ATIF_CSS_Zoom_CLS.value=parseFloat(num00).toFixed(3);
 	//==========DIVISION==========
 	//0:"Disabled";1:"Enabled";
 	MP3_Array_CLS.VAL.Audio_CSS_Border_EAB=num00=parseInt(2 * Math.random(),10);
@@ -416,6 +543,8 @@ function MP3_Array_Ctrl_Table_INI()
 				"num01 : " + num01 + ";\t" + 
 				"");
 	//==========DIVISION==========
+	ele_IFrame_Play_Or_Not_Type_Set_BTN.style.backgroundColor="#1EB0E9";
+	//==========DIVISION==========
 	str08="";
 	str08+="<option>Inner_First_Paused</option>";
 	str08+="<option>Inner_First_Played</option>";
@@ -459,15 +588,19 @@ function MP3_Array_Ctrl_Table_INI()
 	//==========DIVISION==========
 	//====================DIVISION====================
 	//==========DIVISION==========
-	MP3_Array_CLS.VAL.Audio_LMR_State=num00=1;//0:"Left";1:"Middle";2:"Right";
-	MP3_Array_CLS.VAL.Audio_TMB_State=num01=2;//0:"Top";1:"Middle";2:"Bottom";
-	ele_Audio_LMR_BTN.value=["L","M","R"][num00];	ele_Audio_LMR_BTN.style.backgroundColor=["LightPink","LightSalmon","LightCoral"][num00];
-	ele_Audio_TMB_BTN.value=["T","M","B"][num01];	ele_Audio_TMB_BTN.style.backgroundColor=["LightPink","LightSalmon","LightCoral"][num01];
-	num02=["0","50","100"][num00];
-	num03=["0","50","100"][num01];
-	ele_MP3_Array_AudioT_Table.setAttribute("style","position:fixed;" + 
-		"left:" + num02 + "%;" + "top:" + num03 + "%;" + 
-		"transform:translate(-" + num02 + "%,-" + num03 + "%);");
+	MP3_Array_CLS.VAL.AudioT_Position_State=num00=2;//0:"NULL";1:"absolute";2:"fixed";3:"relative";
+	MP3_Array_CLS.VAL.AudioT_LMR_State=num01=1;//0:"Left";1:"Middle";2:"Right";
+	MP3_Array_CLS.VAL.AudioT_TMB_State=num02=2;//0:"Top";1:"Middle";2:"Bottom";
+	ele_AudioT_Position_BTN.value	=["N","A","F","R"][num00];	ele_AudioT_Position_BTN.style.backgroundColor	=["LightCyan","LightGreen","LightSkyBlue","Magenta"][num00];
+	ele_AudioT_LMR_BTN.value		=["L","M","R"][num01];		ele_AudioT_LMR_BTN.style.backgroundColor		=["LightPink","LightSalmon","LightCoral"][num01];
+	ele_AudioT_TMB_BTN.value		=["T","M","B"][num02];		ele_AudioT_TMB_BTN.style.backgroundColor		=["LightPink","LightSalmon","LightCoral"][num02];
+	//==========DIVISION==========
+	MP3_Array_CLS.VAL.AudioT_CSS_Position_Type=0;//0:"LMR_TMB_9_Postion";1:"LMR_TMB_VAL";
+	MP3_Array_AudioT_Table_CSS_Set(null);
+	MP3_Array_IFrame_Table_CSS_Set(null);
+	//==========DIVISION==========
+	MP3_Array_CLS.VAL.AudioT_LMR_VAL=0;
+	MP3_Array_CLS.VAL.AudioT_TMB_VAL=0;
 	//==========DIVISION==========
 	//====================DIVISION====================
 	//==========DIVISION==========
@@ -475,7 +608,8 @@ function MP3_Array_Ctrl_Table_INI()
 	ele02=ele_MP3_Array_AudioT_Ctrl_Table		;
 	ele03=ele_MP3_Array_IFrame_Ctrl_Table		;
 	ele04=ele_AudioT_Video_NUM_Type_SEL			;
-	ele05=ele_AudioT_Play_Or_Not_Type_SEL		;
+	ele05=ele_AudioT_Play_Or_Not_Type_Set_BTN	;
+	ele06=ele_AudioT_Play_Or_Not_Type_SEL		;
 	//==========DIVISION==========
 	MP3_Array_CLS.VAL.DFCB_MP3_Array_AT_Or_IF=num00=0;//0:"AudioT_Table";1:"IFrame";
 	ele01.value=["AudioT","IFrame"][num00];
@@ -490,6 +624,7 @@ function MP3_Array_Ctrl_Table_INI()
 	//Video_TD_001_X_TR_001___AudioT_TD_008_X_TR_006
 	//Video_TD_001_X_TR_001___AudioT_TD_012_X_TR_009
 	//Video_TD_001_X_TR_001___AudioT_TD_012_X_TR_014
+	//Video_TD_001_X_TR_001___AudioT_TD_024_X_TR_014
 	//Video_TD_001_X_TR_001___AudioT_TD_024_X_TR_018
 	//Video_TD_012_X_TR_014___AudioT_TD_002_X_TR_002
 	//Video_TD_012_X_TR_009___AudioT_TD_003_X_TR_003
@@ -503,11 +638,12 @@ function MP3_Array_Ctrl_Table_INI()
 	str04+="<option>VX001_VY001_ATX008_ATY006</option>";//04;
 	str04+="<option>VX001_VY001_ATX012_ATY009</option>";//05;
 	str04+="<option>VX001_VY001_ATX012_ATY014</option>";//06;
-	str04+="<option>VX001_VY001_ATX024_ATY018</option>";//07;
-	str04+="<option>VX012_VY014_ATX002_ATY002</option>";//08;
-	str04+="<option>VX012_VY009_ATX003_ATY003</option>";//09;
-	str04+="<option>VX008_VY006_ATX005_ATY004</option>";//10;
-	str04+="<option>VX004_VY003_ATX010_ATY008</option>";//11;
+	str04+="<option>VX001_VY001_ATX024_ATY014</option>";//07;
+	str04+="<option>VX001_VY001_ATX024_ATY018</option>";//08;
+	str04+="<option>VX012_VY014_ATX002_ATY002</option>";//09;
+	str04+="<option>VX012_VY009_ATX003_ATY003</option>";//10;
+	str04+="<option>VX008_VY006_ATX005_ATY004</option>";//11;
+	str04+="<option>VX004_VY003_ATX010_ATY008</option>";//12;
 	ele04.innerHTML=str04;ele04.selectedIndex=6;
 	MP3_Array_CLS.VAL.AudioT_Video_NUM_Type_ID=ele04.selectedIndex;//Video_TD_012_X_TR_014___AudioT_TD_001_X_TR_001
 	//==========DIVISION==========
@@ -527,13 +663,15 @@ function MP3_Array_Ctrl_Table_INI()
 	MP3_Array_CLS.VAL.Speed_ST_ID_ARR=createArray(AudioT_NUMX * AudioT_NUMY,AT_Video_NUMX * AT_Video_NUMY);
 	//MP3_Array_CLS.VAL.Speed_ST_ID_ARR[ATID][VID];
 	//==========DIVISION==========
-	str05="";
-	str05+="<option>Inner_First_Paused</option>";
-	str05+="<option>Inner_First_Played</option>";
-	str05+="<option>Inner_ALL_Paused</option>";
-	str05+="<option>Inner_ALL_Played</option>";
-	ele05.innerHTML=str05;ele05.selectedIndex=parseInt(2 * Math.random(),10);
-	MP3_Array_CLS.VAL.AudioT_Play_Or_Not_Type_ID=ele05.selectedIndex;//0:"Inner_First_Paused";1:"Inner_First_Played";2:"Inner_ALL_Paused";3:"Inner_ALL_Played";
+	ele05.style.backgroundColor="#1EB0E9";
+	//==========DIVISION==========
+	str06="";
+	str06+="<option>Inner_First_Paused</option>";
+	str06+="<option>Inner_First_Played</option>";
+	str06+="<option>Inner_ALL_Paused</option>";
+	str06+="<option>Inner_ALL_Played</option>";
+	ele06.innerHTML=str06;ele06.selectedIndex=parseInt(2 * Math.random(),10);
+	MP3_Array_CLS.VAL.AudioT_Play_Or_Not_Type_ID=ele06.selectedIndex;//0:"Inner_First_Paused";1:"Inner_First_Played";2:"Inner_ALL_Paused";3:"Inner_ALL_Played";
 	//==========DIVISION==========
 	//====================DIVISION====================
 }
@@ -547,9 +685,17 @@ function MP3_Array_Ctrl_Table_INI_SD()
 	var AR_ID;
 	//==========DIVISION==========
 	ele_AudioT_Video_NUM_Type_SEL.selectedIndex=6;//"Video_TD_001_X_TR_001___AudioT_TD_012_X_TR_014";"VX001_VY001_ATX012_ATY014";
+	ele_AudioT_Video_NUM_Type_SEL.selectedIndex=7;//"Video_TD_001_X_TR_001___AudioT_TD_024_X_TR_014";"VX001_VY001_ATX024_ATY014";
 	(function(){
 		var ele,evt,post_method;
 		ele=ele_MP3_Array_Ctrl_Table;evt={type:"change",target:ele_AudioT_Video_NUM_Type_SEL};post_method=2;
+		MP3_Array_Ctrl_Table_Action(ele,evt,post_method);
+	})();
+	//==========DIVISION==========
+	ele_AudioT_Play_Or_Not_Type_SEL.selectedIndex=3;//0:"Inner_First_Paused";1:"Inner_First_Played";2:"Inner_ALL_Paused";3:"Inner_ALL_Played";
+	(function(){
+		var ele,evt,post_method;
+		ele=ele_MP3_Array_Ctrl_Table;evt={type:"change",target:ele_AudioT_Play_Or_Not_Type_SEL};post_method=2;
 		MP3_Array_Ctrl_Table_Action(ele,evt,post_method);
 	})();
 	//==========DIVISION==========
@@ -560,31 +706,37 @@ function MP3_Array_Ctrl_Table_INI_SD()
 		MP3_Array_Ctrl_Table_Action(ele,evt,post_method);
 	})();
 	//==========DIVISION==========
-	LEN=parseInt(3 * Math.random(),10);
-	for (i=0;i<LEN;i++)	{ele_Audio_LMR_BTN.click();}
-	LEN=parseInt(3 * Math.random(),10);
-	for (i=0;i<LEN;i++)	{ele_Audio_TMB_BTN.click();}
+	//	LEN=parseInt(3 * Math.random(),10);
+	//	for (i=0;i<LEN;i++)	{ele_AudioT_LMR_BTN.click();}
+	//	LEN=parseInt(3 * Math.random(),10);
+	//	for (i=0;i<LEN;i++)	{ele_AudioT_TMB_BTN.click();}
 	//==========DIVISION==========
 	ele_Speed_ST_EAB.click();
 	//==========DIVISION==========
+	if ( OS.HWID==0 && OS.HWSTR=="PC" )				{}
+	else if ( OS.HWID==1 && OS.HWSTR=="Mobile" )	{}
+	else		{}
+	ele_CSS_Main.innerHTML=ele_CSS_Main.innerHTML.replace(/^(body.*\{)(.*)(\})$/gm,"$1" + ["overflow:hidden;",""][OS.HWID] + "$3")
+		.replace(new RegExp("^(.+)(\\/\\*" + ["PC","AD"][(OS.HWID + 1)%2] + "_ATST_TD_VIDEO\\*\\/)$","gm"),"\/\*$1\*\/$2");
+	//==========DIVISION==========
 }
-
+//==========DIVISION==========
 var BG_IMG_CSS_Code_Area	=1;
 var BG_IMG_CSS_VAL_ITV_CLS	={Margin_Top:10,Margin_Left:10,Zoom:0.000,Rotate:0,Opacity:0.000};
-var BG_IMG_CSS_VAL_CLS		={Margin_Slope_EAB:0,Margin_Slope:1.000};
+var BG_IMG_CSS_VAL_CLS		={Margin_Slope_EAB:0,Margin_Slope:1.000,Margin_Slope_Tan_Or_Cot:0,ZPointX:0,ZPointY:0,RPointX:0,RPointY:0};
 var BG_IMG_CSS_ARR			=
 [
 	[
-		{Margin_Top:-1520,Margin_Left:-3000,Zoom:1,Rotate:0,Opacity:1},
-		{Margin_Top:-1616,Margin_Left:-3000,Zoom:1,Rotate:0,Opacity:1},
-		{Margin_Top:-1616,Margin_Left:-944,	Zoom:1,Rotate:0,Opacity:1},
-		{Margin_Top:-1520,Margin_Left:-944,	Zoom:1,Rotate:0,Opacity:1},
+		{W:5864,H:4216,Margin_Top:-1520,Margin_Left:-3000,	OXD:2932,OYD:2108,ZPointX:0,ZPointY:0,Zoom:1,RPointX:0,RPointY:0,Rotate:0,Opacity:1},
+		{W:5864,H:4216,Margin_Top:-1616,Margin_Left:-3000,	OXD:2932,OYD:2108,ZPointX:0,ZPointY:0,Zoom:1,RPointX:0,RPointY:0,Rotate:0,Opacity:1},
+		{W:5864,H:4216,Margin_Top:-1616,Margin_Left:-944,	OXD:2932,OYD:2108,ZPointX:0,ZPointY:0,Zoom:1,RPointX:0,RPointY:0,Rotate:0,Opacity:1},
+		{W:5864,H:4216,Margin_Top:-1520,Margin_Left:-944,	OXD:2932,OYD:2108,ZPointX:0,ZPointY:0,Zoom:1,RPointX:0,RPointY:0,Rotate:0,Opacity:1},
 	],
 	[
-		{Margin_Top:-2344,Margin_Left:-2176,Zoom:1,Rotate:90,Opacity:1},
-		{Margin_Top:-2440,Margin_Left:-2176,Zoom:1,Rotate:90,Opacity:1},
-		{Margin_Top:-2440,Margin_Left:-120,	Zoom:1,Rotate:270,Opacity:1},
-		{Margin_Top:-2344,Margin_Left:-120,	Zoom:1,Rotate:270,Opacity:1},
+		{W:4216,H:5864,Margin_Top:-2344,Margin_Left:-2176,	OXD:2108,OYD:2932,ZPointX:0,ZPointY:0,Zoom:1,RPointX:0,RPointY:0,Rotate:90,Opacity:1},
+		{W:4216,H:5864,Margin_Top:-2440,Margin_Left:-2176,	OXD:2108,OYD:2932,ZPointX:0,ZPointY:0,Zoom:1,RPointX:0,RPointY:0,Rotate:90,Opacity:1},
+		{W:4216,H:5864,Margin_Top:-2440,Margin_Left:-120,	OXD:2108,OYD:2932,ZPointX:0,ZPointY:0,Zoom:1,RPointX:0,RPointY:0,Rotate:270,Opacity:1},
+		{W:4216,H:5864,Margin_Top:-2344,Margin_Left:-120,	OXD:2108,OYD:2932,ZPointX:0,ZPointY:0,Zoom:1,RPointX:0,RPointY:0,Rotate:270,Opacity:1},
 	]
 ];
 var BG_IMG_URL_ARR=
@@ -603,6 +755,292 @@ var BG_IMG_URL_ARR=
 	]
 ];
 
+//==========DIVISION==========
+function BG_IMG_CSS_INI(evt_target)
+{
+	//==========DIVISION==========
+	//eval(ELE_ELEL_STR_INI(0));
+	eval(Parameter_Base_STR_ijk_XX(10));
+	var ID,LEN,ID_LEN;
+	var INI_Type;
+	var Code_Area;
+	//==========DIVISION==========
+	var BG_IMG_Type_ID=MP3_Array_CLS.VAL.BG_IMG_Type_ID;
+	arr00=BG_IMG_URL_ARR[BG_IMG_CSS_Code_Area];
+	arr02=JSON.parse(JSON.stringify(BG_IMG_CSS_ARR[BG_IMG_CSS_Code_Area]));
+	//BG_IMG_CSS_ARR[BG_IMG_CSS_Code_Area][BG_IMG_Type_ID];
+	//BG_IMG_URL_ARR[BG_IMG_CSS_Code_Area][BG_IMG_Type_ID];
+	//==========DIVISION==========
+	//"transform-origin":"X";"Y";margin-top;margin-left;的定位测试结果：
+	//还有cot/tan
+	LEN=arr02.length;
+	for (ID=0;ID<LEN;ID++)
+	{
+		arr02[ID].Margin_Top	+=[+1,-1,-1,+1][BG_IMG_Type_ID] * arr02[ID].RPointX	+ [-1,-1,-1,-1][BG_IMG_Type_ID] * arr02[ID].RPointY	;
+		arr02[ID].Margin_Left	+=[-1,-1,-1,-1][BG_IMG_Type_ID] * arr02[ID].RPointX	+ [-1,-1,+1,+1][BG_IMG_Type_ID] * arr02[ID].RPointY	;
+	}
+	//==========DIVISION==========
+	var url00,url01,url02,url03,url04;
+	Code_Area=BG_IMG_CSS_Code_Area;//Code_Area=1;
+	//==========DIVISION==========
+	if ( Code_Area==0 )
+	{
+		//==========DIVISION==========
+		//1920X1080;
+		url00="MLH_020/MLH_010_R_R090.jpg";str00="";//	str00+="margin-top:-1520px;margin-left:-3000px;";
+		url01="MLH_020/MLH_011_M_R090.jpg";str01="";//	str01+="margin-top:-1616px;margin-left:-3000px;";
+		url02="MLH_020/MLH_030_R_R270.jpg";str02="";//	str02+="margin-top:-1616px;margin-left:-944px;"	;
+		url03="MLH_020/MLH_031_M_R270.jpg";str03="";//	str03+="margin-top:-1520px;margin-left:-944px;"	;
+		//==========DIVISION==========
+		str00+="margin-top:" + arr02[0].Margin_Top.toString() + "px;margin-left:" + arr02[0].Margin_Left.toString() + "px;";	str00+="zoom:1;";
+		str01+="margin-top:" + arr02[1].Margin_Top.toString() + "px;margin-left:" + arr02[1].Margin_Left.toString() + "px;";	str01+="zoom:1;";
+		str02+="margin-top:" + arr02[2].Margin_Top.toString() + "px;margin-left:" + arr02[2].Margin_Left.toString() + "px;";	str02+="zoom:1;";
+		str03+="margin-top:" + arr02[3].Margin_Top.toString() + "px;margin-left:" + arr02[3].Margin_Left.toString() + "px;";	str03+="zoom:1;";
+		//==========DIVISION==========
+		str00+="transform:rotate(0deg)rotateX(0deg)rotateY(0deg)rotateZ(0deg);";		str00+="opacity:1;";
+		str01+="transform:rotate(0deg)rotateX(0deg)rotateY(0deg)rotateZ(0deg);";		str01+="opacity:1;";
+		str02+="transform:rotate(0deg)rotateX(0deg)rotateY(0deg)rotateZ(0deg);";		str02+="opacity:1;";
+		str03+="transform:rotate(0deg)rotateX(0deg)rotateY(0deg)rotateZ(0deg);";		str03+="opacity:1;";
+		//==========DIVISION==========
+	}
+	else if ( Code_Area==1 )
+	{
+		//==========DIVISION==========
+		//(5864-4216)/2=824;
+		url00="MLH_020/master_Li_high.jpg";str00="";//	str00+="margin-top:-2344px;margin-left:-2176px;";
+		url01="MLH_020/master_Li_high.jpg";str01="";//	str01+="margin-top:-2440px;margin-left:-2176px;";
+		url02="MLH_020/master_Li_high.jpg";str02="";//	str02+="margin-top:-2440px;margin-left:-120px;"	;
+		url03="MLH_020/master_Li_high.jpg";str03="";//	str03+="margin-top:-2344px;margin-left:-120px;"	;
+		//==========DIVISION==========
+		str00+="margin-top:" + arr02[0].Margin_Top.toString() + "px;margin-left:" + arr02[0].Margin_Left.toString() + "px;";	str00+="zoom:1;";
+		str01+="margin-top:" + arr02[1].Margin_Top.toString() + "px;margin-left:" + arr02[1].Margin_Left.toString() + "px;";	str01+="zoom:1;";
+		str02+="margin-top:" + arr02[2].Margin_Top.toString() + "px;margin-left:" + arr02[2].Margin_Left.toString() + "px;";	str02+="zoom:1;";
+		str03+="margin-top:" + arr02[3].Margin_Top.toString() + "px;margin-left:" + arr02[3].Margin_Left.toString() + "px;";	str03+="zoom:1;";
+		//==========DIVISION==========
+		str00+="transform:rotate(90deg)rotateX(0deg)rotateY(0deg)rotateZ(0deg);";		str00+="opacity:1;";
+		str01+="transform:rotate(90deg)rotateX(0deg)rotateY(180deg)rotateZ(0deg);";		str01+="opacity:1;";
+		str02+="transform:rotate(270deg)rotateX(0deg)rotateY(0deg)rotateZ(0deg);";		str02+="opacity:1;";
+		str03+="transform:rotate(270deg)rotateX(0deg)rotateY(180deg)rotateZ(0deg);";	str03+="opacity:1;";
+		//==========DIVISION==========
+	}
+	else		{}
+	//==========DIVISION==========
+	arr00=[url00,url01,url02,url03];
+	arr01=[str00,str01,str02,str03];
+	//==========DIVISION==========
+	var IMG_URL_STR				=arr00[BG_IMG_Type_ID];
+	var IMG_CSS_STR				="";IMG_CSS_STR+=arr01[BG_IMG_Type_ID];
+	var IMG_P0_DIV_CSS_STR		="";
+	//==========DIVISION==========
+	var ITS_IMG_Width,ITS_IMG_Height;
+	ITS_IMG_Width	=Screen_Width;
+	ITS_IMG_Height	=Screen_Height;
+	//==========DIVISION==========
+	cls05=BG_IMG_CSS_ARR[BG_IMG_CSS_Code_Area][BG_IMG_Type_ID];
+	cls07={Zoom:{}};
+	cls07.Zoom.Left		=(-1) * ( ITS_IMG_Width / 2 + cls05.ZPointX) * (cls05.Zoom - 1)		.toString();
+	cls07.Zoom.Top		=(-1) * ( ITS_IMG_Height / 2 + cls05.ZPointY) * (cls05.Zoom - 1)	.toString();
+	cls08={Origin:{}};
+	cls08.Origin.X		=(cls05.OXD + cls05.RPointX).toString();
+	cls08.Origin.Y		=(cls05.OYD + cls05.RPointY).toString();
+	//==========DIVISION==========
+	IMG_CSS_STR+="transform-origin:" + cls08.Origin.X + "px" + " " + cls08.Origin.Y + "px;" + 
+				"";
+	IMG_P0_DIV_CSS_STR+="position:relative;" + "left:" + cls07.Zoom.Left + ";" + "top:" + cls07.Zoom.Top + ";";
+	//==========DIVISION==========
+	elelf_BG_IMG()[0].src=IMG_URL_STR;
+	ele_CSS_Main.innerHTML=ele_CSS_Main.innerHTML.replace(/^(table.BG_IMG_Table img.+\{)(.*)(\})$/gm,"$1" + IMG_CSS_STR + "$3")
+							.replace(/^(table.BG_IMG_Table div\.BG_IMG_P0_DIV.+\{)(.*)(\})$/gm,"$1" + IMG_P0_DIV_CSS_STR + "$3");
+	//	console.log("URL : " + IMG_URL_STR + ";\t" + 
+	//				"IMG_CSS_STR : " + IMG_CSS_STR + ";\t" + 
+	//				"IMG_P0_DIV_CSS_STR : " + IMG_P0_DIV_CSS_STR + ";\t" + 
+	//				"");
+	//==========DIVISION==========
+}
+//==========DIVISION==========
+function BG_IMG_Shake_TTI_Random_Set(evt_target)
+{
+	//==========DIVISION==========
+	//eval(ELE_ELEL_STR_INI(0));
+	eval(Parameter_Base_STR_ijk_XX(10));
+	var ID,LEN,ID_LEN;
+	var INI_Type;
+	var Code_Area;
+	//==========DIVISION==========
+	//Number_Positive_Negative;
+	function NumPN()		{var num00=[-1,1][parseInt(2 * Math.random(),10)];return num00;}
+	//RN_INT;RN_FLOAT;
+	function RNI(num00)		{num00=parseInt(num00 * Math.random(),10);return num00;}
+	function RNF(num00)		{num00=parseFloat(num00 * Math.random());return num00;}
+	//==========DIVISION==========
+	ele_BG_IMG_Type_ST_TTI_CLS.value				=MP3_Array_CLS.VAL.BG_IMG_Type_ST_TTI				=4000 + RNI(2000);
+	ele_BG_IMG_Shake_ST_TTI_CLS.value				=MP3_Array_CLS.VAL.BG_IMG_Shake_ST_TTI				=10 + RNI([10,50,100][parseInt(3 * Math.random(),10)]);
+	ele_BG_IMG_Shake_VAL_Random_ST_TTI_CLS.value	=MP3_Array_CLS.VAL.BG_IMG_Shake_VAL_Random_ST_TTI	=4000 + RNI(2000);
+	//==========DIVISION==========
+}
+
+function BG_IMG_Shake_VAL_Random_Set(evt_target)
+{
+	//==========DIVISION==========
+	//eval(ELE_ELEL_STR_INI(0));
+	eval(Parameter_Base_STR_ijk_XX(10));
+	var ID,LEN,ID_LEN;
+	var INI_Type;
+	var Code_Area;
+	//==========DIVISION==========
+	//Number_Positive_Negative;
+	function NumPN()		{var num00=[-1,1][parseInt(2 * Math.random(),10)];return num00;}
+	//RN_INT;RN_FLOAT;
+	function RNI(num00)		{num00=parseInt(num00 * Math.random(),10);return num00;}
+	function RNF(num00)		{num00=parseFloat(num00 * Math.random());return num00;}
+	var BG_IMG_CSS_VAL_ITV_ITV_CLS	={Margin_Top:RNI(41),Margin_Left:RNI(41),Zoom:RNF(0.120),Rotate:RNF(15),Margin_Slope:RNF(3)};
+	//==========DIVISION==========
+	cls00=JSON.parse(JSON.stringify(BG_IMG_CSS_VAL_ITV_ITV_CLS	));
+	cls01=JSON.parse(JSON.stringify(BG_IMG_CSS_VAL_ITV_CLS		));
+	cls02=JSON.parse(JSON.stringify(BG_IMG_CSS_VAL_CLS			));
+	//==========DIVISION==========
+	cls01.Margin_Top		=	/*NumPN() * */	(10 + parseInt(cls00.Margin_Top		* Math.random(),10))		;
+	cls01.Margin_Left		=	/*NumPN() * */	(10 + parseInt(cls00.Margin_Left	* Math.random(),10))		;
+	cls01.Zoom				=	/*NumPN() * */	parseFloat([0,cls00.Zoom]	[parseInt(2 * Math.random(),10)]	* Math.random()).toFixed(3);
+	cls01.Rotate			=	/*NumPN() * */	parseFloat([0,cls00.Rotate]	[parseInt(2 * Math.random(),10)]	* Math.random()).toFixed(3);
+	//	cls01.RotateY;			/*			*/
+	//	cls01.Opacity		=	/*NumPN() * */	Math.random().toFixed(3);
+	//==========DIVISION==========
+	num00=cls02.Margin_Slope_EAB			=parseInt(2 * Math.random(),10);//0:"Disabled";1:"Enabled";
+	num01=cls02.Margin_Slope_Tan_Or_Cot		=parseInt(2 * Math.random(),10);//0:"Tan";1:"Cot";
+	cls02.Margin_Slope		=cls00.Margin_Slope * NumPN() * Math.random();
+	if ( num00==0 )			{}
+	else if ( num00==1 )
+	{
+		if ( num01==0 )
+		{
+			cls01.Margin_Top	=parseInt(cls01.Margin_Left * cls02.Margin_Slope,10);
+			cls01.Margin_Top	=Math.abs(cls01.Margin_Top);
+		}
+		else if ( num01==1 )
+		{
+			cls01.Margin_Left	=parseInt(cls01.Margin_Top * cls02.Margin_Slope,10);
+			cls01.Margin_Left	=Math.abs(cls01.Margin_Left);
+		}
+		else		{}
+	}
+	else		{}
+	cls02.Margin_Slope		=cls02.Margin_Slope.toFixed(3);
+	//==========DIVISION==========
+	var BG_IMG_Type_ID=MP3_Array_CLS.VAL.BG_IMG_Type_ID;
+	//==========DIVISION==========
+	//arr00=BG_IMG_URL_ARR[BG_IMG_CSS_Code_Area];
+	arr02=JSON.parse(JSON.stringify(BG_IMG_CSS_ARR[BG_IMG_CSS_Code_Area]));
+	//BG_IMG_CSS_ARR[BG_IMG_CSS_Code_Area][BG_IMG_Type_ID];
+	//BG_IMG_URL_ARR[BG_IMG_CSS_Code_Area][BG_IMG_Type_ID];
+	//cls02=BG_IMG_CSS_VAL_ITV_CLS;
+	//==========DIVISION==========
+	ele_BG_IMG_Shake_CSS_ZPointX_CLS.value=arr02[BG_IMG_Type_ID].ZPointX=NumPN() * RNI(Screen_Width * 1.5 * Math.random());
+	ele_BG_IMG_Shake_CSS_ZPointY_CLS.value=arr02[BG_IMG_Type_ID].ZPointY=NumPN() * RNI(Screen_Height * 1.5 * Math.random());
+	ele_BG_IMG_Shake_CSS_RPointX_CLS.value=arr02[BG_IMG_Type_ID].RPointX=NumPN() * RNI(arr02[BG_IMG_Type_ID].W * 0.5 * Math.random());
+	ele_BG_IMG_Shake_CSS_RPointY_CLS.value=arr02[BG_IMG_Type_ID].RPointY=NumPN() * RNI(arr02[BG_IMG_Type_ID].H * 0.5 * Math.random());
+	//==========DIVISION==========
+	//	console.log("cls01.Margin_Left : "				 + cls01.Margin_Left + ";\t" + 
+	//				"cls02.Margin_Slope_EAB : "			 + cls02.Margin_Slope_EAB + ";\t" + 
+	//				"cls02.Margin_Slope_Tan_Or_Cot : "	 + cls02.Margin_Slope_Tan_Or_Cot + ";\t" + 
+	//				"cls02.Margin_Slope : "				 + cls02.Margin_Slope + ";\t" + 
+	//				"");
+	//==========DIVISION==========
+	ele_BG_IMG_Shake_CSS_ITV_Margin_Top_CLS.value	=cls01.Margin_Top;
+	ele_BG_IMG_Shake_CSS_ITV_Margin_Left_CLS.value	=cls01.Margin_Left;
+	ele_BG_IMG_Shake_CSS_Margin_Slope_CLS.value		=cls02.Margin_Slope;
+	ele_BG_IMG_Shake_CSS_ITV_Zoom_CLS.value			=cls01.Zoom;
+	ele_BG_IMG_Shake_CSS_ITV_Rotate_CLS.value		=cls01.Rotate;
+	//	ele_BG_IMG_Shake_CSS_ITV_Opacity_CLS.value		=cls01.Opacity;
+	//==========DIVISION==========
+	if ( cls02.Margin_Slope_EAB!=BG_IMG_CSS_VAL_CLS.Margin_Slope_EAB )					{ele_BG_IMG_Shake_CSS_Margin_Slope_EAB.click();}
+	else		{}
+	if ( cls02.Margin_Slope_Tan_Or_Cot!=BG_IMG_CSS_VAL_CLS.Margin_Slope_Tan_Or_Cot )	{ele_BG_IMG_Shake_CSS_Margin_Slope_Tan_Or_Cot_BTN.click();}
+	else		{}
+	//==========DIVISION==========
+	var ele,evt,post_method;
+	elel00=[
+		ele_BG_IMG_Shake_CSS_ITV_Margin_Top_CLS,
+		ele_BG_IMG_Shake_CSS_ITV_Margin_Left_CLS,
+		ele_BG_IMG_Shake_CSS_Margin_Slope_CLS,
+		ele_BG_IMG_Shake_CSS_ITV_Zoom_CLS,
+		ele_BG_IMG_Shake_CSS_ITV_Rotate_CLS,
+		//ele_BG_IMG_Shake_CSS_ITV_Opacity_CLS,
+		ele_BG_IMG_Shake_CSS_ZPointX_CLS,
+		ele_BG_IMG_Shake_CSS_ZPointY_CLS,
+		ele_BG_IMG_Shake_CSS_RPointX_CLS,
+		ele_BG_IMG_Shake_CSS_RPointY_CLS,
+	];
+	for (i=0;i<elel00.length;i++)
+	{
+		ele=ele_MP3_Array_Ctrl_Table;evt={type:"change",target:elel00[i]};post_method=2;
+		MP3_Array_Ctrl_Table_Action(ele,evt,post_method);
+	}
+	//==========DIVISION==========
+}
+//==========DIVISION==========
+function MP3_Array_AudioT_Table_CSS_Set(evt_target)
+{
+	//==========DIVISION==========
+	//eval(ELE_ELEL_STR_INI(0));
+	eval(Parameter_Base_STR_ijk_XX(10));
+	var ID,LEN,ID_LEN;
+	var Code_Area;
+	//==========DIVISION==========
+	var AudioT_CSS_STR="";
+	var AudioT_CSS_Position_Type=MP3_Array_CLS.VAL.AudioT_CSS_Position_Type;//0:"LMR_TMB_9_Postion";1:"LMR_TMB_VAL";
+	//==========DIVISION==========
+	if ( AudioT_CSS_Position_Type==0 )
+	{
+		//==========DIVISION==========
+		num00=MP3_Array_CLS.VAL.AudioT_Position_State;//0:"NULL";1:"absolute";2:"fixed";3:"relative";
+		num01=MP3_Array_CLS.VAL.AudioT_LMR_State;//0:"Left";1:"Middle";2:"Right";
+		num02=MP3_Array_CLS.VAL.AudioT_TMB_State;//0:"Top";1:"Middle";2:"Bottom";
+		num03=["0","50","100"][num01];
+		num04=["0","50","100"][num02];
+		num05=MP3_Array_CLS.VAL.DFCB_MP3_ATIF_CSS_Zoom;
+		//==========DIVISION==========
+		AudioT_CSS_STR+=["","position:"][Math.ceil(num00/4)] + ["","absolute","fixed","relative"][num00] + ";" + 
+			"left:" + num03 + "%;" + "top:" + num04 + "%;" + 
+			"transform:translate(-" + num03 + "%,-" + num04 + "%);" + 
+			"zoom:" + num05 + ";" + 
+			"";
+		//==========DIVISION==========
+	}
+	else if ( AudioT_CSS_Position_Type==1 )
+	{
+		//==========DIVISION==========
+		num00=MP3_Array_CLS.VAL.AudioT_Position_State;//0:"NULL";1:"absolute";2:"fixed";3:"relative";
+		num01=MP3_Array_CLS.VAL.AudioT_LMR_VAL;
+		num02=MP3_Array_CLS.VAL.AudioT_TMB_VAL;
+		num05=MP3_Array_CLS.VAL.DFCB_MP3_ATIF_CSS_Zoom;
+		//==========DIVISION==========
+		AudioT_CSS_STR+=["","position:"][Math.ceil(num00/4)] + ["","absolute","fixed","relative"][num00] + ";" + 
+			"left:" + num01 + "px;" + "top:" + num02 + "px;" + 
+			"zoom:" + num05 + ";" + 
+			"";
+		//==========DIVISION==========
+	}
+	else		{}
+	//==========DIVISION==========
+	ele_MP3_Array_AudioT_Table.setAttribute("style",AudioT_CSS_STR);
+	//==========DIVISION==========
+}
+
+function MP3_Array_IFrame_Table_CSS_Set(evt_target)
+{
+	//==========DIVISION==========
+	//eval(ELE_ELEL_STR_INI(0));
+	eval(Parameter_Base_STR_ijk_XX(10));
+	var ID,LEN,ID_LEN;
+	var Code_Area;
+	//==========DIVISION==========
+	num05=MP3_Array_CLS.VAL.DFCB_MP3_ATIF_CSS_Zoom;
+	//==========DIVISION==========
+	ele_MP3_Array_IFrame_Table.style.zoom=num05;
+	//==========DIVISION==========
+}
+//==========DIVISION==========
 function MP3_Array_Ctrl_Table_Action(ele,evt,post_method)
 {
 	//==============================arguments.callee==============================
@@ -628,15 +1066,22 @@ function MP3_Array_Ctrl_Table_Action(ele,evt,post_method)
 	//====================Pre_Definition====================
 	//====================DIVISION====================
 	//==========DIVISION==========
-	//	var ele_BG_IMG_Type_SEL					=ele_MP3_Array_Ctrl_Table.getElementsByClassName("BG_IMG_Type_SEL"				)[0];
-	//	var ele_BG_IMG_Shake_BTN				=ele_MP3_Array_Ctrl_Table.getElementsByClassName("BG_IMG_Shake_BTN"				)[0];
-	//	var ele_DFCB_MP3_Array_Show_BTN			=ele_MP3_Array_Ctrl_Table.getElementsByClassName("DFCB_MP3_Array_Show_BTN"		)[0];
-	//	var ele_DFCB_MP3_Array_Clear_BTN		=ele_MP3_Array_Ctrl_Table.getElementsByClassName("DFCB_MP3_Array_Clear_BTN"		)[0];
-	//	var ele_DFCB_MP3_CT_SEL					=ele_MP3_Array_Ctrl_Table.getElementsByClassName("DFCB_MP3_CT_SEL"				)[0];
-	//	var ele_DFCB_MP3_Array_Show_Type_SEL	=ele_MP3_Array_Ctrl_Table.getElementsByClassName("DFCB_MP3_Array_Show_Type_SEL"	)[0];
-	//	var ele_IFrame_Video_NUM_Type_SEL		=ele_MP3_Array_Ctrl_Table.getElementsByClassName("IFrame_Video_NUM_Type_SEL"	)[0];
-	//	var ele_IFrame_Play_Or_Not_Type_SEL		=ele_MP3_Array_Ctrl_Table.getElementsByClassName("IFrame_Play_Or_Not_Type_SEL"	)[0];
-	//	var ele_Speed_Type_SEL					=ele_MP3_Array_Ctrl_Table.getElementsByClassName("Speed_Type_SEL"				)[0];
+	//	var ele_BG_IMG_Type_SEL						=ele_MP3_Array_Ctrl_Table.getElementsByClassName("BG_IMG_Type_SEL"							)[0];
+	//	var ele_BG_IMG_Shake_BTN					=ele_MP3_Array_Ctrl_Table.getElementsByClassName("BG_IMG_Shake_BTN"							)[0];
+	//	var ele_BG_IMG_Shake_ST_TTI_CLS				=ele_MP3_Array_Ctrl_Table.getElementsByClassName("BG_IMG_Shake_ST_TTI_CLS"					)[0];
+	//==========DIVISION==========
+	//	var ele_BG_IMG_Shake_VAL_Random_ST_EAB		=ele_MP3_Array_Ctrl_Table.getElementsByClassName("BG_IMG_Shake_VAL_Random_ST_EAB"			)[0];
+	//	var ele_BG_IMG_Shake_VAL_Random_ST_TTI_CLS	=ele_MP3_Array_Ctrl_Table.getElementsByClassName("BG_IMG_Shake_VAL_Random_ST_TTI_CLS"		)[0];
+	//	var ele_BG_IMG_Shake_TTI_Random_BTN			=ele_MP3_Array_Ctrl_Table.getElementsByClassName("BG_IMG_Shake_TTI_Random_BTN"				)[0];
+	//	var ele_BG_IMG_Shake_VAL_Random_BTN			=ele_MP3_Array_Ctrl_Table.getElementsByClassName("BG_IMG_Shake_VAL_Random_BTN"				)[0];
+	//==========DIVISION==========
+	//	var ele_DFCB_MP3_Array_Show_BTN				=ele_MP3_Array_Ctrl_Table.getElementsByClassName("DFCB_MP3_Array_Show_BTN"		)[0];
+	//	var ele_DFCB_MP3_Array_Clear_BTN			=ele_MP3_Array_Ctrl_Table.getElementsByClassName("DFCB_MP3_Array_Clear_BTN"		)[0];
+	//	var ele_DFCB_MP3_CT_SEL						=ele_MP3_Array_Ctrl_Table.getElementsByClassName("DFCB_MP3_CT_SEL"				)[0];
+	//	var ele_DFCB_MP3_Array_Show_Type_SEL		=ele_MP3_Array_Ctrl_Table.getElementsByClassName("DFCB_MP3_Array_Show_Type_SEL"	)[0];
+	//	var ele_IFrame_Video_NUM_Type_SEL			=ele_MP3_Array_Ctrl_Table.getElementsByClassName("IFrame_Video_NUM_Type_SEL"	)[0];
+	//	var ele_IFrame_Play_Or_Not_Type_SEL			=ele_MP3_Array_Ctrl_Table.getElementsByClassName("IFrame_Play_Or_Not_Type_SEL"	)[0];
+	//	var ele_Speed_Type_SEL						=ele_MP3_Array_Ctrl_Table.getElementsByClassName("Speed_Type_SEL"				)[0];
 	//==========DIVISION==========
 	//	var MP3_Array_CLS					=
 	//	{
@@ -692,51 +1137,7 @@ function MP3_Array_Ctrl_Table_Action(ele,evt,post_method)
 			if ( evt_target.className=="BG_IMG_Type_SEL" )
 			{
 				//==========DIVISION==========
-				var url00,url01,url02,url03,url04;
-				Code_Area=BG_IMG_CSS_Code_Area;//Code_Area=1;
-				//==========DIVISION==========
-				if ( Code_Area==0 )
-				{
-					//==========DIVISION==========
-					//1920X1080;
-					url00="MLH_020/MLH_010_R_R090.jpg";str00="";str00+="margin-top:-1520px;margin-left:-3000px;"	+ "zoom:1;";
-					url01="MLH_020/MLH_011_M_R090.jpg";str01="";str01+="margin-top:-1616px;margin-left:-3000px;"	+ "zoom:1;";
-					url02="MLH_020/MLH_030_R_R270.jpg";str02="";str02+="margin-top:-1616px;margin-left:-944px;"		+ "zoom:1;";
-					url03="MLH_020/MLH_031_M_R270.jpg";str03="";str03+="margin-top:-1520px;margin-left:-944px;"		+ "zoom:1;";
-					//==========DIVISION==========
-					str00+="transform:rotate(0deg)rotateX(0deg)rotateY(0deg)rotateZ(0deg);";		str00+="opacity:1;";
-					str01+="transform:rotate(0deg)rotateX(0deg)rotateY(0deg)rotateZ(0deg);";		str01+="opacity:1;";
-					str02+="transform:rotate(0deg)rotateX(0deg)rotateY(0deg)rotateZ(0deg);";		str02+="opacity:1;";
-					str03+="transform:rotate(0deg)rotateX(0deg)rotateY(0deg)rotateZ(0deg);";		str03+="opacity:1;";
-					//==========DIVISION==========
-				}
-				else if ( Code_Area==1 )
-				{
-					//==========DIVISION==========
-					//(5864-4216)/2=824;
-					url00="MLH_020/master_Li_high.jpg";str00="";str00+="margin-top:-2344px;margin-left:-2176px;"	+ "zoom:1;";
-					url01="MLH_020/master_Li_high.jpg";str01="";str01+="margin-top:-2440px;margin-left:-2176px;"	+ "zoom:1;";
-					url02="MLH_020/master_Li_high.jpg";str02="";str02+="margin-top:-2440px;margin-left:-120px;"		+ "zoom:1;";
-					url03="MLH_020/master_Li_high.jpg";str03="";str03+="margin-top:-2344px;margin-left:-120px;"		+ "zoom:1;";
-					//==========DIVISION==========
-					str00+="transform:rotate(90deg)rotateX(0deg)rotateY(0deg)rotateZ(0deg);";		str00+="opacity:1;";
-					str01+="transform:rotate(90deg)rotateX(0deg)rotateY(180deg)rotateZ(0deg);";		str01+="opacity:1;";
-					str02+="transform:rotate(270deg)rotateX(0deg)rotateY(0deg)rotateZ(0deg);";		str02+="opacity:1;";
-					str03+="transform:rotate(270deg)rotateX(0deg)rotateY(180deg)rotateZ(0deg);";	str03+="opacity:1;";
-					//==========DIVISION==========
-				}
-				else		{}
-				//==========DIVISION==========
-				arr00=[url00,url01,url02,url03];
-				arr01=[str00,str01,str02,str03];
-				//==========DIVISION==========
-				elelf_BG_IMG()[0].src=arr00[MP3_Array_CLS.VAL.BG_IMG_Type_ID];
-				ele_CSS_Main.innerHTML=
-				ele_CSS_Main.innerHTML	.replace(/^(table.BG_IMG_Table img.+\{)(.+)(\})$/gm,"$1" + arr01[MP3_Array_CLS.VAL.BG_IMG_Type_ID] + "$3");
-				console.log("URL : " + arr00[MP3_Array_CLS.VAL.BG_IMG_Type_ID] + ";\t" + 
-							"CSS : " + arr01[MP3_Array_CLS.VAL.BG_IMG_Type_ID] + ";\t" + 
-							"");
-				//==========DIVISION==========
+				BG_IMG_CSS_INI(evt_target);
 			}
 			else if ( evt_target.className=="AudioT_Video_NUM_Type_SEL" )
 			{
@@ -908,14 +1309,28 @@ function MP3_Array_Ctrl_Table_Action(ele,evt,post_method)
 			else		{}
 		}
 		else if ( ele.className=="MP3_Array_Ctrl_Table" && 
-				( evt_target.className=="BG_IMG_Shake_CSS_ITV_Margin_Top_CLS" || evt_target.className=="BG_IMG_Shake_CSS_ITV_Margin_Left_CLS" || 
-					evt_target.className=="BG_IMG_Shake_CSS_ITV_Zoom_CLS" || 
-					evt_target.className=="BG_IMG_Shake_CSS_ITV_Rotate_CLS" || evt_target.className=="BG_IMG_Shake_CSS_ITV_Opacity_CLS" || 
+				( evt_target.className=="BG_IMG_Type_ST_TTI_CLS" || evt_target.className=="BG_IMG_Shake_ST_TTI_CLS" || 
+					evt_target.className=="BG_IMG_Shake_VAL_Random_ST_TTI_CLS" || 
 				0 ) )
 		{
 			//==========DIVISION==========
-			if ( evt_target.className=="BG_IMG_Shake_CSS_ITV_Zoom_CLS" || evt_target.className=="BG_IMG_Shake_CSS_ITV_Opacity_CLS" || 
-				evt_target.className=="BG_IMG_Shake_CSS_ITV_Rotate_CLS" || 
+			parseType="parseInt";		parseType_STR="parseInt(evt_target.value,10)";	RegExp_STR="[0-9]+";
+			//==========DIVISION==========
+			str00="";
+			str00+="MP3_Array_CLS.VAL." + evt_target.className.replace(/_CLS$/gm,"") + "=" + parseType_STR + ";" + "\n";
+			eval(str00);
+			//==========DIVISION==========
+		}
+		else if ( ele.className=="MP3_Array_Ctrl_Table" && 
+				( evt_target.className=="BG_IMG_Shake_CSS_ITV_Margin_Top_CLS" || evt_target.className=="BG_IMG_Shake_CSS_ITV_Margin_Left_CLS" || 
+					evt_target.className=="BG_IMG_Shake_CSS_ITV_Zoom_CLS" || 
+					evt_target.className=="BG_IMG_Shake_CSS_ITV_Rotate_CLS" || 
+					evt_target.className=="BG_IMG_Shake_CSS_ITV_Opacity_CLS" || 
+				0 ) )
+		{
+			//==========DIVISION==========
+			if ( evt_target.className=="BG_IMG_Shake_CSS_ITV_Zoom_CLS" || evt_target.className=="BG_IMG_Shake_CSS_ITV_Rotate_CLS" || 
+				evt_target.className=="BG_IMG_Shake_CSS_ITV_Opacity_CLS" || 
 				//==========DIVISION==========
 				0 )
 			{parseType="parseFloat";	parseType_STR="parseFloat(evt_target.value)";	RegExp_STR="[0-9\.]+";}
@@ -931,7 +1346,7 @@ function MP3_Array_Ctrl_Table_Action(ele,evt,post_method)
 				str00+="MP3_Array_CLS.VAL." + evt_target.className.replace(/^(BG_IMG_Shake_CSS_ITV_)(.+)_CLS$/gm,"$1$2") + "=" + parseType_STR + ";" + "\n";
 				str00+="BG_IMG_CSS_VAL_ITV_CLS." + evt_target.className.replace(/^(BG_IMG_Shake_CSS_ITV_)(.+)_CLS$/gm,"$2") + "=" + parseType_STR + ";" + "\n";
 				eval(str00);
-				console.log(JSON.stringify(BG_IMG_CSS_VAL_ITV_CLS));
+				//console.log(JSON.stringify(BG_IMG_CSS_VAL_ITV_CLS));
 			}
 			else
 			{
@@ -959,8 +1374,8 @@ function MP3_Array_Ctrl_Table_Action(ele,evt,post_method)
 				str00+="MP3_Array_CLS.VAL." + evt_target.className.replace(/^(BG_IMG_Shake_CSS_)(.+)_CLS$/gm,"$1$2") + "=" + parseType_STR + ";" + "\n";
 				str00+="BG_IMG_CSS_VAL_CLS." + evt_target.className.replace(/^(BG_IMG_Shake_CSS_)(.+)_CLS$/gm,"$2") + "=" + parseType_STR + ";" + "\n";
 				eval(str00);
-				console.log(str00);
-				console.log(JSON.stringify(BG_IMG_CSS_VAL_CLS));
+				//console.log(str00);
+				//console.log(JSON.stringify(BG_IMG_CSS_VAL_CLS));
 			}
 			else
 			{
@@ -977,12 +1392,108 @@ function MP3_Array_Ctrl_Table_Action(ele,evt,post_method)
 			else		{}
 			//==========DIVISION==========
 		}
+		else if ( ele.className=="MP3_Array_Ctrl_Table" && evt_target.className=="DFCB_MP3_ATIF_CSS_Zoom_CLS" )
+		{
+			//==========DIVISION==========
+			MP3_Array_CLS.VAL.DFCB_MP3_ATIF_CSS_Zoom=parseFloat(evt_target.value).toFixed(3);
+			//==========DIVISION==========
+			MP3_Array_AudioT_Table_CSS_Set(evt_target);
+			MP3_Array_IFrame_Table_CSS_Set(evt_target);
+			//==========DIVISION==========
+		}
+		else if ( ele.className=="MP3_Array_Ctrl_Table" && 
+				( evt_target.className=="BG_IMG_Shake_CSS_ZPointX_CLS" || evt_target.className=="BG_IMG_Shake_CSS_ZPointY_CLS" || 
+				evt_target.className=="BG_IMG_Shake_CSS_RPointX_CLS" || evt_target.className=="BG_IMG_Shake_CSS_RPointY_CLS" || 
+				0 ) )
+		{
+			//==========DIVISION==========
+			parseType="parseInt";		parseType_STR="parseInt(evt_target.value,10)";	RegExp_STR="[0-9\-]+";
+			//==========DIVISION==========
+			if ( evt_target.value!="" && !isNaN(evt_target.value) && ( evt_target.value.replace(new RegExp(RegExp_STR,"gm"),"")=="" ) )
+			{
+				str00="";
+				str00+="MP3_Array_CLS.VAL." + evt_target.className.replace(/^(BG_IMG_Shake_CSS_)(.+)_CLS$/gm,"$1$2") + "=" + parseType_STR + ";" + "\n";
+				str00+="cls05=BG_IMG_CSS_ARR[BG_IMG_CSS_Code_Area][MP3_Array_CLS.VAL.BG_IMG_Type_ID];" + "\n";
+				str00+="cls05." + evt_target.className.replace(/^(BG_IMG_Shake_CSS_)(.+)_CLS$/gm,"$2") + "=" + parseType_STR + ";" + "\n";
+				eval(str00);
+				//console.log(str00);
+				//console.log(JSON.stringify(cls05));
+			}
+			else
+			{
+				alert("Error , it must be setted to a number .");
+				evt_target.focus();
+				str00="evt_target.value=MP3_Array_CLS.VAL." + evt_target.className.replace(/^(BG_IMG_Shake_CSS_)(.+)_CLS$/gm,"$1$2") + ";";
+				eval(str00);
+				evt_target.setAttribute("value",evt_target.value);
+			}
+			//==========DIVISION==========
+			if ( evt_target.className=="" || evt_target.className=="" )
+			{
+			}
+			else		{}
+			//==========DIVISION==========
+			BG_IMG_CSS_INI(evt_target);
+			//==========DIVISION==========
+		}
 		else		{}
 		//==========DIVISION==========
 	}
 	else if ( post_method==3 && evt && evt.type=="click" )//onclick;
 	{
-		if ( ele.className=="MP3_Array_Ctrl_Table" && evt_target.className=="BG_IMG_Shake_BTN" )
+		if ( ele.className=="MP3_Array_Ctrl_Table" && evt_target.className=="BG_IMG_Type_ST_EAB" )
+		{
+			//==========DIVISION==========
+			num00=MP3_Array_CLS.VAL.BG_IMG_Type_ST_EAB;//0:"Disabled";1:"Enabled";
+			num00=(num00 + 1)%2;
+			ele_BG_IMG_Type_ST_EAB.style.backgroundColor=["red","#1EB0E9"][num00];
+			MP3_Array_CLS.VAL.BG_IMG_Type_ST_EAB=num00;
+			//==========DIVISION==========
+			var BG_IMG_Type_ST_EAB=MP3_Array_CLS.VAL.BG_IMG_Type_ST_EAB;
+			if ( BG_IMG_Type_ST_EAB==0 )
+			{
+				clearTimeout(MP3_Array_CLS.VAL.BG_IMG_Type_ST_ID);
+			}
+			else if ( BG_IMG_Type_ST_EAB==1 )
+			{
+				MP3_Array_CLS.VAL.BG_IMG_Type_ST_ID=setTimeout(function ()
+				{
+					//==========DIVISION==========
+					//console.clear();
+					//clearTimeout(MP3_Array_CLS.VAL.BG_IMG_Type_ST_ID);
+					//==========DIVISION==========
+					var fun_ct_cache_00;
+					fun_ct_cache_00=arguments.callee;
+					//==========DIVISION==========
+					//eval(ELE_ELEL_STR_INI(0));
+					eval(Parameter_Base_STR_ijk_XX(5));
+					var ID,LEN,ID_LEN;
+					var AR_ID;
+					var Code_Area;
+					//==========DIVISION==========
+					var TTI_SD=TTI_IN_USE;
+					var TTI_Percent_ITV_SD=TTI_Percent_ITV_IN_USE;
+					TTI_SD=MP3_Array_CLS.VAL.BG_IMG_Type_ST_TTI;
+					TTI_SD=TTI_SD + TTI_SD * TTI_Percent_ITV_SD * Math.random() * (2 * parseInt(2 * Math.random(),10) - 1);
+					TTI_SD=parseInt(TTI_SD,10);
+					//Value_Random_Percent_ITV(TTI_SD,TTI_Percent_ITV_SD,"INT");
+					//console.log("TTI_SD : " + TTI_SD + ";\t" + "TTI_Percent_ITV_SD : " + TTI_Percent_ITV_SD + ";\t" + "");
+					//==========DIVISION==========
+					ele_BG_IMG_Type_SEL.selectedIndex=parseInt(ele_BG_IMG_Type_SEL.options.length * Math.random(),10);
+					(function(){
+						var ele,evt,post_method;
+						ele=ele_MP3_Array_Ctrl_Table;evt={type:"change",target:ele_BG_IMG_Type_SEL};post_method=2;
+						MP3_Array_Ctrl_Table_Action(ele,evt,post_method);
+					})();
+					//==========DIVISION==========
+					MP3_Array_CLS.VAL.BG_IMG_Type_ST_ID=setTimeout(fun_ct_cache_00,TTI_SD);
+					//==========DIVISION==========
+				},TTI_IN_USE);
+			}
+			else		{}
+			//==========DIVISION==========
+		}
+		else if ( ele.className=="MP3_Array_Ctrl_Table" && evt_target.className=="BG_IMG_Shake_BTN" )
 		{
 			//==========DIVISION==========
 			//0:"Stop";1:"Start";
@@ -1017,16 +1528,32 @@ function MP3_Array_Ctrl_Table_Action(ele,evt,post_method)
 					var AR_ID;
 					var Code_Area;
 					//==========DIVISION==========
-					var TTI_SD=TTI_IN_USE;TTI_SD=10;
+					var BG_IMG_Type_ID=MP3_Array_CLS.VAL.BG_IMG_Type_ID;
+					//==========DIVISION==========
+					var TTI_SD=TTI_IN_USE;
+					var TTI_Percent_ITV_SD=TTI_Percent_ITV_IN_USE;
+					TTI_SD=MP3_Array_CLS.VAL.BG_IMG_Shake_ST_TTI;
+					TTI_SD=TTI_SD + TTI_SD * TTI_Percent_ITV_SD * Math.random() * (2 * parseInt(2 * Math.random(),10) - 1);
+					TTI_SD=parseInt(TTI_SD,10);
+					//Value_Random_Percent_ITV(TTI_SD,TTI_Percent_ITV_SD,"INT");
+					//console.log("TTI_SD : " + TTI_SD + ";\t" + "TTI_Percent_ITV_SD : " + TTI_Percent_ITV_SD + ";\t" + "");
 					//==========DIVISION==========
 					var url00,url01,url02,url03,url04;
 					Code_Area=BG_IMG_CSS_Code_Area;//Code_Area=1;
 					//==========DIVISION==========
 					arr00=BG_IMG_URL_ARR[BG_IMG_CSS_Code_Area];
-					arr02=BG_IMG_CSS_ARR[BG_IMG_CSS_Code_Area];
-					//BG_IMG_CSS_ARR[BG_IMG_CSS_Code_Area][MP3_Array_CLS.VAL.BG_IMG_Type_ID];
-					//BG_IMG_URL_ARR[BG_IMG_CSS_Code_Area][MP3_Array_CLS.VAL.BG_IMG_Type_ID];
+					arr02=JSON.parse(JSON.stringify(BG_IMG_CSS_ARR[BG_IMG_CSS_Code_Area]));
+					//BG_IMG_CSS_ARR[BG_IMG_CSS_Code_Area][BG_IMG_Type_ID];
+					//BG_IMG_URL_ARR[BG_IMG_CSS_Code_Area][BG_IMG_Type_ID];
 					cls02=BG_IMG_CSS_VAL_ITV_CLS;
+					//==========DIVISION==========
+					//"transform-origin":"X";"Y";margin-top;margin-left;的定位测试结果：
+					LEN=arr02.length;
+					for (ID=0;ID<LEN;ID++)
+					{
+						arr02[ID].Margin_Top	+=[+1,-1,-1,+1][BG_IMG_Type_ID] * arr02[ID].RPointX	+ [-1,-1,-1,-1][BG_IMG_Type_ID] * arr02[ID].RPointY	;
+						arr02[ID].Margin_Left	+=[-1,-1,-1,-1][BG_IMG_Type_ID] * arr02[ID].RPointX	+ [-1,-1,+1,+1][BG_IMG_Type_ID] * arr02[ID].RPointY	;
+					}
 					//==========DIVISION==========
 					function VAL_ITV_CLS(BG_IMG_CSS_ARRI2,Type_ID,Attr,VAL_Type,ITV_CLS)
 					{
@@ -1047,7 +1574,7 @@ function MP3_Array_Ctrl_Table_Action(ele,evt,post_method)
 						num02+=num03;
 						str03=num03.toString();
 						str02=num02.toString();
-						return {ITV:str03,STR:str02};
+						return {VAL_MOD_VAL:num02,VAL_MOD_STR:str02,VAL_ITV_VAL:num03,VAL_ITV_STR:str03};
 					}
 					//==========DIVISION==========
 					//1920X1080;
@@ -1061,43 +1588,71 @@ function MP3_Array_Ctrl_Table_Action(ele,evt,post_method)
 					cls05=VAL_ITV_CLS(arr02,1,"Margin_Top","INT",cls02);
 					cls06=VAL_ITV_CLS(arr02,2,"Margin_Top","INT",cls02);
 					cls07=VAL_ITV_CLS(arr02,3,"Margin_Top","INT",cls02);
-					str00+="margin-top:" + cls04.STR + "px;";
-					str01+="margin-top:" + cls05.STR + "px;";
-					str02+="margin-top:" + cls06.STR + "px;";
-					str03+="margin-top:" + cls07.STR + "px;";
+					cls08=VAL_ITV_CLS(arr02,0,"Margin_Left","INT",cls02);
+					cls09=VAL_ITV_CLS(arr02,1,"Margin_Left","INT",cls02);
+					cls10=VAL_ITV_CLS(arr02,2,"Margin_Left","INT",cls02);
+					cls11=VAL_ITV_CLS(arr02,3,"Margin_Left","INT",cls02);
 					//==========DIVISION==========
 					//0:"Disabled";1:"Enabled";
-					if ( BG_IMG_CSS_VAL_CLS.Margin_Slope_EAB==0 )
-					{
-						str00+="margin-left:" + VAL_ITV_CLS(arr02,0,"Margin_Left","INT",cls02).STR + "px;";
-						str01+="margin-left:" + VAL_ITV_CLS(arr02,1,"Margin_Left","INT",cls02).STR + "px;";
-						str02+="margin-left:" + VAL_ITV_CLS(arr02,2,"Margin_Left","INT",cls02).STR + "px;";
-						str03+="margin-left:" + VAL_ITV_CLS(arr02,3,"Margin_Left","INT",cls02).STR + "px;";
-					}
+					if ( BG_IMG_CSS_VAL_CLS.Margin_Slope_EAB==0 )			{}
 					else if ( BG_IMG_CSS_VAL_CLS.Margin_Slope_EAB==1 )
 					{
-						//	console.log(BG_IMG_CSS_VAL_CLS.Margin_Slope + "___" + 
-						//				ParseInt((arr02[0].Margin_Left + parseInt(cls04.ITV,10) * -BG_IMG_CSS_VAL_CLS.Margin_Slope),10));
-						str00+="margin-left:" + parseInt((arr02[0].Margin_Left + parseInt(cls04.ITV,10) * -BG_IMG_CSS_VAL_CLS.Margin_Slope),10).toString() + "px;";
-						str01+="margin-left:" + parseInt((arr02[1].Margin_Left + parseInt(cls05.ITV,10) * -BG_IMG_CSS_VAL_CLS.Margin_Slope),10).toString() + "px;";
-						str02+="margin-left:" + parseInt((arr02[2].Margin_Left + parseInt(cls06.ITV,10) * -BG_IMG_CSS_VAL_CLS.Margin_Slope),10).toString() + "px;";
-						str03+="margin-left:" + parseInt((arr02[3].Margin_Left + parseInt(cls07.ITV,10) * -BG_IMG_CSS_VAL_CLS.Margin_Slope),10).toString() + "px;";
+						//0:"Tan";1:"Cot";
+						if ( BG_IMG_CSS_VAL_CLS.Margin_Slope_Tan_Or_Cot==0 )
+						{
+							//	console.log(BG_IMG_CSS_VAL_CLS.Margin_Slope + "___" + 
+							//				ParseInt((arr02[0].Margin_Top + parseInt(cls08.VAL_ITV_VAL,10) * -BG_IMG_CSS_VAL_CLS.Margin_Slope),10));
+							cls04.VAL_MOD_VAL=parseInt((arr02[0].Margin_Top + parseInt(cls08.VAL_ITV_VAL,10) * -BG_IMG_CSS_VAL_CLS.Margin_Slope),10);
+							cls05.VAL_MOD_VAL=parseInt((arr02[1].Margin_Top + parseInt(cls09.VAL_ITV_VAL,10) * -BG_IMG_CSS_VAL_CLS.Margin_Slope),10);
+							cls06.VAL_MOD_VAL=parseInt((arr02[2].Margin_Top + parseInt(cls10.VAL_ITV_VAL,10) * -BG_IMG_CSS_VAL_CLS.Margin_Slope),10);
+							cls07.VAL_MOD_VAL=parseInt((arr02[3].Margin_Top + parseInt(cls11.VAL_ITV_VAL,10) * -BG_IMG_CSS_VAL_CLS.Margin_Slope),10);
+							cls04.VAL_MOD_STR=cls04.VAL_MOD_VAL.toString();
+							cls05.VAL_MOD_STR=cls05.VAL_MOD_VAL.toString();
+							cls06.VAL_MOD_STR=cls06.VAL_MOD_VAL.toString();
+							cls07.VAL_MOD_STR=cls07.VAL_MOD_VAL.toString();
+						}
+						else if ( BG_IMG_CSS_VAL_CLS.Margin_Slope_Tan_Or_Cot==1 )
+						{
+							//	console.log(BG_IMG_CSS_VAL_CLS.Margin_Slope + "___" + 
+							//				ParseInt((arr02[0].Margin_Left + parseInt(cls04.VAL_ITV_VAL,10) * -BG_IMG_CSS_VAL_CLS.Margin_Slope),10));
+							cls08.VAL_MOD_VAL=parseInt((arr02[0].Margin_Left + parseInt(cls04.VAL_ITV_VAL,10) * -BG_IMG_CSS_VAL_CLS.Margin_Slope),10);
+							cls09.VAL_MOD_VAL=parseInt((arr02[1].Margin_Left + parseInt(cls05.VAL_ITV_VAL,10) * -BG_IMG_CSS_VAL_CLS.Margin_Slope),10);
+							cls10.VAL_MOD_VAL=parseInt((arr02[2].Margin_Left + parseInt(cls06.VAL_ITV_VAL,10) * -BG_IMG_CSS_VAL_CLS.Margin_Slope),10);
+							cls11.VAL_MOD_VAL=parseInt((arr02[3].Margin_Left + parseInt(cls07.VAL_ITV_VAL,10) * -BG_IMG_CSS_VAL_CLS.Margin_Slope),10);
+							cls08.VAL_MOD_STR=cls08.VAL_MOD_VAL.toString();
+							cls09.VAL_MOD_STR=cls09.VAL_MOD_VAL.toString();
+							cls10.VAL_MOD_STR=cls10.VAL_MOD_VAL.toString();
+							cls11.VAL_MOD_STR=cls11.VAL_MOD_VAL.toString();
+						}
+						else		{}
 					}
 					else		{}
 					//==========DIVISION==========
-					str00+="zoom:" + VAL_ITV_CLS(arr02,0,"Zoom","FLOAT",cls02).STR + ";";
-					str01+="zoom:" + VAL_ITV_CLS(arr02,1,"Zoom","FLOAT",cls02).STR + ";";
-					str02+="zoom:" + VAL_ITV_CLS(arr02,2,"Zoom","FLOAT",cls02).STR + ";";
-					str03+="zoom:" + VAL_ITV_CLS(arr02,3,"Zoom","FLOAT",cls02).STR + ";";
-					str00+="opacity:" + VAL_ITV_CLS(arr02,0,"Opacity","FLOAT",cls02).STR + ";";
-					str01+="opacity:" + VAL_ITV_CLS(arr02,1,"Opacity","FLOAT",cls02).STR + ";";
-					str02+="opacity:" + VAL_ITV_CLS(arr02,2,"Opacity","FLOAT",cls02).STR + ";";
-					str03+="opacity:" + VAL_ITV_CLS(arr02,3,"Opacity","FLOAT",cls02).STR + ";";
+					str00+="margin-top:" + cls04.VAL_MOD_STR + "px;";str00+="margin-left:" + cls08.VAL_MOD_STR + "px;";
+					str01+="margin-top:" + cls05.VAL_MOD_STR + "px;";str01+="margin-left:" + cls09.VAL_MOD_STR + "px;";
+					str02+="margin-top:" + cls06.VAL_MOD_STR + "px;";str02+="margin-left:" + cls10.VAL_MOD_STR + "px;";
+					str03+="margin-top:" + cls07.VAL_MOD_STR + "px;";str03+="margin-left:" + cls11.VAL_MOD_STR + "px;";
 					//==========DIVISION==========
-					str00+="transform:rotate(" + VAL_ITV_CLS(arr02,0,"Rotate","FLOAT",cls02).STR + "deg)";
-					str01+="transform:rotate(" + VAL_ITV_CLS(arr02,1,"Rotate","FLOAT",cls02).STR + "deg)";
-					str02+="transform:rotate(" + VAL_ITV_CLS(arr02,2,"Rotate","FLOAT",cls02).STR + "deg)";
-					str03+="transform:rotate(" + VAL_ITV_CLS(arr02,3,"Rotate","FLOAT",cls02).STR + "deg)";
+					LEN=arr02.length;
+					var Zoom_CLS_ARR=createArray(LEN);
+					for (ID=0;ID<LEN;ID++)
+					{
+						Zoom_CLS_ARR[ID]=VAL_ITV_CLS(arr02,ID,"Zoom","FLOAT",cls02);
+					}
+					str00+="zoom:" + Zoom_CLS_ARR[0].VAL_MOD_STR + ";";
+					str01+="zoom:" + Zoom_CLS_ARR[1].VAL_MOD_STR + ";";
+					str02+="zoom:" + Zoom_CLS_ARR[2].VAL_MOD_STR + ";";
+					str03+="zoom:" + Zoom_CLS_ARR[3].VAL_MOD_STR + ";";
+					//==========DIVISION==========
+					str00+="opacity:" + VAL_ITV_CLS(arr02,0,"Opacity","FLOAT",cls02).VAL_MOD_STR + ";";
+					str01+="opacity:" + VAL_ITV_CLS(arr02,1,"Opacity","FLOAT",cls02).VAL_MOD_STR + ";";
+					str02+="opacity:" + VAL_ITV_CLS(arr02,2,"Opacity","FLOAT",cls02).VAL_MOD_STR + ";";
+					str03+="opacity:" + VAL_ITV_CLS(arr02,3,"Opacity","FLOAT",cls02).VAL_MOD_STR + ";";
+					//==========DIVISION==========
+					str00+="transform:rotate(" + VAL_ITV_CLS(arr02,0,"Rotate","FLOAT",cls02).VAL_MOD_STR + "deg)";
+					str01+="transform:rotate(" + VAL_ITV_CLS(arr02,1,"Rotate","FLOAT",cls02).VAL_MOD_STR + "deg)";
+					str02+="transform:rotate(" + VAL_ITV_CLS(arr02,2,"Rotate","FLOAT",cls02).VAL_MOD_STR + "deg)";
+					str03+="transform:rotate(" + VAL_ITV_CLS(arr02,3,"Rotate","FLOAT",cls02).VAL_MOD_STR + "deg)";
 					//==========DIVISION==========
 					if ( Code_Area==0 )
 					{
@@ -1122,12 +1677,36 @@ function MP3_Array_Ctrl_Table_Action(ele,evt,post_method)
 					arr00=[url00,url01,url02,url03];
 					arr01=[str00,str01,str02,str03];
 					//==========DIVISION==========
-					//elelf_BG_IMG()[0].src=arr00[MP3_Array_CLS.VAL.BG_IMG_Type_ID];
-					ele_CSS_Main.innerHTML=
-					ele_CSS_Main.innerHTML	.replace(/^(table.BG_IMG_Table img.+\{)(.+)(\})$/gm,"$1" + arr01[MP3_Array_CLS.VAL.BG_IMG_Type_ID] + "$3");
-					//	console.log("BG_IMG_Type_ID : " + MP3_Array_CLS.VAL.BG_IMG_Type_ID + " .\t" + 
-					//				"URL : " + arr00[MP3_Array_CLS.VAL.BG_IMG_Type_ID] + " .\t" + 
-					//				"CSS : " + arr01[MP3_Array_CLS.VAL.BG_IMG_Type_ID] + " ." + 
+					var IMG_URL_STR				=arr00[BG_IMG_Type_ID];
+					var IMG_CSS_STR				="";IMG_CSS_STR+=arr01[BG_IMG_Type_ID];
+					var IMG_P0_DIV_CSS_STR		="";
+					//==========DIVISION==========
+					var ITS_IMG_Width,ITS_IMG_Height;
+					ITS_IMG_Width	=Screen_Width;
+					ITS_IMG_Height	=Screen_Height;
+					//==========DIVISION==========
+					cls05=BG_IMG_CSS_ARR[BG_IMG_CSS_Code_Area][BG_IMG_Type_ID];
+					cls07={Zoom:{}};
+					cls07.Zoom.Left		=(-1) * ( ITS_IMG_Width / 2 + cls05.ZPointX) * (Zoom_CLS_ARR[BG_IMG_Type_ID].VAL_MOD_VAL - 1)	.toString();
+					cls07.Zoom.Top		=(-1) * ( ITS_IMG_Height / 2 + cls05.ZPointY) * (Zoom_CLS_ARR[BG_IMG_Type_ID].VAL_MOD_VAL - 1)	.toString();
+					cls08={Origin:{}};
+					cls08.Origin.X		=(cls05.OXD + cls05.RPointX).toString();
+					cls08.Origin.Y		=(cls05.OYD + cls05.RPointY).toString();
+					//	console.log("cls08.Origin.X : " + cls08.Origin.X + ";\t" + 
+					//				"cls08.Origin.Y : " + cls08.Origin.Y + ";\t" + 
+					//				"");
+					//==========DIVISION==========
+					IMG_CSS_STR+="transform-origin:" + cls08.Origin.X + "px" + " " + cls08.Origin.Y + "px;" + 
+								"";
+					IMG_P0_DIV_CSS_STR+="position:relative;" + "left:" + cls07.Zoom.Left + ";" + "top:" + cls07.Zoom.Top + ";";
+					//==========DIVISION==========
+					elelf_BG_IMG()[0].src=IMG_URL_STR;
+					ele_CSS_Main.innerHTML=ele_CSS_Main.innerHTML.replace(/^(table.BG_IMG_Table img.*\{)(.*)(\})$/gm,"$1" + IMG_CSS_STR + "$3")
+											.replace(/^(table.BG_IMG_Table div\.BG_IMG_P0_DIV.*\{)(.*)(\})$/gm,"$1" + IMG_P0_DIV_CSS_STR + "$3");
+					//	console.log("BG_IMG_Type_ID : " + BG_IMG_Type_ID + " .\t" + 
+					//				"URL : " + IMG_URL_STR + ";\t" + 
+					//				"IMG_CSS_STR : " + IMG_CSS_STR + ";\t" + 
+					//				"IMG_P0_DIV_CSS_STR : " + IMG_P0_DIV_CSS_STR + ";\t" + 
 					//				"");
 					//==========DIVISION==========
 					MP3_Array_CLS.VAL.BG_IMG_Shake_ST_ID=setTimeout(fun_ct_cache_00,TTI_SD);
@@ -1136,6 +1715,68 @@ function MP3_Array_Ctrl_Table_Action(ele,evt,post_method)
 			}
 			else		{}
 			//==========DIVISION==========
+		}
+		else if ( ele.className=="MP3_Array_Ctrl_Table" && evt_target.className=="BG_IMG_Shake_VAL_Random_ST_EAB" )
+		{
+			//==========DIVISION==========
+			num00=MP3_Array_CLS.VAL.BG_IMG_Shake_VAL_Random_ST_EAB;//0:"Disabled";1:"Enabled";
+			num00=(num00 + 1)%2;
+			ele_BG_IMG_Shake_VAL_Random_ST_EAB.style.backgroundColor=["red","#1EB0E9"][num00];
+			MP3_Array_CLS.VAL.BG_IMG_Shake_VAL_Random_ST_EAB=num00;
+			//==========DIVISION==========
+			var BG_IMG_Shake_VAL_Random_ST_EAB=MP3_Array_CLS.VAL.BG_IMG_Shake_VAL_Random_ST_EAB;
+			if ( BG_IMG_Shake_VAL_Random_ST_EAB==0 )
+			{
+				clearTimeout(MP3_Array_CLS.VAL.BG_IMG_Shake_VAL_Random_ST_ID);
+			}
+			else if ( BG_IMG_Shake_VAL_Random_ST_EAB==1 )
+			{
+				MP3_Array_CLS.VAL.BG_IMG_Shake_VAL_Random_ST_ID=setTimeout(function ()
+				{
+					//==========DIVISION==========
+					//console.clear();
+					//clearTimeout(MP3_Array_CLS.VAL.BG_IMG_Shake_VAL_Random_ST_ID);
+					//==========DIVISION==========
+					var fun_ct_cache_00;
+					fun_ct_cache_00=arguments.callee;
+					//==========DIVISION==========
+					//eval(ELE_ELEL_STR_INI(0));
+					eval(Parameter_Base_STR_ijk_XX(5));
+					var ID,LEN,ID_LEN;
+					var AR_ID;
+					var Code_Area;
+					//==========DIVISION==========
+					var TTI_SD=TTI_IN_USE;
+					var TTI_Percent_ITV_SD=TTI_Percent_ITV_IN_USE;
+					TTI_SD=MP3_Array_CLS.VAL.BG_IMG_Shake_VAL_Random_ST_TTI;
+					TTI_SD=TTI_SD + TTI_SD * TTI_Percent_ITV_SD * Math.random() * (2 * parseInt(2 * Math.random(),10) - 1);
+					TTI_SD=parseInt(TTI_SD,10);
+					//Value_Random_Percent_ITV(TTI_SD,TTI_Percent_ITV_SD,"INT");
+					//console.log("TTI_SD : " + TTI_SD + ";\t" + "TTI_Percent_ITV_SD : " + TTI_Percent_ITV_SD + ";\t" + "");
+					//==========DIVISION==========
+					setTimeout(function ()
+					{
+						ele_BG_IMG_Shake_TTI_Random_BTN.click();
+					},TTI_SD * Math.random());
+					setTimeout(function ()
+					{
+						ele_BG_IMG_Shake_VAL_Random_BTN.click();
+					},TTI_SD * Math.random());
+					//==========DIVISION==========
+					MP3_Array_CLS.VAL.BG_IMG_Shake_VAL_Random_ST_ID=setTimeout(fun_ct_cache_00,TTI_SD);
+					//==========DIVISION==========
+				},TTI_IN_USE);
+			}
+			else		{}
+			//==========DIVISION==========
+		}
+		else if ( ele.className=="MP3_Array_Ctrl_Table" && evt_target.className=="BG_IMG_Shake_TTI_Random_BTN" )
+		{
+			BG_IMG_Shake_TTI_Random_Set(evt_target);
+		}
+		else if ( ele.className=="MP3_Array_Ctrl_Table" && evt_target.className=="BG_IMG_Shake_VAL_Random_BTN" )
+		{
+			BG_IMG_Shake_VAL_Random_Set(evt_target);
 		}
 		else if ( ele.className=="MP3_Array_Ctrl_Table" && evt_target.className=="BG_IMG_Shake_CSS_Margin_Slope_EAB" )
 		{
@@ -1146,6 +1787,16 @@ function MP3_Array_Ctrl_Table_Action(ele,evt,post_method)
 			BG_IMG_CSS_VAL_CLS.Margin_Slope_EAB=
 			MP3_Array_CLS.VAL.BG_IMG_Shake_CSS_Margin_Slope_EAB=num00;
 		}
+		else if ( ele.className=="MP3_Array_Ctrl_Table" && evt_target.className=="BG_IMG_Shake_CSS_Margin_Slope_Tan_Or_Cot_BTN" )
+		{
+			//0:"Tan";1:"Cot";
+			num00=MP3_Array_CLS.VAL.BG_IMG_Shake_CSS_Margin_Slope_Tan_Or_Cot;
+			num00=(num00 + 1)%2;
+			evt_target.style.backgroundColor=["yellow","orange"][num00];
+			evt_target.value=["Tan","Cot"][num00];
+			BG_IMG_CSS_VAL_CLS.Margin_Slope_Tan_Or_Cot=
+			MP3_Array_CLS.VAL.BG_IMG_Shake_CSS_Margin_Slope_Tan_Or_Cot=num00;
+		}
 		else if ( ele.className=="MP3_Array_Ctrl_Table" && 
 				( evt_target.className=="MP3_Array_Ctrl_ScrollTo_Top_BTN" || evt_target.className=="MP3_Array_Ctrl_ScrollTo_Bottom_BTN" ) )
 		{
@@ -1155,21 +1806,52 @@ function MP3_Array_Ctrl_Table_Action(ele,evt,post_method)
 			ele_TAG_A.click();
 			//==========DIVISION==========
 		}
-		else if ( ele.className=="MP3_Array_Ctrl_Table" && ( evt_target.className=="Audio_LMR_BTN" || evt_target.className=="Audio_TMB_BTN" ) )
+		else if ( ele.className=="MP3_Array_Ctrl_Table" && 
+			( evt_target.className=="AudioT_Position_BTN" || evt_target.className=="AudioT_LMR_BTN" || evt_target.className=="AudioT_TMB_BTN" ) )
 		{
 			//==========DIVISION==========
 			eval("num00=MP3_Array_CLS.VAL." + evt_target.className.replace(/_BTN$/gm,"_State") + ";");
-			num00=(num00 + 1)%3;
+			num01=parseInt(evt_target.className.replace(/^AudioT_Position_BTN$/gm,"4").replace(/^AudioT_(LMR|TMB)_BTN$/gm,"3"),10);
+			num00=(num00 + 1)%num01;
 			eval("MP3_Array_CLS.VAL." + evt_target.className.replace(/_BTN$/gm,"_State") + "=num00;");
-			num00=MP3_Array_CLS.VAL.Audio_LMR_State;//0:"Left";1:"Middle";2:"Right";
-			num01=MP3_Array_CLS.VAL.Audio_TMB_State;//0:"Top";1:"Middle";2:"Bottom";
-			ele_Audio_LMR_BTN.value=["L","M","R"][num00];	ele_Audio_LMR_BTN.style.backgroundColor=["LightPink","LightSalmon","LightCoral"][num00];
-			ele_Audio_TMB_BTN.value=["T","M","B"][num01];	ele_Audio_TMB_BTN.style.backgroundColor=["LightPink","LightSalmon","LightCoral"][num01];
-			num02=["0","50","100"][num00];
-			num03=["0","50","100"][num01];
-			ele_MP3_Array_AudioT_Table.setAttribute("style","position:fixed;" + 
-				"left:" + num02 + "%;" + "top:" + num03 + "%;" + 
-				"transform:translate(-" + num02 + "%,-" + num03 + "%);");
+			//==========DIVISION==========
+			num00=MP3_Array_CLS.VAL.AudioT_Position_State;//0:"NULL";1:"absolute";2:"fixed";3:"relative";
+			num01=MP3_Array_CLS.VAL.AudioT_LMR_State;//0:"Left";1:"Middle";2:"Right";
+			num02=MP3_Array_CLS.VAL.AudioT_TMB_State;//0:"Top";1:"Middle";2:"Bottom";
+			//==========DIVISION==========
+			ele_AudioT_Position_BTN.value	=["N","A","F","R"][num00];	ele_AudioT_Position_BTN.style.backgroundColor	=["LightCyan","LightGreen","LightSkyBlue","Magenta"][num00];
+			ele_AudioT_LMR_BTN.value		=["L","M","R"][num01];		ele_AudioT_LMR_BTN.style.backgroundColor		=["LightPink","LightSalmon","LightCoral"][num01];
+			ele_AudioT_TMB_BTN.value		=["T","M","B"][num02];		ele_AudioT_TMB_BTN.style.backgroundColor		=["LightPink","LightSalmon","LightCoral"][num02];
+			//==========DIVISION==========
+			MP3_Array_CLS.VAL.AudioT_CSS_Position_Type=0;//0:"LMR_TMB_9_Postion";1:"LMR_TMB_VAL";
+			MP3_Array_AudioT_Table_CSS_Set(evt_target);
+			//==========DIVISION==========
+		}
+		else if ( ele.className=="MP3_Array_Ctrl_Table" && evt_target.className.replace(/^AudioT_(LMR|TMB)_(Left|Right|Up|Down)_BTN$/gm,"")=="" )
+		{
+			//==========DIVISION==========
+			num03=parseInt(21 * Math.random(),10) * [-1,1][parseInt(2 * Math.random(),10)];
+			//==========DIVISION==========
+			if ( evt_target.className=="AudioT_LMR_Left_BTN" )
+			{
+				MP3_Array_CLS.VAL.AudioT_LMR_VAL-=100 + num03;
+			}
+			else if ( evt_target.className=="AudioT_LMR_Right_BTN" )
+			{
+				MP3_Array_CLS.VAL.AudioT_LMR_VAL+=100 + num03;
+			}
+			else if ( evt_target.className=="AudioT_TMB_Up_BTN" )
+			{
+				MP3_Array_CLS.VAL.AudioT_TMB_VAL-=100 + num03;
+			}
+			else if ( evt_target.className=="AudioT_TMB_Down_BTN" )
+			{
+				MP3_Array_CLS.VAL.AudioT_TMB_VAL+=100 + num03;
+			}
+			else		{}
+			//==========DIVISION==========
+			MP3_Array_CLS.VAL.AudioT_CSS_Position_Type=1;//0:"LMR_TMB_9_Postion";1:"LMR_TMB_VAL";
+			MP3_Array_AudioT_Table_CSS_Set(evt_target);
 			//==========DIVISION==========
 		}
 		else if ( ele.className=="MP3_Array_Ctrl_Table" && evt_target.className=="DFCB_MP3_Array_AT_Or_IF_BTN" )
@@ -1297,6 +1979,22 @@ function MP3_Array_Ctrl_Table_Action(ele,evt,post_method)
 			//	[1,		0,		0]
 			//	[1,		1,		0]
 			//==========DIVISION==========
+		}
+		else if ( evt_target.className=="AudioT_Play_Or_Not_Type_Set_BTN" )
+		{
+			(function(){
+				var ele,evt,post_method;
+				ele=ele_MP3_Array_Ctrl_Table;evt={type:"change",target:ele_AudioT_Play_Or_Not_Type_SEL};post_method=2;
+				MP3_Array_Ctrl_Table_Action(ele,evt,post_method);
+			})();
+		}
+		else if ( evt_target.className=="IFrame_Play_Or_Not_Type_Set_BTN" )
+		{
+			(function(){
+				var ele,evt,post_method;
+				ele=ele_MP3_Array_Ctrl_Table;evt={type:"change",target:ele_IFrame_Play_Or_Not_Type_SEL};post_method=2;
+				MP3_Array_Ctrl_Table_Action(ele,evt,post_method);
+			})();
 		}
 		else if ( ele.className=="MP3_Array_Ctrl_Table" && evt_target.className=="Speed_ST_EAB" )
 		{
@@ -1554,6 +2252,7 @@ function MP3_Array_AudioT_Table_ST_Do()
 							var Speed_Type_STR				=MP3_Array_CLS.VAL.Speed_Type_STR				;
 							//==========DIVISION==========
 							var TTI_SD=TTI_IN_USE;
+							var TTI_Percent_ITV_SD=TTI_Percent_ITV_IN_USE;
 							//==========DIVISION==========
 							ele00=elel00[VID];
 							//==========DIVISION==========
@@ -1593,8 +2292,12 @@ function MP3_Array_AudioT_Table_ST_Do()
 								if ( ele00.paused==false || 1 )
 								{
 									//==========DIVISION==========
-									//110s-130s:
-									TTI_SD=60000 * 2 + 10 * (2 * parseInt(2 * Math.random(),10) - 1);
+									//108s-132s:
+									TTI_SD=60000 * 2;
+									TTI_SD=TTI_SD + TTI_SD * TTI_Percent_ITV_SD * Math.random() * (2 * parseInt(2 * Math.random(),10) - 1);
+									TTI_SD=parseInt(TTI_SD,10);
+									//Value_Random_Percent_ITV(TTI_SD,TTI_Percent_ITV_SD,"INT");
+									//console.log("TTI_SD : " + TTI_SD + ";\t" + "TTI_Percent_ITV_SD : " + TTI_Percent_ITV_SD + ";\t" + "");
 									//==========DIVISION==========
 									//clearTimeout();
 									//ele00.currentTime;
@@ -1767,99 +2470,6 @@ function MP3_Array_IFrame_Table_INI(INI_Type)
 	//==========DIVISION==========
 }
 //MP3_Array_IFrame_Table_INI(INI_Type);
-//==========DIVISION==========
-function MP3_Array_IFrame_Table_ST_Do()
-{
-	//==========DIVISION==========
-	//eval(ELE_ELEL_STR_INI(0));
-	eval(Parameter_Base_STR_ijk_XX(10));
-	var ID,LEN,ID_LEN;
-	var AR_ID;
-	var IFrame_ID;
-	//==========DIVISION==========
-	ele00=document.getElementsByClassName("MP3_Array_IFrame_Table")[0];
-	elel00=ele00.getElementsByTagName("td");
-	IFrame_ID=0;
-	setTimeout(function (elel00,IFrame_ID)
-	{
-		//==========DIVISION==========
-		//console.clear();
-		//==========DIVISION==========
-		var fun_ct_cache_00;
-		fun_ct_cache_00=arguments.callee;
-		//==========DIVISION==========
-		//eval(ELE_ELEL_STR_INI(0));
-		eval(Parameter_Base_STR_ijk_XX(10));
-		var ID,LEN,ID_LEN;
-		var AR_ID;
-		var WObj_Cache;
-		//==========DIVISION==========
-		var TTI_SD=TTI_IN_USE;
-		var Thread_Num=1,Thread_Capacity_Num=5;
-		var Do_Action_ID=1;
-		//==========DIVISION==========
-		for (j=0,i=IFrame_ID;j<Thread_Capacity_Num && i>=0 && i<elel00.length;j++,i++)
-		{
-			//==========DIVISION==========
-			WObj_Cache=elel00[i].getElementsByTagName("iframe")[0];
-			//==========DIVISION==========
-			if ( WObj_Cache==undefined )		{Do_Action_ID=0;break;}
-			else if ( WObj_Cache!=undefined && WObj_Cache.contentWindow.document.readyState=="complete" )		{}
-			else		{}
-			//==========DIVISION==========
-		}
-		//==========DIVISION==========
-		if ( Do_Action_ID==0 )
-		{
-			//==========DIVISION==========
-			arr00=[MP3_Array_IFrame_Table_SRC];
-			LEN=arr00.length;
-			//==========DIVISION==========
-			for (j=0,i=IFrame_ID;j<Thread_Capacity_Num && i>=0 && i<elel00.length;j++,i++)
-			{
-				//==========DIVISION==========
-				WObj_Cache=elel00[i].getElementsByTagName("iframe")[0];
-				//==========DIVISION==========
-				if ( WObj_Cache==undefined )
-				{
-					//==========DIVISION==========
-					m=parseInt(Math.random() * LEN,10);
-					//==========DIVISION==========
-					elel00[i].innerHTML='<iframe src="' + arr00[m] + '"></iframe>';
-					//==========DIVISION==========
-					console.log("IFrame_ID : " + IFrame_ID + ";\t" + 
-								"i : " + i + ";\t" + 
-								"");
-					//==========DIVISION==========
-				}
-				else if ( WObj_Cache!=undefined && WObj_Cache.contentWindow.document.readyState=="complete" )		{}
-				else		{}
-				//==========DIVISION==========
-			}
-			//==========DIVISION==========
-		}
-		else if ( Do_Action_ID==1 )
-		{
-			//==========DIVISION==========
-			IFrame_ID+=Thread_Capacity_Num;
-			//==========DIVISION==========
-			console.log("Thread_Capacity_Num : " + Thread_Capacity_Num + ";\t" + 
-						"IFrame_ID : " + IFrame_ID + ";\t" + 
-						"");
-			//==========DIVISION==========
-		}
-		else		{}
-		//==========DIVISION==========
-		if ( IFrame_ID>=0 && IFrame_ID<elel00.length )
-		{
-			setTimeout(fun_ct_cache_00,TTI_SD,elel00,IFrame_ID);
-		}
-		else		{}
-		//==========DIVISION==========
-	},TTI_IN_USE,elel00,IFrame_ID);
-	//==========DIVISION==========
-}
-//MP3_Array_IFrame_Table_ST_Do();
 //==========DIVISION==========
 //========================================MP3_Array_IFrame_Table_Function========================================
 //==================================================控件動作變化==================================================
@@ -2039,23 +2649,37 @@ function MP3_Array_Hotkey_Mouse(ele,evt,post_method)
 		if ( ( evt.which == 33 || evt.which == 34 || evt.which == 38 || evt.which == 40 || evt.which == 36 || evt.which == 35 ) && 
 				ele.tagName.toUpperCase()=="TABLE" && 
 				//==========DIVISION==========
-				( evt_target.className=="BG_IMG_Shake_CSS_ITV_Margin_Top_CLS" || evt_target.className=="BG_IMG_Shake_CSS_ITV_Margin_Left_CLS" || 
+				( evt_target.className=="BG_IMG_Type_ST_TTI_CLS" || 
+				evt_target.className=="BG_IMG_Shake_ST_TTI_CLS" || evt_target.className=="BG_IMG_Shake_VAL_Random_ST_TTI_CLS" || 
+				evt_target.className=="BG_IMG_Shake_CSS_ITV_Margin_Top_CLS" || evt_target.className=="BG_IMG_Shake_CSS_ITV_Margin_Left_CLS" || 
 				evt_target.className=="BG_IMG_Shake_CSS_Margin_Slope_CLS" || 
-				evt_target.className=="BG_IMG_Shake_CSS_ITV_Zoom_CLS" || evt_target.className=="BG_IMG_Shake_CSS_ITV_Rotate_CLS" || 
+				evt_target.className=="BG_IMG_Shake_CSS_ZPointX_CLS" || evt_target.className=="BG_IMG_Shake_CSS_ZPointY_CLS" || 
+				evt_target.className=="BG_IMG_Shake_CSS_ITV_Zoom_CLS" || 
+				evt_target.className=="BG_IMG_Shake_CSS_RPointX_CLS" || evt_target.className=="BG_IMG_Shake_CSS_RPointY_CLS" || 
+				evt_target.className=="BG_IMG_Shake_CSS_ITV_Rotate_CLS" || 
 				evt_target.className=="BG_IMG_Shake_CSS_ITV_Opacity_CLS" || 
+				evt_target.className=="DFCB_MP3_ATIF_CSS_Zoom_CLS" || 
 				//==========DIVISION==========
 				0 ) )
 		{
 			//==========DIVISION==========
 			NUM_MAX=10000*10000;
 			//==========DIVISION==========
-			if ( evt_target.className=="BG_IMG_Shake_CSS_ITV_Margin_Top_CLS" )			{NUM_MIN=0;NUM_MAX=10000*10000;}
+			if ( evt_target.className=="BG_IMG_Type_ST_TTI_CLS" )						{NUM_MIN=0;NUM_MAX=10000*10000;}
+			else if ( evt_target.className=="BG_IMG_Shake_ST_TTI_CLS" )					{NUM_MIN=0;NUM_MAX=10000*10000;}
+			else if ( evt_target.className=="BG_IMG_Shake_VAL_Random_ST_TTI_CLS" )		{NUM_MIN=0;NUM_MAX=10000*10000;}
+			else if ( evt_target.className=="BG_IMG_Shake_CSS_ITV_Margin_Top_CLS" )		{NUM_MIN=0;NUM_MAX=10000*10000;}
 			else if ( evt_target.className=="BG_IMG_Shake_CSS_ITV_Margin_Left_CLS" )	{NUM_MIN=0;NUM_MAX=10000*10000;}
 			else if ( evt_target.className=="BG_IMG_Shake_CSS_Margin_Slope_CLS" )		{NUM_MIN=-10000*10000;NUM_MAX=10000*10000;}
 			//==========DIVISION==========
+			else if ( evt_target.className=="BG_IMG_Shake_CSS_ZPointX_CLS" )			{NUM_MIN=-10000*10000;NUM_MAX=10000*10000;}
+			else if ( evt_target.className=="BG_IMG_Shake_CSS_ZPointY_CLS" )			{NUM_MIN=-10000*10000;NUM_MAX=10000*10000;}
 			else if ( evt_target.className=="BG_IMG_Shake_CSS_ITV_Zoom_CLS" )			{NUM_MIN=0;NUM_MAX=10000*10000;}
+			else if ( evt_target.className=="BG_IMG_Shake_CSS_RPointX_CLS" )			{NUM_MIN=-10000*10000;NUM_MAX=10000*10000;}
+			else if ( evt_target.className=="BG_IMG_Shake_CSS_RPointY_CLS" )			{NUM_MIN=-10000*10000;NUM_MAX=10000*10000;}
 			else if ( evt_target.className=="BG_IMG_Shake_CSS_ITV_Rotate_CLS" )			{NUM_MIN=0;NUM_MAX=10000*10000;}
 			else if ( evt_target.className=="BG_IMG_Shake_CSS_ITV_Opacity_CLS" )		{NUM_MIN=0;NUM_MAX=1;}
+			else if ( evt_target.className=="DFCB_MP3_ATIF_CSS_Zoom_CLS" )				{NUM_MIN=0;NUM_MAX=10000*10000;}
 			//==========DIVISION==========
 			else																		{NUM_MIN=0;NUM_MAX=10000*10000;}
 			//==========DIVISION==========
@@ -2064,6 +2688,7 @@ function MP3_Array_Hotkey_Mouse(ele,evt,post_method)
 			else if ( evt_target.className=="BG_IMG_Shake_CSS_ITV_Zoom_CLS" )			{NUM_10=parseFloat(evt_target.value);}
 			else if ( evt_target.className=="BG_IMG_Shake_CSS_ITV_Rotate_CLS" )			{NUM_10=parseFloat(evt_target.value);}
 			else if ( evt_target.className=="BG_IMG_Shake_CSS_ITV_Opacity_CLS" )		{NUM_10=parseFloat(evt_target.value);}
+			else if ( evt_target.className=="DFCB_MP3_ATIF_CSS_Zoom_CLS" )				{NUM_10=parseFloat(evt_target.value);}
 			//==========DIVISION==========
 			else																		{NUM_10=parseInt(evt_target.value,10);}
 			//==========DIVISION==========
@@ -2089,6 +2714,7 @@ function MP3_Array_Hotkey_Mouse(ele,evt,post_method)
 			else if ( evt_target.className=="BG_IMG_Shake_CSS_ITV_Zoom_CLS" )			{NUM_10=(parseFloat(num00/1000) + NUM_10).toFixed(3);}
 			else if ( evt_target.className=="BG_IMG_Shake_CSS_ITV_Rotate_CLS" )			{NUM_10=(parseFloat(num00/1000) + NUM_10).toFixed(3);}
 			else if ( evt_target.className=="BG_IMG_Shake_CSS_ITV_Opacity_CLS" )		{NUM_10=(parseFloat(num00/1000) + NUM_10).toFixed(3);}
+			else if ( evt_target.className=="DFCB_MP3_ATIF_CSS_Zoom_CLS" )				{NUM_10=(parseFloat(num00/1000) + NUM_10).toFixed(3);}
 			//==========DIVISION==========
 			else																		{NUM_10=num00 + NUM_10;}
 			//==========DIVISION==========
@@ -2098,19 +2724,31 @@ function MP3_Array_Hotkey_Mouse(ele,evt,post_method)
 
 			evt_target.value=NUM_10;
 			//==========DIVISION==========
-			if ( evt_target.className=="BG_IMG_Shake_CSS_ITV_Margin_Top_CLS" )		{MP3_Array_CLS.VAL.BG_IMG_Shake_CSS_ITV_Margin_Top	=NUM_10;}
+			if ( evt_target.className=="BG_IMG_Type_ST_TTI_CLS" )					{MP3_Array_CLS.VAL.BG_IMG_Type_ST_TTI				=NUM_10;}
+			else if ( evt_target.className=="BG_IMG_Shake_ST_TTI_CLS" )				{MP3_Array_CLS.VAL.BG_IMG_Shake_ST_TTI				=NUM_10;}
+			else if ( evt_target.className=="BG_IMG_Shake_VAL_Random_ST_TTI_CLS" )	{MP3_Array_CLS.VAL.BG_IMG_Shake_VAL_Random_ST_TTI	=NUM_10;}
+			else if ( evt_target.className=="BG_IMG_Shake_CSS_ITV_Margin_Top_CLS" )	{MP3_Array_CLS.VAL.BG_IMG_Shake_CSS_ITV_Margin_Top	=NUM_10;}
 			else if ( evt_target.className=="BG_IMG_Shake_CSS_ITV_Margin_Left_CLS" ){MP3_Array_CLS.VAL.BG_IMG_Shake_CSS_ITV_Margin_Left	=NUM_10;}
 			else if ( evt_target.className=="BG_IMG_Shake_CSS_Margin_Slope_CLS" )	{MP3_Array_CLS.VAL.BG_IMG_Shake_CSS_Margin_Slope	=parseFloat(NUM_10);}
+			else if ( evt_target.className=="BG_IMG_Shake_CSS_ZPointX_CLS" )		{MP3_Array_CLS.VAL.BG_IMG_Shake_CSS_ZPointX			=NUM_10;}
+			else if ( evt_target.className=="BG_IMG_Shake_CSS_ZPointY_CLS" )		{MP3_Array_CLS.VAL.BG_IMG_Shake_CSS_ZPointY			=NUM_10;}
 			else if ( evt_target.className=="BG_IMG_Shake_CSS_ITV_Zoom_CLS" )		{MP3_Array_CLS.VAL.BG_IMG_Shake_CSS_ITV_Zoom		=parseFloat(NUM_10);}
+			else if ( evt_target.className=="BG_IMG_Shake_CSS_RPointX_CLS" )		{MP3_Array_CLS.VAL.BG_IMG_Shake_CSS_RPointX			=NUM_10;}
+			else if ( evt_target.className=="BG_IMG_Shake_CSS_RPointY_CLS" )		{MP3_Array_CLS.VAL.BG_IMG_Shake_CSS_RPointY			=NUM_10;}
 			else if ( evt_target.className=="BG_IMG_Shake_CSS_ITV_Rotate_CLS" )		{MP3_Array_CLS.VAL.BG_IMG_Shake_CSS_ITV_Rotate		=parseFloat(NUM_10);}
 			else if ( evt_target.className=="BG_IMG_Shake_CSS_ITV_Opacity_CLS" )	{MP3_Array_CLS.VAL.BG_IMG_Shake_CSS_ITV_Opacity		=parseFloat(NUM_10);}
+			else if ( evt_target.className=="DFCB_MP3_ATIF_CSS_Zoom_CLS" )			{MP3_Array_CLS.VAL.DFCB_MP3_ATIF_CSS_Zoom			=parseFloat(NUM_10);}
 			//==========DIVISION==========
 			else															{}
 			//==========DIVISION==========
 			if ( evt_target.className=="BG_IMG_Shake_CSS_ITV_Margin_Top_CLS" || evt_target.className=="BG_IMG_Shake_CSS_ITV_Margin_Left_CLS" || 
 				evt_target.className=="BG_IMG_Shake_CSS_Margin_Slope_CLS" || 
-				evt_target.className=="BG_IMG_Shake_CSS_ITV_Zoom_CLS" || evt_target.className=="BG_IMG_Shake_CSS_ITV_Rotate_CLS" || 
+				evt_target.className=="BG_IMG_Shake_CSS_ZPointX_CLS" || evt_target.className=="BG_IMG_Shake_CSS_ZPointY_CLS" || 
+				evt_target.className=="BG_IMG_Shake_CSS_ITV_Zoom_CLS" || 
+				evt_target.className=="BG_IMG_Shake_CSS_RPointX_CLS" || evt_target.className=="BG_IMG_Shake_CSS_RPointY_CLS" || 
+				evt_target.className=="BG_IMG_Shake_CSS_ITV_Rotate_CLS" || 
 				evt_target.className=="BG_IMG_Shake_CSS_ITV_Opacity_CLS" || 
+				evt_target.className=="DFCB_MP3_ATIF_CSS_Zoom_CLS" || 
 				0 )
 			{
 				(function(){
@@ -2219,7 +2857,18 @@ function MP3_Array_Body_Hotkey_Mouse(ele,evt,post_method)
 	else if ( post_method==0 && evt && evt.type=="keydown" && 
 			!( evt.which == 33 || evt.which == 34 || evt.which == 38 || evt.which == 40 || evt.which == 36 || evt.which == 35 ) )
 	{
-		if		( evt.which == 84 )		{ele_MP3_Array_Ctrl_ScrollTo_Top_BTN.click();}			//t				84
+		if		( evt.which == 84 )		{ele_MP3_Array_Ctrl_ScrollTo_Top_BTN.click();}	//t		84
+		if		( evt.which == 82 )		{ele_BG_IMG_Shake_VAL_Random_BTN.click();}		//r		82
+		if		( evt.which == 80 )		//p		80
+		{
+			ele_BG_IMG_Type_SEL.selectedIndex=parseInt(ele_BG_IMG_Type_SEL.options.length * Math.random(),10);
+			(function(){
+				var ele,evt,post_method;
+				ele=ele_MP3_Array_Ctrl_Table;evt={type:"change",target:ele_BG_IMG_Type_SEL};post_method=2;
+				MP3_Array_Ctrl_Table_Action(ele,evt,post_method);
+			})();
+		}
+		else		{}
 	}
 	else
 	{
