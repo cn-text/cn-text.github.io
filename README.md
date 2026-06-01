@@ -16,9 +16,10 @@
 <br>
 <br>
 <br>男人＋女人,要裸体法轮功要命,还是要,你的男女心通,想自杀？
-<br>$\textsf{\color{red   }{[全世界都][给我][24小时][不停的][做这个]：}}$
+<br>$\textsf{\color{red   }{[全世界都][给我][24小时][不停的][做这个](最大声)：}}$
 <br>看图，这是示范模特：
 <br>
+<img alt="2_Android_2_Ear"			width="150"	height="200"	src="https://github.com/user-attachments/assets/802b1e16-ecb2-478c-a98b-fcb6cd69fc6f" />
 <img alt="IMG_20260529_212847"			width="260"	height="195"	src="https://github.com/user-attachments/assets/f0453e73-bcd3-426b-b8ab-def5a4995012" />
 <img alt="IMG_20260529_213023"			width="195"	height="260"	src="https://github.com/user-attachments/assets/c0f381ca-fab5-4da7-8048-3238251cd4e5" />
 <img alt="IMG_20260529_213137"			width="195"	height="260"	src="https://github.com/user-attachments/assets/89241e14-8b62-4fce-86f6-03a17bb35f31" />
